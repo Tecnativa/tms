@@ -1,0 +1,118 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_price_from_history
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_price_from_history
+#: model_terms:ir.ui.view,arch_db:sale_price_from_history.wiz_history_price_form
+msgid "Cancel"
+msgstr ""
+
+#. module: sale_price_from_history
+#: model:ir.model.fields,field_description:sale_price_from_history.field_wizard_sale_line_history_price__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: sale_price_from_history
+#: model:ir.model.fields,field_description:sale_price_from_history.field_wizard_sale_line_history_price__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: sale_price_from_history
+#: model:ir.model.fields,field_description:sale_price_from_history.field_sale_order_line__order_partner_id
+msgid "Customer"
+msgstr ""
+
+#. module: sale_price_from_history
+#: model:ir.model.fields,field_description:sale_price_from_history.field_wizard_sale_line_history_price__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_price_from_history
+#: model:ir.actions.act_window,name:sale_price_from_history.wiz_price_history_action
+msgid "History Price"
+msgstr ""
+
+#. module: sale_price_from_history
+#: model_terms:ir.ui.view,arch_db:sale_price_from_history.wiz_history_price_form
+msgid "History Price From Sale Order Lines"
+msgstr ""
+
+#. module: sale_price_from_history
+#: model_terms:ir.ui.view,arch_db:sale_price_from_history.wiz_history_price_form
+msgid "History Prices"
+msgstr ""
+
+#. module: sale_price_from_history
+#: model:ir.model.fields,field_description:sale_price_from_history.field_wizard_sale_line_history_price__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_price_from_history
+#: model:ir.model.fields,field_description:sale_price_from_history.field_wizard_sale_line_history_price____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: sale_price_from_history
+#: model:ir.model.fields,field_description:sale_price_from_history.field_wizard_sale_line_history_price__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: sale_price_from_history
+#: model:ir.model.fields,field_description:sale_price_from_history.field_wizard_sale_line_history_price__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: sale_price_from_history
+#: model:ir.model.fields,field_description:sale_price_from_history.field_wizard_sale_line_history_price__partner_id
+msgid "Partner"
+msgstr ""
+
+#. module: sale_price_from_history
+#: model:ir.model.fields,field_description:sale_price_from_history.field_product_product__price_history
+#: model:ir.model.fields,field_description:sale_price_from_history.field_product_template__price_history
+#: model:ir.model.fields,field_description:sale_price_from_history.field_sale_order__price_history
+#: model:ir.model.fields,field_description:sale_price_from_history.field_sale_order_line__price_history
+#: model:ir.model.fields,field_description:sale_price_from_history.field_wizard_sale_line_history_price__sale_line_ids
+msgid "Price History"
+msgstr ""
+
+#. module: sale_price_from_history
+#: model:ir.model.fields,field_description:sale_price_from_history.field_wizard_sale_line_history_price__product_id
+msgid "Product"
+msgstr ""
+
+#. module: sale_price_from_history
+#: model:ir.model,name:sale_price_from_history.model_product_template
+msgid "Product Template"
+msgstr ""
+
+#. module: sale_price_from_history
+#: model:ir.model.fields,field_description:sale_price_from_history.field_wizard_sale_line_history_price__sale_line_id
+msgid "Sale Line"
+msgstr ""
+
+#. module: sale_price_from_history
+#: model:ir.model,name:sale_price_from_history.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: sale_price_from_history
+#: model:ir.model,name:sale_price_from_history.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: sale_price_from_history
+#: model:ir.model,name:sale_price_from_history.model_wizard_sale_line_history_price
+msgid "Wizard to show sale line history prices"
+msgstr ""

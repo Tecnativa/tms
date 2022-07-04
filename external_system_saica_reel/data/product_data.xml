@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2017 Sergio Teruel - Tecnativa <sergio.teruel@tecnativa.com>
+     Copyright 2017 Carlos Dauden - Tecnativa <carlos.dauden@tecnativa.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+<data>
+    <record id="product_attribute_year" model="product.attribute">
+        <!-- Ano de bobina -->
+        <field name="name">Year</field>
+    </record>
+
+    <record id="product_attribute_papercode" model="product.attribute">
+        <!-- Codigo de bobina -->
+        <field name="name">Paper code</field>
+    </record>
+
+    <record id="product_attribute_basisweight" model="product.attribute">
+        <!-- Peso del papel en gramos por metro cuadrado (Gramaje) -->
+        <field name="name">BasisWeight</field>
+    </record>
+
+    <record id="product_attribute_diameter" model="product.attribute">
+        <!-- Diametro en mm -->
+        <field name="name">Diameter</field>
+    </record>
+
+    <record id="product_attribute_width" model="product.attribute">
+        <!-- Ancho en mm -->
+        <field name="name">Width</field>
+    </record>
+
+</data>
+
+<data noupdate="1">
+    <record id="product_category_saica_reel" model="product.category">
+        <field name="parent_id" ref="product.product_category_1" />
+        <field name="name">Saica Reels</field>
+    </record>
+
+    <record id="product_template_saica_reel" model="product.template">
+        <field name="name">Saica Reel</field>
+        <field name="categ_id" ref="product_category_saica_reel" />
+        <field name="standard_price">50000.0</field>
+        <field name="list_price">0.0</field>
+        <field name="type">product</field>
+        <field name="tracking">serial</field>
+        <field name="uom_id" ref="uom.product_uom_unit" />
+        <field name="uom_po_id" ref="uom.product_uom_unit" />
+        <field name="description_sale">Saica Reels Template Product</field>
+        <field name="sale_ok">False</field>
+        <field name="purchase_ok">False</field>
+    </record>
+</data>
+
+</odoo>

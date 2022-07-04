@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_external_system_saica_reel_admin,access_external_system_saica_reel_admin,model_external_system_saica_reel,base.group_system,1,1,1,1
+access_external_system_saica_reel_user,access_external_system_saica_reel_user,model_external_system_saica_reel,,1,0,0,0
+access_external_system_saica_user,access_external_system_saica_user,model_external_system,,1,0,0,0

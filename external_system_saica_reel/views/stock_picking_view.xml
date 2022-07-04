@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2017 Sergio Teruel <sergio.teruel@tecnativa.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+<record id="view_picking_form" model="ir.ui.view">
+    <field name="model">stock.picking</field>
+    <field name="inherit_id" ref="stock.view_picking_form" />
+    <field name="arch" type="xml">
+        <xpath expr="//field[@name='state']" position="before">
+            <field name="saica_sale_line_ids" invisible="1" />
+            <button
+                    name="action_confirm_reception"
+                    type="object"
+                    string="Confirm Reception"
+                    groups="base.group_no_one"
+                />
+            <button
+                    name="action_confirm_expedition"
+                    type="object"
+                    string="Confirm Expedition"
+                    groups="base.group_no_one"
+                />
+            <button
+                    name="action_create_so"
+                    type="object"
+                    string="Create Sale Order"
+                    attrs="{'invisible': [('saica_sale_line_ids', '!=', [])]}"
+                />
+            <!--<button name="action_confirm_reception" type="object" string="SAICA Confirm"-->
+                    <!--attrs="{'invisible': [('picking_type_id', '!=', ref('tms_saica_reel.picking_type_saica_reel_in'))]}"/>-->
+        </xpath>
+        <xpath expr="//field[@name='origin']/..">
+            <label for="tractor_id" />
+            <div>
+                <field name="tractor_id" class="oe_inline" />
+                <field name="tractor_plate" class="oe_inline" />
+            </div>
+            <label for="trailer_id" />
+            <div>
+                <field name="trailer_id" class="oe_inline" />
+                <field name="trailer_plate" class="oe_inline" />
+            </div>
+        </xpath>
+    </field>
+</record>
+
+</odoo>

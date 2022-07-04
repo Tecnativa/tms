@@ -1,0 +1,219 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* tms_port_community_system
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-07-03 02:15+0000\n"
+"PO-Revision-Date: 2020-07-03 04:19+0200\n"
+"Last-Translator: Carlos Dauden <carlos.dauden@tecnativa.com>\n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.3\n"
+
+#. module: tms_port_community_system
+#: model:ir.model.fields.selection,name:tms_port_community_system.selection__sale_order__pcs_message_function__cancellation
+msgid "CANCELLATION"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model:ir.model.fields.selection,name:tms_port_community_system.selection__sale_order__pcs_message_function__change_acc_conf
+msgid "CHANGE_ACC_CONF"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model:ir.model.fields.selection,name:tms_port_community_system.selection__sale_order__pcs_message_function__change_ao_in
+msgid "CHANGE_AO_IN"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model:ir.model.fields.selection,name:tms_port_community_system.selection__sale_order__pcs_message_function__change_ao_out
+msgid "CHANGE_AO_OUT"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model:ir.model.fields.selection,name:tms_port_community_system.selection__sale_order__pcs_message_function__change_itd
+msgid "CHANGE_ITD"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model:ir.model.fields.selection,name:tms_port_community_system.selection__sale_order__pcs_message_function__change_rel_conf
+msgid "CHANGE_REL_CONF"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model:ir.model.fields.selection,name:tms_port_community_system.selection__sale_order__pcs_message_function__change_roao_in
+msgid "CHANGE_ROAO_IN"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model:ir.model.fields.selection,name:tms_port_community_system.selection__sale_order__pcs_message_function__change_roao_out
+msgid "CHANGE_ROAO_OUT"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model:ir.model.fields.selection,name:tms_port_community_system.selection__sale_order__pcs_message_function__change_ro_in
+msgid "CHANGE_RO_IN"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model:ir.model.fields.selection,name:tms_port_community_system.selection__sale_order__pcs_message_function__change_ro_out
+msgid "CHANGE_RO_OUT"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model:ir.model.fields,field_description:tms_port_community_system.field_tms_pcs_backend__company_id
+#: model_terms:ir.ui.view,arch_db:tms_port_community_system.tms_pcs_backend_form_view
+msgid "Company"
+msgstr "Compañía"
+
+#. module: tms_port_community_system
+#: model:ir.model.fields,field_description:tms_port_community_system.field_tms_pcs_backend__company_code
+msgid "Company Code"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model:ir.model.fields,field_description:tms_port_community_system.field_tms_pcs_backend__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: tms_port_community_system
+#: model:ir.model.fields,field_description:tms_port_community_system.field_tms_pcs_backend__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: tms_port_community_system
+#: model:ir.model.fields,field_description:tms_port_community_system.field_tms_pcs_backend__display_name
+msgid "Display Name"
+msgstr "Nombre a mostrar"
+
+#. module: tms_port_community_system
+#: model:ir.actions.server,name:tms_port_community_system.ir_cron_tms_pcs_download_ir_actions_server
+#: model:ir.cron,cron_name:tms_port_community_system.ir_cron_tms_pcs_download
+#: model:ir.cron,name:tms_port_community_system.ir_cron_tms_pcs_download
+msgid "Download PCS Documents"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model:ir.model.fields,field_description:tms_port_community_system.field_tms_pcs_backend__environment_test
+msgid "Environment Test"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model:ir.model.fields,field_description:tms_port_community_system.field_tms_pcs_backend__id
+msgid "ID"
+msgstr "ID (identificación)"
+
+#. module: tms_port_community_system
+#: model_terms:ir.ui.view,arch_db:tms_port_community_system.tms_pcs_backend_form_view
+msgid "Import"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model:ir.model.fields,field_description:tms_port_community_system.field_tms_pcs_backend____last_update
+msgid "Last Modified on"
+msgstr "Última modificación el"
+
+#. module: tms_port_community_system
+#: model:ir.model.fields,field_description:tms_port_community_system.field_sale_order__pcs_message_function
+#: model:ir.model.fields,field_description:tms_port_community_system.field_sale_order_line__pcs_message_function
+msgid "Last PCS Message"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model:ir.model.fields,field_description:tms_port_community_system.field_tms_pcs_backend__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: tms_port_community_system
+#: model:ir.model.fields,field_description:tms_port_community_system.field_tms_pcs_backend__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: tms_port_community_system
+#: model:ir.model.fields.selection,name:tms_port_community_system.selection__sale_order__pcs_message_function__original
+msgid "ORIGINAL"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model_terms:ir.ui.view,arch_db:tms_port_community_system.tms_pcs_backend_form_view
+#: model_terms:ir.ui.view,arch_db:tms_port_community_system.tms_pcs_backend_tree_view
+msgid "PCS"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model:ir.model.fields,field_description:tms_port_community_system.field_tms_pcs_backend__product_id
+msgid "PCS Product"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model:ir.model.fields,field_description:tms_port_community_system.field_tms_pcs_backend__password
+msgid "Password"
+msgstr "Contraseña"
+
+#. module: tms_port_community_system
+#: model:ir.model.fields,field_description:tms_port_community_system.field_sale_order_line__pcs_item_number
+msgid "Pcs Item Number"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model:ir.model.fields,field_description:tms_port_community_system.field_sale_order__pcs_message_number
+msgid "Pcs Message Number"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model:ir.model.fields.selection,name:tms_port_community_system.selection__sale_order__pcs_message_function__replace
+msgid "REPLACE"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model_terms:ir.ui.view,arch_db:tms_port_community_system.view_order_form
+msgid "Re-process attach"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model_terms:ir.ui.view,arch_db:tms_port_community_system.tms_pcs_backend_form_view
+msgid "Sale Order Data"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model:ir.model,name:tms_port_community_system.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model:ir.model,name:tms_port_community_system.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea de pedido de venta"
+
+#. module: tms_port_community_system
+#: model:ir.actions.act_window,name:tms_port_community_system.action_pcs_backend
+#: model:ir.ui.menu,name:tms_port_community_system.menu_tms_pcs_backend
+msgid "TMS PCS Backend"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model:ir.model,name:tms_port_community_system.model_tms_pcs_backend
+msgid "TMS Valencia ports backend"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model:ir.model.fields,field_description:tms_port_community_system.field_tms_pcs_backend__url
+msgid "Url"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model:ir.model.fields,field_description:tms_port_community_system.field_tms_pcs_backend__user
+msgid "User"
+msgstr "Usuario"
+
+#. module: tms_port_community_system
+#: model:ir.model.fields,field_description:tms_port_community_system.field_tms_pcs_backend__warehouse_id
+msgid "Warehouse"
+msgstr "Almacén"

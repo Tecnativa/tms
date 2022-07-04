@@ -1,0 +1,61 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_line_vendor
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_order_line_vendor
+#: model:ir.model.fields,field_description:sale_order_line_vendor.field_sale_order_line__vendor_price_unit
+msgid "Cost Price"
+msgstr ""
+
+#. module: sale_order_line_vendor
+#: model:ir.model.fields,field_description:sale_order_line_vendor.field_sale_order_line__vendor_price_subtotal
+msgid "Cost Subtotal"
+msgstr ""
+
+#. module: sale_order_line_vendor
+#: model:ir.model.fields,help:sale_order_line_vendor.field_product_product__sale_line_cost_zero
+#: model:ir.model.fields,help:sale_order_line_vendor.field_product_template__sale_line_cost_zero
+msgid "If set, The sale order line cost will be zero"
+msgstr ""
+
+#. module: sale_order_line_vendor
+#: model:ir.model,name:sale_order_line_vendor.model_product_product
+msgid "Product"
+msgstr ""
+
+#. module: sale_order_line_vendor
+#: model:ir.model,name:sale_order_line_vendor.model_product_template
+msgid "Product Template"
+msgstr ""
+
+#. module: sale_order_line_vendor
+#: model:ir.model,name:sale_order_line_vendor.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr ""
+
+#. module: sale_order_line_vendor
+#: model:ir.model.fields,field_description:sale_order_line_vendor.field_product_product__sale_line_cost_zero
+#: model:ir.model.fields,field_description:sale_order_line_vendor.field_product_template__sale_line_cost_zero
+msgid "Sale Line Cost Zero"
+msgstr ""
+
+#. module: sale_order_line_vendor
+#: model:ir.model,name:sale_order_line_vendor.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: sale_order_line_vendor
+#: model:ir.model.fields,field_description:sale_order_line_vendor.field_sale_order_line__vendor_id
+msgid "Vendor"
+msgstr ""

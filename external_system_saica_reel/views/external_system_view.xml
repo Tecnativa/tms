@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2017 Sergio Teruel <sergio.teruel@tecnativa.com>
+     Copyright 2017 Carlos Dauden <carlos.dauden@tecnativa.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+<odoo>
+
+<record id="external_system_saica_reel_view_form" model="ir.ui.view">
+    <field name="name">external.system.saica.reel.view.form</field>
+    <field name="model">external.system.saica.reel</field>
+    <field name="inherit_id" ref="base_external_system.external_system_view_form" />
+    <field name="mode">primary</field>
+    <field name="arch" type="xml">
+        <xpath expr="//header" position="inside">
+            <button name="action_get_inventory" type="object" string="Get Inventory" />
+        </xpath>
+        <xpath expr='//notebook' position="inside">
+            <page string="Saica Reels">
+                <group>
+                    <field name="last_time_log" />
+                    <field name="partner_id" />
+                    <field name="incoming_picking_type_id" />
+                    <field name="outgoing_picking_type_id" />
+                    <field name="saica_company" />
+                    <field name="saica_warehouse" />
+                    <field name="saica_delivered_from" />
+                    <field name="saica_delivered_to" />
+                    <field name="saica_location_id" />
+                    <field name="order_product_id" />
+                    <field name="shipping_origin_id" />
+                </group>
+            </page>
+        </xpath>
+    </field>
+</record>
+
+<record id="external_system_saica_reel_action" model="ir.actions.act_window">
+     <field name="name">External Systems Saica Reel</field>
+     <field name="res_model">external.system.saica.reel</field>
+     <field name="type">ir.actions.act_window</field>
+     <field name="view_mode">tree,form</field>
+     <field name="domain">[('system_type', '=', 'external.system.saica.reel')]</field>
+</record>
+
+<menuitem
+        id="external_system_saica_reel_menu"
+        name="External Systems Saica"
+        parent="stock.menu_stock_config_settings"
+        action="external_system_saica_reel_action"
+        sequence="50"
+    />
+
+</odoo>

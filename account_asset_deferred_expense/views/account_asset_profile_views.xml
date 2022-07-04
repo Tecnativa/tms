@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+<record id="account_asset_profile_view_form" model="ir.ui.view">
+    <field name="model">account.asset.profile</field>
+    <field
+            name="inherit_id"
+            ref="account_asset_management.account_asset_profile_view_form"
+        />
+    <field name="arch" type="xml">
+        <field name="name" position="after">
+            <field name="is_expense_type" invisible="1" />
+        </field>
+        <field name="account_depreciation_id" position="attributes">
+            <attribute
+                    name="attrs"
+                >{'invisible': [('is_expense_type','=', True)]}</attribute>
+        </field>
+<!--        <label for="account_expense_depreciation_id" position="after">-->
+<!--            <label for="account_expense_depreciation_id" string="Expense Account" attrs="{'invisible': [('is_expense_type','=', True)]}"/>-->
+<!--        </label>-->
+        <field name="account_analytic_id" position="attributes">
+            <attribute
+                    name="attrs"
+                >{'invisible': [('is_expense_type','=', True)]}</attribute>
+        </field>
+        <field name="account_plus_value_id" position="attributes">
+            <attribute
+                    name="attrs"
+                >{'invisible': [('is_expense_type','=', True)]}</attribute>
+        </field>
+        <field name="account_min_value_id" position="attributes">
+            <attribute
+                    name="attrs"
+                >{'invisible': [('is_expense_type','=', True)]}</attribute>
+        </field>
+        <field name="account_residual_value_id" position="attributes">
+            <attribute
+                    name="attrs"
+                >{'invisible': [('is_expense_type','=', True)]}</attribute>
+        </field>
+        <field name="method" position="attributes">
+            <attribute
+                    name="attrs"
+                >{'invisible': [('is_expense_type','=', True)]}</attribute>
+        </field>
+    </field>
+</record>
+
+<record id="account_asset_profile_view_search" model="ir.ui.view">
+    <field name="model">account.asset.profile</field>
+    <field
+            name="inherit_id"
+            ref="account_asset_management.account_asset_profile_view_search"
+        />
+    <field name="arch" type="xml">
+        <field name="name" position="before">
+            <filter
+                    name="is_expense_type"
+                    string="Expense"
+                    domain="[('is_expense_type','=', True)]"
+                    help="Deferred Expenses"
+                />
+        </field>
+    </field>
+</record>
+
+<record
+        id="account_asset_management.account_asset_profile_action"
+        model="ir.actions.act_window"
+    >
+    <field name="domain">[('is_expense_type','=', False)]</field>
+</record>
+
+<record id="action_account_asset_profile_expense" model="ir.actions.act_window">
+    <field name="name">Deferred Expense Types</field>
+    <field name="res_model">account.asset.profile</field>
+    <field name="domain">[('is_expense_type','=', True)]</field>
+    <field name="view_mode">tree,form</field>
+    <field name="context">{'default_is_expense_type': True}</field>
+</record>
+
+<menuitem
+        id="menu_account_asset_profile_expense"
+        parent="account_asset_management.menu_finance_config_assets"
+        action="action_account_asset_profile_expense"
+        sequence="20"
+    />
+
+</odoo>

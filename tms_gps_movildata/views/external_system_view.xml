@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2017 Sergio Teruel <sergio.teruel@tecnativa.com>
+     Copyright 2017 Carlos Dauden <carlos.dauden@tecnativa.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+<odoo>
+
+    <record id="external_system_view_form" model="ir.ui.view">
+        <field name="name">external.system.movildata.view.form</field>
+        <field name="model">external.system</field>
+        <field name="inherit_id" ref="base_external_system.external_system_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr='//notebook' position="inside">
+                <page
+                    string="Movildata"
+                    attrs="{'invisible': [('system_type', '!=', 'external.system.movildata')]}"
+                >
+                    <field name="movildata_adapter_ids">
+                        <tree editable="top" create="false" delete="false">
+                            <field name="last_time_log" />
+                            <field name="min_log_time" />
+                            <field name="min_log_position" />
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

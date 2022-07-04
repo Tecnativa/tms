@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="account_asset_view_form" model="ir.ui.view">
+        <field name="model">account.asset</field>
+        <field
+            name="inherit_id"
+            ref="account_asset_management.account_asset_view_form"
+        />
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page name="tms" string="TMS">
+                    <group>
+                        <field name="tractor_id" />
+                        <field name="trailer_id" />
+                        <field name="driver_id" />
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+
+    <record id="account_asset_view_tree" model="ir.ui.view">
+        <field name="model">account.asset</field>
+        <field
+            name="inherit_id"
+            ref="account_asset_management.account_asset_view_tree"
+        />
+        <field name="arch" type="xml">
+            <field name="company_id" position="before">
+                <field name="tractor_id" optional="hide" />
+                <field name="trailer_id" optional="hide" />
+                <field name="driver_id" optional="hide" />
+            </field>
+        </field>
+    </record>
+
+    <record id="account_asset_view_search" model="ir.ui.view">
+        <field name="model">account.asset</field>
+        <field
+            name="inherit_id"
+            ref="account_asset_management.account_asset_view_search"
+        />
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="tractor_id" />
+                <field name="trailer_id" />
+                <field name="driver_id" />
+            </field>
+        </field>
+    </record>
+
+</odoo>

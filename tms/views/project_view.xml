@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2017 Sergio Teruel <sergio.teruel@tecnativa.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+<record id="edit_project" model="ir.ui.view">
+    <field name="model">project.project</field>
+    <field name="inherit_id" ref="project.edit_project" />
+    <field name="arch" type="xml">
+        <xpath expr="//field[@name='name']/../.." position="after">
+            <group string="Transport Info">
+                <group>
+                    <field name="shipment_type" />
+                    <field name="shipment_ref" />
+                </group>
+            </group>
+        </xpath>
+        <xpath expr="//notebook" position="inside">
+            <page name="tms_info" string="Transport Info">
+                <group>
+                    <group name="maritime" string="">
+                        <group>
+                            <field name="vessel" />
+                            <field name="vessel_flag" />
+                        </group>
+                        <group>
+                            <field name="shipper_id" />
+                            <field name="consigner_id" />
+                            <field name="freight_forwarder_id" />
+                        </group>
+                        <group>
+                            <field name="load_harbor_id" />
+                            <field name="load_terminal" />
+                            <field name="discharge_harbor_id" />
+                            <field name="discharge_terminal" />
+                        </group>
+                    </group>
+                </group>
+                <group>
+                    <field name="type_ids" />
+                </group>
+            </page>
+        </xpath>
+    </field>
+</record>
+
+</odoo>

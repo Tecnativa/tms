@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+<record id="account_asset_view_form" model="ir.ui.view">
+    <field name="model">account.asset</field>
+    <field name="inherit_id" ref="account_asset_management.account_asset_view_form" />
+    <field name="arch" type="xml">
+        <field name="salvage_value" position="after">
+            <field name="is_expense_type" invisible="1" />
+        </field>
+        <field name="profile_id" position="attributes">
+            <attribute
+                    name="domain"
+                >[('is_expense_type','=', is_expense_type)]</attribute>
+        </field>
+        <field name="value_residual" position="attributes">
+            <attribute
+                    name="attrs"
+                >{'invisible': [('is_expense_type','=', True)]}</attribute>
+        </field>
+        <field name="salvage_value" position="attributes">
+            <attribute
+                    name="attrs"
+                >{'invisible': [('is_expense_type','=', True)]}</attribute>
+        </field>
+        <field name="date_remove" position="attributes">
+            <attribute
+                    name="attrs"
+                >{'invisible': [('is_expense_type','=', True)]}</attribute>
+        </field>
+        <field name="method" position="attributes">
+            <attribute
+                    name="attrs"
+                >{'invisible': [('is_expense_type','=', True)]}</attribute>
+        </field>
+    </field>
+</record>
+
+<record id="view_account_asset_expense_tree" model="ir.ui.view">
+    <field name="name">account.asset.expense.tree</field>
+    <field name="model">account.asset</field>
+    <field name="arch" type="xml">
+        <tree
+                string="Assets"
+                decoration-info="(state == 'draft')"
+                decoration-muted="(state == 'close')"
+            >
+            <field name="name" optional="show" />
+            <field name="date_start" optional="show" />
+            <field name="partner_id" string="Vendor" optional="show" />
+            <field name="purchase_value" optional="show" />
+            <field
+                    name="company_currency_id"
+                    groups="base.group_multi_currency"
+                    optional="show"
+                />
+            <field
+                    name="company_id"
+                    groups="base.group_multi_company"
+                    optional="show"
+                />
+            <field name="state" optional="show" />
+        </tree>
+    </field>
+</record>
+
+<record
+        id="account_asset_management.account_asset_action"
+        model="ir.actions.act_window"
+    >
+    <field name="domain">[('is_expense_type','=', False)]</field>
+</record>
+
+<record id="action_account_asset_expense" model="ir.actions.act_window">
+    <field name="name">Deferred Expenses</field>
+    <field name="res_model">account.asset</field>
+    <field name="view_id" ref="view_account_asset_expense_tree" />
+    <field name="domain">[('is_expense_type','=', True)]</field>
+    <field name="context">{'default_is_expense_type': True}</field>
+</record>
+
+<menuitem
+        id="menu_account_asset_expense"
+        parent="account_asset_management.menu_finance_assets"
+        action="action_account_asset_expense"
+        sequence="105"
+        groups="account.group_account_user"
+    />
+
+</odoo>

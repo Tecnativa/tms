@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2017 Sergio Teruel - Tecnativa <sergio.teruel@tecnativa.com>
+     Copyright 2017 Carlos Dauden - Tecnativa <carlos.dauden@tecnativa.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo noupdate="1">
+
+    <record id="ir_cron_tms_saica_reel" model="ir.cron">
+        <field name="name">Download Saica Reel Expeditions</field>
+        <field name="priority" eval="100" />
+        <field name="interval_number">15</field>
+        <field name="interval_type">minutes</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False" />
+        <field name="model_id" ref="model_external_system_saica_reel" />
+        <field name="state">code</field>
+        <field name="code">model.cron_import_saica_reel_data()</field>
+    </record>
+
+    <record id="seq_picking_type_reel_in" model="ir.sequence">
+        <field name="name">Saica reel in</field>
+        <field name="prefix">SCR/IN</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="ref('base.main_company')" />
+    </record>
+
+    <record id="seq_picking_type_reel_out" model="ir.sequence">
+        <field name="name">Saica reel out</field>
+        <field name="prefix">SCR/OUT</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="ref('base.main_company')" />
+    </record>
+
+    <record id="stock_location_saica_reel" model="stock.location">
+        <field name="name">Saica Reel</field>
+        <field name="location_id" ref="stock.stock_location_stock" />
+        <field name="usage">internal</field>
+        <field name="company_id" eval="ref('base.main_company')" />
+    </record>
+
+    <record id="picking_type_saica_reel_in" model="stock.picking.type">
+        <field name="name">Saica Reel Receptions</field>
+        <field name="sequence_id" ref="seq_picking_type_reel_in" />
+        <field name="code">incoming</field>
+        <field name="sequence_code">SAICA</field>
+        <field name="default_location_src_id" ref="stock.stock_location_suppliers" />
+        <field name="default_location_dest_id" ref="stock_location_saica_reel" />
+    </record>
+
+    <record id="picking_type_saica_reel_out" model="stock.picking.type">
+        <field name="name">Saica Reel Expeditions</field>
+        <field name="sequence_id" ref="seq_picking_type_reel_out" />
+        <field name="code">outgoing</field>
+        <field name="sequence_code">SAICA</field>
+        <field name="default_location_src_id" ref="stock_location_saica_reel" />
+        <field name="default_location_dest_id" ref="stock.stock_location_customers" />
+    </record>
+
+    <record id="external_system_saica_reel" model="external.system.saica.reel">
+        <field name="name">Saica Reel External System</field>
+        <field name="system_type">external.system.saica.reel</field>
+        <field
+            name="host"
+        >https://www.b2b.paper.saica.com/Webservices/ExternalWarehousesService.asmx?WSDL</field>
+        <field name="company_ids" eval="[(5, 0), (4, ref('base.main_company'))]" />
+        <field name="saica_company">100</field>
+        <field name="saica_warehouse">8</field>
+        <field name="saica_delivered_from">8</field>
+        <field name="saica_delivered_to">17903</field>
+    </record>
+
+</odoo>

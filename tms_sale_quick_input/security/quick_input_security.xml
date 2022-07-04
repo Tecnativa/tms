@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2017 Sergio Teruel - Tecnativa <sergio.teruel@tecnativa.com>
+     Copyright 2017 Carlos Dauden - Tecnativa <carlos.dauden@tecnativa.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+<record id="group_tms_sale_quick_input" model="res.groups">
+    <field name="name">Quick Input</field>
+    <field name="category_id" ref="tms.module_category_tms_options" />
+</record>
+
+</odoo>

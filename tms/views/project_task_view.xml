@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2017 Sergio Teruel <sergio.teruel@tecnativa.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+<record id="view_task_form2" model="ir.ui.view">
+    <field name="model">project.task</field>
+    <field name="inherit_id" ref="project_timeline.view_task_form2" />
+    <field name="arch" type="xml">
+        <field name="date_start" position="attributes">
+            <attribute name="invisible">1</attribute>
+        </field>
+        <field name="date_end" position="attributes">
+            <attribute name="invisible">1</attribute>
+        </field>
+    </field>
+</record>
+
+<record id="tms_view_task_form2" model="ir.ui.view">
+    <field name="model">project.task</field>
+    <field name="inherit_id" ref="project.view_task_form2" />
+    <field name="arch" type="xml">
+        <field name="project_id" position="before">
+            <field name="unload_service" />
+        </field>
+        <page name="description_page" position="before">
+            <page name="tms_info" string="Transport Info">
+                <group>
+                    <group col="4">
+                        <field name="release_id" />
+                        <field name="acceptance_id" />
+                        <field name="shipping_origin_id" />
+                        <field name="shipping_destination_id" />
+                        <field name="force_origin" />
+                        <field name="force_destination" />
+                    </group>
+                    <group col="4">
+                        <field
+                                name="tractor_id"
+                                context="{'default_vehicle_type': 'tractor'}"
+                            />
+                        <field
+                                name="trailer_id"
+                                context="{'default_vehicle_type': 'trailer'}"
+                            />
+                        <field name="driver_id" />
+                    </group>
+                    <group>
+                        <group>
+                            <field name="wagon" />
+                        </group>
+                        <group>
+                            <field name="vessel" />
+                            <field name="voyage_number" />
+                        </group>
+                    </group>
+                    <group col="4">
+                        <field name="equipment_size_type_id" />
+                        <field name="trailer_requirement_ids" widget="many2many_tags" />
+                        <field
+                                name="equipment_id"
+                                context="{'default_size_type_id': equipment_size_type_id}"
+                            />
+                        <field name="seal" />
+                    </group>
+                    <group>
+                        <group>
+                            <field name="port_id" />
+                            <field name="shipment_port_id" />
+                        </group>
+                        <group>
+                            <field name="loading_port_id" />
+                            <field name="unloading_port_id" />
+                        </group>
+                    </group>
+                </group>
+                <group string="Packages">
+                    <field name="tms_package_ids" nolabel="1" colspan="2">
+                        <tree editable="bottom" order="sequence, id DESC">
+                            <!--<field name="product_id" readonly="1"/>-->
+                            <field name="sequence" widget="handle" />
+                            <field name="name" readonly="1" optional="show" />
+                            <field
+                                    name="shipping_origin_id"
+                                    readonly="1"
+                                    optional="show"
+                                />
+                            <field
+                                    name="shipping_destination_id"
+                                    readonly="1"
+                                    optional="show"
+                                />
+                            <field name="pickup_date" optional="show" />
+                            <field name="goods_id" optional="show" />
+                            <field name="carrier_tracking_ref" optional="show" />
+                            <field name="customer_ref" optional="show" />
+                            <field
+                                    name="shipping_volume"
+                                    sum="Total Volume"
+                                    optional="show"
+                                />
+                            <field
+                                    name="shipping_weight"
+                                    sum="Total Weight"
+                                    optional="show"
+                                />
+                            <field
+                                    name="number_of_packages"
+                                    sum="Total Packages"
+                                    optional="show"
+                                />
+                        </tree>
+                    </field>
+                </group>
+                <group
+                        string="All Packages"
+                        attrs="{'invisible':[('child_ids', '=', [])]}"
+                    >
+                    <field name="tms_package_all_ids" nolabel="1" colspan="2">
+                        <tree editable="bottom">
+                            <field name="name" readonly="1" optional="show" />
+                            <field
+                                    name="shipping_origin_id"
+                                    readonly="1"
+                                    optional="show"
+                                />
+                            <field
+                                    name="shipping_destination_id"
+                                    readonly="1"
+                                    optional="show"
+                                />
+                            <field name="pickup_date" optional="show" />
+                            <field name="goods_id" optional="show" />
+                            <field name="carrier_tracking_ref" optional="show" />
+                            <field
+                                    name="shipping_volume"
+                                    sum="Total Volume"
+                                    optional="show"
+                                />
+                            <field
+                                    name="shipping_weight"
+                                    sum="Total Weight"
+                                    optional="show"
+                                />
+                            <field
+                                    name="number_of_packages"
+                                    sum="Total Packages"
+                                    optional="show"
+                                />
+                        </tree>
+                    </field>
+                </group>
+            </page>
+            <page name="tms_checkpoint" string="Checkpoints">
+                <button
+                        name="fill_checkpoints"
+                        type="object"
+                        string="Fill Checkpoints"
+                    />
+                <button name="get_route_info" type="object" string="Estimate route" />
+                <button name="open_in_webmap" type="object" string="Show Route" />
+                <group col="4">
+                    <field name="odometer_start" />
+                    <field name="odometer_stop" />
+                    <field name="distance_traveled" />
+                    <field name="distance_estimated" />
+                    <field name="stopped_time" widget="float_time" />
+                    <field name="free_stoped_time" widget="float_time" />
+                </group>
+                <group>
+                    <field name="checkpoint_ids" nolabel="1">
+                        <tree editable="bottom">
+                            <field name="sequence" widget="handle" />
+                            <field name="place_id" optional="show" />
+                            <field
+                                    name="distance_estimated"
+                                    sum="Distance"
+                                    optional="show"
+                                />
+                            <field
+                                    name="duration_estimated"
+                                    widget="float_time"
+                                    sum="Duration"
+                                    optional="show"
+                                />
+                            <field name="arrival_time" optional="show" />
+                            <field name="departure_time" optional="show" />
+                            <field
+                                    name="stopped_time"
+                                    widget="float_time"
+                                    sum="Stopped"
+                                    optional="show"
+                                />
+                            <field
+                                    name="package_origin_ids"
+                                    widget="many2many_tags"
+                                    optional="show"
+                                />
+                            <field
+                                    name="package_destination_ids"
+                                    widget="many2many_tags"
+                                    optional="show"
+                                />
+                        </tree>
+                    </field>
+                </group>
+            </page>
+        </page>
+        <field name="date_deadline" position="before">
+            <field name="date_start" />
+            <field name="date_end" />
+        </field>
+    </field>
+</record>
+
+<record id="view_task_search_form" model="ir.ui.view">
+    <field name="model">project.task</field>
+    <field name="inherit_id" ref="project.view_task_search_form" />
+    <field name="arch" type="xml">
+        <field name="name" position="after">
+            <field
+                    name="date_start"
+                    string="Start from"
+                    filter_domain="[('date_start', '&gt;=', self)]"
+                    context="{'tms_date': self}"
+                />
+            <field name="date_deadline" />
+            <field name="shipping_origin_id" />
+            <field name="shipping_destination_id" />
+            <!-- Trick to set context numeric var-->
+            <field
+                    name="odometer_start"
+                    string="Max Vehicle Task"
+                    filter_domain="[]"
+                    context="{'max_vehicle_tasks': self}"
+                />
+            <field name="sale_type_id" string="Sale Type" />
+        </field>
+        <filter name="unassigned" position="attributes">
+            <attribute name="string">Unassigned User</attribute>
+        </filter>
+        <filter name="unassigned" position="after">
+            <separator />
+            <filter
+                    string="Unassigned Tractor"
+                    name="unassigned_tractor"
+                    domain="[('tractor_id', '=', False)]"
+                />
+            <separator />
+            <filter
+                    string="Pending"
+                    name="pending"
+                    domain="[('stage_id.fold', '=', False)]"
+                />
+            <separator />
+            <filter
+                    string="Primary"
+                    name="parent_id"
+                    domain="[('parent_id', '=', False)]"
+                />
+            <separator />
+            <filter
+                    string="Origin"
+                    name="has_origin"
+                    domain="[('shipping_origin_id', '!=', False)]"
+                />
+            <separator />
+            <filter
+                    string="Destination"
+                    name="has_destination"
+                    domain="[('shipping_destination_id', '!=', False)]"
+                />
+            <separator />
+            <filter
+                    string="In Progress"
+                    name="in_progress"
+                    domain="[('stage_id.sequence', '&gt;', 1), ('stage_id.fold', '=', False)]"
+                />
+            <separator />
+            <filter
+                    string="Transport Order"
+                    name="is_transport_order"
+                    domain="[('is_transport_order', '=', True)]"
+                />
+            <filter
+                    string="Not Transport Order"
+                    name="not_is_transport_order"
+                    domain="[('is_transport_order', '=', False)]"
+                />
+            <separator />
+            <filter name="date_start_month" string="Date start" date="date_start" />
+            <separator />
+        </filter>
+        <filter name="my_tasks" position="before">
+            <filter
+                    string="Tractor"
+                    name="tractor_id"
+                    context="{'group_by': 'tractor_id'}"
+                />
+            <filter
+                    string="Size Type"
+                    name="equipment_size_type_id"
+                    context="{'group_by': 'equipment_size_type_id'}"
+                />
+            <filter
+                    string="Start date"
+                    name="groupby_date_start"
+                    context="{'group_by': 'date_start'}"
+                />
+        </filter>
+    </field>
+</record>
+
+<record id="view_task_tree2" model="ir.ui.view">
+    <field name="model">project.task</field>
+    <field name="inherit_id" ref="project.view_task_tree2" />
+    <field name="arch" type="xml">
+        <field name="name" position="after">
+            <field name="shipping_origin_id" optional="show" />
+            <field name="shipping_destination_id" optional="show" />
+            <field name="weight" sum="Weight" optional="show" />
+            <field name="volume" sum="Volume" optional="show" />
+            <field name="number_of_packages" sum="Packages" optional="show" />
+        </field>
+    </field>
+</record>
+
+<record id="view_task_kanban" model="ir.ui.view">
+    <field name="model">project.task</field>
+    <field name="inherit_id" ref="project.view_task_kanban" />
+    <field name="arch" type="xml">
+        <field name="user_id" position="after">
+            <field name="child_ids" />
+            <field name="tractor_id" />
+            <field name="shipping_origin_id" />
+            <field name="shipping_destination_id" />
+            <field name="equipment_size_type_id" />
+            <field name="trailer_requirement_ids" />
+        </field>
+        <xpath expr="//field[@name='project_id']" position="after">
+            <t t-if="record.date_start.raw_value" t-set="blue">oe_kanban_text_blue</t>
+            <span style="text-color:blue;" t-attf-class="#{blue || ''}"><i><br />
+                <field name="date_start" /></i></span>
+            <t
+                    t-if="record.date_deadline.raw_value and record.date_deadline.raw_value lt (new Date())"
+                > -</t>
+        </xpath>
+        <xpath expr="//field[@name='project_id']/.." position="after">
+            <div class="clearfix" />
+            <div>
+                <field name="tractor_id" />
+            </div>
+            <div>
+                <field name="shipping_origin_id" />
+            </div>
+            <div>
+                <field name="shipping_destination_id" />
+            </div>
+            <div>
+                <t t-if="record.trailer_requirement_ids.raw_value">
+                    <div class="oe_kanban_top_left">
+                        <field name="trailer_requirement_ids" />
+                    </div>
+                </t>
+                <t t-if="record.equipment_size_type_id.raw_value">
+                    <div class="oe_kanban_bottom_right">
+                        <span><i class='fa fa-th-large' /> <field
+                                    name="equipment_size_type_id"
+                                /></span>
+                    </div>
+                </t>
+            </div>
+            <!--<span t-esc="record.child_ids.raw_value"/>-->
+            <t t-if="record.child_ids.raw_value != ''">
+                <div>
+                    <span><i class='fa fa-tasks' /> Sub-Tasks</span>
+                </div>
+            </t>
+            <div class="clearfix" />
+        </xpath>
+    </field>
+</record>
+
+<record id="project_task_timeline" model="ir.ui.view">
+    <field name="model">project.task</field>
+    <field name="inherit_id" ref="project_timeline.project_task_timeline" />
+    <field name="arch" type="xml">
+        <xpath expr="//timeline" position="attributes">
+            <attribute name="default_group_by">tractor_id</attribute>
+            <attribute
+                    name="colors"
+                >#754d40: user_id == false; #2ecb71: kanban_state == 'done';</attribute>
+        </xpath>
+    </field>
+</record>
+
+<!--<record id="view_task_form2_sale_service_project" model="ir.ui.view">-->
+    <!--<field name="model">project.task</field>-->
+    <!--<field name="inherit_id" ref="sale_service_project.view_task_form2"/>-->
+    <!--<field name="arch" type="xml">-->
+        <!--<field name="vendor_id" position="after">-->
+            <!--<button name="action_propagate_vendor"-->
+                    <!--type="object"-->
+                    <!--string="Propagate to child task"-->
+                    <!--colspan="2"-->
+            <!--/>-->
+        <!--</field>-->
+    <!--</field>-->
+<!--</record>-->
+
+</odoo>

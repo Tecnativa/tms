@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2017 Sergio Teruel - Tecnativa <sergio.teruel@tecnativa.com>
+     Copyright 2017 Carlos Dauden - Tecnativa <carlos.dauden@tecnativa.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+<record id="view_order_form" model="ir.ui.view">
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="tms.view_order_form" />
+    <field name="arch" type="xml">
+        <xpath
+                expr="//field[@name='order_line']/tree/field[@name='seal']"
+                position="after"
+            >
+            <field name="editable_package_rel" invisible="1" />
+            <field
+                    name="carrier_tracking_ref"
+                    optional="show"
+                    attrs="{'readonly': [('editable_package_rel', '=', False)]}"
+                />
+            <field
+                    name="shipping_weight"
+                    optional="show"
+                    sum="Total Weight"
+                    attrs="{'readonly': [('editable_package_rel', '=', False)]}"
+                />
+            <field
+                    name="shipping_volume"
+                    optional="hide"
+                    attrs="{'readonly': [('editable_package_rel', '=', False)]}"
+                />
+            <field
+                    name="number_of_packages"
+                    optional="hide"
+                    sum="Total Packages"
+                    attrs="{'readonly': [('editable_package_rel', '=', False)]}"
+                />
+            <field
+                    name="pallet_qty"
+                    optional="hide"
+                    attrs="{'readonly': [('editable_package_rel', '=', False)]}"
+                />
+            <field
+                    name="euro_pallet_qty"
+                    optional="hide"
+                    attrs="{'readonly': [('editable_package_rel', '=', False)]}"
+                />
+            <field name="goods_id" optional="show" />
+        </xpath>
+    </field>
+</record>
+
+<record id="view_sales_order_line_input_tree" model="ir.ui.view">
+    <field name="model">sale.order.line</field>
+    <field
+            name="inherit_id"
+            ref="sale_order_line_input.view_sales_order_line_input_tree"
+        />
+    <field name="arch" type="xml">
+        <field name="price_total" position="after">
+            <field name="editable_package_rel" invisible="1" />
+            <field name="pickup_date" optional="show" />
+            <field name="release_id" optional="show" />
+            <field name="acceptance_id" optional="show" />
+            <field name="unload_service" optional="show" />
+            <field name="shipping_place_id" optional="show" />
+            <field name="shipping_origin_id" optional="hide" />
+            <field name="shipping_destination_id" optional="hide" />
+            <field
+                    name="carrier_tracking_ref"
+                    optional="show"
+                    attrs="{'readonly': [('editable_package_rel', '=', False)]}"
+                />
+            <field
+                    name="tms_package_ids"
+                    widget="many2many_tags"
+                    domain="[('partner_id','=', order_partner_id)]"
+                    context="{'default_partner_id': order_partner_id,
+                             'default_shipping_origin_id': shipping_origin_id,
+                             'default_shipping_destination_id': shipping_destination_id,
+                             'default_pickup_date': pickup_date}"
+                    optional="show"
+                />
+            <field
+                    name="shipping_weight"
+                    optional="show"
+                    attrs="{'readonly': [('editable_package_rel', '=', False)]}"
+                />
+            <field
+                    name="shipping_volume"
+                    optional="hide"
+                    attrs="{'readonly': [('editable_package_rel', '=', False)]}"
+                />
+            <field
+                    name="number_of_packages"
+                    optional="hide"
+                    attrs="{'readonly': [('editable_package_rel', '=', False)]}"
+                />
+            <field
+                    name="pallet_qty"
+                    optional="hide"
+                    attrs="{'readonly': [('editable_package_rel', '=', False)]}"
+                />
+            <field
+                    name="euro_pallet_qty"
+                    optional="hide"
+                    attrs="{'readonly': [('editable_package_rel', '=', False)]}"
+                />
+            <field name="goods_id" optional="show" />
+            <field name="equipment_size_type_id" optional="show" />
+            <field name="tractor_id" optional="hide" />
+            <field name="trailer_id" optional="hide" />
+            <field name="driver_id" optional="hide" />
+            <field
+                    name="equipment_id"
+                    context="{'default_size_type_id': equipment_size_type_id}"
+                    optional="show"
+                />
+            <field name="seal" optional="show" />
+            <field name="client_order_ref" optional="show" />
+            <field name="note" optional="show" />
+            <field name="level" invisible="1" />
+        </field>
+    </field>
+</record>
+
+<record id="view_sales_order_line_filter" model="ir.ui.view">
+    <field name="model">sale.order.line</field>
+    <field name="inherit_id" ref="sale.view_sales_order_line_filter" />
+    <field name="arch" type="xml">
+        <field name="product_id" position="after">
+            <field name="driver_id" operator="child_of" />
+            <field name="equipment_id" />
+            <field
+                    string="Pickup Date From"
+                    name="pickup_date"
+                    filter_domain="[('pickup_date', '&gt;=', self)]"
+                />
+            <field
+                    string="Pickup Date Before"
+                    name="pickup_date"
+                    filter_domain="[('pickup_date', '&lt;', self)]"
+                />
+            <separator />
+            <filter string="Pickup date" name="filter_pickup_date" date="pickup_date" />
+            <separator />
+            <filter
+                    name="not_invoiced"
+                    string="Not invoiced"
+                    domain="[('invoice_lines', '=', False)]"
+                />
+            <filter
+                    name="invoiced"
+                    string="Invoiced"
+                    domain="[('invoice_lines', '!=', False)]"
+                />
+        </field>
+        <group position="inside">
+            <filter
+                    string="Tractor"
+                    name="tractor_id"
+                    context="{'group_by': 'tractor_id'}"
+                />
+            <filter
+                    string="Driver"
+                    name="driver_id"
+                    context="{'group_by': 'driver_id'}"
+                />
+            <filter
+                    string="Pickup date"
+                    name="groupby_pickup_date"
+                    context="{'group_by': 'pickup_date'}"
+                />
+        </group>
+    </field>
+</record>
+
+<record id="action_order_lines_quick_input" model="ir.actions.act_window">
+    <field name="name">Quick Sales Orders</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">sale.order.line</field>
+    <field name="view_mode">tree,form,pivot</field>
+    <field name="view_id" ref="view_sales_order_line_input_tree" />
+    <field
+            name="context"
+        >{'default_auto_confirm': True, 'tms_quick_input': True}</field>
+    <field name="help" type="html">
+        <p class="oe_view_nocontent_create">
+            Create a Quotation, the first step of a new sale.
+        </p><p>
+            Once the quotation is confirmed, it becomes a sales order.
+            You'll be able to invoice it and collect payments.
+            From the <i>Sales Orders</i> menu, you can track delivery
+            orders or services.
+        </p>
+    </field>
+</record>
+
+<menuitem
+        id="menu_sale_order_line_quick_input"
+        action="action_order_lines_quick_input"
+        parent="tms.menu_tms_management"
+        sequence="0"
+        groups="group_tms_sale_quick_input"
+    />
+
+</odoo>

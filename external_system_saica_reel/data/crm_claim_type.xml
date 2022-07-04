@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo noupdate="1">
+
+    <record id="crm_claim_type_incoming_reel" model="crm.claim.type">
+        <field name="name">Incoming Reel</field>
+    </record>
+
+    <record id="crm_claim_type_outgoing_reel" model="crm.claim.type">
+        <field name="name">Outgoing Reel</field>
+    </record>
+
+</odoo>

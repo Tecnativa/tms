@@ -1,0 +1,518 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* external_system_saica_reel
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: external_system_saica_reel
+#: model:ir.model.fields,help:external_system_saica_reel.field_external_system_saica_reel__company_ids
+msgid "Access to this system is restricted to these companies."
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model.fields,field_description:external_system_saica_reel.field_external_system__saica_reel_adapter_ids
+#: model:ir.model.fields,field_description:external_system_saica_reel.field_external_system_adapter__saica_reel_adapter_ids
+#: model:ir.model.fields,field_description:external_system_saica_reel.field_external_system_os__saica_reel_adapter_ids
+#: model:ir.model.fields,field_description:external_system_saica_reel.field_external_system_saica_reel__saica_reel_adapter_ids
+msgid "Adapter"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:product.attribute,name:external_system_saica_reel.product_attribute_basisweight
+msgid "BasisWeight"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model,name:external_system_saica_reel.model_crm_claim
+msgid "Claim"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model.fields,field_description:external_system_saica_reel.field_external_system_saica_reel__company_ids
+msgid "Companies"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model_terms:ir.ui.view,arch_db:external_system_saica_reel.view_picking_form
+msgid "Confirm Expedition"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model_terms:ir.ui.view,arch_db:external_system_saica_reel.view_picking_form
+msgid "Confirm Reception"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: code:addons/external_system_saica_reel/models/external_system_saica_reel.py:0
+#, python-format
+msgid "Connection Failed"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model,name:external_system_saica_reel.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model_terms:ir.ui.view,arch_db:external_system_saica_reel.view_picking_form
+msgid "Create Sale Order"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model.fields,field_description:external_system_saica_reel.field_external_system_saica_reel__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model.fields,field_description:external_system_saica_reel.field_external_system_saica_reel__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model.fields,field_description:external_system_saica_reel.field_stock_picking__delivery_date
+msgid "Delivery Date"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model.fields,field_description:external_system_saica_reel.field_crm_claim__move_line_id
+msgid "Detail operation"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:product.attribute,name:external_system_saica_reel.product_attribute_diameter
+msgid "Diameter"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model.fields,field_description:external_system_saica_reel.field_external_system_saica_reel__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.actions.server,name:external_system_saica_reel.ir_cron_tms_saica_reel_ir_actions_server
+#: model:ir.cron,cron_name:external_system_saica_reel.ir_cron_tms_saica_reel
+#: model:ir.cron,name:external_system_saica_reel.ir_cron_tms_saica_reel
+msgid "Download Saica Reel Expeditions"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: code:addons/external_system_saica_reel/models/stock_picking.py:0
+#, python-format
+msgid "Error to confirm expedition to Saica System: %s"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: code:addons/external_system_saica_reel/models/stock_picking.py:0
+#, python-format
+msgid "Error to confirm reception to Saica System: %s"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model,name:external_system_saica_reel.model_external_system
+msgid "External System"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model,name:external_system_saica_reel.model_external_system_saica_reel
+msgid "External System Saica reel"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.ui.menu,name:external_system_saica_reel.external_system_saica_reel_menu
+msgid "External Systems Saica"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.actions.act_window,name:external_system_saica_reel.external_system_saica_reel_action
+msgid "External Systems Saica Reel"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model.fields,field_description:external_system_saica_reel.field_stock_picking__saica_final_destination_id
+msgid "Final Destination"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model.fields,field_description:external_system_saica_reel.field_external_system_saica_reel__fingerprint
+msgid "Fingerprint"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model.fields,field_description:external_system_saica_reel.field_stock_picking__forecast_arrival_date
+msgid "Forecast Arrival Date"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model_terms:ir.ui.view,arch_db:external_system_saica_reel.external_system_saica_reel_view_form
+msgid "Get Inventory"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model.fields,field_description:external_system_saica_reel.field_external_system_saica_reel__host
+msgid "Host"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model.fields,field_description:external_system_saica_reel.field_external_system_saica_reel__id
+msgid "ID"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model.fields,field_description:external_system_saica_reel.field_external_system_saica_reel__ignore_fingerprint
+msgid "Ignore Fingerprint"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:crm.claim.type,name:external_system_saica_reel.crm_claim_type_incoming_reel
+msgid "Incoming Reel"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: code:addons/external_system_saica_reel/models/external_system_saica_reel.py:0
+#, python-format
+msgid "Incorrect content loads"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model.fields,field_description:external_system_saica_reel.field_external_system_saica_reel__interface
+msgid "Interface"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model.fields,field_description:external_system_saica_reel.field_external_system_saica_reel____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model.fields,field_description:external_system_saica_reel.field_external_system_saica_reel__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model.fields,field_description:external_system_saica_reel.field_external_system_saica_reel__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model.fields,field_description:external_system_saica_reel.field_external_system_saica_reel__last_time_log
+msgid "Last time log"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model.fields,field_description:external_system_saica_reel.field_stock_production_lot__saica_length
+msgid "Length"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model.fields,field_description:external_system_saica_reel.field_stock_picking__saica_load_type
+msgid "Load Type"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model,name:external_system_saica_reel.model_stock_production_lot
+msgid "Lot/Serial"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model.fields,field_description:external_system_saica_reel.field_external_system_saica_reel__name
+msgid "Name"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model.fields,field_description:external_system_saica_reel.field_stock_picking__number_plate
+msgid "Number Plate"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:crm.claim.type,name:external_system_saica_reel.crm_claim_type_outgoing_reel
+msgid "Outgoing Reel"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:product.attribute,name:external_system_saica_reel.product_attribute_papercode
+msgid "Paper code"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model.fields,field_description:external_system_saica_reel.field_external_system_saica_reel__partner_id
+msgid "Partner"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model.fields,field_description:external_system_saica_reel.field_external_system_saica_reel__password
+msgid "Password"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model.fields,field_description:external_system_saica_reel.field_crm_claim__picking_id
+msgid "Picking"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model.fields,field_description:external_system_saica_reel.field_external_system_saica_reel__outgoing_picking_type_id
+msgid "Picking Type Expeditions"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model.fields,field_description:external_system_saica_reel.field_external_system_saica_reel__incoming_picking_type_id
+msgid "Picking Type Receptions"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model.fields,field_description:external_system_saica_reel.field_external_system_saica_reel__port
+msgid "Port"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model.fields,field_description:external_system_saica_reel.field_external_system_saica_reel__private_key
+msgid "Private Key"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model.fields,field_description:external_system_saica_reel.field_external_system_saica_reel__private_key_password
+msgid "Private Key Password"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model,name:external_system_saica_reel.model_product_template
+msgid "Product Template"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model.fields,field_description:external_system_saica_reel.field_external_system_saica_reel__order_product_id
+msgid "Product for sale orders"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model.fields,field_description:external_system_saica_reel.field_stock_picking__saica_reel_count
+msgid "Reels Count"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model.fields,field_description:external_system_saica_reel.field_res_partner__saica_reel_ref
+#: model:ir.model.fields,field_description:external_system_saica_reel.field_res_users__saica_reel_ref
+msgid "Ref. for Saica"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model.fields,field_description:external_system_saica_reel.field_external_system_saica_reel__remote_path
+msgid "Remote Path"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model.fields,help:external_system_saica_reel.field_external_system_saica_reel__remote_path
+msgid "Restrict to this directory path on the remote, if applicable."
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model.fields,field_description:external_system_saica_reel.field_external_system_saica_reel__saica_company
+msgid "Saica Company"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model.fields,field_description:external_system_saica_reel.field_external_system_saica_reel__saica_delivered_from
+msgid "Saica Delivered From"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model.fields,field_description:external_system_saica_reel.field_external_system_saica_reel__saica_delivered_to
+msgid "Saica Delivered To"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model.fields,field_description:external_system_saica_reel.field_res_partner__saica_product_id
+#: model:ir.model.fields,field_description:external_system_saica_reel.field_res_users__saica_product_id
+msgid "Saica Product"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:product.template,name:external_system_saica_reel.product_template_saica_reel
+msgid "Saica Reel"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:stock.picking.type,name:external_system_saica_reel.picking_type_saica_reel_out
+msgid "Saica Reel Expeditions"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:stock.picking.type,name:external_system_saica_reel.picking_type_saica_reel_in
+msgid "Saica Reel Receptions"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model_terms:ir.ui.view,arch_db:external_system_saica_reel.external_system_saica_reel_view_form
+#: model_terms:ir.ui.view,arch_db:external_system_saica_reel.view_partner_saica_form
+msgid "Saica Reels"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:product.template,description_sale:external_system_saica_reel.product_template_saica_reel
+msgid "Saica Reels Template Product"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model.fields,field_description:external_system_saica_reel.field_stock_picking__saica_sale_line_ids
+msgid "Saica Sale Line"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model.fields,field_description:external_system_saica_reel.field_stock_picking__saica_system
+msgid "Saica System"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model.fields,field_description:external_system_saica_reel.field_external_system_saica_reel__saica_warehouse
+msgid "Saica Warehouse"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model.fields,help:external_system_saica_reel.field_external_system_saica_reel__ignore_fingerprint
+msgid ""
+"Set this to `True` in order to ignore an invalid/unknown fingerprint from "
+"the system."
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model.fields,field_description:external_system_saica_reel.field_external_system_saica_reel__shipping_origin_id
+msgid "Shipping Origin"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model.fields,field_description:external_system_saica_reel.field_external_system_saica_reel__saica_location_id
+msgid "Stock Location"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model.fields,field_description:external_system_saica_reel.field_external_system_saica_reel__system_id
+msgid "System"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model.fields,field_description:external_system_saica_reel.field_external_system_saica_reel__system_type
+msgid "System Type"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: code:addons/external_system_saica_reel/models/stock_picking.py:0
+#, python-format
+msgid "The partner has not a product to create a sale order"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model.fields,help:external_system_saica_reel.field_external_system_saica_reel__name
+msgid "This is the canonical (humanized) name for the system."
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model.fields,help:external_system_saica_reel.field_external_system_saica_reel__host
+msgid "This is the domain or IP address that the system can be reached at."
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model.fields,help:external_system_saica_reel.field_external_system_saica_reel__fingerprint
+msgid ""
+"This is the fingerprint that is advertised by this system in order to "
+"validate its identity."
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model.fields,help:external_system_saica_reel.field_external_system_saica_reel__interface
+msgid ""
+"This is the interface that this system represents. It is created "
+"automatically upon creation of the external system."
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model.fields,help:external_system_saica_reel.field_external_system_saica_reel__password
+msgid ""
+"This is the password that is used for authenticating to this system, if "
+"applicable."
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model.fields,help:external_system_saica_reel.field_external_system_saica_reel__private_key_password
+msgid ""
+"This is the password to unlock the private key that was provided for this "
+"sytem."
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model.fields,help:external_system_saica_reel.field_external_system_saica_reel__port
+msgid "This is the port number that the system is listening on."
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model.fields,help:external_system_saica_reel.field_external_system_saica_reel__private_key
+msgid ""
+"This is the private key that is used for authenticating to this system, if "
+"applicable."
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model.fields,help:external_system_saica_reel.field_external_system_saica_reel__username
+msgid ""
+"This is the username that is used for authenticating to this system, if "
+"applicable."
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model.fields,field_description:external_system_saica_reel.field_stock_picking__tractor_id
+msgid "Tractor"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model.fields,field_description:external_system_saica_reel.field_stock_picking__tractor_plate
+msgid "Tractor Plate"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model.fields,field_description:external_system_saica_reel.field_stock_picking__trailer_id
+msgid "Trailer"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model.fields,field_description:external_system_saica_reel.field_stock_picking__trailer_plate
+msgid "Trailer Plate"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model,name:external_system_saica_reel.model_stock_picking
+msgid "Transfer"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:product.template,uom_name:external_system_saica_reel.product_template_saica_reel
+msgid "Units"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model.fields,field_description:external_system_saica_reel.field_external_system_saica_reel__username
+msgid "Username"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model.fields,field_description:external_system_saica_reel.field_stock_picking__saica_weight
+#: model:ir.model.fields,field_description:external_system_saica_reel.field_stock_production_lot__saica_weight
+msgid "Weight"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:product.attribute,name:external_system_saica_reel.product_attribute_width
+msgid "Width"
+msgstr ""
+
+#. module: external_system_saica_reel
+#: model:ir.model.fields,field_description:external_system_saica_reel.field_stock_production_lot__saica_year
+#: model:product.attribute,name:external_system_saica_reel.product_attribute_year
+msgid "Year"
+msgstr ""

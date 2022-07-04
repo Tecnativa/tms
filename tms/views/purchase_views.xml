@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="purchase_order_form" model="ir.ui.view">
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='order_line']/tree/field[@name='product_uom']"
+                position="after"
+            >
+                <field
+                    name="tractor_id"
+                    context="{'skip_tractor_onchange': 1}"
+                    optional="show"
+                />
+                <field name="trailer_id" optional="show" />
+                <field name="driver_id" optional="show" />
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']/form//field[@name='name']"
+                position="after"
+            >
+                <group>
+                    <field name="tractor_id" context="{'skip_tractor_onchange': 1}" />
+                    <field name="trailer_id" />
+                    <field name="driver_id" />
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="purchase_order_line_tree" model="ir.ui.view">
+        <field name="model">purchase.order.line</field>
+        <field name="inherit_id" ref="purchase.purchase_order_line_tree" />
+        <field name="arch" type="xml">
+            <field name="product_uom" position="after">
+                <field name="tractor_id" optional="show" />
+                <field name="trailer_id" optional="show" />
+                <field name="driver_id" optional="show" />
+            </field>
+        </field>
+    </record>
+
+    <record id="purchase_order_line_form2" model="ir.ui.view">
+        <field name="model">purchase.order.line</field>
+        <field name="inherit_id" ref="purchase.purchase_order_line_form2" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='price_unit']/.." position="after">
+                <group>
+                    <field name="tractor_id" />
+                    <field name="trailer_id" />
+                    <field name="driver_id" />
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="purchase_order_line_search" model="ir.ui.view">
+        <field name="model">purchase.order.line</field>
+        <field name="inherit_id" ref="purchase.purchase_order_line_search" />
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="tractor_id" />
+                <field name="trailer_id" />
+                <field name="driver_id" operator="child_of" />
+                <filter
+                    string="Tractor"
+                    name="tractor"
+                    domain="[]"
+                    context="{'group_by' : 'tractor_id'}"
+                />
+                <filter
+                    string="Trailer"
+                    name="trailer"
+                    domain="[]"
+                    context="{'group_by' : 'trailer_id'}"
+                />
+                <filter
+                    string="Driver"
+                    name="driver"
+                    domain="[]"
+                    context="{'group_by' : 'driver_id'}"
+                />
+            </field>
+        </field>
+    </record>
+
+</odoo>

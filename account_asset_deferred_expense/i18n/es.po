@@ -1,0 +1,72 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* account_asset_deferred_expense
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-07-01 23:29+0000\n"
+"PO-Revision-Date: 2020-07-02 01:31+0200\n"
+"Last-Translator: Carlos Dauden <carlos.dauden@tecnativa.com>\n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.3\n"
+
+#. module: account_asset_deferred_expense
+#: model:ir.model,name:account_asset_deferred_expense.model_account_asset
+msgid "Asset"
+msgstr "Activo"
+
+#. module: account_asset_deferred_expense
+#: model:ir.model,name:account_asset_deferred_expense.model_account_asset_profile
+msgid "Asset profile"
+msgstr "Categoría de activo"
+
+#. module: account_asset_deferred_expense
+#: model_terms:ir.ui.view,arch_db:account_asset_deferred_expense.view_account_asset_expense_tree
+msgid "Assets"
+msgstr "Activos"
+
+#. module: account_asset_deferred_expense
+#: model:ir.actions.act_window,name:account_asset_deferred_expense.action_account_asset_profile_expense
+#: model:ir.ui.menu,name:account_asset_deferred_expense.menu_account_asset_profile_expense
+msgid "Deferred Expense Types"
+msgstr "Categorías de gasto diferido"
+
+#. module: account_asset_deferred_expense
+#: model:ir.actions.act_window,name:account_asset_deferred_expense.action_account_asset_expense
+#: model:ir.ui.menu,name:account_asset_deferred_expense.menu_account_asset_expense
+#: model_terms:ir.ui.view,arch_db:account_asset_deferred_expense.account_asset_profile_view_search
+msgid "Deferred Expenses"
+msgstr "Gastos diferidos"
+
+#. module: account_asset_deferred_expense
+#: model_terms:ir.ui.view,arch_db:account_asset_deferred_expense.account_asset_profile_view_search
+msgid "Expense"
+msgstr "Gasto"
+
+#. module: account_asset_deferred_expense
+#: model:ir.ui.menu,name:account_asset_deferred_expense.menu_asset_depreciation_confirmation_wizard
+msgid "Generate Deferred Expenses Entries"
+msgstr "Generar asientos de gastos diferidos"
+
+#. module: account_asset_deferred_expense
+#: model:ir.model.fields,field_description:account_asset_deferred_expense.field_account_asset__is_expense_type
+#: model:ir.model.fields,field_description:account_asset_deferred_expense.field_account_asset_profile__is_expense_type
+msgid "Is expense type"
+msgstr "Es tipo gasto"
+
+#. module: account_asset_deferred_expense
+#: model:ir.actions.act_window,name:account_asset_deferred_expense.account_asset_compute_action
+msgid "Post Depreciation Lines"
+msgstr "Apuntes de amortización asentados"
+
+#. module: account_asset_deferred_expense
+#: model_terms:ir.ui.view,arch_db:account_asset_deferred_expense.view_account_asset_expense_tree
+msgid "Vendor"
+msgstr "Proveedor"

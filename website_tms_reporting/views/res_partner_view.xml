@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2017 Sergio Teruel <sergio.teruel@tecnativa.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+<record id="view_partner_form" model="ir.ui.view">
+    <field name="model">res.partner</field>
+    <field name="inherit_id" ref="tms.view_crm_partner_geo_form" />
+    <field name="arch" type="xml">
+        <group name="driver" position="inside">
+            <field name="show_in_sheet" />
+        </group>
+    </field>
+</record>
+
+</odoo>

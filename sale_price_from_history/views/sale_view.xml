@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2017 Sergio Teruel <sergio.teruel@tecnativa.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+<record id="view_order_form" model="ir.ui.view">
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale.view_order_form" />
+    <field name="arch" type="xml">
+        <xpath expr="//field[@name='payment_term_id']" position="after">
+            <field name="price_history" />
+        </xpath>
+        <xpath
+                expr="//field[@name='order_line']/tree/field[@name='price_subtotal']"
+                position="before"
+            >
+            <field name="price_history" invisible="1" />
+        </xpath>
+    </field>
+</record>
+
+</odoo>
