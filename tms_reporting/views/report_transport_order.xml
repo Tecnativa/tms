@@ -1,0 +1,917 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+<data>
+    <template id="tms_transport_header_title">
+        <div class="text-center">
+            <div id="title">
+                <h4>
+                    <div>TRANSPORT DOCUMENT</div>
+                </h4>
+            </div>
+        </div>
+    </template>
+
+    <template id="tms_transportation_order_document">
+        <t t-call="tms_reporting.external_layout_tms_order">
+            <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})" />
+            <div class="page">
+                <style type="text/css">
+.separator-section {
+    border-top: 1px solid;
+}
+.style-row {
+    border-top: 1px solid;
+    border-left: 1px solid;
+    border-right: 1px solid;
+}
+.title {
+    padding-top: 40px;
+    padding-bottom: 10px;
+}
+.title-2 {
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
+.highlight {
+    background-color: gray;
+}
+.highlight-text {
+    font-weight: bold;
+    font-size: 12px;
+}
+.highlight-spacing {
+    letter-spacing: 1px;
+}
+.totals {
+    border-top: 1px solid;
+    padding-top: 2px;
+}
+.schedule {
+    border: 1px solid;
+    display: inline-block;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+.table > tbody > tr > td,
+.table > tfoot > tr > td {
+    padding: 2px;
+}
+                    </style>
+                <div class="row title">
+                    <div class="col-12">
+                        <t t-call="tms_reporting.tms_transport_header_title" />
+                    </div>
+                </div>
+                <!-- Customer data -->
+                <div class="row separator-section" />
+                <t t-call="tms_reporting.customer_data_header" />
+                <!-- Transport data -->
+                <div class="row separator-section" />
+                <t t-call="tms_reporting.transport_data_header" />
+                <!-- Release / Acceptance -->
+                <div id="release_acceptance" t-if="o.release_id or o.acceptance_id">
+                    <div class="row separator-section" />
+                    <t t-call="tms_reporting.release_acceptance_header" />
+                </div>
+                <!-- Show loads based on checkpoints-->
+                <table class="table table-sm o_main_table">
+                    <thead>
+                        <tr>
+                            <th>
+                                <span>CHECKPOINT PLACES</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="load_tbody">
+                        <t
+                                t-foreach="o.checkpoint_ids.filtered(lambda cp: cp.package_origin_ids or cp.package_destination_ids)"
+                                t-as="checkpoint"
+                            >
+                            <tr>
+                                <td style="padding-top: 10px;">
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <div
+                                                    t-if="checkpoint.package_destination_ids"
+                                                ><span>Place <span
+                                                            t-esc="checkpoint_index + 1"
+                                                        /> (Unload)</span></div>
+                                            <div
+                                                    t-if="checkpoint.package_origin_ids"
+                                                ><span>Place <span
+                                                            t-esc="checkpoint_index + 1"
+                                                        /> (Load)</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="row title-2" style="padding-top:1px;">
+                                        <div class="row col-6">
+                                            <div class="col-12 highlight-text">
+                                                <span
+                                                        t-field="checkpoint.place_id"
+                                                    /> <br />
+                                                <span
+                                                        t-field="checkpoint.place_id.street"
+                                                    /><br />
+                                                <t t-if="checkpoint.place_id.street2">
+                                                    <span
+                                                            t-field="checkpoint.place_id.street2"
+                                                        /><br />
+                                                </t>
+                                                <span
+                                                        t-field="checkpoint.place_id.zip"
+                                                    /> <span
+                                                        t-field="checkpoint.place_id.city"
+                                                    />, <span
+                                                        t-field="checkpoint.place_id.country_id"
+                                                    />
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div
+                                                    class="row"
+                                                    t-if="checkpoint.place_id.schedule_ids"
+                                                >
+                                                <div class="col-3">Schedule: </div>
+                                                <div class="col-9 highlight-text">
+                                                    <div class="schedule">
+                                                        <t
+                                                                t-foreach="checkpoint.place_id.schedule_ids"
+                                                                t-as="hour"
+                                                            >
+                                                            <span
+                                                                    class="highlight-text"
+                                                                    t-field="hour.name"
+                                                                />
+                                                        </t>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-6">Arrival: </div><div
+                                                        class="col-4"
+                                                    >Departure: </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-3"><span
+                                                        >Phone: </span></div>
+                                                <div class="col-9">
+                                                    <span
+                                                            class="highlight-text"
+                                                            t-field="checkpoint.place_id.phone"
+                                                        />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--<t t-if="not o.unload_service">-->
+
+                                    <t t-if="len(checkpoint.package_origin_ids) &gt;0">
+                                        <div
+                                                id="package_loading"
+                                                style="padding-top:1px;"
+                                            >
+                                            <table class="table table-sm o_main_table">
+                                                <t
+                                                        t-call="tms_reporting.tms_package_loading_table_head"
+                                                    />
+                                                <t
+                                                        t-if="len(checkpoint.package_origin_ids) &gt;1"
+                                                    >
+                                                    <t
+                                                            t-call="tms_reporting.tms_package_loading_table_footer"
+                                                        >
+                                                        <t
+                                                                t-set="lines"
+                                                                t-value="checkpoint.package_origin_ids"
+                                                            />
+                                                    </t>
+                                                </t>
+                                                <tbody>
+                                                    <t
+                                                            t-foreach="checkpoint.package_origin_ids"
+                                                            t-as="line"
+                                                        >
+                                                        <t
+                                                                t-call="tms_reporting.tms_package_loading_table_body"
+                                                            >
+                                                            <t
+                                                                    t-set="service"
+                                                                    t-value="'load'"
+                                                                />
+                                                        </t>
+                                                    </t>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </t>
+                                        <!--<t t-if="len(checkpoint.package_origin_ids) &gt;1">-->
+                                            <!--<t t-call="tms_reporting.tms_package_loading_sum">-->
+                                                <!--<t t-set="lines" t-value="checkpoint.package_origin_ids"/>-->
+                                            <!--</t>-->
+                                        <!--</t>-->
+                                    <!--</t>-->
+                                    <!--<t t-if="o.unload_service">-->
+                                    <t
+                                            t-if="len(checkpoint.package_destination_ids) &gt;0"
+                                        >
+                                        <div
+                                                id="package_unloading"
+                                                style="padding-top:1px;"
+                                            >
+                                            <table class="table">
+                                                <t
+                                                        t-call="tms_reporting.tms_package_loading_table_head"
+                                                    />
+                                                <t
+                                                        t-if="len(checkpoint.package_destination_ids) &gt;1"
+                                                    >
+                                                    <t
+                                                            t-call="tms_reporting.tms_package_loading_table_footer"
+                                                        >
+                                                        <t
+                                                                t-set="lines"
+                                                                t-value="checkpoint.package_destination_ids"
+                                                            />
+                                                    </t>
+                                                </t>
+                                                <tbody>
+                                                    <t
+                                                            t-foreach="checkpoint.package_destination_ids"
+                                                            t-as="line"
+                                                        >
+                                                        <t
+                                                                t-call="tms_reporting.tms_package_loading_table_body"
+                                                            >
+                                                            <t
+                                                                    t-set="service"
+                                                                    t-value="'unload'"
+                                                                />
+                                                        </t>
+                                                    </t>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </t>
+                                        <!--<t t-foreach="checkpoint.package_destination_ids" t-as="line">-->
+                                            <!--<t t-call="tms_reporting.tms_package_loading">-->
+                                                <!--<t t-set="service" t-value="'unload'"/>-->
+                                            <!--</t>-->
+                                        <!--</t>-->
+                                        <!--<t t-if="len(checkpoint.package_destination_ids) &gt;1">-->
+                                            <!--<t t-call="tms_reporting.tms_package_loading_sum">-->
+                                                <!--<t t-set="lines" t-value="checkpoint.package_destination_ids"/>-->
+                                            <!--</t>-->
+                                        <!--</t>-->
+                                    <!--</t>-->
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+                <!-- Remarks -->
+                <div id="remark" class="row">
+                    <div>
+                        <t t-if="o.sale_line_id.order_id.note">
+                            <div>Remarks:</div>
+                            <div class="schedule">
+                                <div><span
+                                            class="highlight-text"
+                                            t-field="o.sale_line_id.order_id.note"
+                                        /></div>
+                            </div>
+                        </t>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <t t-call="tms_reporting.tms_order_footer" />
+            </div>
+        </t>
+    </template>
+
+    <template id="customer_data_header">
+        <div class="row title-2">
+                    <div class="col-5">
+                        <div class="row">
+                            <div class="col-2">
+                                <div class="pull-left">Customer</div>
+                            </div>
+                            <div class="col-10">
+                                <t
+                                t-set="partner"
+                                t-value="o.vendor_id and o.company_id.partner_id or o.partner_id"
+                            />
+                                <div class="highlight-text"><span
+                                    t-field="partner.ref"
+                                /></div>
+                                <div class="highlight-text">
+                                    <span t-field="partner.name" /><br />
+                                    <span t-field="partner.street" /><br />
+                                    <span t-field="partner.city" /><span
+                                > VAT:</span><span t-field="partner.vat" /><br />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="row">
+                            <div class="col-5">
+                                <div>Date</div>
+                            </div>
+                            <div class="col-7">
+                                <div class="highlight-text"><span
+                                    t-field="o.date_start"
+                                    t-options="{'widget': 'date'}"
+                                /></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-5">
+                                <div>Customer Ref.</div>
+                            </div>
+                            <div class="col-7">
+                                <div class="highlight-text"><span
+                                    t-field="o.sale_line_id.order_id.client_order_ref"
+                                /></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3 text-right">
+                        <div class="row">
+                            <div class="col-12" style="font-weight: bold;">
+                                <span t-if="o.unload_service">IMPORT</span>
+                                <span t-if="not o.unload_service">EXPORT</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div
+                                class="highlight-text"
+                                style="font-size:14px;"
+                            ><span t-field="o.sale_line_id.order_id.name" /></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    </template>
+
+    <template id="transport_data_header">
+        <div class="row title-2">
+                    <div class="col-5">
+                        <div class="row">
+                            <div class="col-2">
+                                <div class="pull-left">Transport</div>
+                            </div>
+                            <div class="col-10">
+                                <div class="highlight-text"><span
+                                    t-field="o.vendor_id.ref"
+                                /></div>
+                                <t
+                                t-set="vendor"
+                                t-value="o.vendor_id.commercial_partner_id or o.company_id"
+                            />
+                                <div class="highlight-text">
+                                    <span t-field="vendor.name" /><br />
+                                    <t t-if="vendor.vat">
+                                        <span>VAT - </span><span
+                                        t-field="vendor.vat"
+                                    /><br />
+                                    </t>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="row">
+                            <div class="col-5">
+                                <div>Tractor</div>
+                            </div>
+                            <div class="col-7">
+                                <div class="highlight-text highlight-spacing"><span
+                                    t-field="o.tractor_id.license_plate"
+                                /></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-5">
+                                <div>Trailer</div>
+                            </div>
+                            <div class="col-7">
+                                <div class="highlight-text highlight-spacing"><span
+                                    t-field="o.trailer_id.license_plate"
+                                /></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-5">
+                                <div>Seal</div>
+                            </div>
+                            <div class="col-7">
+                                <div class="highlight-text highlight-spacing"><span
+                                    t-field="o.seal"
+                                /></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-5">
+                                <div>Equipment</div>
+                            </div>
+                            <div class="col-7">
+                                <div>
+                                    <span
+                                    class="highlight-text highlight-spacing"
+                                    t-field="o.equipment_id"
+                                />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" t-if="o.equipment_size_type_id">
+                            <div class="col-5">
+                                <div>Type</div>
+                            </div>
+                            <div class="col-7">
+                                <div>
+                                    <span
+                                    class="highlight-text highlight-spacing"
+                                    t-esc="'[%s]' % o.equipment_size_type_id.code"
+                                />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="row" t-if="o.port_id">
+                            <div class="col-5">
+                                <div>Loading port</div>
+                            </div>
+                            <div class="col-7">
+                                <div class="highlight-text"><span
+                                    t-field="o.port_id"
+                                /></div>
+                            </div>
+                        </div>
+                        <div class="row" t-if="o.shipment_port_id">
+                            <div class="col-5">
+                                <div>Shipment port</div>
+                            </div>
+                            <div class="col-7">
+                                <div class="highlight-text"><span
+                                    t-field="o.shipment_port_id"
+                                /></div>
+                            </div>
+                        </div>
+                        <div class="row" t-if="o.vessel">
+                            <div class="col-5">
+                                <div>Vessel</div>
+                            </div>
+                            <div class="col-7">
+                                <div class="highlight-text"><span
+                                    t-field="o.vessel"
+                                /></div>
+                            </div>
+                        </div>
+                        <div class="row" t-if="o.wagon">
+                            <div class="col-5">
+                                <div>Wagon</div>
+                            </div>
+                            <div class="col-7">
+                                <div class="highlight-text"><span
+                                    t-field="o.wagon"
+                                /></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    </template>
+
+    <template id="release_acceptance_header">
+        <div class="row title-2">
+                        <div class="col-6">
+                            <div class="row">
+                                <div class="col-8">
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <div class="pull-left">Release</div>
+                                        </div>
+                                        <div class="col-9">
+                                            <span
+                                        class="highlight-text"
+                                        t-field="o.release_id"
+                                        t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'
+                                    />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="col-12">
+                                        <div class="pull-left">Code</div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="highlight-text"><span
+                                        t-field="o.release_locator"
+                                    /></div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="pull-left">Load State</div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="highlight-text">
+                                            <span t-if="o.unload_service">Full</span>
+                                            <span t-else="">Empty</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="row">
+                                <div class="col-8">
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <div class="pull-left">Acceptance</div>
+                                        </div>
+                                        <div class="col-9">
+                                            <span
+                                        class="highlight-text"
+                                        t-field="o.acceptance_id"
+                                        t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'
+                                    />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="col-12">
+                                        <div class="pull-left">Code</div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="highlight-text"><span
+                                        t-field="o.acceptance_locator"
+                                    /></div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="pull-left">Load State</div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="highlight-text">
+                                            <span t-if="o.unload_service">Empty</span>
+                                            <span t-else="">Full</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    </template>
+
+    <template id="tms_package_loading">
+        <t
+                t-set="shipping_partner"
+                t-value="o.unload_service and line.shipping_destination_id or line.shipping_origin_id"
+            />
+        <div id="package_loading" style="padding-top:1px;">
+            <t t-if="line_index == 0">
+                <div class="row">
+                    <div class="col-2">
+                        <span>Date</span>
+                    </div>
+                    <div class="col-4">
+                        <span>Reference</span>
+                    </div>
+                    <div class="col-4">
+                        <span>Goods</span>
+                    </div>
+                    <!--<div class="col-1 text-right">-->
+                    <!--</div>-->
+                    <div class="col-2 text-right">
+                        <div class="row">
+                            <div class="row">
+                                <div class="col-6 text-right">
+                                    <span>Items</span> /
+                                    <span>Euro</span>
+                                </div>
+                                <div class="col-6 text-right">
+                                    <span>Weight</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+            <div class="row">
+                <div class="col-2">
+                    <t
+                            t-set="icon"
+                            t-value="'fa fa-download' if service=='load' else 'fa fa-upload'"
+                        />
+                    <div>
+                        <i t-att-class="icon" aria-hidden="true" />
+                        <span
+                                t-if="service=='load'"
+                                class="highlight-text"
+                                t-field="line.pickup_date"
+                            />
+                        <span
+                                t-if="service=='unload'"
+                                class="highlight-text"
+                                t-esc="line.forecast_unload_date or line.pickup_date"
+                                t-options="{'widget': 'datetime'}"
+                            />
+                    </div>
+                </div>
+                <div id="ref" class="col-4">
+                    <span
+                            class="highlight-text"
+                            t-esc="line.carrier_tracking_ref or line.customer_ref"
+                        />
+                </div>
+                <div class="col-4">
+                    <span class="highlight-text" t-field="line.goods_id" />
+                </div>
+                <!--<div class="col-1 text-right">-->
+                <!--</div>-->
+                <div class="col-2 text-right">
+                    <div class="row">
+                        <div class="row">
+                            <div class="col-6">
+                                <span
+                                        class="highlight-text"
+                                        t-field="line.number_of_packages"
+                                    /> /
+                                <span
+                                        class="highlight-text"
+                                        t-field="line.euro_pallet_qty"
+                                    />
+                            </div>
+                            <div class="col-6">
+                                <span
+                                        class="highlight-text"
+                                        t-field="line.shipping_weight"
+                                    />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" t-if="line.note">
+                <div class="col-2">Remarks: </div>
+                <div class="col-10 highlight-text">
+                    <span t-if="service=='load'" t-field="line.note" />
+                    <span t-if="service=='unload'" t-field="line.unload_note" />
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="tms_package_loading_table_head">
+        <thead>
+            <tr>
+                <th>
+                    <span>Date</span>
+                </th>
+                <th>
+                    <span>Reference</span>
+                </th>
+                <th>
+                    <span>Goods</span>
+                </th>
+                <th class="text-right">
+                    <span>Items</span>
+                </th>
+                <th class="text-right">
+                    <span>Euro</span>
+                </th>
+                <th class="text-right">
+                    <span>Weight</span>
+                </th>
+            </tr>
+        </thead>
+    </template>
+
+    <template id="tms_package_loading_table_body">
+        <tr>
+            <td>
+                <t
+                        t-set="icon"
+                        t-value="'fa fa-download' if service=='load' else 'fa fa-upload'"
+                    />
+                <div>
+                    <i t-att-class="icon" aria-hidden="true" />
+                    <span
+                            t-if="service=='load'"
+                            class="highlight-text"
+                            t-field="line.pickup_date"
+                        />
+                    <span
+                            t-if="service=='unload'"
+                            class="highlight-text"
+                            t-esc="line.forecast_unload_date or line.pickup_date"
+                            t-options="{'widget': 'datetime'}"
+                        />
+                </div>
+            </td>
+            <td id="ref">
+                <span
+                        class="highlight-text"
+                        t-esc="line.carrier_tracking_ref or line.customer_ref"
+                    />
+            </td>
+            <td>
+                <span class="highlight-text" t-field="line.goods_id" />
+            </td>
+            <td class="text-right">
+                <span class="highlight-text" t-field="line.number_of_packages" />
+            </td>
+            <td class="text-right">
+                <span class="highlight-text" t-field="line.euro_pallet_qty" />
+            </td>
+            <td class="text-right">
+                <span class="highlight-text" t-field="line.shipping_weight" />
+            </td>
+        </tr>
+        <tr
+                t-if="(service=='load' and line.note) or (service=='unload' and line.unload_note)"
+            >
+            <td colspan="6">
+                <span>Remarks: </span>
+                <span t-if="service=='load'" t-field="line.note" />
+                <span t-if="service=='unload'" t-field="line.unload_note" />
+            </td>
+        </tr>
+    </template>
+
+    <template id="tms_package_loading_sum">
+        <div id="package_loading_sum" style="padding-top:1px;">
+            <div class="row">
+                <div class="col-2" />
+                <div id="ref" class="col-3" />
+                <div class="col-3">
+                </div>
+                <div class="col-1 text-right totals">
+                    <span>Totals:</span>
+                </div>
+                <!--<div class="col-1 text-right totals">-->
+                <!--</div>-->
+                <div class="col-3 text-right totals">
+                    <div class="row">
+                        <div class="col-2">
+                            <span
+                                    class="highlight-text"
+                                    t-esc="sum(lines.mapped('number_of_packages'))"
+                                /> /
+                            <span
+                                    class="highlight-text"
+                                    t-esc="sum(lines.mapped('euro_pallet_qty'))"
+                                />
+                        </div>
+                        <div class="col-6">
+                            <span
+                                    class="highlight-text"
+                                    t-esc="sum(lines.mapped('shipping_weight'))"
+                                    t-options="{'widget': 'float', 'decimal_precision': 'Product Price'}"
+                                />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="tms_package_loading_table_footer">
+        <tfoot>
+            <tr>
+                <td />
+                <td id="ref" />
+                <td class="text-right totals">
+                    <span>Totals:</span>
+                </td>
+                <td class="text-right totals">
+                    <span
+                            class="highlight-text"
+                            t-esc="sum(lines.mapped('number_of_packages'))"
+                        />
+                </td>
+                <td class="text-right totals">
+                    <span
+                            class="highlight-text"
+                            t-esc="sum(lines.mapped('euro_pallet_qty'))"
+                        />
+                </td>
+                <td class="text-right totals">
+                    <span
+                            class="highlight-text"
+                            t-esc="sum(lines.mapped('shipping_weight'))"
+                            t-options="{'widget': 'float', 'decimal_precision': 'Product Price'}"
+                        />
+                </td>
+            </tr>
+        </tfoot>
+    </template>
+
+    <template id="tms_subtask">
+        <t
+                t-set="shipping_partner"
+                t-value="o.parent_id.unload_service and line.shipping_destination_id or line.shipping_origin_id"
+            />
+        <div id="subtask" style="padding-top:10px;">
+            <div class="row">
+                <div class="col-4">
+                    <span t-field="line.name" />
+                </div>
+                <div class="col-8 highlight-text">
+                    <t t-if="o.unload_service">
+                        <span
+                                t-field="line.shipping_destination_id"
+                                t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True}'
+                            />
+
+                    </t>
+                    <t t-if="not o.unload_service">
+                        <span
+                                t-field="line.shipping_origin_id"
+                                t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True}'
+                            />
+                    </t>
+                </div>
+
+            </div>
+            <div class="row" t-if="shipping_partner.schedule_ids">
+                <div class="col-2">Hours: </div>
+                <div class="col-10 highlight-text">
+                    <t t-foreach="shipping_partner.schedule_ids" t-as="hour"> <span
+                                class="highlight-text"
+                                t-field="hour.name"
+                            /></t>
+                </div>
+            </div>
+            <div class="row" t-if="line.description">
+                <div class="col-2">Remarks: </div>
+                <div class="col-10 highlight-text">
+                    <span t-field="line.description" />
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="tms_order_footer">
+        <div id="date_sign" class="row">
+            <div id="stamp" class="col-8">
+                <div class="row">
+                    <span>Traffic Dept. Sign and stamp</span>
+                </div>
+                <div class="row" style="padding-top:60px;">
+                    <span t-field="user.name" />
+                </div>
+                <div class="row">
+                    <t t-esc="datetime.datetime.now().strftime('%d-%m-%Y %H:%M:%S')" />
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="row">
+                    <div><span>Sign</span></div>
+                </div>
+                <div class="row" style="padding-top: 60px;">
+                    <div>
+                        <span>Driver:</span> <span
+                                class="highlight-text"
+                                t-field="o.driver_id.name"
+                            />
+                    </div>
+                </div>
+                <div class="row">
+                    <div>
+                        <span>VAT:</span> <span
+                                class="highlight-text"
+                                t-esc="o.driver_id.vat or o.driver_id.ref"
+                            />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="tms_transportation_order">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t
+                        t-call="tms_reporting.tms_transportation_order_document"
+                        t-lang="o.partner_id.lang"
+                    />
+            </t>
+        </t>
+    </template>
+
+    <report
+            id="report_tms_transportation_order"
+            model="project.task"
+            string="Transport Order"
+            report_type="qweb-pdf"
+            name="tms_reporting.tms_transportation_order"
+            file="tms_reporting.tms_transportation_order"
+        />
+
+    <record id="report_tms_transportation_order" model="ir.actions.report">
+        <field name="paperformat_id" ref="tms_reporting.paperformat_euro_lowmargin" />
+    </record>
+
+</data>
+</odoo>
