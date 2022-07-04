@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2018 Carlos Dauden - <carlos.dauden@tecnativa.com>
+     Copyright 2018 Sergio Teruel - <sergio.teruel@tecnativa.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
+<odoo>
+
+<record id="account_analytic_tag_form_view" model="ir.ui.view">
+    <field name="model">account.analytic.tag</field>
+    <field name="inherit_id" ref="analytic.account_analytic_tag_form_view" />
+    <field name="arch" type="xml">
+        <xpath
+                expr="//field[@name='analytic_distribution_ids']/tree/field[@name='account_id']"
+                position="after"
+            >
+            <field
+                    name="tractor_id"
+                    context="{'skip_tractor_onchange': 1}"
+                    optional="show"
+                />
+            <field name="trailer_id" optional="show" />
+            <field name="driver_id" optional="show" />
+        </xpath>
+    </field>
+</record>
+
+</odoo>
