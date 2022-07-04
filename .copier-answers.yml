@@ -5,7 +5,7 @@ ci: Travis
 dependency_installation_mode: OCA
 generate_requirements_txt: true
 include_wkhtmltopdf: false
-odoo_version: 15.0
+odoo_version: 13.0
 org_name: Odoo Community Association (OCA)
 org_slug: OCA
 rebel_module_groups: []
