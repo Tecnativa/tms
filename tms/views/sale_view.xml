@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2017 Sergio Teruel - Tecnativa <sergio.teruel@tecnativa.com>
+     Copyright 2017 Carlos Dauden - Tecnativa <carlos.dauden@tecnativa.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+<record id="view_order_form" model="ir.ui.view">
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale.view_order_form" />
+    <field name="arch" type="xml">
+        <notebook position="inside">
+            <page string="Transport">
+                <group>
+                    <field name="wagon" />
+                    <field name="vessel" />
+                    <field name="voyage_number" />
+                    <field name="dua_ref" />
+                    <field name="booking_number" />
+                    <field name="unload_service" />
+                </group>
+                <group>
+                    <field name="release_id" />
+                    <field name="release_locator" />
+                    <field name="acceptance_id" />
+                    <field name="acceptance_locator" />
+                </group>
+                <group name="ports" string="Ports">
+                    <group>
+                        <field name="port_id" />
+                        <field name="loading_port_id" />
+                    </group>
+                    <group>
+                        <field name="shipment_port_id" />
+                        <field name="unloading_port_id" />
+                    </group>
+                </group>
+            </page>
+        </notebook>
+        <xpath
+                expr="//field[@name='order_line']/tree/field[@name='product_id']"
+                position="before"
+            >
+            <field name="level" optional="hide" />
+        </xpath>
+        <xpath
+                expr="//field[@name='order_line']/tree/field[@name='price_unit']"
+                position="before"
+            >
+            <field name="qty_to_invoice" />
+            <field name="pickup_date" optional="show" />
+            <field name="shipping_origin_id" optional="show" />
+            <field name="shipping_destination_id" optional="show" />
+        </xpath>
+        <xpath
+                expr="//field[@name='order_line']/tree/field[@name='price_unit']"
+                position="after"
+            >
+            <field
+                    name="tms_package_ids"
+                    widget="many2many_tags"
+                    optional="show"
+                    domain="[('partner_id','=', parent.partner_id)]"
+                    context="{'default_partner_id': parent.partner_id,
+                             'default_shipping_origin_id': shipping_origin_id,
+                             'default_shipping_destination_id': shipping_destination_id,
+                             'default_pickup_date': pickup_date}"
+                />
+            <button
+                    name="action_tms_package_form"
+                    type="object"
+                    icon="fa-dropbox"
+                    class="oe_inline oe_link oe_edit_only"
+                />
+            <field name="equipment_size_type_id" optional="show" />
+            <field
+                    name="equipment_id"
+                    optional="show"
+                    context="{'default_size_type_id': equipment_size_type_id}"
+                />
+            <field name="seal" optional="show" />
+            <field name="tractor_id" optional="show" />
+            <field name="trailer_id" optional="show" />
+            <field name="driver_id" optional="show" />
+        </xpath>
+
+        <xpath expr="//field[@name='order_line']/form/group" position="inside">
+            <group name="tms_info" string="Transport Info">
+                <field name="level" />
+                <field name="shipping_origin_id" />
+                <field name="shipping_destination_id" />
+                <field name="equipment_id" />
+                <field name="seal" />
+            </group>
+        </xpath>
+    </field>
+</record>
+
+<record id="view_order_line_tms_package" model="ir.ui.view">
+    <field name="name">sale.order.line.tms.package</field>
+    <field name="model">sale.order.line</field>
+    <field name="priority">40</field>
+    <field name="arch" type="xml">
+        <form create="false" delete="false" string="Packages">
+            <field name="task_ids" invisible="1" />
+            <field name="tms_package_ids" context="{'create': not task_ids}" />
+        </form>
+    </field>
+</record>
+
+<record id="action_order_line_tms_package" model="ir.actions.act_window">
+    <field name="name">TMS Packages</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">sale.order.line</field>
+    <field name="view_mode">form</field>
+    <field name="view_id" ref="view_order_line_tms_package" />
+</record>
+
+</odoo>

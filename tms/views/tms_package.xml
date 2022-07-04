@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2017 Sergio Teruel <sergio.teruel@tecnativa.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+<record id="tms_package_tree_view" model="ir.ui.view">
+    <field name="name">tms.package.tree</field>
+    <field name="model">tms.package</field>
+    <field name="arch" type="xml">
+        <tree
+                string="Packages"
+                editable="top"
+                decoration-muted="state=='cancel'"
+                decoration-success="state=='done'"
+            >
+            <field name="name" optional="show" />
+            <field name="partner_id" optional="show" />
+            <field name="pickup_date" optional="show" />
+            <field name="shipping_origin_id" optional="show" />
+            <field name="shipping_destination_id" optional="show" />
+            <field name="forecast_unload_date" optional="show" />
+            <field name="shipping_volume" sum="Volume" optional="show" />
+            <field name="shipping_weight" sum="Weight" optional="show" />
+            <field name="number_of_packages" sum="Packages" optional="show" />
+            <field name="euro_pallet_qty" optional="show" />
+            <field name="goods_id" optional="show" />
+            <field name="carrier_tracking_ref" optional="show" />
+            <field name="note" optional="show" />
+            <field name="unload_note" optional="show" />
+            <field name="requested_date" optional="show" />
+            <field name="customer_ref" optional="show" />
+            <field name="state" optional="show" />
+        </tree>
+    </field>
+</record>
+
+<record id="tms_package_form_view" model="ir.ui.view">
+    <field name="name">tms.package.form</field>
+    <field name="model">tms.package</field>
+    <field name="arch" type="xml">
+        <form string="Packages">
+            <header>
+                <field name="state" widget="statusbar" clickable="True" />
+            </header>
+            <group>
+                <field name="name" />
+            </group>
+            <group col="4">
+                <field name="shipping_origin_id" />
+                <field name="shipping_destination_id" />
+                <field name="pickup_date" />
+                <field name="forecast_unload_date" />
+            </group>
+            <group col="4">
+                <field name="shipping_weight" />
+                <field name="shipping_volume" />
+            </group>
+            <group col="4">
+                <field name="number_of_packages" />
+                <field name="goods_id" />
+                <field name="euro_pallet_qty" />
+            </group>
+            <group col="4">
+                <field name="carrier_tracking_ref" />
+                <field name="customer_ref" />
+            </group>
+            <group col="4">
+                <field name="partner_id" />
+                <field name="requested_date" />
+            </group>
+            <group groups="base.group_no_one">
+                <field name="checkpoint_origin_ids" widget="many2many_tags" />
+                <field name="checkpoint_destination_ids" widget="many2many_tags" />
+            </group>
+            <group>
+                <field name="note" />
+                <field name="unload_note" />
+                <field
+                        name="company_id"
+                        options="{'no_create': True}"
+                        groups="base.group_multi_company"
+                    />
+            </group>
+        </form>
+    </field>
+</record>
+
+<record id="tms_package_view_search" model='ir.ui.view'>
+    <field name="name">tms.package.search</field>
+    <field name="model">tms.package</field>
+    <field name="arch" type="xml">
+        <search string="Packages">
+            <field
+                    name="name"
+                    string="References"
+                    filter_domain="['|', '|', ('name', 'ilike', self), ('carrier_tracking_ref', 'ilike', self), ('customer_ref', 'ilike', self)]"
+                />
+            <field name="partner_id" />
+            <field name="pickup_date" />
+            <field name="forecast_unload_date" />
+            <field
+                    name="sale_line_ids"
+                    string="Sale Order"
+                    filter_domain="[('sale_line_ids.order_id', 'ilike', self)]"
+                />
+            <field name="shipping_origin_id" />
+            <field name="shipping_destination_id" />
+            <field name="shipping_volume" />
+            <field name="shipping_weight" />
+            <field name="number_of_packages" />
+            <field name="euro_pallet_qty" />
+            <field name="goods_id" />
+            <field name="carrier_tracking_ref" />
+            <field name="note" />
+            <field name="requested_date" />
+            <field name="customer_ref" />
+            <separator />
+            <filter
+                    name="pending"
+                    domain="[('state','=','pending')]"
+                    string="Pending"
+                />
+            <filter name="ready" domain="[('state','=','ready')]" string="Ready" />
+            <filter name="done" domain="[('state','=','done')]" string="Finished" />
+            <filter
+                    name="cancel"
+                    domain="[('state','=','cancel')]"
+                    string="Cancelled"
+                />
+            <separator />
+            <filter string="Pickup date" name="filter_pickup_date" date="pickup_date" />
+            <group expand="1" string="Group By">
+                <filter
+                        name="groupby_shipping_origin_id"
+                        context="{'group_by': 'shipping_origin_id'}"
+                        string="Origin"
+                    />
+                <filter
+                        name="groupby_shipping_destination_id"
+                        context="{'group_by': 'shipping_destination_id'}"
+                        string="Destination"
+                    />
+                <filter
+                        name="groupby_partner_id"
+                        context="{'group_by': 'partner_id'}"
+                        string="Partner"
+                    />
+                <filter
+                        name="groupby_state"
+                        context="{'group_by': 'state'}"
+                        string="State"
+                    />
+                <filter
+                        string="Pickup date"
+                        name="groupby_pickup_date"
+                        context="{'group_by': 'pickup_date'}"
+                    />
+            </group>
+        </search>
+    </field>
+</record>
+
+<record id="action_tms_package" model="ir.actions.act_window">
+    <field name="name">TMS Packages</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">tms.package</field>
+    <field name="view_mode">tree,form</field>
+</record>
+
+<menuitem
+        id="menu_tms_package"
+        action="action_tms_package"
+        parent="menu_tms_management"
+        sequence="25"
+        groups="sales_team.group_sale_manager"
+    />
+
+</odoo>
