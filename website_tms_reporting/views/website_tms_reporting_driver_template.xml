@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+<!-- Page -->
+<template id="drivers_sheet" name="Drivers Sheet">
+    <t t-call="website.layout">
+        <div id="driver_wrap">
+            <!--<meta http-equiv="refresh" content="5"/>-->
+            <div class="row mt8">
+                <div class="col">
+                    <form
+                            id="drivers_sheet_request"
+                            action="/tms/drivers/sheet"
+                            method="post"
+                        >
+                    <input
+                                type="hidden"
+                                name="csrf_token"
+                                t-att-value="request.csrf_token()"
+                            />
+                    <div class="form-inline pull-left">
+                        <label class="" id="year"> Year </label>
+                        <input
+                                    class="form-control"
+                                    placeholder="Filter Year..."
+                                    name="year"
+                                    t-att-value="year"
+                                />
+                    </div>
+                    <div class="form-inline pull-left">
+                        <!--<label class="" id="month"> Month </label>-->
+                        <!--<input type="date" class="form-control" placeholder="Filter Month..." name="month" t-att-value="month"/>-->
+                        <label class="control-label" for="month">Month</label>
+                        <select name="month" class="form-control" data-init="1">
+                            <option value="">Month...</option>
+                            <t t-foreach="month_list" t-as="m">
+                                <option
+                                            t-att-value="m[0]"
+                                            t-att-selected="m[0] == month"
+                                        >
+                                    <t t-esc="m[1]" />
+                                </option>
+                            </t>
+                        </select>
+
+                    </div>
+                    <div class="pull-left">
+                        <button type="submit" name="filter" class="btn button-search">
+                            <i class="fa fa-search" title="Search"> </i>
+                        </button>
+                    </div>
+                </form>
+                </div>
+            </div>
+            <div class="row mt8">
+                <div class="col">
+                    <table t-if="drivers_info" class="table table-sm o_main_table">
+                        <thead>
+                            <tr>
+                                <th colspan="3">
+                                    <strong>Name</strong>
+                                </th>
+                                <th>
+                                    <i class="fa fa-percent" title="Percent" />
+                                </th>
+                                <th>
+                                    <i class="fa fa-eur" title="Amount" />
+                                </th>
+                                <th>
+                                    <i class="fa fa-money" title="Virtual" />
+                                </th>
+                                <th>
+                                    <i class="fa fa-th-list" title="Orders" />
+                                </th>
+                                <th>
+                                    <i class="fa fa-thumbs-down" title="Absences" />
+                                </th>
+                                <th>
+                                    <i class="fa fa-recycle" title="Equipment Reuses" />
+                                </th>
+                                <th>
+                                    <i class="fa fa-square" title="Groupages" />
+                                </th>
+                                <th>
+                                    <i
+                                            class="fa fa-tachometer"
+                                            title="Distance Estimated"
+                                        />
+                                </th>
+                                <th>
+                                    <i
+                                            class="fa fa-tachometer"
+                                            title="Distance Traveled"
+                                        />
+                                </th>
+                                <t t-foreach="partners" t-as="partner">
+                                    <th>
+                                        <span t-esc="partner.name[:4]" />
+                                    </th>
+                                </t>
+                                <t t-foreach="days" t-as="day">
+                                    <th>
+                                        <span t-esc="day[0][8:10]" />
+                                    </th>
+                                </t>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <t t-foreach="drivers_info" t-as="driver_info">
+                            <tr>
+                                <td colspan="3">
+                                    <strong t-field="driver_info['driver'].name" />
+                                </td>
+                                <td>
+                                    <strong
+                                                t-esc="'%.2f' % driver_info['percentage']"
+                                            />
+                                </td>
+                                <td class="text-muted">
+                                    <!--<strong t-esc="driver_info['driver_total']" t-options="{'widget': 'monetary', 'display_currency': currency}"/>-->
+                                    <span t-esc="int(driver_info['driver_total'])" />
+                                </td>
+                                <td>
+                                    <span t-esc="int(driver_info['driver_total'])" />
+                                </td>
+                                <td>
+                                    <span t-esc="driver_info['count']" />
+                                </td>
+                                <td>
+                                    <span t-esc="driver_info['absences_total']" />
+                                </td>
+                                <td>
+                                    <span t-esc="driver_info['reuses']" />
+                                </td>
+                                <td>
+                                    <span t-esc="driver_info['groupages']" />
+                                </td>
+                                <td>
+                                    <span
+                                                t-esc="int(driver_info['distance_estimated'])"
+                                            />
+                                </td>
+                                <td>
+                                    <span
+                                                t-esc="int(driver_info['distance_traveled'])"
+                                            />
+                                </td>
+                                <t t-foreach="partners" t-as="partner">
+                                    <td>
+                                        <span
+                                                    t-esc="driver_info['partners'][partner.id]"
+                                                />
+                                    </td>
+                                </t>
+                                <t t-foreach="days" t-as="day">
+                                    <t
+                                                t-set="day_count"
+                                                t-value="driver_info['days_dict'][day[0]]['count']"
+                                            />
+                                    <td
+                                                t-att-class="day_count in (1, 2) and 'bg-warning' or day_count == 3 and 'bg-info' or day_count > 3 and 'bg-success' or ''"
+                                            >
+                                        <t
+                                                    t-if="absences[driver_info['driver'].id][day[0]]"
+                                                >
+                                            <span
+                                                        t-esc="absences[driver_info['driver'].id][day[0]]['name']"
+                                                    />
+                                        </t>
+                                        <t
+                                                    t-if="not absences[driver_info['driver'].id][day[0]]"
+                                                >
+                                            <span
+                                                        t-esc="int(driver_info['days_dict'][day[0]]['subtotal'])"
+                                                    />
+                                        </t>
+                                    </td>
+                                </t>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+                </div>
+            </div>
+        </div>
+    </t>
+</template>
+
+</odoo>
