@@ -1,0 +1,60 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* tms_sale_price_from_history
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: tms_sale_price_from_history
+#: model:ir.model.fields,field_description:tms_sale_price_from_history.field_wizard_sale_line_history_price__destination_proximity
+msgid "Destination Proximity"
+msgstr ""
+
+#. module: tms_sale_price_from_history
+#: model:ir.model.fields,field_description:tms_sale_price_from_history.field_wizard_sale_line_history_price__origin_proximity
+msgid "Origin Proximity"
+msgstr ""
+
+#. module: tms_sale_price_from_history
+#: model:ir.model.fields,field_description:tms_sale_price_from_history.field_product_product__price_history_location
+#: model:ir.model.fields,field_description:tms_sale_price_from_history.field_product_template__price_history_location
+msgid "Price History Location"
+msgstr ""
+
+#. module: tms_sale_price_from_history
+#: model:ir.model,name:tms_sale_price_from_history.model_product_template
+msgid "Product Template"
+msgstr ""
+
+#. module: tms_sale_price_from_history
+#: model:ir.model,name:tms_sale_price_from_history.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: tms_sale_price_from_history
+#: model:ir.model.fields,field_description:tms_sale_price_from_history.field_wizard_sale_line_history_price__search_by_proximity
+msgid "Search By Proximity"
+msgstr ""
+
+#. module: tms_sale_price_from_history
+#: model:ir.model.fields,field_description:tms_sale_price_from_history.field_wizard_sale_line_history_price__shipping_destination_id
+msgid "Shipping Destination"
+msgstr ""
+
+#. module: tms_sale_price_from_history
+#: model:ir.model.fields,field_description:tms_sale_price_from_history.field_wizard_sale_line_history_price__shipping_origin_id
+msgid "Shipping Origin"
+msgstr ""
+
+#. module: tms_sale_price_from_history
+#: model:ir.model,name:tms_sale_price_from_history.model_wizard_sale_line_history_price
+msgid "Wizard to show sale line history prices"
+msgstr ""
