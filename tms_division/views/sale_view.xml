@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2017 Sergio Teruel - Tecnativa <sergio.teruel@tecnativa.com>
+     Copyright 2017 Carlos Dauden - Tecnativa <carlos.dauden@tecnativa.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+<record id="view_order_form" model="ir.ui.view">
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="tms.view_order_form" />
+    <field name="arch" type="xml">
+        <xpath expr="//field[@name='shipment_port_id']/.." position="after">
+            <group>
+                <field
+                        name="division_id"
+                        attrs="{'readonly': [('invoice_count','>', 0)]}"
+                    />
+            </group>
+        </xpath>
+    </field>
+</record>
+
+</odoo>
