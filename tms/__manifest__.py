@@ -12,7 +12,11 @@
     "license": "AGPL-3",
     "application": True,
     "installable": True,
-    "external_dependencies": {"python": ["stdnum",],},
+    "external_dependencies": {
+        "python": [
+            "stdnum",
+        ],
+    },
     "depends": [
         "base_automation",
         "base_geolocalize",

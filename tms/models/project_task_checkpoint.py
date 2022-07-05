@@ -10,14 +10,23 @@ class ProjectTaskCheckpoint(models.Model):
     _description = "Checkpoint"
     _order = "sequence, id"
 
-    name = fields.Char(related="place_id.name", store=True,)
-    task_id = fields.Many2one(comodel_name="project.task", string="Task", index=True,)
+    name = fields.Char(
+        related="place_id.name",
+        store=True,
+    )
+    task_id = fields.Many2one(
+        comodel_name="project.task",
+        string="Task",
+        index=True,
+    )
     sequence = fields.Integer()
     automatic = fields.Boolean()
     place_id = fields.Many2one(
         comodel_name="res.partner",
         domain=[("is_shipping_place", "=", True)],
-        context={"default_is_shipping_place": True,},
+        context={
+            "default_is_shipping_place": True,
+        },
         required=True,
         string="Place",
     )

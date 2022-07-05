@@ -15,16 +15,26 @@ class ProjectProject(models.Model):
     shipment_type = fields.Selection(
         selection=lambda x: x._get_shipment_type_selection(), string="Shipment Type"
     )
-    shipper_id = fields.Many2one(comodel_name="res.partner", string="Shipper",)
-    consigner_id = fields.Many2one(comodel_name="res.partner", string="Consigner",)
+    shipper_id = fields.Many2one(
+        comodel_name="res.partner",
+        string="Shipper",
+    )
+    consigner_id = fields.Many2one(
+        comodel_name="res.partner",
+        string="Consigner",
+    )
     freight_forwarder_id = fields.Many2one(
         comodel_name="res.partner", string="Freight Forwarder"
     )
     shipment_ref = fields.Char(string="Shipment Ref.")
-    load_harbor_id = fields.Many2one(comodel_name="res.partner", string="Load Harbor",)
+    load_harbor_id = fields.Many2one(
+        comodel_name="res.partner",
+        string="Load Harbor",
+    )
     load_terminal = fields.Char(string="Load Terminal")
     discharge_harbor_id = fields.Many2one(
-        comodel_name="res.partner", string="Discharge Harbor",
+        comodel_name="res.partner",
+        string="Discharge Harbor",
     )
     discharge_terminal = fields.Char(string="Discharge Terminal")
     vessel = fields.Char(string="Vessel")

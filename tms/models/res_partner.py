@@ -38,7 +38,9 @@ class ResPartnerSchedule(models.Model):
 
     name = fields.Char(compute="_compute_name", store=True)
     partner_id = fields.Many2one(
-        comodel_name="res.partner", string="Partner", ondelete="cascade",
+        comodel_name="res.partner",
+        string="Partner",
+        ondelete="cascade",
     )
     hour_from = fields.Float(string="From")
     hour_to = fields.Float(string="To")

@@ -11,12 +11,17 @@ class SaleOrderLine(models.Model):
 
     level = fields.Integer()
     parent_line_id = fields.Many2one(
-        comodel_name="sale.order.line", compute="_compute_parent_line_id", store=True,
+        comodel_name="sale.order.line",
+        compute="_compute_parent_line_id",
+        store=True,
     )
     equipment_size_type_id = fields.Many2one(
         comodel_name="iso6346.size.type", string="Size Type", ondelete="restrict"
     )
-    equipment_id = fields.Many2one(comodel_name="tms.equipment", string="Equipment",)
+    equipment_id = fields.Many2one(
+        comodel_name="tms.equipment",
+        string="Equipment",
+    )
     seal = fields.Char()
     tms_package_ids = fields.Many2many(
         comodel_name="tms.package",
@@ -26,18 +31,24 @@ class SaleOrderLine(models.Model):
         string="Packages",
         copy=False,
     )
-    pickup_date = fields.Datetime(string="Pick Up Date",)
+    pickup_date = fields.Datetime(
+        string="Pick Up Date",
+    )
     shipping_origin_id = fields.Many2one(
         comodel_name="res.partner",
         domain=[("is_shipping_place", "=", True)],
         string="Shipping Origin",
-        context={"default_is_shipping_place": True,},
+        context={
+            "default_is_shipping_place": True,
+        },
     )
     shipping_destination_id = fields.Many2one(
         comodel_name="res.partner",
         domain=[("is_shipping_place", "=", True)],
         string="Shipping Destination",
-        context={"default_is_shipping_place": True,},
+        context={
+            "default_is_shipping_place": True,
+        },
     )
 
     @api.depends("order_id.order_line.sequence", "order_id.order_line.level")

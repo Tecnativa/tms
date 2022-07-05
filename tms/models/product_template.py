@@ -10,5 +10,7 @@ class ProductTemplate(models.Model):
 
     level = fields.Integer()
     goods_id = fields.Many2one(
-        comodel_name="tms.goods", string="Goods", ondelete="restrict",
+        comodel_name="tms.goods",
+        string="Goods",
+        ondelete="restrict",
     )

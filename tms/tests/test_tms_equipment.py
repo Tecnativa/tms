@@ -10,29 +10,44 @@ class TestTMSEquipment(common.SavepointCase):
         equipment = False
         with self.assertRaises(ValidationError):
             equipment = self.env["tms.equipment"].create(
-                {"name": "ZZZZ0000000", "iso6346_ok": True,}
+                {
+                    "name": "ZZZZ0000000",
+                    "iso6346_ok": True,
+                }
             )
         self.assertFalse(equipment)
 
         # Check Disabled
         equipment_b = False
         equipment_b = self.env["tms.equipment"].create(
-            {"name": "ZZZZ0000000", "iso6346_ok": False,}
+            {
+                "name": "ZZZZ0000000",
+                "iso6346_ok": False,
+            }
         )
         self.assertTrue(equipment_b)
         equipment_b.write(
-            {"name": "ZZZZ0000001",}
+            {
+                "name": "ZZZZ0000001",
+            }
         )
 
     def test_create_equipment_valid_name(self):
         equipment = self.env["tms.equipment"].create(
-            {"name": "CSQU3054383", "iso6346_ok": True,}
+            {
+                "name": "CSQU3054383",
+                "iso6346_ok": True,
+            }
         )
         self.assertTrue(equipment)
         equipment.write(
-            {"name": "HLBU1509039",}
+            {
+                "name": "HLBU1509039",
+            }
         )
         with self.assertRaises(ValidationError):
             equipment.write(
-                {"name": "ZZZZ0000000",}
+                {
+                    "name": "ZZZZ0000000",
+                }
             )

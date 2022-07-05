@@ -23,13 +23,17 @@ class ProjectTask(models.Model):
     shipping_origin_id = fields.Many2one(
         comodel_name="res.partner",
         domain=[("is_shipping_place", "=", True)],
-        context={"default_is_shipping_place": True,},
+        context={
+            "default_is_shipping_place": True,
+        },
         string="Origin",
     )
     shipping_destination_id = fields.Many2one(
         comodel_name="res.partner",
         domain=[("is_shipping_place", "=", True)],
-        context={"default_is_shipping_place": True,},
+        context={
+            "default_is_shipping_place": True,
+        },
         string="Destination",
     )
     trailer_requirement_ids = fields.Many2many(
@@ -37,25 +41,35 @@ class ProjectTask(models.Model):
         compute="_compute_trailer_requirement_ids",
         string="Trailer Req.",
     )
-    goods_id = fields.Many2one(comodel_name="tms.goods", string="Goods",)
+    goods_id = fields.Many2one(
+        comodel_name="tms.goods",
+        string="Goods",
+    )
     load_reference = fields.Char(string="Load Ref.")
     expedition = fields.Char(string="Expedition")
     equipment_size_type_id = fields.Many2one(
         comodel_name="iso6346.size.type", string="Size Type", ondelete="restrict"
     )
-    equipment_id = fields.Many2one(comodel_name="tms.equipment", string="Equipment",)
+    equipment_id = fields.Many2one(
+        comodel_name="tms.equipment",
+        string="Equipment",
+    )
     seal = fields.Char()
     release_id = fields.Many2one(
         comodel_name="res.partner",
         domain=[("is_shipping_place", "=", True)],
-        context={"default_is_shipping_place": True,},
+        context={
+            "default_is_shipping_place": True,
+        },
         string="Release",
     )
     release_locator = fields.Char()
     acceptance_id = fields.Many2one(
         comodel_name="res.partner",
         domain=[("is_shipping_place", "=", True)],
-        context={"default_is_shipping_place": True,},
+        context={
+            "default_is_shipping_place": True,
+        },
         string="Aceptance",
     )
     acceptance_locator = fields.Char()
@@ -67,35 +81,51 @@ class ProjectTask(models.Model):
     shipment_port_id = fields.Many2one(
         comodel_name="res.partner",
         domain=[("is_shipping_place", "=", True)],
-        context={"default_is_shipping_place": True,},
+        context={
+            "default_is_shipping_place": True,
+        },
         string="Shipment Port",
     )
     # Origin port
     port_id = fields.Many2one(
         comodel_name="res.partner",
         domain=[("is_shipping_place", "=", True)],
-        context={"default_is_shipping_place": True,},
+        context={
+            "default_is_shipping_place": True,
+        },
         string="Port",
     )
     loading_port_id = fields.Many2one(
         comodel_name="res.partner",
         string="Loading Port",
         domain=[("is_shipping_place", "=", True)],
-        context={"default_is_shipping_place": True,},
+        context={
+            "default_is_shipping_place": True,
+        },
     )
     unloading_port_id = fields.Many2one(
         comodel_name="res.partner",
         string="Unloading Port",
         domain=[("is_shipping_place", "=", True)],
-        context={"default_is_shipping_place": True,},
+        context={
+            "default_is_shipping_place": True,
+        },
     )
     unload_service = fields.Boolean(string="Unload")
     distance_estimated = fields.Float(
-        digits="TMS Distance", string="Distance Estimated",
+        digits="TMS Distance",
+        string="Distance Estimated",
     )
-    distance_traveled = fields.Float(digits="TMS Distance", string="Distance Traveled",)
-    odometer_start = fields.Float(digits="TMS Distance",)
-    odometer_stop = fields.Float(digits="TMS Distance",)
+    distance_traveled = fields.Float(
+        digits="TMS Distance",
+        string="Distance Traveled",
+    )
+    odometer_start = fields.Float(
+        digits="TMS Distance",
+    )
+    odometer_stop = fields.Float(
+        digits="TMS Distance",
+    )
     tms_package_ids = fields.Many2many(
         comodel_name="tms.package",
         relation="project_task_tms_package_rel",
@@ -109,7 +139,9 @@ class ProjectTask(models.Model):
         string="All Packages",
     )
     is_transport_order = fields.Boolean(
-        compute="_compute_is_transport_order", store=True, string="Transport Order",
+        compute="_compute_is_transport_order",
+        store=True,
+        string="Transport Order",
     )
     checkpoint_ids = fields.One2many(
         comodel_name="project.task.checkpoint",
@@ -117,21 +149,34 @@ class ProjectTask(models.Model):
         string="Checkpoints",
     )
     stopped_time = fields.Float(
-        compute="_compute_stopped_time", store=True, string="Stopped Time",
+        compute="_compute_stopped_time",
+        store=True,
+        string="Stopped Time",
     )
-    free_stoped_time = fields.Float(string="Free Stoped Time",)
+    free_stoped_time = fields.Float(
+        string="Free Stoped Time",
+    )
     volume = fields.Float(
-        compute="_compute_package_totals", digits="TMS Volume", string="Volume",
+        compute="_compute_package_totals",
+        digits="TMS Volume",
+        string="Volume",
     )
     weight = fields.Float(
-        compute="_compute_package_totals", digits="TMS Weight", string="Weight",
+        compute="_compute_package_totals",
+        digits="TMS Weight",
+        string="Weight",
     )
     number_of_packages = fields.Integer(
-        compute="_compute_package_totals", string="Number of Packages",
+        compute="_compute_package_totals",
+        string="Number of Packages",
     )
-    pallet_qty = fields.Integer(compute="_compute_package_totals", string="Pallets",)
+    pallet_qty = fields.Integer(
+        compute="_compute_package_totals",
+        string="Pallets",
+    )
     euro_pallet_qty = fields.Integer(
-        compute="_compute_package_totals", string="Euro Pallets",
+        compute="_compute_package_totals",
+        string="Euro Pallets",
     )
     tractor_id = fields.Many2one(group_expand="_read_group_tractor_ids")
     force_origin = fields.Boolean()

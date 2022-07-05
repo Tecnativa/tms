@@ -12,19 +12,25 @@ class SaleOrder(models.Model):
     wagon = fields.Char()
     vessel = fields.Char()
     voyage_number = fields.Char()
-    dua_ref = fields.Char(string="DUA",)
+    dua_ref = fields.Char(
+        string="DUA",
+    )
     release_id = fields.Many2one(
         comodel_name="res.partner",
         string="Release",
         domain=[("is_shipping_place", "=", True)],
-        context={"default_is_shipping_place": True,},
+        context={
+            "default_is_shipping_place": True,
+        },
     )
     release_locator = fields.Char()
     acceptance_id = fields.Many2one(
         comodel_name="res.partner",
         string="Acceptance",
         domain=[("is_shipping_place", "=", True)],
-        context={"default_is_shipping_place": True,},
+        context={
+            "default_is_shipping_place": True,
+        },
     )
     acceptance_locator = fields.Char()
     # This is the origin port
@@ -32,25 +38,33 @@ class SaleOrder(models.Model):
         comodel_name="res.partner",
         string="Origin Port",
         domain=[("is_shipping_place", "=", True)],
-        context={"default_is_shipping_place": True,},
+        context={
+            "default_is_shipping_place": True,
+        },
     )
     shipment_port_id = fields.Many2one(
         comodel_name="res.partner",
         string="Shipment Port",
         domain=[("is_shipping_place", "=", True)],
-        context={"default_is_shipping_place": True,},
+        context={
+            "default_is_shipping_place": True,
+        },
     )
     loading_port_id = fields.Many2one(
         comodel_name="res.partner",
         string="Loading Port",
         domain=[("is_shipping_place", "=", True)],
-        context={"default_is_shipping_place": True,},
+        context={
+            "default_is_shipping_place": True,
+        },
     )
     unloading_port_id = fields.Many2one(
         comodel_name="res.partner",
         string="Unloading Port",
         domain=[("is_shipping_place", "=", True)],
-        context={"default_is_shipping_place": True,},
+        context={
+            "default_is_shipping_place": True,
+        },
     )
     unload_service = fields.Boolean(string="Unload")
 

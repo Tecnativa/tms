@@ -54,16 +54,24 @@ class ISO6346SizeType(models.Model):
     _rec_name = "code"
     _description = "iso6346 Size Type"
 
-    code = fields.Char(size=4,)
+    code = fields.Char(
+        size=4,
+    )
     name = fields.Char()
     length_id = fields.Many2one(
-        comodel_name="iso6346.length", string="Length", ondelete="restrict",
+        comodel_name="iso6346.length",
+        string="Length",
+        ondelete="restrict",
     )
     second_size_id = fields.Many2one(
-        comodel_name="iso6346.second.size", string="Second Size", ondelete="restrict",
+        comodel_name="iso6346.second.size",
+        string="Second Size",
+        ondelete="restrict",
     )
     type_id = fields.Many2one(
-        comodel_name="iso6346.type", string="Type", ondelete="restrict",
+        comodel_name="iso6346.type",
+        string="Type",
+        ondelete="restrict",
     )
 
     _sql_constraints = [("uniq_code", "unique(code)", _("The code must be unique !"))]
@@ -92,7 +100,10 @@ class TmsEquipment(models.Model):
 
     name = fields.Char(required=True)
     equipment_type = fields.Selection(
-        [("container", "Container"), ("jail", "Jail"),],
+        [
+            ("container", "Container"),
+            ("jail", "Jail"),
+        ],
         string="Type",
         default="container",
     )
@@ -105,7 +116,10 @@ class TmsEquipment(models.Model):
         help="Adapted for goodss",
         ondelete="restrict",
     )
-    iso6346_ok = fields.Boolean(string="ISO6346 Validation", default=True,)
+    iso6346_ok = fields.Boolean(
+        string="ISO6346 Validation",
+        default=True,
+    )
 
     _sql_constraints = [("uniq_name", "unique(name)", _("The name must be unique !"))]
 

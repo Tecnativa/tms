@@ -9,7 +9,9 @@ class TestTMSFlow(TestTMS):
     def test_sale_order_creation(self):
         # Create Product
         product = self.env["product.product"].create(
-            {"product_tmpl_id": self.delivered_product_tmpl.id,}
+            {
+                "product_tmpl_id": self.delivered_product_tmpl.id,
+            }
         )
 
         # Create Package
@@ -57,7 +59,10 @@ class TestTMSFlow(TestTMS):
         self.assertEqual(task.vessel, "TestVessel")
         # Update Task
         task.write(
-            {"driver_id": self.driver.id, "tractor_id": self.vehicle.id,}
+            {
+                "driver_id": self.driver.id,
+                "tractor_id": self.vehicle.id,
+            }
         )
         self.assertEqual(self.vehicle.task_count, 1)
 

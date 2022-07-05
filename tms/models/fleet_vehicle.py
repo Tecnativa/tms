@@ -9,7 +9,12 @@ class FleetVehicle(models.Model):
     _inherit = "fleet.vehicle"
 
     vehicle_type = fields.Selection(
-        [("tractor", "Tractor"), ("trailer", "Trailer"),], string="Type", index=True,
+        [
+            ("tractor", "Tractor"),
+            ("trailer", "Trailer"),
+        ],
+        string="Type",
+        index=True,
     )
     trailer_id = fields.Many2one(
         comodel_name="fleet.vehicle",
@@ -17,21 +22,27 @@ class FleetVehicle(models.Model):
         string="Trailer",
     )
     task_count = fields.Integer(compute="_compute_task_count", string="Tasks")
-    is_available = fields.Boolean(compute="_compute_task_count", string="Available",)
+    is_available = fields.Boolean(
+        compute="_compute_task_count",
+        string="Available",
+    )
     next_checkpoint_ids = fields.One2many(
         comodel_name="project.task.checkpoint",
         compute="_compute_next_checkpoint_ids",
         string="Next Checkpoints",
     )
     company_owner_id = fields.Many2one(
-        comodel_name="res.company", string="Company Owner",
+        comodel_name="res.company",
+        string="Company Owner",
     )
     is_own_vehicle = fields.Boolean(
         string="Own vehicle",
         compute="_compute_is_own_vehicle",
         search="_search_is_own_vehicle",
     )
-    always_show_in_kanban = fields.Boolean(company_dependent=True,)
+    always_show_in_kanban = fields.Boolean(
+        company_dependent=True,
+    )
 
     def _compute_task_count(self):
         Task = self.env["project.task"]
@@ -42,7 +53,10 @@ class FleetVehicle(models.Model):
             domain = [(task_field, "=", vehicle.id), ("stage_id.fold", "=", False)]
             if tms_date:
                 domain.extend(
-                    [("date_start", ">=", tms_date), ("date_end", "<", tms_date),]
+                    [
+                        ("date_start", ">=", tms_date),
+                        ("date_end", "<", tms_date),
+                    ]
                 )
             vehicle.task_count = Task.search_count(domain)
             vehicle.is_available = vehicle.task_count <= max_tasks

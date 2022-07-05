@@ -12,7 +12,9 @@ class TmsPackage(models.Model):
 
     name = fields.Char(required=True, default="/")
     partner_id = fields.Many2one(
-        comodel_name="res.partner", index=True, string="Partner",
+        comodel_name="res.partner",
+        index=True,
+        string="Partner",
     )
     company_id = fields.Many2one(
         comodel_name="res.company",
@@ -35,36 +37,55 @@ class TmsPackage(models.Model):
         store=True,
         index=True,
     )
-    pickup_date = fields.Datetime(string="Pick Up Date",)
-    forecast_unload_date = fields.Datetime(string="Forecast Unload Date",)
+    pickup_date = fields.Datetime(
+        string="Pick Up Date",
+    )
+    forecast_unload_date = fields.Datetime(
+        string="Forecast Unload Date",
+    )
     shipping_origin_id = fields.Many2one(
         comodel_name="res.partner",
         string="Origin",
         domain=[("is_shipping_place", "=", True)],
-        context={"default_is_shipping_place": True,},
+        context={
+            "default_is_shipping_place": True,
+        },
     )
     shipping_destination_id = fields.Many2one(
         comodel_name="res.partner",
         string="Destination",
         domain=[("is_shipping_place", "=", True)],
-        context={"default_is_shipping_place": True,},
+        context={
+            "default_is_shipping_place": True,
+        },
     )
     length = fields.Float(digits="TMS Volume")  # pylint: disable=W8105
     height = fields.Float(digits="TMS Volume")
     wide = fields.Float(digits="TMS Volume")
-    shipping_volume = fields.Float(digits="TMS Volume", string="Volume",)
-    shipping_weight = fields.Float(digits="TMS Weight", string="Weight",)
+    shipping_volume = fields.Float(
+        digits="TMS Volume",
+        string="Volume",
+    )
+    shipping_weight = fields.Float(
+        digits="TMS Weight",
+        string="Weight",
+    )
     number_of_packages = fields.Integer(string="Lumps")
     pallet_qty = fields.Integer(string="Pallets")
     euro_pallet_qty = fields.Integer(string="Euro Pallets")
     goods_id = fields.Many2one(
-        comodel_name="tms.goods", string="Goods", ondelete="restrict",
+        comodel_name="tms.goods",
+        string="Goods",
+        ondelete="restrict",
     )
-    carrier_tracking_ref = fields.Char(string="Tracking Reference",)
+    carrier_tracking_ref = fields.Char(
+        string="Tracking Reference",
+    )
     note = fields.Text(string="Comments")
     unload_note = fields.Text(string="Unload Comments")
     requested_date = fields.Datetime(
-        default=fields.Datetime.now, string="Requested Date",
+        default=fields.Datetime.now,
+        string="Requested Date",
     )
     customer_ref = fields.Char()
     checkpoint_origin_ids = fields.Many2many(

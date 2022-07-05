@@ -23,9 +23,16 @@ class TestTMS(common.SavepointCase):
             }
         )
 
-        cls.goods_adr = cls.env["tms.goods.adr"].create({"name": "Test ADR",})
+        cls.goods_adr = cls.env["tms.goods.adr"].create(
+            {
+                "name": "Test ADR",
+            }
+        )
         cls.goods = cls.env["tms.goods"].create(
-            {"name": "Tests Goods", "adr_id": cls.goods_adr.id,}
+            {
+                "name": "Tests Goods",
+                "adr_id": cls.goods_adr.id,
+            }
         )
 
         cls.equipment = cls.env["tms.equipment"].create(
@@ -43,25 +50,39 @@ class TestTMS(common.SavepointCase):
 
         # Customer
         cls.customer = cls.env["res.partner"].create(
-            {"name": "Customer Test", "company_type": "company",}
+            {
+                "name": "Customer Test",
+                "company_type": "company",
+            }
         )
 
         # Origin Location
         cls.partner_origin = cls.env["res.partner"].create(
-            {"name": "Origin Test", "company_type": "company",}
+            {
+                "name": "Origin Test",
+                "company_type": "company",
+            }
         )
 
         # Destination Location
         cls.partner_destination = cls.env["res.partner"].create(
-            {"name": "Destination Test", "company_type": "company",}
+            {
+                "name": "Destination Test",
+                "company_type": "company",
+            }
         )
 
         # Vehicle
         cls.vehicle_model_brand = cls.env["fleet.vehicle.model.brand"].create(
-            {"name": "Test Brand",}
+            {
+                "name": "Test Brand",
+            }
         )
         cls.vehicle_model = cls.env["fleet.vehicle.model"].create(
-            {"name": "Test Model", "brand_id": cls.vehicle_model_brand.id,}
+            {
+                "name": "Test Model",
+                "brand_id": cls.vehicle_model_brand.id,
+            }
         )
         cls.vehicle = cls.env["fleet.vehicle"].create(
             {

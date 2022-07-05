@@ -18,13 +18,12 @@
     <script type="text/javascript">
       function getUrlVars() {
         var vars = {};
-        var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(
-          m,
-          key,
-          value
-        ) {
-          vars[key] = decodeURIComponent(value);
-        });
+        var parts = window.location.href.replace(
+          /[?&]+([^=&]+)=([^&]*)/gi,
+          function (m, key, value) {
+            vars[key] = decodeURIComponent(value);
+          }
+        );
         return vars;
       }
 
@@ -79,7 +78,7 @@
           waypoints: waypoints,
           travelMode: google.maps.TravelMode.DRIVING,
         };
-        directionsService.route(request, function(result, status) {
+        directionsService.route(request, function (result, status) {
           if (status == google.maps.DirectionsStatus.OK) {
             directionsDisplay.setDirections(result);
           }
