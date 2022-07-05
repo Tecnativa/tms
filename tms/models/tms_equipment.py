@@ -128,7 +128,9 @@ class TmsEquipment(models.Model):
         try:
             vals["name"] = iso6346.validate(name)
         except Exception as error:
-            raise ValidationError(_("The name is invalid: %s" % str(error)))
+            raise ValidationError(
+                _("The name is invalid: %(error)s") % {"error": str(error)}
+            ) from error
         return vals
 
     def write(self, vals):

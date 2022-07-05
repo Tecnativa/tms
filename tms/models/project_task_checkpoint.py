@@ -30,15 +30,16 @@ class ProjectTaskCheckpoint(models.Model):
         required=True,
         string="Place",
     )
-    distance_estimated = fields.Float(string="Distance Estimated")
-    duration_estimated = fields.Float(string="Duration Estimated")
+    distance_estimated = fields.Float(
+        digits="TMS Distance",
+    )
+    duration_estimated = fields.Float()
     arrival_time = fields.Datetime(string="Arrival")
     departure_time = fields.Datetime(string="Departure")
     stopped_time = fields.Float(
         compute="_compute_stopped_time",
         inverse=lambda x: x,  # Trick to allow modify field
         store=True,
-        string="Stopped Time",
     )
     package_origin_ids = fields.Many2many(
         comodel_name="tms.package",

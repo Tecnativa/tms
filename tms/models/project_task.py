@@ -46,7 +46,7 @@ class ProjectTask(models.Model):
         string="Goods",
     )
     load_reference = fields.Char(string="Load Ref.")
-    expedition = fields.Char(string="Expedition")
+    expedition = fields.Char()
     equipment_size_type_id = fields.Many2one(
         comodel_name="iso6346.size.type", string="Size Type", ondelete="restrict"
     )
@@ -73,8 +73,8 @@ class ProjectTask(models.Model):
         string="Aceptance",
     )
     acceptance_locator = fields.Char()
-    wagon = fields.Char(string="Wagon")
-    vessel = fields.Char(string="Vessel")
+    wagon = fields.Char()
+    vessel = fields.Char()
     booking_number = fields.Char()
     voyage_number = fields.Char()
     # Destination port
@@ -114,11 +114,9 @@ class ProjectTask(models.Model):
     unload_service = fields.Boolean(string="Unload")
     distance_estimated = fields.Float(
         digits="TMS Distance",
-        string="Distance Estimated",
     )
     distance_traveled = fields.Float(
         digits="TMS Distance",
-        string="Distance Traveled",
     )
     odometer_start = fields.Float(
         digits="TMS Distance",
@@ -146,29 +144,22 @@ class ProjectTask(models.Model):
     checkpoint_ids = fields.One2many(
         comodel_name="project.task.checkpoint",
         inverse_name="task_id",
-        string="Checkpoints",
     )
     stopped_time = fields.Float(
         compute="_compute_stopped_time",
         store=True,
-        string="Stopped Time",
     )
-    free_stoped_time = fields.Float(
-        string="Free Stoped Time",
-    )
+    free_stoped_time = fields.Float()
     volume = fields.Float(
         compute="_compute_package_totals",
         digits="TMS Volume",
-        string="Volume",
     )
     weight = fields.Float(
         compute="_compute_package_totals",
         digits="TMS Weight",
-        string="Weight",
     )
     number_of_packages = fields.Integer(
         compute="_compute_package_totals",
-        string="Number of Packages",
     )
     pallet_qty = fields.Integer(
         compute="_compute_package_totals",
@@ -511,4 +502,4 @@ class ProjectTask(models.Model):
             except Exception as err:
                 raise exceptions.UserError(
                     _("Google Maps is not available: %s") % str(err)
-                )
+                ) from err

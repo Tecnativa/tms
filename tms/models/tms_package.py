@@ -40,9 +40,7 @@ class TmsPackage(models.Model):
     pickup_date = fields.Datetime(
         string="Pick Up Date",
     )
-    forecast_unload_date = fields.Datetime(
-        string="Forecast Unload Date",
-    )
+    forecast_unload_date = fields.Datetime()
     shipping_origin_id = fields.Many2one(
         comodel_name="res.partner",
         string="Origin",
@@ -85,7 +83,6 @@ class TmsPackage(models.Model):
     unload_note = fields.Text(string="Unload Comments")
     requested_date = fields.Datetime(
         default=fields.Datetime.now,
-        string="Requested Date",
     )
     customer_ref = fields.Char()
     checkpoint_origin_ids = fields.Many2many(
@@ -116,7 +113,7 @@ class TmsPackage(models.Model):
         column2="sale_order_line_id",
         string="Sale Lines",
     )
-    sequence = fields.Integer(string="Sequence", default=100)
+    sequence = fields.Integer(default=100, required=True)
 
     _sql_constraints = [
         ("name_unique", "unique(name)", "Name for this package already exists!"),

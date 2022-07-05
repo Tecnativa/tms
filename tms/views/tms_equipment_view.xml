@@ -3,69 +3,69 @@
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
 
-<record id="tms_equipment_size_type_tree_view" model="ir.ui.view">
-    <field name="name">tms.equipment.size.type.tree</field>
-    <field name="model">iso6346.size.type</field>
-    <field name="arch" type="xml">
-        <tree string="Size Type">
-            <field name="code" />
-            <field name="name" />
-        </tree>
-    </field>
-</record>
+    <record id="tms_equipment_size_type_tree_view" model="ir.ui.view">
+        <field name="name">tms.equipment.size.type.tree</field>
+        <field name="model">iso6346.size.type</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="code" />
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
 
-<record id="tms_equipment_size_type_search_view" model="ir.ui.view">
-    <field name="name">tms.equipment.size.type.tree</field>
-    <field name="model">iso6346.size.type</field>
-    <field name="arch" type="xml">
-       <search string="Size types">
-            <field
+    <record id="tms_equipment_size_type_search_view" model="ir.ui.view">
+        <field name="name">tms.equipment.size.type.tree</field>
+        <field name="model">iso6346.size.type</field>
+        <field name="arch" type="xml">
+            <search string="Size types">
+                <field
                     name="code"
                     filter_domain="['|',('code','ilike',self),('name','ilike',self)]"
                 />
-            <field name="name" />
-        </search>
-    </field>
-</record>
+                <field name="name" />
+            </search>
+        </field>
+    </record>
 
-<record id="tms_equipment_form_view" model="ir.ui.view">
-    <field name="name">tms.equipment.form.view</field>
-    <field name="model">tms.equipment</field>
-    <field name="arch" type="xml">
-        <form string="Equipment">
-            <sheet>
-                <group>
-                    <field name="name" />
-                    <field name="iso6346_ok" />
-                    <field name="equipment_type" />
-                    <field name="size_type_id" />
-                </group>
-                <group>
-                    <field name="goods_ids" widget="many2many_tags" />
-                </group>
-            </sheet>
-        </form>
-    </field>
-</record>
+    <record id="tms_equipment_form_view" model="ir.ui.view">
+        <field name="name">tms.equipment.form.view</field>
+        <field name="model">tms.equipment</field>
+        <field name="arch" type="xml">
+            <form string="Equipment">
+                <sheet>
+                    <group>
+                        <field name="name" />
+                        <field name="iso6346_ok" />
+                        <field name="equipment_type" />
+                        <field name="size_type_id" />
+                    </group>
+                    <group>
+                        <field name="goods_ids" widget="many2many_tags" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
 
-<record id="tms_equipment_tree_view" model="ir.ui.view">
-    <field name="name">tms.equipment.tree.view</field>
-    <field name="model">tms.equipment</field>
-    <field name="arch" type="xml">
-        <tree string="Equipment">
-            <field name="name" />
-            <field name="equipment_type" />
-            <field name="size_type_id" />
-            <field name="iso6346_ok" />
-        </tree>
-    </field>
-</record>
+    <record id="tms_equipment_tree_view" model="ir.ui.view">
+        <field name="name">tms.equipment.tree.view</field>
+        <field name="model">tms.equipment</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="equipment_type" />
+                <field name="size_type_id" />
+                <field name="iso6346_ok" />
+            </tree>
+        </field>
+    </record>
 
-<record id="tms_equipment_action" model="ir.actions.act_window">
-    <field name="name">Equipments</field>
-    <field name="type">ir.actions.act_window</field>
-    <field name="res_model">tms.equipment</field>
-    <field name="view_mode">tree,form</field>
-</record>
+    <record id="tms_equipment_action" model="ir.actions.act_window">
+        <field name="name">Equipments</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">tms.equipment</field>
+        <field name="view_mode">tree,form</field>
+    </record>
 
 </odoo>

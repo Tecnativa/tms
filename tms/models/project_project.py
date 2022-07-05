@@ -13,7 +13,7 @@ class ProjectProject(models.Model):
         return [("maritime", "Maritime")]
 
     shipment_type = fields.Selection(
-        selection=lambda x: x._get_shipment_type_selection(), string="Shipment Type"
+        selection=lambda x: x._get_shipment_type_selection(),
     )
     shipper_id = fields.Many2one(
         comodel_name="res.partner",
@@ -31,11 +31,10 @@ class ProjectProject(models.Model):
         comodel_name="res.partner",
         string="Load Harbor",
     )
-    load_terminal = fields.Char(string="Load Terminal")
+    load_terminal = fields.Char()
     discharge_harbor_id = fields.Many2one(
         comodel_name="res.partner",
-        string="Discharge Harbor",
     )
-    discharge_terminal = fields.Char(string="Discharge Terminal")
-    vessel = fields.Char(string="Vessel")
-    vessel_flag = fields.Char(string="Vessel Flag")
+    discharge_terminal = fields.Char()
+    vessel = fields.Char()
+    vessel_flag = fields.Char()

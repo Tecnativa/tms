@@ -5,7 +5,7 @@
 {
     "name": "Transportation Management System (TMS)",
     "summary": "Transportation Management System (TMS)",
-    "version": "13.0.1.0.0",
+    "version": "15.0.1.0.0",
     "category": "Logistic",
     "website": "https://github.com/OCA/tms",
     "author": "Tecnativa, " "Odoo Community Association (OCA)",
@@ -23,7 +23,6 @@
         "purchase",
         "fleet",
         "sale_timesheet",
-        # "sale_service_project",
         "project_task_default_stage",
         "project_timeline",
         "sale_order_invoicing_finished_task",
@@ -39,7 +38,6 @@
         "data/custom_actions_server.xml",
         "data/base_automation.xml",
         "data/tms_data.xml",
-        "views/assets.xml",
         "views/account_invoice_views.xml",
         "views/fleet_view.xml",
         "views/res_partner_view.xml",
@@ -52,4 +50,5 @@
         "views/tms_menu_view.xml",
         "views/tms_package.xml",
     ],
+    "assets": {"web.assets_backend": ["tms/static/src/css/kanban_view.scss"]},
 }
