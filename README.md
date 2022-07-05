@@ -1,14 +1,15 @@
 
 [![Runboat](https://img.shields.io/badge/runboat-Try%20me-875A7B.png)](https://runboat.odoo-community.org/builds?repo=OCA/tms&target_branch=15.0)
-[![Build Status](https://travis-ci.com/OCA/tms.svg?branch=15.0)](https://travis-ci.com/OCA/tms)
+[![Pre-commit Status](https://github.com/OCA/tms/actions/workflows/pre-commit.yml/badge.svg?branch=15.0)](https://github.com/OCA/tms/actions/workflows/pre-commit.yml?query=branch%3A15.0)
+[![Build Status](https://github.com/OCA/tms/actions/workflows/test.yml/badge.svg?branch=15.0)](https://github.com/OCA/tms/actions/workflows/test.yml?query=branch%3A15.0)
 [![codecov](https://codecov.io/gh/OCA/tms/branch/15.0/graph/badge.svg)](https://codecov.io/gh/OCA/tms)
 [![Translation Status](https://translation.odoo-community.org/widgets/tms-15-0/-/svg-badge.svg)](https://translation.odoo-community.org/engage/tms-15-0/?utm_source=widget)
 
 <!-- /!\ do not modify above this line -->
 
-# tms
+# Transport Management System
 
-Transport management system
+Modules for the management of transportation systems.
 
 <!-- /!\ do not modify below this line -->
 
