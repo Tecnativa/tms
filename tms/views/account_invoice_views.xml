@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Display vehicle analytic fields on invoices -->
+    <record id="view_move_form" model="ir.ui.view">
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='invoice_line_ids']/tree/field[@name='company_id']"
+                position="after"
+            >
+                <field
+                    name="tractor_id"
+                    optional="show"
+                    invisible="context.get('default_type') in ('out_invoice', 'out_refund','out_receipt')"
+                />
+                <field
+                    name="trailer_id"
+                    optional="show"
+                    invisible="context.get('default_type') in ('out_invoice', 'out_refund','out_receipt')"
+                />
+                <field
+                    name="driver_id"
+                    optional="show"
+                    invisible="context.get('default_type') in ('out_invoice', 'out_refund','out_receipt')"
+                />
+            </xpath>
+            <xpath
+                expr="//field[@name='line_ids']/tree/field[@name='company_id']"
+                position="after"
+            >
+                <field name="tractor_id" invisible="1" />
+                <field name="trailer_id" invisible="1" />
+                <field name="driver_id" invisible="1" />
+            </xpath>
+            <!-- TODO: Why are visible this fields in form mode for out and in invoice? -->
+            <xpath
+                expr="//field[@name='invoice_line_ids']/form//field[@name='account_id']"
+                position="after"
+            >
+                <field name="tractor_id" />
+                <field name="trailer_id" />
+                <field name="driver_id" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

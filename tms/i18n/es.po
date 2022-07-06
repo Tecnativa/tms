@@ -1,0 +1,1277 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* transport_management_system
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2022-04-29 17:51+0200\n"
+"Last-Translator: Carlos Dauden <carlos.dauden@tecnativa.com>\n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.3\n"
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.view_task_kanban
+msgid "<span><i class=\"fa fa-tasks\"/> Sub-Tasks</span>"
+msgstr "<span><i class=\"fa fa-tasks\"/> Sub-Tareas</span>"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_tms_goods__adr_id
+msgid "ADR"
+msgstr "ADR"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_sale_order__acceptance_id
+msgid "Acceptance"
+msgstr "Admítase"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_project_task__acceptance_locator
+#: model:ir.model.fields,field_description:tms.field_sale_order__acceptance_locator
+msgid "Acceptance Locator"
+msgstr "Localizador Admítase"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_project_task__acceptance_id
+msgid "Aceptance"
+msgstr "Admítase"
+
+#. module: tms
+#: model:ir.model.fields,help:tms.field_tms_equipment__goods_ids
+msgid "Adapted for goodss"
+msgstr "Adaptado para mercancía"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_project_task__tms_package_all_ids
+#: model_terms:ir.ui.view,arch_db:tms.tms_view_task_form2
+msgid "All Packages"
+msgstr "Todos los paquetes"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_fleet_vehicle__always_show_in_kanban
+msgid "Always Show In Kanban"
+msgstr "Mostrar siempre en kanban"
+
+#. module: tms
+#: model:ir.model,name:tms.model_account_analytic_line
+msgid "Analytic Line"
+msgstr "Línea analítica"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_project_task_checkpoint__arrival_time
+msgid "Arrival"
+msgstr "Llegada"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_project_task_checkpoint__automatic
+msgid "Automatic"
+msgstr "Automático"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_fleet_vehicle__is_available
+msgid "Available"
+msgstr "Disponible"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_project_task__booking_number
+#: model:ir.model.fields,field_description:tms.field_sale_order__booking_number
+msgid "Booking Number"
+msgstr "Num. Reserva"
+
+#. module: tms
+#: model:ir.model.fields.selection,name:tms.selection__tms_package__state__cancel
+#: model_terms:ir.ui.view,arch_db:tms.tms_package_view_search
+msgid "Cancelled"
+msgstr "Cancelado"
+
+#. module: tms
+#: model:ir.model,name:tms.model_project_task_checkpoint
+msgid "Checkpoint"
+msgstr "Punto de control"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_project_task__checkpoint_ids
+#: model_terms:ir.ui.view,arch_db:tms.tms_view_task_form2
+msgid "Checkpoints"
+msgstr "Puntos de control"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_tms_package__checkpoint_destination_ids
+msgid "Checkpoints Destination"
+msgstr "Checkpoints Destino"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_tms_package__checkpoint_origin_ids
+msgid "Checkpoints Origin"
+msgstr "Checkpoints Origen"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_iso6346_length__code
+#: model:ir.model.fields,field_description:tms.field_iso6346_second_size__code
+#: model:ir.model.fields,field_description:tms.field_iso6346_size_type__code
+#: model:ir.model.fields,field_description:tms.field_iso6346_type__code
+msgid "Code"
+msgstr "Código"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_tms_package__note
+msgid "Comments"
+msgstr "Comentarios"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_tms_package__company_id
+msgid "Company"
+msgstr "Compañía"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_fleet_vehicle__company_owner_id
+msgid "Company Owner"
+msgstr "Compañía propietaria"
+
+#. module: tms
+#: model:ir.ui.menu,name:tms.menu_tms_config
+msgid "Configuration"
+msgstr "Configuración"
+
+#. module: tms
+#: model:ir.actions.server,name:tms.action_confirm_sale_order_from_line
+msgid "Confirm Order"
+msgstr "Confirmar pedido"
+
+#. module: tms
+#: model:base.automation,name:tms.rule_confirm_sale_order
+#: model:ir.actions.server,name:tms.action_confirm_sale_order
+msgid "Confirm Sale Order"
+msgstr "Confirmar pedido de venta"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_project_project__consigner_id
+msgid "Consigner"
+msgstr "Consignatario"
+
+#. module: tms
+#: model:ir.model,name:tms.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: tms
+#: model:ir.model.fields.selection,name:tms.selection__tms_equipment__equipment_type__container
+msgid "Container"
+msgstr "Contenedor"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_iso6346_length__create_uid
+#: model:ir.model.fields,field_description:tms.field_iso6346_second_size__create_uid
+#: model:ir.model.fields,field_description:tms.field_iso6346_size_type__create_uid
+#: model:ir.model.fields,field_description:tms.field_iso6346_type__create_uid
+#: model:ir.model.fields,field_description:tms.field_project_task_checkpoint__create_uid
+#: model:ir.model.fields,field_description:tms.field_res_partner_schedule__create_uid
+#: model:ir.model.fields,field_description:tms.field_res_partner_zone__create_uid
+#: model:ir.model.fields,field_description:tms.field_tms_equipment__create_uid
+#: model:ir.model.fields,field_description:tms.field_tms_goods__create_uid
+#: model:ir.model.fields,field_description:tms.field_tms_goods_adr__create_uid
+#: model:ir.model.fields,field_description:tms.field_tms_package__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_iso6346_length__create_date
+#: model:ir.model.fields,field_description:tms.field_iso6346_second_size__create_date
+#: model:ir.model.fields,field_description:tms.field_iso6346_size_type__create_date
+#: model:ir.model.fields,field_description:tms.field_iso6346_type__create_date
+#: model:ir.model.fields,field_description:tms.field_project_task_checkpoint__create_date
+#: model:ir.model.fields,field_description:tms.field_res_partner_schedule__create_date
+#: model:ir.model.fields,field_description:tms.field_res_partner_zone__create_date
+#: model:ir.model.fields,field_description:tms.field_tms_equipment__create_date
+#: model:ir.model.fields,field_description:tms.field_tms_goods__create_date
+#: model:ir.model.fields,field_description:tms.field_tms_goods_adr__create_date
+#: model:ir.model.fields,field_description:tms.field_tms_package__create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_tms_package__customer_ref
+msgid "Customer Ref"
+msgstr "Ref. Cliente"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_sale_order__dua_ref
+msgid "DUA"
+msgstr "DUA"
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.view_task_search_form
+msgid "Date start"
+msgstr "Fecha de inicio"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_project_task_checkpoint__departure_time
+msgid "Departure"
+msgstr "Salida"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_project_task__shipping_destination_id
+#: model:ir.model.fields,field_description:tms.field_tms_package__shipping_destination_id
+#: model_terms:ir.ui.view,arch_db:tms.tms_package_view_search
+#: model_terms:ir.ui.view,arch_db:tms.view_task_search_form
+msgid "Destination"
+msgstr "Destino"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_project_project__discharge_harbor_id
+msgid "Discharge Harbor"
+msgstr "Puerto descarga"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_project_project__discharge_terminal
+msgid "Discharge Terminal"
+msgstr "Terminal descarga"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_iso6346_length__display_name
+#: model:ir.model.fields,field_description:tms.field_iso6346_second_size__display_name
+#: model:ir.model.fields,field_description:tms.field_iso6346_size_type__display_name
+#: model:ir.model.fields,field_description:tms.field_iso6346_type__display_name
+#: model:ir.model.fields,field_description:tms.field_project_task_checkpoint__display_name
+#: model:ir.model.fields,field_description:tms.field_res_partner_schedule__display_name
+#: model:ir.model.fields,field_description:tms.field_res_partner_zone__display_name
+#: model:ir.model.fields,field_description:tms.field_tms_analytic__display_name
+#: model:ir.model.fields,field_description:tms.field_tms_equipment__display_name
+#: model:ir.model.fields,field_description:tms.field_tms_goods__display_name
+#: model:ir.model.fields,field_description:tms.field_tms_goods_adr__display_name
+#: model:ir.model.fields,field_description:tms.field_tms_package__display_name
+msgid "Display Name"
+msgstr "Nombre a mostrar"
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.tms_view_task_form2
+msgid "Distance"
+msgstr "Distancia"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_project_task__distance_estimated
+#: model:ir.model.fields,field_description:tms.field_project_task_checkpoint__distance_estimated
+msgid "Distance Estimated"
+msgstr "Distancia estimada"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_project_task__distance_traveled
+msgid "Distance Traveled"
+msgstr "Distancia recorrida"
+
+#. module: tms
+#: model:ir.model.fields.selection,name:tms.selection__tms_package__state__draft
+msgid "Draft"
+msgstr "Borrador"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_account_analytic_line__driver_id
+#: model:ir.model.fields,field_description:tms.field_account_move_line__driver_id
+#: model:ir.model.fields,field_description:tms.field_project_task__driver_id
+#: model:ir.model.fields,field_description:tms.field_purchase_order_line__driver_id
+#: model:ir.model.fields,field_description:tms.field_res_partner__is_driver
+#: model:ir.model.fields,field_description:tms.field_res_users__is_driver
+#: model:ir.model.fields,field_description:tms.field_sale_order_line__driver_id
+#: model:ir.model.fields,field_description:tms.field_tms_analytic__driver_id
+#: model_terms:ir.ui.view,arch_db:tms.purchase_order_line_search
+msgid "Driver"
+msgstr "Conductor"
+
+#. module: tms
+#: model:ir.model.fields,help:tms.field_account_analytic_line__driver_id
+#: model:ir.model.fields,help:tms.field_account_move_line__driver_id
+#: model:ir.model.fields,help:tms.field_project_task__driver_id
+#: model:ir.model.fields,help:tms.field_purchase_order_line__driver_id
+#: model:ir.model.fields,help:tms.field_sale_order_line__driver_id
+#: model:ir.model.fields,help:tms.field_tms_analytic__driver_id
+msgid "Driver of the vehicle"
+msgstr "Conductor del vehículo"
+
+#. module: tms
+#: model:ir.actions.server,name:tms.action_duplicate_sale_order_from_line
+msgid "Duplicate Order"
+msgstr "Duplicar pedido"
+
+#. module: tms
+#: model:ir.actions.server,name:tms.action_duplicate_sale_order
+msgid "Duplicate Sales"
+msgstr "Duplicar pedidos"
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.tms_view_task_form2
+msgid "Duration"
+msgstr "Duración"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_project_task_checkpoint__duration_estimated
+msgid "Duration Estimated"
+msgstr "Duración estimada"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_project_task__equipment_id
+#: model:ir.model.fields,field_description:tms.field_sale_order_line__equipment_id
+#: model_terms:ir.ui.view,arch_db:tms.tms_equipment_form_view
+#: model_terms:ir.ui.view,arch_db:tms.tms_equipment_tree_view
+msgid "Equipment"
+msgstr "Equipamiento"
+
+#. module: tms
+#: model:ir.actions.act_window,name:tms.tms_equipment_action
+#: model:ir.ui.menu,name:tms.tms_equipment_menu
+msgid "Equipments"
+msgstr "Equipamientos"
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.tms_view_task_form2
+msgid "Estimate route"
+msgstr "Estimar ruta"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_project_task__euro_pallet_qty
+#: model:ir.model.fields,field_description:tms.field_tms_package__euro_pallet_qty
+msgid "Euro Pallets"
+msgstr "Euro palets"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_project_task__expedition
+msgid "Expedition"
+msgstr "Expedición"
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.tms_view_task_form2
+msgid "Fill Checkpoints"
+msgstr "Rellenar checkpoints"
+
+#. module: tms
+#: model:base.automation,name:tms.rule_fill_checkpoints
+#: model:ir.actions.server,name:tms.action_fill_checkpoints
+msgid "Fill Checkpoints to confirm order"
+msgstr "Rellenar checkpoints al confirmar orden"
+
+#. module: tms
+#: model:ir.model.fields.selection,name:tms.selection__tms_package__state__done
+#: model_terms:ir.ui.view,arch_db:tms.tms_package_view_search
+msgid "Finished"
+msgstr "Terminado"
+
+#. module: tms
+#: model:ir.ui.menu,name:tms.menu_tms_fleet
+msgid "Fleet"
+msgstr "Flota"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_project_task__force_destination
+msgid "Force Destination"
+msgstr "Forzar destino"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_project_task__force_origin
+msgid "Force Origin"
+msgstr "Forzar origen"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_tms_package__forecast_unload_date
+msgid "Forecast Unload Date"
+msgstr "Fecha descarga estim."
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_project_task__free_stoped_time
+msgid "Free Stoped Time"
+msgstr "Tiempo paralización gratis"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_project_project__freight_forwarder_id
+msgid "Freight Forwarder"
+msgstr "Transitario"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_res_partner_schedule__hour_from
+msgid "From"
+msgstr "De"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_product_product__goods_id
+#: model:ir.model.fields,field_description:tms.field_product_template__goods_id
+#: model:ir.model.fields,field_description:tms.field_project_task__goods_id
+#: model:ir.model.fields,field_description:tms.field_tms_package__goods_id
+#: model:res.groups,name:tms.group_tms_goods
+msgid "Goods"
+msgstr "Mercancía"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_tms_equipment__goods_ids
+msgid "Goodss"
+msgstr "Mercancía"
+
+#. module: tms
+#: code:addons/tms/models/project_task.py:0
+#, python-format
+msgid "Google Maps is not available: %s"
+msgstr "Google Maps no está disponible: %s"
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.tms_package_view_search
+msgid "Group By"
+msgstr "Agrupar por"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_iso6346_second_size__height
+#: model:ir.model.fields,field_description:tms.field_tms_package__height
+msgid "Height"
+msgstr "Altura"
+
+#. module: tms
+#: model:ir.module.category,description:tms.module_category_transport_management_system
+msgid "Helps you manage TMS."
+msgstr "Le ayuda a gestionar TMS."
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_iso6346_length__id
+#: model:ir.model.fields,field_description:tms.field_iso6346_second_size__id
+#: model:ir.model.fields,field_description:tms.field_iso6346_size_type__id
+#: model:ir.model.fields,field_description:tms.field_iso6346_type__id
+#: model:ir.model.fields,field_description:tms.field_project_task_checkpoint__id
+#: model:ir.model.fields,field_description:tms.field_res_partner_schedule__id
+#: model:ir.model.fields,field_description:tms.field_res_partner_zone__id
+#: model:ir.model.fields,field_description:tms.field_tms_analytic__id
+#: model:ir.model.fields,field_description:tms.field_tms_equipment__id
+#: model:ir.model.fields,field_description:tms.field_tms_goods__id
+#: model:ir.model.fields,field_description:tms.field_tms_goods_adr__id
+#: model:ir.model.fields,field_description:tms.field_tms_package__id
+msgid "ID"
+msgstr "ID (identificación)"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_tms_equipment__iso6346_ok
+msgid "ISO6346 Validation"
+msgstr "Validación ISO6346"
+
+#. module: tms
+#: model:ir.model.fields.selection,name:tms.selection__tms_package__state__progress
+#: model_terms:ir.ui.view,arch_db:tms.view_task_search_form
+msgid "In Progress"
+msgstr "En proceso"
+
+#. module: tms
+#: model:ir.model.fields.selection,name:tms.selection__tms_package__state__transit
+msgid "In Transit"
+msgstr "En tránsito"
+
+#. module: tms
+#: model:ir.model.fields.selection,name:tms.selection__tms_equipment__equipment_type__jail
+msgid "Jail"
+msgstr "Jaula"
+
+#. module: tms
+#: model:ir.model,name:tms.model_account_move_line
+msgid "Journal Item"
+msgstr "Apunte contable"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_iso6346_length____last_update
+#: model:ir.model.fields,field_description:tms.field_iso6346_second_size____last_update
+#: model:ir.model.fields,field_description:tms.field_iso6346_size_type____last_update
+#: model:ir.model.fields,field_description:tms.field_iso6346_type____last_update
+#: model:ir.model.fields,field_description:tms.field_project_task_checkpoint____last_update
+#: model:ir.model.fields,field_description:tms.field_res_partner_schedule____last_update
+#: model:ir.model.fields,field_description:tms.field_res_partner_zone____last_update
+#: model:ir.model.fields,field_description:tms.field_tms_analytic____last_update
+#: model:ir.model.fields,field_description:tms.field_tms_equipment____last_update
+#: model:ir.model.fields,field_description:tms.field_tms_goods____last_update
+#: model:ir.model.fields,field_description:tms.field_tms_goods_adr____last_update
+#: model:ir.model.fields,field_description:tms.field_tms_package____last_update
+msgid "Last Modified on"
+msgstr "Última actualización el"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_iso6346_length__write_uid
+#: model:ir.model.fields,field_description:tms.field_iso6346_second_size__write_uid
+#: model:ir.model.fields,field_description:tms.field_iso6346_size_type__write_uid
+#: model:ir.model.fields,field_description:tms.field_iso6346_type__write_uid
+#: model:ir.model.fields,field_description:tms.field_project_task_checkpoint__write_uid
+#: model:ir.model.fields,field_description:tms.field_res_partner_schedule__write_uid
+#: model:ir.model.fields,field_description:tms.field_res_partner_zone__write_uid
+#: model:ir.model.fields,field_description:tms.field_tms_equipment__write_uid
+#: model:ir.model.fields,field_description:tms.field_tms_goods__write_uid
+#: model:ir.model.fields,field_description:tms.field_tms_goods_adr__write_uid
+#: model:ir.model.fields,field_description:tms.field_tms_package__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_iso6346_length__write_date
+#: model:ir.model.fields,field_description:tms.field_iso6346_second_size__write_date
+#: model:ir.model.fields,field_description:tms.field_iso6346_size_type__write_date
+#: model:ir.model.fields,field_description:tms.field_iso6346_type__write_date
+#: model:ir.model.fields,field_description:tms.field_project_task_checkpoint__write_date
+#: model:ir.model.fields,field_description:tms.field_res_partner_schedule__write_date
+#: model:ir.model.fields,field_description:tms.field_res_partner_zone__write_date
+#: model:ir.model.fields,field_description:tms.field_tms_equipment__write_date
+#: model:ir.model.fields,field_description:tms.field_tms_goods__write_date
+#: model:ir.model.fields,field_description:tms.field_tms_goods_adr__write_date
+#: model:ir.model.fields,field_description:tms.field_tms_package__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_iso6346_length__length
+#: model:ir.model.fields,field_description:tms.field_iso6346_size_type__length_id
+#: model:ir.model.fields,field_description:tms.field_tms_package__length
+msgid "Length"
+msgstr "Largo"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_product_product__level
+#: model:ir.model.fields,field_description:tms.field_product_template__level
+#: model:ir.model.fields,field_description:tms.field_sale_order_line__level
+msgid "Level"
+msgstr "Nivel"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_project_project__load_harbor_id
+msgid "Load Harbor"
+msgstr "Puerto carga"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_project_task__load_reference
+msgid "Load Ref."
+msgstr "Ref. carga"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_project_project__load_terminal
+msgid "Load Terminal"
+msgstr "Terminal carga"
+
+#. module: tms
+#: model:ir.model.fields.selection,name:tms.selection__tms_package__state__loading
+msgid "Loading"
+msgstr "Cargando"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_project_task__loading_port_id
+#: model:ir.model.fields,field_description:tms.field_sale_order__loading_port_id
+msgid "Loading Port"
+msgstr "Puerto de carga"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_tms_package__number_of_packages
+msgid "Lumps"
+msgstr "Bultos"
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.view_task_search_form
+msgid "Max Vehicle Task"
+msgstr "Máx tareas vehiculo"
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.view_crm_partner_geo_form
+msgid "Miscellaneous"
+msgstr "Miscelánea"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_iso6346_length__name
+#: model:ir.model.fields,field_description:tms.field_iso6346_second_size__name
+#: model:ir.model.fields,field_description:tms.field_iso6346_size_type__name
+#: model:ir.model.fields,field_description:tms.field_iso6346_type__name
+#: model:ir.model.fields,field_description:tms.field_project_task_checkpoint__name
+#: model:ir.model.fields,field_description:tms.field_res_partner_schedule__name
+#: model:ir.model.fields,field_description:tms.field_res_partner_zone__name
+#: model:ir.model.fields,field_description:tms.field_tms_equipment__name
+#: model:ir.model.fields,field_description:tms.field_tms_goods__name
+#: model:ir.model.fields,field_description:tms.field_tms_goods_adr__name
+#: model:ir.model.fields,field_description:tms.field_tms_package__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: tms
+#: model:ir.model.constraint,message:tms.constraint_tms_package_name_unique
+msgid "Name for this package already exists!"
+msgstr "¡Este nombre de paquete ya existe!"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_fleet_vehicle__next_checkpoint_ids
+msgid "Next Checkpoints"
+msgstr "Siguientes Checkpoints"
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.view_task_search_form
+msgid "Not Transport Order"
+msgstr "No orden de transporte"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_project_task__number_of_packages
+msgid "Number of Packages"
+msgstr "Número de bultos"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_project_task__odometer_start
+msgid "Odometer Start"
+msgstr "Odómetro inicio"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_project_task__odometer_stop
+msgid "Odometer Stop"
+msgstr "Odómetro fin"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_project_task__shipping_origin_id
+#: model:ir.model.fields,field_description:tms.field_tms_package__shipping_origin_id
+#: model_terms:ir.ui.view,arch_db:tms.tms_package_view_search
+#: model_terms:ir.ui.view,arch_db:tms.view_task_search_form
+msgid "Origin"
+msgstr "Origen"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_sale_order__port_id
+msgid "Origin Port"
+msgstr "Puerto origen"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_fleet_vehicle__is_own_vehicle
+msgid "Own vehicle"
+msgstr "Vehículo propio"
+
+#. module: tms
+#: model:res.groups,name:tms.group_tms_package
+msgid "Package"
+msgstr "Paquete"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_project_task__tms_package_ids
+#: model:ir.model.fields,field_description:tms.field_sale_order_line__tms_package_ids
+#: model_terms:ir.ui.view,arch_db:tms.tms_package_form_view
+#: model_terms:ir.ui.view,arch_db:tms.tms_package_tree_view
+#: model_terms:ir.ui.view,arch_db:tms.tms_package_view_search
+#: model_terms:ir.ui.view,arch_db:tms.tms_view_task_form2
+#: model_terms:ir.ui.view,arch_db:tms.view_order_line_tms_package
+#: model_terms:ir.ui.view,arch_db:tms.view_task_tree2
+msgid "Packages"
+msgstr "Paquetes"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_project_task_checkpoint__package_destination_ids
+msgid "Packages Destination"
+msgstr "Paquetes destino"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_project_task_checkpoint__package_origin_ids
+msgid "Packages Origin"
+msgstr "Paquetes origen"
+
+#. module: tms
+#: model:res.groups,name:tms.group_tms_pallet
+msgid "Pallet"
+msgstr "Palet"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_project_task__pallet_qty
+#: model:ir.model.fields,field_description:tms.field_tms_package__pallet_qty
+msgid "Pallets"
+msgstr "Palets"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_sale_order_line__parent_line_id
+msgid "Parent Line"
+msgstr "Línea padre"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_res_partner_schedule__partner_id
+#: model:ir.model.fields,field_description:tms.field_tms_package__partner_id
+#: model_terms:ir.ui.view,arch_db:tms.tms_package_view_search
+msgid "Partner"
+msgstr "Empresa"
+
+#. module: tms
+#: model:ir.model,name:tms.model_res_partner_schedule
+msgid "Partner Schedule"
+msgstr "Horario empresa"
+
+#. module: tms
+#: model:ir.model,name:tms.model_res_partner_zone
+msgid "Partner Zone"
+msgstr "Zona de la empresa"
+
+#. module: tms
+#: model:ir.model.fields.selection,name:tms.selection__tms_package__state__pending
+#: model_terms:ir.ui.view,arch_db:tms.tms_package_view_search
+#: model_terms:ir.ui.view,arch_db:tms.view_task_search_form
+msgid "Pending"
+msgstr "Pendiente"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_sale_order_line__pickup_date
+#: model:ir.model.fields,field_description:tms.field_tms_package__pickup_date
+msgid "Pick Up Date"
+msgstr "Fecha carga"
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.tms_package_view_search
+msgid "Pickup date"
+msgstr "Fecha carga"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_project_task_checkpoint__place_id
+msgid "Place"
+msgstr "Lugar"
+
+#. module: tms
+#: model:fleet.vehicle.tag,name:tms.vehicle_tag_pneumatics
+msgid "Pneumatics"
+msgstr "Neumática"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_project_task__port_id
+msgid "Port"
+msgstr "Puerto"
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.view_order_form
+msgid "Ports"
+msgstr "Puertos"
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.view_task_search_form
+msgid "Primary"
+msgstr "Principal"
+
+#. module: tms
+#: model:ir.model,name:tms.model_product_template
+msgid "Product Template"
+msgstr "Plantilla producto"
+
+#. module: tms
+#: model:ir.model,name:tms.model_project_project
+#: model:ir.ui.menu,name:tms.menu_tms_project
+msgid "Project"
+msgstr "Proyecto"
+
+#. module: tms
+#: model:ir.ui.menu,name:tms.menu_projects
+msgid "Projects"
+msgstr "Proyectos"
+
+#. module: tms
+#: model:ir.model,name:tms.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Linea pedido compra"
+
+#. module: tms
+#: model:ir.ui.menu,name:tms.menu_sale_quotations
+msgid "Quotations"
+msgstr "Pedidos"
+
+#. module: tms
+#: model:ir.model.fields.selection,name:tms.selection__tms_package__state__ready
+#: model_terms:ir.ui.view,arch_db:tms.tms_package_view_search
+msgid "Ready"
+msgstr "Preparado"
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.tms_package_view_search
+msgid "References"
+msgstr "Referencias"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_project_task__release_id
+#: model:ir.model.fields,field_description:tms.field_sale_order__release_id
+msgid "Release"
+msgstr "Entréguese"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_project_task__release_locator
+#: model:ir.model.fields,field_description:tms.field_sale_order__release_locator
+msgid "Release Locator"
+msgstr "Localizador Entréguese"
+
+#. module: tms
+#: model:ir.ui.menu,name:tms.menu_tms_report
+msgid "Reports"
+msgstr "Informes"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_tms_package__requested_date
+msgid "Requested Date"
+msgstr "Fecha solicitud"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_tms_package__sale_line_ids
+msgid "Sale Lines"
+msgstr "Líneas de pedido de venta"
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.product_template_form_view
+msgid "Sale Options"
+msgstr "Opciones de venta"
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.tms_package_view_search
+msgid "Sale Order"
+msgstr "Pedido de venta"
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.view_task_search_form
+msgid "Sale Type"
+msgstr "Tipo pedido"
+
+#. module: tms
+#: model:ir.ui.menu,name:tms.menu_tms_management
+msgid "Sales"
+msgstr "Ventas"
+
+#. module: tms
+#: model:ir.model,name:tms.model_sale_order
+msgid "Sales Order"
+msgstr "Pedido de venta"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_project_task__sale_line_id
+msgid "Sales Order Item"
+msgstr "Elemento del pedido de venta"
+
+#. module: tms
+#: model:ir.model,name:tms.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Líneas de pedido"
+
+#. module: tms
+#: model:ir.model.fields,help:tms.field_project_task__sale_line_id
+msgid ""
+"Sales order item to which the task is linked. If an employee timesheets on a "
+"this task, and if this employee is not in the 'Employee/Sales Order Item "
+"Mapping' of the project, the timesheet entry will be linked to this sales "
+"order item."
+msgstr ""
+"Artículo de pedido de ventas al que está vinculada la tarea. Si las hojas de "
+"tiempo de un empleado en esta tarea, y si este empleado no está en la "
+"'Asignación de artículos de pedido de Empleado/Ventas' del proyecto, la "
+"entrada de la hoja de tiempo se vinculará a este artículo de pedido de "
+"ventas."
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_res_partner__schedule_ids
+#: model:ir.model.fields,field_description:tms.field_res_users__schedule_ids
+msgid "Schedule"
+msgstr "Horario"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_project_task__seal
+#: model:ir.model.fields,field_description:tms.field_sale_order_line__seal
+msgid "Seal"
+msgstr "Precinto"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_iso6346_size_type__second_size_id
+msgid "Second Size"
+msgstr "Segunda medida"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_project_task_checkpoint__sequence
+#: model:ir.model.fields,field_description:tms.field_tms_package__sequence
+msgid "Sequence"
+msgstr "Secuencia"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_project_task__shipment_port_id
+#: model:ir.model.fields,field_description:tms.field_sale_order__shipment_port_id
+msgid "Shipment Port"
+msgstr "Puerto envío"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_project_project__shipment_ref
+msgid "Shipment Ref."
+msgstr "Ref. envío"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_project_project__shipment_type
+msgid "Shipment Type"
+msgstr "Tipo envío"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_project_project__shipper_id
+msgid "Shipper"
+msgstr "Expedidor"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_sale_order_line__shipping_destination_id
+msgid "Shipping Destination"
+msgstr "Destino envío"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_sale_order_line__shipping_origin_id
+msgid "Shipping Origin"
+msgstr "Origen envío"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_res_partner__is_shipping_place
+#: model:ir.model.fields,field_description:tms.field_res_users__is_shipping_place
+msgid "Shipping Place"
+msgstr "Lugar envío"
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.tms_view_task_form2
+msgid "Show Route"
+msgstr "Mostrar ruta"
+
+#. module: tms
+#: model:res.groups,name:tms.group_tms_size
+msgid "Size"
+msgstr "Tamaño"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_project_task__equipment_size_type_id
+#: model:ir.model.fields,field_description:tms.field_sale_order_line__equipment_size_type_id
+#: model:ir.model.fields,field_description:tms.field_tms_equipment__size_type_id
+#: model_terms:ir.ui.view,arch_db:tms.tms_equipment_size_type_tree_view
+#: model_terms:ir.ui.view,arch_db:tms.view_task_search_form
+msgid "Size Type"
+msgstr "Tipo medida"
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.tms_equipment_size_type_search_view
+msgid "Size types"
+msgstr "Tipos medida"
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.view_task_search_form
+msgid "Start date"
+msgstr "Fecha inicio"
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.view_task_search_form
+msgid "Start from"
+msgstr "Empieza desde"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_tms_package__state
+#: model_terms:ir.ui.view,arch_db:tms.tms_package_view_search
+msgid "State"
+msgstr "Estado"
+
+#. module: tms
+#: model:ir.model,name:tms.model_stock_rule
+msgid "Stock Rule"
+msgstr "Regla de Inventario"
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.tms_view_task_form2
+msgid "Stopped"
+msgstr "Paralización"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_project_task__stopped_time
+#: model:ir.model.fields,field_description:tms.field_project_task_checkpoint__stopped_time
+msgid "Stopped Time"
+msgstr "Tiempo paralización"
+
+#. module: tms
+#: model:ir.ui.menu,name:tms.menu_main_tms
+msgid "TMS"
+msgstr "TMS"
+
+#. module: tms
+#: model:ir.model,name:tms.model_tms_analytic
+msgid "TMS Analityc"
+msgstr "TMS Analítica"
+
+#. module: tms
+#: model:ir.model,name:tms.model_tms_equipment
+msgid "TMS Equipment"
+msgstr "TMS Equipamiento"
+
+#. module: tms
+#: model:ir.model,name:tms.model_tms_goods
+msgid "TMS Goods"
+msgstr "TMS Mercancias"
+
+#. module: tms
+#: model:ir.model,name:tms.model_tms_goods_adr
+msgid "TMS Goods Adr"
+msgstr "TMS ADR Mercancias"
+
+#. module: tms
+#: model:ir.module.category,name:tms.module_category_tms_measure
+msgid "TMS Measures"
+msgstr "Medidas TMS"
+
+#. module: tms
+#: model:ir.module.category,name:tms.module_category_tms_options
+msgid "TMS Options"
+msgstr "Opciones TMS"
+
+#. module: tms
+#: model:ir.model,name:tms.model_tms_package
+msgid "TMS Package"
+msgstr "TMS Paquete"
+
+#. module: tms
+#: model:ir.actions.act_window,name:tms.action_order_line_tms_package
+#: model:ir.actions.act_window,name:tms.action_tms_package
+#: model:ir.ui.menu,name:tms.menu_tms_package
+msgid "TMS Packages"
+msgstr "Paquetes TMS"
+
+#. module: tms
+#: model:ir.model,name:tms.model_project_task
+#: model:ir.model.fields,field_description:tms.field_project_task_checkpoint__task_id
+msgid "Task"
+msgstr "Tarea"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_fleet_vehicle__task_count
+#: model:ir.model.fields,field_description:tms.field_tms_package__task_ids
+#: model:ir.ui.menu,name:tms.menu_action_view_task
+#: model_terms:ir.ui.view,arch_db:tms.fleet_vehicle_view_form
+msgid "Tasks"
+msgstr "Tareas"
+
+#. module: tms
+#: code:addons/tms/models/tms_equipment.py:0
+#: model:ir.model.constraint,message:tms.constraint_iso6346_length_uniq_code
+#: model:ir.model.constraint,message:tms.constraint_iso6346_second_size_uniq_code
+#: model:ir.model.constraint,message:tms.constraint_iso6346_size_type_uniq_code
+#: model:ir.model.constraint,message:tms.constraint_iso6346_type_uniq_code
+#, python-format
+msgid "The code must be unique !"
+msgstr "¡El código debe ser único!"
+
+#. module: tms
+#: code:addons/tms/models/tms_equipment.py:0
+#, python-format
+msgid "The name is invalid: %s"
+msgstr "El nombre no es válido: %s"
+
+#. module: tms
+#: code:addons/tms/models/tms_equipment.py:0
+#: model:ir.model.constraint,message:tms.constraint_tms_equipment_uniq_name
+#, python-format
+msgid "The name must be unique !"
+msgstr "¡El nombre debe ser único!"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_res_partner_schedule__hour_to
+msgid "To"
+msgstr "A"
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.tms_view_task_form2
+msgid "Total Packages"
+msgstr "Total paquetes"
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.tms_view_task_form2
+msgid "Total Volume"
+msgstr "Volumen total"
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.tms_view_task_form2
+msgid "Total Weight"
+msgstr "Peso total"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_tms_package__carrier_tracking_ref
+msgid "Tracking Reference"
+msgstr "Tracking Ref."
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_account_analytic_line__tractor_id
+#: model:ir.model.fields,field_description:tms.field_account_move_line__tractor_id
+#: model:ir.model.fields,field_description:tms.field_project_task__tractor_id
+#: model:ir.model.fields,field_description:tms.field_purchase_order_line__tractor_id
+#: model:ir.model.fields,field_description:tms.field_sale_order_line__tractor_id
+#: model:ir.model.fields,field_description:tms.field_tms_analytic__tractor_id
+#: model:ir.model.fields.selection,name:tms.selection__fleet_vehicle__vehicle_type__tractor
+#: model_terms:ir.ui.view,arch_db:tms.purchase_order_line_search
+#: model_terms:ir.ui.view,arch_db:tms.view_task_search_form
+msgid "Tractor"
+msgstr "Tractora"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_account_analytic_line__trailer_id
+#: model:ir.model.fields,field_description:tms.field_account_move_line__trailer_id
+#: model:ir.model.fields,field_description:tms.field_fleet_vehicle__trailer_id
+#: model:ir.model.fields,field_description:tms.field_project_task__trailer_id
+#: model:ir.model.fields,field_description:tms.field_purchase_order_line__trailer_id
+#: model:ir.model.fields,field_description:tms.field_sale_order_line__trailer_id
+#: model:ir.model.fields,field_description:tms.field_tms_analytic__trailer_id
+#: model:ir.model.fields.selection,name:tms.selection__fleet_vehicle__vehicle_type__trailer
+#: model_terms:ir.ui.view,arch_db:tms.purchase_order_line_search
+msgid "Trailer"
+msgstr "Remolque"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_project_task__trailer_requirement_ids
+msgid "Trailer Req."
+msgstr "Requisitos remolque"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_res_partner__trailer_tag_ids
+#: model:ir.model.fields,field_description:tms.field_res_users__trailer_tag_ids
+msgid "Trailer Requirements"
+msgstr "Requisitos remolque"
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.view_order_form
+msgid "Transport"
+msgstr "Transporte"
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.edit_project
+#: model_terms:ir.ui.view,arch_db:tms.tms_view_task_form2
+#: model_terms:ir.ui.view,arch_db:tms.view_order_form
+msgid "Transport Info"
+msgstr "Info transporte"
+
+#. module: tms
+#: model:ir.module.category,name:tms.module_category_transport_management_system
+msgid "Transport Management System"
+msgstr "Sistema de gestion de transporte"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_project_task__is_transport_order
+#: model_terms:ir.ui.view,arch_db:tms.view_task_search_form
+msgid "Transport Order"
+msgstr "Orden de transporte"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_fleet_vehicle__vehicle_type
+#: model:ir.model.fields,field_description:tms.field_iso6346_size_type__type_id
+#: model:ir.model.fields,field_description:tms.field_project_task__sale_type_id
+#: model:ir.model.fields,field_description:tms.field_tms_equipment__equipment_type
+msgid "Type"
+msgstr "Tipo"
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.view_task_search_form
+msgid "Unassigned Tractor"
+msgstr "Tractora no asignada"
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.view_task_search_form
+msgid "Unassigned User"
+msgstr "Usuario no asignado"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_project_task__unload_service
+#: model:ir.model.fields,field_description:tms.field_sale_order__unload_service
+msgid "Unload"
+msgstr "Descarga"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_tms_package__unload_note
+msgid "Unload Comments"
+msgstr "Comentarios descarga"
+
+#. module: tms
+#: model:ir.model.fields.selection,name:tms.selection__tms_package__state__unloading
+msgid "Unloading"
+msgstr "Descargando"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_project_task__unloading_port_id
+#: model:ir.model.fields,field_description:tms.field_sale_order__unloading_port_id
+msgid "Unloading Port"
+msgstr "Puerto descarga"
+
+#. module: tms
+#: model:ir.model,name:tms.model_fleet_vehicle
+msgid "Vehicle"
+msgstr "Vehículo"
+
+#. module: tms
+#: model:ir.ui.menu,name:tms.fleet_vehicle_menu
+msgid "Vehicles"
+msgstr "Vehículos"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_project_project__vessel
+#: model:ir.model.fields,field_description:tms.field_project_task__vessel
+#: model:ir.model.fields,field_description:tms.field_sale_order__vessel
+msgid "Vessel"
+msgstr "Buque"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_project_project__vessel_flag
+msgid "Vessel Flag"
+msgstr "Bandera buque"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_project_task__volume
+#: model:ir.model.fields,field_description:tms.field_tms_package__shipping_volume
+#: model_terms:ir.ui.view,arch_db:tms.tms_package_tree_view
+#: model_terms:ir.ui.view,arch_db:tms.view_task_tree2
+#: model:res.groups,name:tms.group_tms_volume
+msgid "Volume"
+msgstr "Volumen"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_project_task__voyage_number
+#: model:ir.model.fields,field_description:tms.field_sale_order__voyage_number
+msgid "Voyage Number"
+msgstr "Num. Viaje"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_project_task__wagon
+#: model:ir.model.fields,field_description:tms.field_sale_order__wagon
+msgid "Wagon"
+msgstr "Vagón"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_project_task__weight
+#: model:ir.model.fields,field_description:tms.field_tms_package__shipping_weight
+#: model_terms:ir.ui.view,arch_db:tms.tms_package_tree_view
+#: model_terms:ir.ui.view,arch_db:tms.view_task_tree2
+#: model:res.groups,name:tms.group_tms_weight
+msgid "Weight"
+msgstr "Peso"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_tms_package__wide
+msgid "Wide"
+msgstr "Ancho"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_iso6346_second_size__width
+msgid "Width"
+msgstr "Ancho"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_res_partner__zone_id
+#: model:ir.model.fields,field_description:tms.field_res_users__zone_id
+msgid "Zone"
+msgstr "Zona"
+
+#. module: tms
+#: model:ir.model,name:tms.model_iso6346_length
+msgid "iso6346 Length"
+msgstr "iso6346 Largo"
+
+#. module: tms
+#: model:ir.model,name:tms.model_iso6346_second_size
+msgid "iso6346 Second Size"
+msgstr "iso6346 Segunda medida"
+
+#. module: tms
+#: model:ir.model,name:tms.model_iso6346_size_type
+msgid "iso6346 Size Type"
+msgstr "iso6346 Tipo medida"
+
+#. module: tms
+#: model:ir.model,name:tms.model_iso6346_type
+msgid "iso6346 Type"
+msgstr "iso6346 Tipo"
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.view_task_kanban
+msgid "oe_kanban_text_blue"
+msgstr "oe_kanban_text_blue"
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.fleet_vehicle_view_form
+msgid "show the tasks for this vehicle"
+msgstr "Mostrar tareas para este vehículo"

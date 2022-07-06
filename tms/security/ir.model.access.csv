@@ -1,0 +1,12 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_tms_equipment,access_tms_equipment,model_tms_equipment,,1,1,1,1
+access_tms_goods,access_tms_goods,model_tms_goods,,1,1,1,1
+access_tms_goods_adr,access_tms_goods_adr,model_tms_goods_adr,,1,1,1,1
+access_iso6346_length,access_iso6346_length,model_iso6346_length,,1,1,1,1
+access_iso6346_size_type,access_iso6346_size_type,model_iso6346_size_type,,1,1,1,1
+access_project_task_checkpoint,access_project_task_checkpoint,model_project_task_checkpoint,,1,1,1,1
+access_iso6346_type,access_iso6346_type,model_iso6346_type,,1,1,1,1
+access_iso6346_second_size,access_iso6346_second_size,model_iso6346_second_size,,1,1,1,1
+access_tms_package,access_tms_package,model_tms_package,,1,1,1,1
+access_res_partner_zone,access_res_partner_zone,model_res_partner_zone,,1,1,1,1
+access_res_partner_schedule,access_res_partner_schedule,model_res_partner_schedule,,1,1,1,1

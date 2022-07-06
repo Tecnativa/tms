@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2017 Sergio Teruel <sergio.teruel@tecnativa.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+<record id="view_crm_partner_geo_form" model="ir.ui.view">
+    <field name="model">res.partner</field>
+    <field name="inherit_id" ref="base_geolocalize.view_crm_partner_geo_form" />
+    <field name="arch" type="xml">
+        <field name="lang" position="after">
+            <field name="zone_id" />
+        </field>
+        <page name="geo_location" position="attributes">
+            <attribute name="string">Miscellaneous</attribute>
+        </page>
+        <page name="geo_location" position="inside">
+            <group>
+                <group name="driver">
+                    <field name="is_driver" />
+                </group>
+                <group name="loading">
+                    <field name="is_shipping_place" />
+                    <field
+                            name="trailer_tag_ids"
+                            widget="many2many_tags"
+                            attrs="{'invisible': [('is_shipping_place', '=', False)]}"
+                        />
+                </group>
+                <group>
+                    <field name="schedule_ids" widget="many2many_tags" />
+                </group>
+            </group>
+        </page>
+    </field>
+</record>
+
+<record id="view_partner_form" model="ir.ui.view">
+    <field name="name">res.partner.form.tms</field>
+    <field name="model">res.partner</field>
+    <field name="inherit_id" ref="base.view_partner_form" />
+    <field name="arch" type="xml">
+        <xpath
+                expr="//field[@name='child_ids']/form//field[@name='country_id']/../.."
+                position="after"
+            >
+            <field name="is_shipping_place" />
+        </xpath>
+    </field>
+</record>
+
+<!-- Partner Schedule -->
+<!--<record id="view_partner_schedule_form" model="ir.ui.view">-->
+    <!--<field name="model">res.partner</field>-->
+    <!--<field name="inherit_id" ref="base.view_partner_form"/>-->
+    <!--<field name="arch" type="xml">-->
+        <!--<xpath expr="//notebook" position="inside">-->
+            <!--<page name="schedule" string="Schedule">-->
+                <!--<group>-->
+                    <!--<field name="schedule_ids" widget="many2many_tags"/>-->
+                <!--</group>-->
+            <!--</page>-->
+        <!--</xpath>-->
+    <!--</field>-->
+<!--</record>-->
+
+</odoo>
