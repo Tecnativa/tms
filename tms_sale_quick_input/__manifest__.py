@@ -5,7 +5,7 @@
 {
     "name": "TMS Sale Order Quick Input",
     "summary": "",
-    "version": "13.0.1.0.0",
+    "version": "15.0.1.0.0",
     "category": "Sales",
     "website": "https://github.com/OCA/tms",
     "author": "Tecnativa, " "Odoo Community Association (OCA)",

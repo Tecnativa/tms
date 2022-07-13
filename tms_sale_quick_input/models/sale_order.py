@@ -9,7 +9,7 @@ from odoo.exceptions import UserError
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    auto_confirm = fields.Boolean(string="Auto Confirm")
+    auto_confirm = fields.Boolean()
 
 
 class SaleOrderLine(models.Model):
