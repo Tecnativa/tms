@@ -9,7 +9,8 @@ class FleetVehicle(models.Model):
     _inherit = "fleet.vehicle"
 
     analytic_tag_ids = fields.Many2many(
-        comodel_name="account.analytic.tag", string="Analytic Tags",
+        comodel_name="account.analytic.tag",
+        string="Analytic Tags",
     )
 
     @api.constrains("analytic_tag_ids")

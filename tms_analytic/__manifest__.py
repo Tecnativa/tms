@@ -12,6 +12,12 @@
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "depends": ["analytic_tag_dimension", "tms_division",],
-    "data": ["views/project_task_view.xml", "views/fleet_view.xml",],
+    "depends": [
+        "analytic_tag_dimension",
+        "tms_division",
+    ],
+    "data": [
+        "views/project_task_view.xml",
+        "views/fleet_view.xml",
+    ],
 }
