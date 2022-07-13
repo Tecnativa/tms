@@ -1,3 +1,6 @@
-* Sergio Teruel <sergio.teruel@tecnativa.com>
-* Carlos Dauden <carlos.dauden@tecnativa.com>
-* Alexandre Díaz <alexandre.diaz@tecnativa.com>
+* `Tecnativa <https://www.tecnativa.com>`_:
+
+  * Sergio Teruel
+  * Carlos Dauden
+  * Alexandre Díaz
+  * César A. Sánchez
