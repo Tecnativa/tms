@@ -18,7 +18,10 @@ class SaleOrderLineReassignWiz(models.TransientModel):
             )
         return partner
 
-    sale_order_id = fields.Many2one(comodel_name="sale.order", string="Move to sale",)
+    sale_order_id = fields.Many2one(
+        comodel_name="sale.order",
+        string="Move to sale",
+    )
     partner_id = fields.Many2one(
         comodel_name="res.partner",
         string="Customer",

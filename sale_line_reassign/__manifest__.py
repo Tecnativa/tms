@@ -10,6 +10,10 @@
     "author": "Tecnativa, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "installable": True,
-    "depends": ["sale_timesheet",],
-    "data": ["wizards/sale_line_reassign_view.xml",],
+    "depends": [
+        "sale_timesheet",
+    ],
+    "data": [
+        "wizards/sale_line_reassign_view.xml",
+    ],
 }
