@@ -11,7 +11,11 @@ class TmsPrintTemplate(models.Model):
 
     name = fields.Char()
     print_template_type = fields.Selection(
-        selection=[("dynamic", "Dynamic"),], string="Type", default="dynamic",
+        selection=[
+            ("dynamic", "Dynamic"),
+        ],
+        string="Type",
+        default="dynamic",
     )
     field_order = fields.Selection(
         [("order_id", "Sale Order"), ("pickup_date", "Pickup Date")],

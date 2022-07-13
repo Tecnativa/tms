@@ -12,7 +12,10 @@ class ProjectTask(models.Model):
         related="sale_line_id.vendor_id",
         string="Vendor",
         copy=False,
-        context={"default_supplier_rank": 1, "default_customer_rank": 0,},
+        context={
+            "default_supplier_rank": 1,
+            "default_customer_rank": 0,
+        },
         readonly=False,
         store=True,
     )

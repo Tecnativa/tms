@@ -9,5 +9,6 @@ class AccountMove(models.Model):
     _inherit = "account.move"
 
     tms_print_template_id = fields.Many2one(
-        comodel_name="tms.print.template", string="Print Template",
+        comodel_name="tms.print.template",
+        string="Print Template",
     )
