@@ -3,6 +3,7 @@
 
     <!-- Select template from tms print template-->
     <template id="report_invoice" inherit_id="account.report_invoice_with_payments">
+         <field name="priority" eval="150" />
         <xpath
             expr="//t[@t-call='account.report_invoice_document_with_payments']"
             position="replace"

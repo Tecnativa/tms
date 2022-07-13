@@ -5,7 +5,7 @@
 {
     "name": "Transport Management System Reporting(TMS)",
     "summary": "Transport Management System Reporting(TMS)",
-    "version": "13.0.1.0.0",
+    "version": "15.0.1.0.0",
     "category": "Logistic",
     "website": "https://github.com/OCA/tms",
     "author": "Tecnativa, " "Odoo Community Association (OCA)",

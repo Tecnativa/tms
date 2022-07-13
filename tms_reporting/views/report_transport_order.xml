@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-<data>
     <template id="tms_transport_header_title">
         <div class="text-center">
             <div id="title">
@@ -913,5 +912,4 @@
         <field name="paperformat_id" ref="tms_reporting.paperformat_euro_lowmargin" />
     </record>
 
-</data>
 </odoo>
