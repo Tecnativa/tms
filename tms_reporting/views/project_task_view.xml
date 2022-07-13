@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_task_form2" model="ir.ui.view">
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2" />
+        <field name="arch" type="xml">
+            <field name="date_last_stage_update" position="after">
+                <field
+                    name="vendor_id"
+                    context="{'res_partner_search_mode': 'supplier'}"
+                />
+            </field>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <template id="tms_package_detail_document">
+        <t t-call="web.external_layout">
+            <div class="page">
+                <div class="row">
+                    <div class="col-7">
+                        <div class="row">
+                            <div class="col-3">Order:</div>
+                            <div class="col-9"><span t-field="o.name" /></div>
+                        </div>
+                        <div class="row" t-if="o.date_start">
+                            <div class="col-3">
+                                <span>Start/End:</span>
+                            </div>
+                            <div class="col-9">
+                                <div class="row">
+                                    <div class="col-5">
+                                        <span t-field="o.date_start" />
+                                    </div>
+                                    <div class="col-5">
+                                        <span t-field="o.date_end" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" t-if="o.tractor_id">
+                            <div class="col-3">Tractor:</div>
+                            <div class="col-9"><span t-field="o.tractor_id" /></div>
+                        </div>
+                        <div class="row" t-if="o.wagon">
+                            <div class="col-3">Wagon:</div>
+                            <div class="col-9"><span t-field="o.wagon" /></div>
+                        </div>
+                        <div class="row" t-if="o.shipping_origin_id">
+                            <div class="col-3">Origin:</div>
+                            <div class="col-9"><span
+                                    t-field="o.shipping_origin_id"
+                                /></div>
+                        </div>
+                        <div class="row" t-if="o.shipping_destination_id">
+                            <div class="col-3">Destination:</div>
+                            <div class="col-9"><span
+                                    t-field="o.shipping_destination_id"
+                                /></div>
+                        </div>
+                    </div>
+                    <div class="col-5" name="invoice_address">
+                        <address
+                            t-field="o.partner_id"
+                            t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'
+                        />
+                        <span t-if="o.partner_id.vat">TIN: <span
+                                t-field="o.partner_id.vat"
+                            /></span>
+                    </div>
+                </div>
+                <h2>
+                    <span>Package Details</span>
+                </h2>
+                <table class="table table-sm o_main_table">
+                    <thead>
+                        <tr>
+                            <th>Package</th>
+                            <th>Origin</th>
+                            <th id="th_destination">Destination</th>
+                            <th id="th_customer_ref">Customer ref.</th>
+                            <th>Goods</th>
+                            <th class="text-right">Items</th>
+                            <th class="text-right">Euro Pallets</th>
+                            <th class="text-right">Weight</th>
+                        </tr>
+                    </thead>
+                    <tbody class="invoice_tbody">
+                        <t t-set="total_number_of_packages" t-value="0.0" />
+                        <t t-set="total_euro_pallet_qty" t-value="0.0" />
+                        <t t-set="total_shipping_weight" t-value="0.0" />
+                        <tr t-foreach="o.tms_package_all_ids" t-as="l">
+                            <td><span
+                                    t-esc="l.carrier_tracking_ref or l.customer_ref or l.name"
+                                /></td>
+                            <td><span
+                                    t-field="l.shipping_origin_id"
+                                    t-options='{"widget": "contact", "fields": ["city", "name"], "no_marker": True}'
+                                /></td>
+                            <td><span
+                                    t-field="l.shipping_destination_id"
+                                    t-options='{"widget": "contact", "fields": ["city", "name"], "no_marker": True}'
+                                /></td>
+                            <td><span t-field="l.customer_ref" /></td>
+                            <td><span t-field="l.goods_id" /></td>
+                            <td class="text-right"><span
+                                    t-field="l.number_of_packages"
+                                /></td>
+                            <td class="text-right"><span
+                                    t-field="l.euro_pallet_qty"
+                                /></td>
+                            <td class="text-right"><span
+                                    t-field="l.shipping_weight"
+                                /></td>
+                            <!-- Sum totals -->
+                            <t
+                                t-set="total_number_of_packages"
+                                t-value="total_number_of_packages + l.number_of_packages"
+                            />
+                            <t
+                                t-set="total_euro_pallet_qty"
+                                t-value="total_euro_pallet_qty + l.euro_pallet_qty"
+                            />
+                            <t
+                                t-set="total_shipping_weight"
+                                t-value="total_shipping_weight + l.shipping_weight"
+                            />
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td />
+                            <td />
+                            <td />
+                            <td><b>Totals: </b></td>
+                            <td class="text-right"><span
+                                    t-esc="total_number_of_packages"
+                                    t-options="{'widget': 'float', 'decimal_precision': 'Product Price'}"
+                                /></td>
+                            <td class="text-right"><span
+                                    t-esc="total_euro_pallet_qty"
+                                    t-options="{'widget': 'float', 'decimal_precision': 'Product Price'}"
+                                /></td>
+                            <td class="text-right"><span
+                                    t-esc="total_shipping_weight"
+                                    t-options="{'widget': 'float', 'decimal_precision': 'Product Price'}"
+                                /></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </t>
+    </template>
+
+    <template id="tms_package_detail">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t
+                    t-call="tms_reporting.tms_package_detail_document"
+                    t-lang="o.partner_id.lang"
+                />
+            </t>
+        </t>
+    </template>
+
+</odoo>

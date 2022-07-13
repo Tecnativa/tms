@@ -1,0 +1,834 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* tms_reporting
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: tms_reporting
+#: model:ir.model.fields,field_description:tms_reporting.field_tms_driver_report__nbr_order_line
+msgid "# of Order Lines"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.model.fields,field_description:tms_reporting.field_tms_driver_report__nbr_order
+msgid "# of Orders"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.model.fields,field_description:tms_reporting.field_tms_driver_report__nbr_partner_12
+msgid "# of Partner 12"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_transportation_order_document
+msgid "(Load)"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_transportation_order_document
+msgid "(Unload)"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_package_detail_document
+msgid "<b>Totals: </b>"
+msgstr ""
+
+#. module: tms_reporting
+#: model:mail.template,body_html:tms_reporting.transport_order_email
+msgid ""
+"<div style=\"padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777\">\n"
+"    <table cellspacing=\"0\" cellpadding=\"0\" style=\"width:600px;border-collapse:collapse;background:inherit;color:inherit\">\n"
+"        <tbody><tr>\n"
+"            <td valign=\"center\" width=\"200\" style=\"padding:10px 10px 10px 5px;font-size: 12px\">\n"
+"                <img src=\"/logo.png\" style=\"padding: 0px; margin: 0px; height: auto; width: 80px;\" alt=\"${user.company_id.name}\"/>\n"
+"            </td>\n"
+"        </tr></tbody>\n"
+"    </table>\n"
+"</div>\n"
+"<div style=\"padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777\">\n"
+"<p>Dear ${object.driver_id.name},</p>\n"
+"    <p>\n"
+"        Attach transport order from \"${object.company_id.name}\".\n"
+"    </p>\n"
+"    <p>Best regards,</p>\n"
+"</div>\n"
+"<div style=\"padding:0px;width:600px;margin:auto; margin-top: 10px; background: #fff repeat top /100%;color:#777777\">\n"
+"    ${user.signature | safe}\n"
+"</div>\n"
+"    "
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.customer_data_header
+msgid "<span> VAT:</span>"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_transportation_order_document
+msgid "<span>CHECKPOINT PLACES</span>"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_package_loading
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_package_loading_table_head
+msgid "<span>Date</span>"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_order_footer
+msgid "<span>Driver:</span>"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_package_loading_table_head
+msgid "<span>Euro</span>"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_package_loading
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_package_loading_table_head
+msgid "<span>Goods</span>"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_package_loading_table_head
+msgid "<span>Items</span>"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_package_loading
+msgid ""
+"<span>Items</span> /\n"
+"                                    <span>Euro</span>"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_package_detail_document
+msgid "<span>Package Details</span>"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_transportation_order_document
+msgid "<span>Phone: </span>"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_package_loading
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_package_loading_table_head
+msgid "<span>Reference</span>"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_package_loading_table_body
+msgid "<span>Remarks: </span>"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_order_footer
+msgid "<span>Sign</span>"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_package_detail_document
+msgid "<span>Start/End:</span>"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_package_loading_sum
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_package_loading_table_footer
+msgid "<span>Totals:</span>"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_order_footer
+msgid "<span>Traffic Dept. Sign and stamp</span>"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.transport_data_header
+msgid "<span>VAT - </span>"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_order_footer
+msgid "<span>VAT:</span>"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_package_loading
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_package_loading_table_head
+msgid "<span>Weight</span>"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.release_acceptance_header
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_base_invoice_document
+msgid "Acceptance"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_transportation_order_document
+msgid "Arrival:"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_base_invoice_document
+msgid "Booking"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_base_invoice_document
+msgid "Client Ref."
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.release_acceptance_header
+msgid "Code"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.model,name:tms_reporting.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.model.fields,field_description:tms_reporting.field_tms_print_template__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.model.fields,field_description:tms_reporting.field_tms_print_template__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.customer_data_header
+msgid "Customer"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.customer_data_header
+msgid "Customer Ref."
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_package_detail_document
+msgid "Customer ref."
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_base_invoice_document
+msgid "DUA"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.model.fields,field_description:tms_reporting.field_tms_driver_report__date
+#: model_terms:ir.ui.view,arch_db:tms_reporting.customer_data_header
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_base_invoice_document
+msgid "Date"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_transportation_order_document
+msgid "Departure:"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_base_invoice_document
+msgid "Description"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_base_invoice_document
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_package_detail_document
+msgid "Destination"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_package_detail_document
+msgid "Destination:"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_base_invoice_document
+msgid "Disc.(%)"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.model.fields,field_description:tms_reporting.field_tms_print_template__display_acceptance
+msgid "Display Acceptance"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.model.fields,field_description:tms_reporting.field_tms_print_template__display_booking_number
+msgid "Display Booking Number"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.model.fields,field_description:tms_reporting.field_tms_print_template__display_client_ref
+msgid "Display Client Ref"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.model.fields,field_description:tms_reporting.field_tms_print_template__display_date
+msgid "Display Date"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.model.fields,field_description:tms_reporting.field_tms_print_template__display_description
+msgid "Display Description"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.model.fields,field_description:tms_reporting.field_tms_print_template__display_destination
+msgid "Display Destination"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.model.fields,field_description:tms_reporting.field_tms_print_template__display_destination_city
+msgid "Display Destination City"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.model.fields,field_description:tms_reporting.field_tms_print_template__display_destination_zip
+msgid "Display Destination Zip"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.model.fields,field_description:tms_reporting.field_tms_print_template__display_discount
+msgid "Display Discount"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.model.fields,field_description:tms_reporting.field_tms_print_template__display_dua_ref
+msgid "Display Dua Ref"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.model.fields,field_description:tms_reporting.field_tms_print_template__display_equipment
+msgid "Display Equipment"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.model.fields,field_description:tms_reporting.field_tms_print_template__display_goods
+msgid "Display Goods"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.model.fields,field_description:tms_reporting.field_tms_print_template__display_loading_port
+msgid "Display Loading Port"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.model.fields,field_description:tms_reporting.field_report_tms_reporting_tms_driver_report_xlsx__display_name
+#: model:ir.model.fields,field_description:tms_reporting.field_tms_driver_report__display_name
+#: model:ir.model.fields,field_description:tms_reporting.field_tms_print_template__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.model.fields,field_description:tms_reporting.field_tms_print_template__display_order
+msgid "Display Order"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.model.fields,field_description:tms_reporting.field_tms_print_template__display_origin
+msgid "Display Origin"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.model.fields,field_description:tms_reporting.field_tms_print_template__display_origin_city
+msgid "Display Origin City"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.model.fields,field_description:tms_reporting.field_tms_print_template__display_origin_zip
+msgid "Display Origin Zip"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.model.fields,field_description:tms_reporting.field_tms_print_template__display_port
+msgid "Display Port"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.model.fields,field_description:tms_reporting.field_tms_print_template__display_price
+msgid "Display Price"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.model.fields,field_description:tms_reporting.field_tms_print_template__display_quantity
+msgid "Display Quantity"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.model.fields,field_description:tms_reporting.field_tms_print_template__display_release
+msgid "Display Release"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.model.fields,field_description:tms_reporting.field_tms_print_template__display_shipment_port
+msgid "Display Shipment Port"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.model.fields,field_description:tms_reporting.field_tms_print_template__display_shipping_place
+msgid "Display Shipping Place"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.model.fields,field_description:tms_reporting.field_tms_print_template__display_shipping_place_city
+msgid "Display Shipping Place City"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.model.fields,field_description:tms_reporting.field_tms_print_template__display_shipping_place_zip
+msgid "Display Shipping Place Zip"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.model.fields,field_description:tms_reporting.field_tms_print_template__display_taxes
+msgid "Display Taxes"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.model.fields,field_description:tms_reporting.field_tms_print_template__display_total
+msgid "Display Total"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.model.fields,field_description:tms_reporting.field_tms_print_template__display_tracking_ref
+msgid "Display Tracking Ref"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.model.fields,field_description:tms_reporting.field_tms_print_template__display_unloading_port
+msgid "Display Unloading Port"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.model.fields,field_description:tms_reporting.field_tms_print_template__display_vehicle
+msgid "Display Vehicle"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.model.fields,field_description:tms_reporting.field_tms_print_template__display_vessel
+msgid "Display Vessel"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.model.fields,field_description:tms_reporting.field_tms_print_template__display_voyage_number
+msgid "Display Voyage Number"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.model.fields,field_description:tms_reporting.field_tms_print_template__display_wagon
+msgid "Display Wagon"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.model.fields,field_description:tms_reporting.field_tms_print_template__display_weight
+msgid "Display Weight"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.model.fields,field_description:tms_reporting.field_tms_driver_report__driver_id
+msgid "Driver"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.actions.act_window,name:tms_reporting.action_view_order_driver
+#: model:ir.ui.menu,name:tms_reporting.menu_report_order_driver
+msgid "Driver Analysis"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.model,name:tms_reporting.model_tms_driver_report
+msgid "Driver Statistics"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.model.fields.selection,name:tms_reporting.selection__tms_print_template__print_template_type__dynamic
+msgid "Dynamic"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.model,name:tms_reporting.model_tms_print_template
+msgid "Dynamic template options to print reports"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.customer_data_header
+msgid "EXPORT"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.release_acceptance_header
+msgid "Empty"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_base_invoice_document
+#: model_terms:ir.ui.view,arch_db:tms_reporting.transport_data_header
+msgid "Equipment"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_package_detail_document
+msgid "Euro Pallets"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.model.fields,field_description:tms_reporting.field_tms_print_template__field_order
+msgid "Field Order"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.release_acceptance_header
+msgid "Full"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_base_invoice_document
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_package_detail_document
+msgid "Goods"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_subtask
+msgid "Hours:"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.model.fields,field_description:tms_reporting.field_report_tms_reporting_tms_driver_report_xlsx__id
+#: model:ir.model.fields,field_description:tms_reporting.field_tms_driver_report__id
+#: model:ir.model.fields,field_description:tms_reporting.field_tms_print_template__id
+msgid "ID"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.customer_data_header
+msgid "IMPORT"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_package_detail_document
+msgid "Items"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.model,name:tms_reporting.model_account_move
+msgid "Journal Entries"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.model.fields,field_description:tms_reporting.field_report_tms_reporting_tms_driver_report_xlsx____last_update
+#: model:ir.model.fields,field_description:tms_reporting.field_tms_driver_report____last_update
+#: model:ir.model.fields,field_description:tms_reporting.field_tms_print_template____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.model.fields,field_description:tms_reporting.field_tms_print_template__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.model.fields,field_description:tms_reporting.field_tms_print_template__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.release_acceptance_header
+msgid "Load State"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_base_invoice_document
+msgid "Loading Port"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.transport_data_header
+msgid "Loading port"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.model.fields,field_description:tms_reporting.field_tms_print_template__name
+msgid "Name"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_base_invoice_document
+msgid "Order"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.view_order_driver_tree
+msgid "Order Driver"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.view_order_driver_search
+msgid "Order Driver Search"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.view_order_driver_pivot
+msgid "Order Drivers"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_package_detail_document
+msgid "Order:"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_base_invoice_document
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_package_detail_document
+msgid "Origin"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_package_detail_document
+msgid "Origin:"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_package_detail_document
+msgid "Package"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.actions.report,name:tms_reporting.report_tms_package_detail
+msgid "Package Detail"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.model.fields.selection,name:tms_reporting.selection__tms_print_template__field_order__pickup_date
+msgid "Pickup Date"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_base_invoice_document
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_transportation_order_document
+msgid "Place"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_base_invoice_document
+msgid "Port"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.model.fields,field_description:tms_reporting.field_account_move__tms_print_template_id
+#: model:ir.model.fields,field_description:tms_reporting.field_product_product__tms_print_template_id
+#: model:ir.model.fields,field_description:tms_reporting.field_product_template__tms_print_template_id
+#: model:ir.model.fields,field_description:tms_reporting.field_res_partner__tms_print_template_id
+#: model:ir.model.fields,field_description:tms_reporting.field_res_users__tms_print_template_id
+msgid "Print Template"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.actions.act_window,name:tms_reporting.action_tms_print_template
+#: model:ir.ui.menu,name:tms_reporting.menu_tms_print_template
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_print_template_view_search
+msgid "Print Templates"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.invoice_form
+msgid "Print template"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.actions.report,name:tms_reporting.tms_driver_report_xlsx
+msgid "Print to XLSX"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.model,name:tms_reporting.model_product_template
+msgid "Product Template"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_base_invoice_document
+msgid "Quantity"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_base_invoice_document
+msgid "Ref. Load"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.release_acceptance_header
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_base_invoice_document
+msgid "Release"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_package_loading
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_subtask
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_transportation_order_document
+msgid "Remarks:"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.model.fields.selection,name:tms_reporting.selection__tms_print_template__field_order__order_id
+msgid "Sale Order"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_transportation_order_document
+msgid "Schedule:"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.transport_data_header
+msgid "Seal"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.actions.act_window,name:tms_reporting.action_transport_order_email
+msgid "Send Transport Order"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_base_invoice_document
+msgid "Shipment Port"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.transport_data_header
+msgid "Shipment port"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.model.fields,field_description:tms_reporting.field_tms_driver_report__price_subtotal
+msgid "Subtotal"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_package_detail_document
+msgid "TIN:"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_transport_header_title
+msgid "TRANSPORT DOCUMENT"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.model,name:tms_reporting.model_project_task
+msgid "Task"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_base_invoice_document
+msgid "Taxes"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_base_invoice_document
+msgid "Total"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.transport_data_header
+msgid "Tractor"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_package_detail_document
+msgid "Tractor:"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.transport_data_header
+msgid "Trailer"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.transport_data_header
+msgid "Transport"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.actions.report,name:tms_reporting.report_tms_transportation_order
+msgid "Transport Order"
+msgstr ""
+
+#. module: tms_reporting
+#: model:mail.template,subject:tms_reporting.transport_order_email
+msgid "Transport Order ${object.name}>"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.model.fields,field_description:tms_reporting.field_tms_print_template__print_template_type
+#: model_terms:ir.ui.view,arch_db:tms_reporting.transport_data_header
+msgid "Type"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_base_invoice_document
+msgid "Unit Price"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_base_invoice_document
+msgid "Unloading Port"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_base_invoice_document
+msgid "Vehicle"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.model.fields,field_description:tms_reporting.field_project_task__vendor_id
+msgid "Vendor"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_base_invoice_document
+#: model_terms:ir.ui.view,arch_db:tms_reporting.transport_data_header
+msgid "Vessel"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_base_invoice_document
+msgid "Voyage"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_base_invoice_document
+#: model_terms:ir.ui.view,arch_db:tms_reporting.transport_data_header
+msgid "Wagon"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_package_detail_document
+msgid "Wagon:"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_base_invoice_document
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_package_detail_document
+msgid "Weight"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.model,name:tms_reporting.model_report_tms_reporting_tms_driver_report_xlsx
+msgid "report.tms_reporting.tms_driver_report_xlsx"
+msgstr ""
