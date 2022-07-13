@@ -16,5 +16,4 @@ class HolidaysType(models.Model):
             ("do_other_work", "Do other work"),
             ("available", "Was available"),
         ],
-        string="Leave letter type",
     )
