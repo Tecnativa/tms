@@ -7,4 +7,6 @@ from odoo import fields, models
 class HrEmployee(models.Model):
     _inherit = "hr.employee"
 
-    initial_employment_date = fields.Date(string="Initial Date of Employment",)
+    initial_employment_date = fields.Date(
+        string="Initial Date of Employment",
+    )

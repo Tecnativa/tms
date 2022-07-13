@@ -11,7 +11,9 @@
     "author": "Tecnativa, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "installable": True,
-    "depends": ["hr_holidays",],
+    "depends": [
+        "hr_holidays",
+    ],
     "data": [
         "views/hr_leave_type_views.xml",
         "views/report_leave_letter.xml",
