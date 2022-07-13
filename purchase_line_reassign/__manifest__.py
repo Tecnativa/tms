@@ -5,16 +5,17 @@
 {
     "name": "Purchase Line Reassign",
     "summary": "",
-    "version": "13.0.1.0.0",
+    "version": "15.0.1.0.0",
     "category": "Purchases",
     "website": "https://github.com/OCA/tms",
-    "author": "Tecnativa, " "Odoo Community Association (OCA)",
+    "author": "Tecnativa, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "installable": True,
     "depends": [
         "purchase",
     ],
     "data": [
+        "security/ir.model.access.csv",
         "wizards/purchase_line_reassign_view.xml",
     ],
 }

@@ -27,13 +27,11 @@
     </field>
 </record>
 
-<act_window
-        id="action_purchase_order_line_reassign_wiz"
-        name="Reassign Lines to Other Purchase"
-        res_model="purchase.order.line.reassign.wiz"
-        binding_model="purchase.order.line"
-        view_mode="form"
-        target="new"
-    />
-
+<record id="action_purchase_order_line_reassign_wiz" model="ir.actions.act_window">
+    <field name="name">Reassign Lines to Other Purchase</field>
+    <field name="res_model">purchase.order.line.reassign.wiz</field>
+    <field name="binding_model_id" ref="purchase.model_purchase_order_line" />
+    <field name="view_mode">form</field>
+    <field name="target">new</field>
+</record>
 </odoo>

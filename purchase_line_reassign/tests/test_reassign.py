@@ -5,7 +5,7 @@ from datetime import datetime
 from odoo.tests import common
 
 
-class TestReassign(common.SavepointCase):
+class TestReassign(common.TransactionCase):
     def test_reassign(self):
         vendor = self.env["res.partner"].create(
             {
@@ -43,11 +43,7 @@ class TestReassign(common.SavepointCase):
         )
         pl_reassign = (
             self.env["purchase.order.line.reassign.wiz"]
-            .with_context(
-                {
-                    "active_ids": purchase_from.order_line.ids,
-                }
-            )
+            .with_context(active_ids=purchase_from.order_line.ids)
             .create(
                 {
                     "purchase_order_id": purchase_to.id,
