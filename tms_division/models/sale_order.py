@@ -9,11 +9,16 @@ class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     division_id = fields.Many2one(
-        comodel_name="tms.division", string="Division", ondelete="restrict",
+        comodel_name="tms.division",
+        string="Division",
+        ondelete="restrict",
     )
 
 
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    division_id = fields.Many2one(related="order_id.division_id", store=True,)
+    division_id = fields.Many2one(
+        related="order_id.division_id",
+        store=True,
+    )

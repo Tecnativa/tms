@@ -11,7 +11,9 @@
     "author": "Tecnativa, " "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "installable": True,
-    "depends": ["tms",],
+    "depends": [
+        "tms",
+    ],
     "data": [
         "security/ir.model.access.csv",
         "views/sale_view.xml",

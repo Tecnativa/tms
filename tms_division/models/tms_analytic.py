@@ -9,5 +9,7 @@ class TmsAnalytic(models.AbstractModel):
     _inherit = "tms.analytic"
 
     division_id = fields.Many2one(
-        comodel_name="tms.division", string="Division", ondelete="restrict",
+        comodel_name="tms.division",
+        string="Division",
+        ondelete="restrict",
     )
