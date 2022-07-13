@@ -1,0 +1,194 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* tms_sale_quick_input
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-07-13 18:44+0000\n"
+"PO-Revision-Date: 2020-07-13 20:45+0200\n"
+"Last-Translator: Carlos Dauden <carlos.dauden@tecnativa.com>\n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.3\n"
+
+#. module: tms_sale_quick_input
+#: model:ir.model.fields,field_description:tms_sale_quick_input.field_sale_order_line__acceptance_id
+msgid "Acceptance"
+msgstr "Admítase"
+
+#. module: tms_sale_quick_input
+#: model:ir.model.fields,field_description:tms_sale_quick_input.field_sale_order__auto_confirm
+msgid "Auto Confirm"
+msgstr "Auto confirmar"
+
+#. module: tms_sale_quick_input
+#: model:ir.model.fields,field_description:tms_sale_quick_input.field_sale_order_line__note
+msgid "Comments"
+msgstr "Comentarios"
+
+#. module: tms_sale_quick_input
+#: model_terms:ir.actions.act_window,help:tms_sale_quick_input.action_order_lines_quick_input
+msgid "Create a Quotation, the first step of a new sale."
+msgstr "Crea un Presupuesto, el primer paso de una nueva venta."
+
+#. module: tms_sale_quick_input
+#: model:ir.model.fields,field_description:tms_sale_quick_input.field_sale_order_line__client_order_ref
+msgid "Customer Ref."
+msgstr "Ref. cliente"
+
+#. module: tms_sale_quick_input
+#: model_terms:ir.ui.view,arch_db:tms_sale_quick_input.view_sales_order_line_filter
+msgid "Driver"
+msgstr "Conductor"
+
+#. module: tms_sale_quick_input
+#: model:ir.model.fields,field_description:tms_sale_quick_input.field_sale_order_line__editable_package_rel
+msgid "Editable Package Rel"
+msgstr ""
+
+#. module: tms_sale_quick_input
+#: model:ir.model.fields,field_description:tms_sale_quick_input.field_sale_order_line__euro_pallet_qty
+msgid "Euro Pallets"
+msgstr "Euro Palets"
+
+#. module: tms_sale_quick_input
+#: code:addons/tms_sale_quick_input/models/sale_order.py:0
+#, python-format
+msgid "Go to packages to change data %s"
+msgstr "Ve a los paquetes para cambiar los datos de %s"
+
+#. module: tms_sale_quick_input
+#: model:ir.model.fields,field_description:tms_sale_quick_input.field_sale_order_line__goods_id
+msgid "Goods"
+msgstr "Mercancía"
+
+#. module: tms_sale_quick_input
+#: model_terms:ir.ui.view,arch_db:tms_sale_quick_input.view_sales_order_line_filter
+msgid "Invoiced"
+msgstr "Facturado"
+
+#. module: tms_sale_quick_input
+#: model_terms:ir.ui.view,arch_db:tms_sale_quick_input.view_sales_order_line_filter
+msgid "Not invoiced"
+msgstr "No facturado"
+
+#. module: tms_sale_quick_input
+#: model:ir.model.fields,field_description:tms_sale_quick_input.field_sale_order_line__number_of_packages
+msgid "Number of Packages"
+msgstr "Número de bultos"
+
+#. module: tms_sale_quick_input
+#: model_terms:ir.actions.act_window,help:tms_sale_quick_input.action_order_lines_quick_input
+msgid ""
+"Once the quotation is confirmed, it becomes a sales order.\n"
+"            You'll be able to invoice it and collect payments.\n"
+"            From the <i>Sales Orders</i> menu, you can track delivery\n"
+"            orders or services."
+msgstr ""
+"Una vez confirmado el presupuesto, se convierte en un pedido de venta.\n"
+"Podrá facturarlo y cobrarlo.\n"
+"En el menú <i>Pedidos de venta</i>, puede realizar el seguimiento de "
+"albaranes\n"
+"o servicios."
+
+#. module: tms_sale_quick_input
+#: model:ir.model.fields,field_description:tms_sale_quick_input.field_sale_order_line__customer_ref
+msgid "Package Ref."
+msgstr "Ref. paquete"
+
+#. module: tms_sale_quick_input
+#: model:ir.model.fields,field_description:tms_sale_quick_input.field_sale_order_line__pallet_qty
+msgid "Pallets"
+msgstr "Palets"
+
+#. module: tms_sale_quick_input
+#: model_terms:ir.ui.view,arch_db:tms_sale_quick_input.view_sales_order_line_filter
+msgid "Pickup Date Before"
+msgstr "Fecha carga anterior"
+
+#. module: tms_sale_quick_input
+#: model_terms:ir.ui.view,arch_db:tms_sale_quick_input.view_sales_order_line_filter
+msgid "Pickup Date From"
+msgstr "Fecha carga desde"
+
+#. module: tms_sale_quick_input
+#: model_terms:ir.ui.view,arch_db:tms_sale_quick_input.view_sales_order_line_filter
+msgid "Pickup date"
+msgstr "Fecha carga"
+
+#. module: tms_sale_quick_input
+#: model:ir.model.fields,field_description:tms_sale_quick_input.field_sale_order_line__shipping_place_id
+msgid "Place"
+msgstr "Lugar"
+
+#. module: tms_sale_quick_input
+#: model:res.groups,name:tms_sale_quick_input.group_tms_sale_quick_input
+msgid "Quick Input"
+msgstr "Entrada rápida"
+
+#. module: tms_sale_quick_input
+#: model:ir.actions.act_window,name:tms_sale_quick_input.action_order_lines_quick_input
+#: model:ir.ui.menu,name:tms_sale_quick_input.menu_sale_order_line_quick_input
+msgid "Quick Sales Orders"
+msgstr "Entrada rápida de pedidos"
+
+#. module: tms_sale_quick_input
+#: model:ir.model.fields,field_description:tms_sale_quick_input.field_sale_order_line__release_id
+msgid "Release"
+msgstr "Entréguese"
+
+#. module: tms_sale_quick_input
+#: model:ir.model.fields,field_description:tms_sale_quick_input.field_sale_order_line__requested_date
+msgid "Requested Date"
+msgstr "Fecha solicitud"
+
+#. module: tms_sale_quick_input
+#: model:ir.model,name:tms_sale_quick_input.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: tms_sale_quick_input
+#: model:ir.model,name:tms_sale_quick_input.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea de pedido de venta"
+
+#. module: tms_sale_quick_input
+#: model_terms:ir.ui.view,arch_db:tms_sale_quick_input.view_order_form
+msgid "Total Packages"
+msgstr "Total paquetes"
+
+#. module: tms_sale_quick_input
+#: model_terms:ir.ui.view,arch_db:tms_sale_quick_input.view_order_form
+msgid "Total Weight"
+msgstr "Peso total"
+
+#. module: tms_sale_quick_input
+#: model:ir.model.fields,field_description:tms_sale_quick_input.field_sale_order_line__carrier_tracking_ref
+msgid "Tracking Reference"
+msgstr "Traking Ref."
+
+#. module: tms_sale_quick_input
+#: model_terms:ir.ui.view,arch_db:tms_sale_quick_input.view_sales_order_line_filter
+msgid "Tractor"
+msgstr "Tractora"
+
+#. module: tms_sale_quick_input
+#: model:ir.model.fields,field_description:tms_sale_quick_input.field_sale_order_line__unload_service
+msgid "Unload"
+msgstr "Descarga"
+
+#. module: tms_sale_quick_input
+#: model:ir.model.fields,field_description:tms_sale_quick_input.field_sale_order_line__shipping_volume
+msgid "Volume for Shipping"
+msgstr "Volumen envio"
+
+#. module: tms_sale_quick_input
+#: model:ir.model.fields,field_description:tms_sale_quick_input.field_sale_order_line__shipping_weight
+msgid "Weight for Shipping"
+msgstr "Peso envío"
