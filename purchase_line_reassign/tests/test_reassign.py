@@ -7,8 +7,16 @@ from odoo.tests import common
 
 class TestReassign(common.SavepointCase):
     def test_reassign(self):
-        vendor = self.env["res.partner"].create({"name": "Vendor Test",})
-        product = self.env["product.product"].create({"name": "Product Test",})
+        vendor = self.env["res.partner"].create(
+            {
+                "name": "Vendor Test",
+            }
+        )
+        product = self.env["product.product"].create(
+            {
+                "name": "Product Test",
+            }
+        )
         purchase_from = self.env["purchase.order"].create(
             {
                 "partner_id": vendor.id,
@@ -28,11 +36,23 @@ class TestReassign(common.SavepointCase):
                 ],
             }
         )
-        purchase_to = self.env["purchase.order"].create({"partner_id": vendor.id,})
+        purchase_to = self.env["purchase.order"].create(
+            {
+                "partner_id": vendor.id,
+            }
+        )
         pl_reassign = (
             self.env["purchase.order.line.reassign.wiz"]
-            .with_context({"active_ids": purchase_from.order_line.ids,})
-            .create({"purchase_order_id": purchase_to.id,})
+            .with_context(
+                {
+                    "active_ids": purchase_from.order_line.ids,
+                }
+            )
+            .create(
+                {
+                    "purchase_order_id": purchase_to.id,
+                }
+            )
         )
         pl_reassign.action_apply()
         self.assertFalse(len(purchase_from.order_line))

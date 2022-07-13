@@ -19,7 +19,8 @@ class PurchaseOrderLineReassignWiz(models.TransientModel):
         return partner
 
     purchase_order_id = fields.Many2one(
-        comodel_name="purchase.order", string="Move to purchase",
+        comodel_name="purchase.order",
+        string="Move to purchase",
     )
     partner_id = fields.Many2one(
         comodel_name="res.partner",
