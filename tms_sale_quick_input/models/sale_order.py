@@ -19,19 +19,25 @@ class SaleOrderLine(models.Model):
         comodel_name="res.partner",
         domain=[("is_shipping_place", "=", True)],
         string="Place",
-        context={"default_is_shipping_place": True,},
+        context={
+            "default_is_shipping_place": True,
+        },
         compute="_compute_shipping_place_id",
         readonly=False,
     )
     # Related with sale_order
     client_order_ref = fields.Char(
-        related="order_id.client_order_ref", string="Customer Ref.", readonly=False,
+        related="order_id.client_order_ref",
+        string="Customer Ref.",
+        readonly=False,
     )
     release_id = fields.Many2one(
         comodel_name="res.partner",
         related="order_id.release_id",
         domain=[("is_shipping_place", "=", True)],
-        context={"default_is_shipping_place": True,},
+        context={
+            "default_is_shipping_place": True,
+        },
         string="Release",
         readonly=False,
     )
@@ -39,7 +45,9 @@ class SaleOrderLine(models.Model):
         comodel_name="res.partner",
         related="order_id.acceptance_id",
         domain=[("is_shipping_place", "=", True)],
-        context={"default_is_shipping_place": True,},
+        context={
+            "default_is_shipping_place": True,
+        },
         string="Acceptance",
         readonly=False,
     )
@@ -90,7 +98,9 @@ class SaleOrderLine(models.Model):
         inverse="_inverse_carrier_tracking_ref",
     )
     note = fields.Text(
-        string="Comments", related="tms_package_ids.note", readonly=False,
+        string="Comments",
+        related="tms_package_ids.note",
+        readonly=False,
     )
     requested_date = fields.Datetime(
         string="Requested Date",
@@ -98,10 +108,14 @@ class SaleOrderLine(models.Model):
         readonly=False,
     )
     customer_ref = fields.Char(
-        related="tms_package_ids.customer_ref", string="Package Ref.", readonly=False,
+        related="tms_package_ids.customer_ref",
+        string="Package Ref.",
+        readonly=False,
     )
     unload_service = fields.Boolean(
-        string="Unload", related="order_id.unload_service", readonly=False,
+        string="Unload",
+        related="order_id.unload_service",
+        readonly=False,
     )
     editable_package_rel = fields.Boolean(compute="_compute_editable_package_rel")
 
