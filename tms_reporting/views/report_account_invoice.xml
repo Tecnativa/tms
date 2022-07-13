@@ -2,21 +2,18 @@
 <odoo>
 
     <!-- Select template from tms print template-->
-    <template id="report_invoice" inherit_id="account.report_invoice_with_payments">
-         <field name="priority" eval="150" />
-        <xpath
-            expr="//t[@t-call='account.report_invoice_document_with_payments']"
-            position="replace"
-        >
+    <template
+        id="report_invoice"
+        inherit_id="account.report_invoice_with_payments"
+        priority="100"
+    >
+        <xpath expr="//t[@t-call='account.report_invoice_document']" position="replace">
             <t
                 t-set="pt"
                 t-value="o.tms_print_template_id or o.partner_shipping_id.tms_print_template_id or o.partner_id.tms_print_template_id"
             />
             <t t-if="not pt.print_template_type">
-                <t
-                    t-call="account.report_invoice_document_with_payments"
-                    t-lang="lang"
-                />
+                <t t-call="account.report_invoice_document" t-lang="lang" />
             </t>
             <t t-elif="pt.print_template_type == 'dynamic'">
                 <t
@@ -31,6 +28,7 @@
         id="tms_report_dynamic_invoice_document"
         inherit_id="account.report_invoice_document"
         primary="True"
+        priority="100"
     >
         <xpath expr="//table[@name='invoice_line_table']" position="replace">
             <t t-call="tms_reporting.tms_base_invoice_document" />
@@ -62,20 +60,24 @@
                     <th t-if="pt.display_release">Release</th>
                     <th
                         t-if="pt.display_origin or pt.display_origin_zip or pt.display_origin_city"
-                    >Origin</th>
+                    >Origin
+                    </th>
                     <th
                         t-if="pt.display_destination or pt.display_destination_zip or pt.display_destination_city"
-                    >Destination</th>
+                    >Destination
+                    </th>
                     <th
                         t-if="pt.display_shipping_place or pt.display_shipping_place_zip or pt.display_shipping_place_city"
-                    >Place</th>
+                    >Place
+                    </th>
                     <th t-if="pt.display_acceptance">Acceptance</th>
                     <th t-if="pt.display_quantity" class="text-right">Quantity</th>
                     <th t-if="pt.display_price" class="text-right">Unit Price</th>
                     <th
                         t-if="pt.display_discount and display_discount"
                         class="text-right"
-                    >Disc.(%)</th>
+                    >Disc.(%)
+                    </th>
                     <th t-if="pt.display_taxes" class="text-right">Taxes</th>
                     <th t-if="pt.display_total" class="text-right">Total</th>
                 </tr>

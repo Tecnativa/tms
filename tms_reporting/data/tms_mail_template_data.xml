@@ -53,7 +53,6 @@
     ${user.signature | safe}
 </div>
     </field>
-    <field name="user_signature" eval="False" />
 </record>
 
 <act_window
