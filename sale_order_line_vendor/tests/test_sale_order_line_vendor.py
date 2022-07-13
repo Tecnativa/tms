@@ -10,21 +10,39 @@ class TestSaleOrderLineVendor(common.SavepointCase):
     def setUpClass(cls):
         super().setUpClass()
         cls.supplier = cls.env["res.partner"].create(
-            {"name": "Test Vendor", "supplier_rank": 1,}
+            {
+                "name": "Test Vendor",
+                "supplier_rank": 1,
+            }
         )
         cls.supplier2 = cls.env["res.partner"].create(
-            {"name": "Test Vendor 2", "supplier_rank": 1,}
+            {
+                "name": "Test Vendor 2",
+                "supplier_rank": 1,
+            }
         )
         cls.product = cls.env["product.product"].create(
             {
                 "name": "Test Product",
                 "type": "service",
                 "service_to_purchase": True,
-                "seller_ids": [(0, False, {"name": cls.supplier.id, "price": 80.0,},)],
+                "seller_ids": [
+                    (
+                        0,
+                        False,
+                        {
+                            "name": cls.supplier.id,
+                            "price": 80.0,
+                        },
+                    )
+                ],
             }
         )
         cls.customer = cls.env["res.partner"].create(
-            {"name": "Test Customer", "customer_rank": 1,}
+            {
+                "name": "Test Customer",
+                "customer_rank": 1,
+            }
         )
         cls.sale_order = cls.env["sale.order"].create(
             {

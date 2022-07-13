@@ -10,6 +10,8 @@ class PurchaseOrderLine(models.Model):
     def write(self, vals):
         if "price_unit" in vals and not self.env.context.get("write_from_sale"):
             self.mapped("sale_line_id").with_context(write_from_purchase=True).write(
-                {"vendor_price_unit": vals["price_unit"],}
+                {
+                    "vendor_price_unit": vals["price_unit"],
+                }
             )
         return super().write(vals)

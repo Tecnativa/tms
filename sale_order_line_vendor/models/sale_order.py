@@ -12,7 +12,10 @@ class SaleOrderLine(models.Model):
         comodel_name="res.partner",
         string="Vendor",
         copy=False,
-        context={"default_supplier_rank": 1, "default_customer_rank": 0,},
+        context={
+            "default_supplier_rank": 1,
+            "default_customer_rank": 0,
+        },
     )
     vendor_price_unit = fields.Float(
         string="Cost Price",
@@ -22,7 +25,9 @@ class SaleOrderLine(models.Model):
         readonly=False,
     )
     vendor_price_subtotal = fields.Monetary(
-        compute="_compute_amount_vendor", string="Cost Subtotal", store=True,
+        compute="_compute_amount_vendor",
+        string="Cost Subtotal",
+        store=True,
     )
 
     # product_id.sale_line_cost_zero is not added to depends to avoid

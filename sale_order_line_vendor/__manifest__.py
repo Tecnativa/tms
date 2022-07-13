@@ -12,7 +12,9 @@
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "depends": ["sale_purchase",],
+    "depends": [
+        "sale_purchase",
+    ],
     "data": [
         "views/product_view.xml",
         "views/purchase_view.xml",
