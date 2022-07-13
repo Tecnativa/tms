@@ -11,13 +11,17 @@ class WizardSaleLineHistoryPrice(models.TransientModel):
     shipping_origin_id = fields.Many2one(
         comodel_name="res.partner",
         domain=[("is_shipping_place", "=", True)],
-        context={"default_is_shipping_place": True,},
+        context={
+            "default_is_shipping_place": True,
+        },
         string="Shipping Origin",
     )
     shipping_destination_id = fields.Many2one(
         comodel_name="res.partner",
         domain=[("is_shipping_place", "=", True)],
-        context={"default_is_shipping_place": True,},
+        context={
+            "default_is_shipping_place": True,
+        },
         string="Shipping Destination",
     )
     search_by_proximity = fields.Boolean()

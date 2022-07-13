@@ -11,7 +11,13 @@
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "depends": ["sale_price_from_history", "tms",],
-    "data": ["views/product_view.xml", "wizards/wizard_price_history_view.xml",],
+    "depends": [
+        "sale_price_from_history",
+        "tms",
+    ],
+    "data": [
+        "views/product_view.xml",
+        "wizards/wizard_price_history_view.xml",
+    ],
     "auto_install": True,
 }
