@@ -99,7 +99,7 @@ class SaleOrderLine(models.Model):
             no_lines_po = po_to_check.filtered(lambda p: not p.order_line)
             no_lines_po.button_cancel()
             no_lines_po.unlink()
-        super(SaleOrderLine, pending_lines)._purchase_decrease_ordered_qty(
+        return super(SaleOrderLine, pending_lines)._purchase_decrease_ordered_qty(
             new_qty, origin_values
         )
 

@@ -5,10 +5,11 @@
 from odoo.tests import Form, common
 
 
-class TestSaleOrderLineVendor(common.SavepointCase):
+class TestSaleOrderLineVendor(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
         cls.supplier = cls.env["res.partner"].create(
             {
                 "name": "Test Vendor",

@@ -5,7 +5,7 @@
 {
     "name": "Sale Order Line Vendor",
     "summary": "Get vendor and cost directly from sale order line",
-    "version": "13.0.1.0.0",
+    "version": "15.0.1.0.0",
     "category": "Purchases",
     "website": "https://github.com/OCA/tms",
     "author": "Tecnativa, " "Odoo Community Association (OCA)",
