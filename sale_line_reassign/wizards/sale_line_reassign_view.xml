@@ -27,13 +27,12 @@
     </field>
 </record>
 
-<act_window
-        id="action_sale_order_line_reassign_wiz"
-        name="Reassign Lines to Other Sale"
-        res_model="sale.order.line.reassign.wiz"
-        binding_model="sale.order.line"
-        view_mode="form"
-        target="new"
-    />
+<record id="action_sale_order_line_reassign_wiz" model="ir.actions.act_window">
+    <field name="name">Reassign Lines to Other Sale</field>
+    <field name="res_model">sale.order.line.reassign.wiz</field>
+    <field name="binding_model_id" ref="sale.model_sale_order_line" />
+    <field name="view_mode">form</field>
+    <field name="target">new</field>
+</record>
 
 </odoo>

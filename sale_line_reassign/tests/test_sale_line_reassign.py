@@ -1,9 +1,9 @@
 # Copyright 2021 Tecnativa - Carlos Roca
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo.tests import SavepointCase
+from odoo.tests import TransactionCase
 
 
-class TestSaleLineReassign(SavepointCase):
+class TestSaleLineReassign(TransactionCase):
     def test_reassign(self):
         partner = self.env["res.partner"].create(
             {
@@ -40,11 +40,7 @@ class TestSaleLineReassign(SavepointCase):
         )
         pl_reassign = (
             self.env["sale.order.line.reassign.wiz"]
-            .with_context(
-                {
-                    "active_ids": sale_from.order_line.ids,
-                }
-            )
+            .with_context(active_ids=sale_from.order_line.ids)
             .create(
                 {
                     "sale_order_id": sale_to.id,
