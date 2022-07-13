@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2017 Sergio Teruel <sergio.teruel@tecnativa.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+<record id="fleet_vehicle_view_form" model="ir.ui.view">
+    <field name="model">fleet.vehicle</field>
+    <field name="inherit_id" ref="fleet.fleet_vehicle_view_form" />
+    <field name="arch" type="xml">
+        <xpath expr="//field[@name='transmission']/.." position="after">
+            <group string="Analytic">
+                <field name="analytic_tag_ids" widget="many2many_tags" />
+            </group>
+        </xpath>
+    </field>
+</record>
+
+</odoo>
