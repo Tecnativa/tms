@@ -10,7 +10,12 @@
     "website": "https://github.com/OCA/tms",
     "author": "Tecnativa, " "Odoo Community Association (OCA)",
     "license": "AGPL-3",
-    "depends": ["analytic", "tms",],
-    "data": ["views/account_analytic_distribution_view.xml",],
+    "depends": [
+        "analytic",
+        "tms",
+    ],
+    "data": [
+        "views/account_analytic_distribution_view.xml",
+    ],
     "installable": True,
 }
