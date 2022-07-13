@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2017 Sergio Teruel <sergio.teruel@tecnativa.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+<record id="wiz_history_price_form" model="ir.ui.view">
+    <field name="model">wizard.sale.line.history.price</field>
+    <field name="inherit_id" ref="sale_price_from_history.wiz_history_price_form" />
+    <field name="arch" type="xml">
+        <group name="filter_fields" position="after">
+            <group name="filter_fields_tms">
+                <group>
+                    <field name="shipping_origin_id" />
+                </group>
+                <group>
+                    <field name="shipping_destination_id" />
+                </group>
+                <group>
+                    <field name="search_by_proximity" />
+                </group>
+                <group attrs="{'invisible': [('search_by_proximity', '!=', True)]}">
+                    <group>
+                        <field name="origin_proximity" />
+                    </group>
+                    <group>
+                        <field name="destination_proximity" />
+                    </group>
+                </group>
+            </group>
+        </group>
+        <xpath expr="//tree/field[@name='price_history']" position="before">
+            <field name="shipping_origin_id" />
+            <field name="shipping_destination_id" />
+        </xpath>
+    </field>
+</record>
+
+</odoo>
