@@ -33,7 +33,7 @@
     <field name="name">tms.driver.report.tree</field>
     <field name="model">tms.driver.report</field>
     <field name="arch" type="xml">
-        <tree string="Order Driver">
+        <tree>
             <field name="driver_id" />
             <field name="date" />
             <field name="nbr_order" />

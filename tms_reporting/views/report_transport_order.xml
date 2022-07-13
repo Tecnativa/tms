@@ -55,7 +55,7 @@
 .table > tfoot > tr > td {
     padding: 2px;
 }
-                    </style>
+                </style>
                 <div class="row title">
                     <div class="col-12">
                         <t t-call="tms_reporting.tms_transport_header_title" />
@@ -83,81 +83,81 @@
                     </thead>
                     <tbody class="load_tbody">
                         <t
-                                t-foreach="o.checkpoint_ids.filtered(lambda cp: cp.package_origin_ids or cp.package_destination_ids)"
-                                t-as="checkpoint"
-                            >
+                            t-foreach="o.checkpoint_ids.filtered(lambda cp: cp.package_origin_ids or cp.package_destination_ids)"
+                            t-as="checkpoint"
+                        >
                             <tr>
                                 <td style="padding-top: 10px;">
                                     <div class="row">
                                         <div class="col-2">
                                             <div
-                                                    t-if="checkpoint.package_destination_ids"
-                                                ><span>Place <span
-                                                            t-esc="checkpoint_index + 1"
-                                                        /> (Unload)</span></div>
+                                                t-if="checkpoint.package_destination_ids"
+                                            ><span>Place <span
+                                                        t-esc="checkpoint_index + 1"
+                                                    /> (Unload)</span></div>
                                             <div
-                                                    t-if="checkpoint.package_origin_ids"
-                                                ><span>Place <span
-                                                            t-esc="checkpoint_index + 1"
-                                                        /> (Load)</span></div>
+                                                t-if="checkpoint.package_origin_ids"
+                                            ><span>Place <span
+                                                        t-esc="checkpoint_index + 1"
+                                                    /> (Load)</span></div>
                                         </div>
                                     </div>
                                     <div class="row title-2" style="padding-top:1px;">
                                         <div class="row col-6">
                                             <div class="col-12 highlight-text">
                                                 <span
-                                                        t-field="checkpoint.place_id"
-                                                    /> <br />
+                                                    t-field="checkpoint.place_id"
+                                                /> <br />
                                                 <span
-                                                        t-field="checkpoint.place_id.street"
-                                                    /><br />
+                                                    t-field="checkpoint.place_id.street"
+                                                /><br />
                                                 <t t-if="checkpoint.place_id.street2">
                                                     <span
-                                                            t-field="checkpoint.place_id.street2"
-                                                        /><br />
+                                                        t-field="checkpoint.place_id.street2"
+                                                    /><br />
                                                 </t>
                                                 <span
-                                                        t-field="checkpoint.place_id.zip"
-                                                    /> <span
-                                                        t-field="checkpoint.place_id.city"
-                                                    />, <span
-                                                        t-field="checkpoint.place_id.country_id"
-                                                    />
+                                                    t-field="checkpoint.place_id.zip"
+                                                /> <span
+                                                    t-field="checkpoint.place_id.city"
+                                                />, <span
+                                                    t-field="checkpoint.place_id.country_id"
+                                                />
                                             </div>
                                         </div>
                                         <div class="col-6">
                                             <div
-                                                    class="row"
-                                                    t-if="checkpoint.place_id.schedule_ids"
-                                                >
+                                                class="row"
+                                                t-if="checkpoint.place_id.schedule_ids"
+                                            >
                                                 <div class="col-3">Schedule: </div>
                                                 <div class="col-9 highlight-text">
                                                     <div class="schedule">
                                                         <t
-                                                                t-foreach="checkpoint.place_id.schedule_ids"
-                                                                t-as="hour"
-                                                            >
+                                                            t-foreach="checkpoint.place_id.schedule_ids"
+                                                            t-as="hour"
+                                                        >
                                                             <span
-                                                                    class="highlight-text"
-                                                                    t-field="hour.name"
-                                                                />
+                                                                class="highlight-text"
+                                                                t-field="hour.name"
+                                                            />
                                                         </t>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-6">Arrival: </div><div
-                                                        class="col-4"
-                                                    >Departure: </div>
+                                                    class="col-4"
+                                                >Departure: </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-3"><span
-                                                        >Phone: </span></div>
+                                                    >Phone: </span></div>
                                                 <div class="col-9">
                                                     <span
-                                                            class="highlight-text"
-                                                            t-field="checkpoint.place_id.phone"
-                                                        />
+                                                        class="highlight-text"
+                                                        t-field="checkpoint.place_id.phone"
+                                                    />
                                                 </div>
                                             </div>
                                         </div>
@@ -166,37 +166,37 @@
 
                                     <t t-if="len(checkpoint.package_origin_ids) &gt;0">
                                         <div
-                                                id="package_loading"
-                                                style="padding-top:1px;"
-                                            >
+                                            id="package_loading"
+                                            style="padding-top:1px;"
+                                        >
                                             <table class="table table-sm o_main_table">
                                                 <t
-                                                        t-call="tms_reporting.tms_package_loading_table_head"
-                                                    />
+                                                    t-call="tms_reporting.tms_package_loading_table_head"
+                                                />
                                                 <t
-                                                        t-if="len(checkpoint.package_origin_ids) &gt;1"
-                                                    >
+                                                    t-if="len(checkpoint.package_origin_ids) &gt;1"
+                                                >
                                                     <t
-                                                            t-call="tms_reporting.tms_package_loading_table_footer"
-                                                        >
+                                                        t-call="tms_reporting.tms_package_loading_table_footer"
+                                                    >
                                                         <t
-                                                                t-set="lines"
-                                                                t-value="checkpoint.package_origin_ids"
-                                                            />
+                                                            t-set="lines"
+                                                            t-value="checkpoint.package_origin_ids"
+                                                        />
                                                     </t>
                                                 </t>
                                                 <tbody>
                                                     <t
-                                                            t-foreach="checkpoint.package_origin_ids"
-                                                            t-as="line"
-                                                        >
+                                                        t-foreach="checkpoint.package_origin_ids"
+                                                        t-as="line"
+                                                    >
                                                         <t
-                                                                t-call="tms_reporting.tms_package_loading_table_body"
-                                                            >
+                                                            t-call="tms_reporting.tms_package_loading_table_body"
+                                                        >
                                                             <t
-                                                                    t-set="service"
-                                                                    t-value="'load'"
-                                                                />
+                                                                t-set="service"
+                                                                t-value="'load'"
+                                                            />
                                                         </t>
                                                     </t>
                                                 </tbody>
@@ -211,40 +211,40 @@
                                     <!--</t>-->
                                     <!--<t t-if="o.unload_service">-->
                                     <t
-                                            t-if="len(checkpoint.package_destination_ids) &gt;0"
-                                        >
+                                        t-if="len(checkpoint.package_destination_ids) &gt;0"
+                                    >
                                         <div
-                                                id="package_unloading"
-                                                style="padding-top:1px;"
-                                            >
+                                            id="package_unloading"
+                                            style="padding-top:1px;"
+                                        >
                                             <table class="table">
                                                 <t
-                                                        t-call="tms_reporting.tms_package_loading_table_head"
-                                                    />
+                                                    t-call="tms_reporting.tms_package_loading_table_head"
+                                                />
                                                 <t
-                                                        t-if="len(checkpoint.package_destination_ids) &gt;1"
-                                                    >
+                                                    t-if="len(checkpoint.package_destination_ids) &gt;1"
+                                                >
                                                     <t
-                                                            t-call="tms_reporting.tms_package_loading_table_footer"
-                                                        >
+                                                        t-call="tms_reporting.tms_package_loading_table_footer"
+                                                    >
                                                         <t
-                                                                t-set="lines"
-                                                                t-value="checkpoint.package_destination_ids"
-                                                            />
+                                                            t-set="lines"
+                                                            t-value="checkpoint.package_destination_ids"
+                                                        />
                                                     </t>
                                                 </t>
                                                 <tbody>
                                                     <t
-                                                            t-foreach="checkpoint.package_destination_ids"
-                                                            t-as="line"
-                                                        >
+                                                        t-foreach="checkpoint.package_destination_ids"
+                                                        t-as="line"
+                                                    >
                                                         <t
-                                                                t-call="tms_reporting.tms_package_loading_table_body"
-                                                            >
+                                                            t-call="tms_reporting.tms_package_loading_table_body"
+                                                        >
                                                             <t
-                                                                    t-set="service"
-                                                                    t-value="'unload'"
-                                                                />
+                                                                t-set="service"
+                                                                t-value="'unload'"
+                                                            />
                                                         </t>
                                                     </t>
                                                 </tbody>
@@ -274,9 +274,9 @@
                             <div>Remarks:</div>
                             <div class="schedule">
                                 <div><span
-                                            class="highlight-text"
-                                            t-field="o.sale_line_id.order_id.note"
-                                        /></div>
+                                        class="highlight-text"
+                                        t-field="o.sale_line_id.order_id.note"
+                                    /></div>
                             </div>
                         </t>
                     </div>
@@ -297,17 +297,17 @@
                             </div>
                             <div class="col-10">
                                 <t
-                                t-set="partner"
-                                t-value="o.vendor_id and o.company_id.partner_id or o.partner_id"
-                            />
+                            t-set="partner"
+                            t-value="o.vendor_id and o.company_id.partner_id or o.partner_id"
+                        />
                                 <div class="highlight-text"><span
-                                    t-field="partner.ref"
-                                /></div>
+                                t-field="partner.ref"
+                            /></div>
                                 <div class="highlight-text">
                                     <span t-field="partner.name" /><br />
                                     <span t-field="partner.street" /><br />
                                     <span t-field="partner.city" /><span
-                                > VAT:</span><span t-field="partner.vat" /><br />
+                            > VAT:</span><span t-field="partner.vat" /><br />
                                 </div>
                             </div>
                         </div>
@@ -319,9 +319,9 @@
                             </div>
                             <div class="col-7">
                                 <div class="highlight-text"><span
-                                    t-field="o.date_start"
-                                    t-options="{'widget': 'date'}"
-                                /></div>
+                                t-field="o.date_start"
+                                t-options="{'widget': 'date'}"
+                            /></div>
                             </div>
                         </div>
                         <div class="row">
@@ -330,8 +330,8 @@
                             </div>
                             <div class="col-7">
                                 <div class="highlight-text"><span
-                                    t-field="o.sale_line_id.order_id.client_order_ref"
-                                /></div>
+                                t-field="o.sale_line_id.order_id.client_order_ref"
+                            /></div>
                             </div>
                         </div>
                     </div>
@@ -345,9 +345,9 @@
                         <div class="row">
                             <div class="col-12">
                                 <div
-                                class="highlight-text"
-                                style="font-size:14px;"
-                            ><span t-field="o.sale_line_id.order_id.name" /></div>
+                            class="highlight-text"
+                            style="font-size:14px;"
+                        ><span t-field="o.sale_line_id.order_id.name" /></div>
                             </div>
                         </div>
                     </div>
@@ -363,18 +363,18 @@
                             </div>
                             <div class="col-10">
                                 <div class="highlight-text"><span
-                                    t-field="o.vendor_id.ref"
-                                /></div>
+                                t-field="o.vendor_id.ref"
+                            /></div>
                                 <t
-                                t-set="vendor"
-                                t-value="o.vendor_id.commercial_partner_id or o.company_id"
-                            />
+                            t-set="vendor"
+                            t-value="o.vendor_id.commercial_partner_id or o.company_id"
+                        />
                                 <div class="highlight-text">
                                     <span t-field="vendor.name" /><br />
                                     <t t-if="vendor.vat">
                                         <span>VAT - </span><span
-                                        t-field="vendor.vat"
-                                    /><br />
+                                    t-field="vendor.vat"
+                                /><br />
                                     </t>
                                 </div>
                             </div>
@@ -387,8 +387,8 @@
                             </div>
                             <div class="col-7">
                                 <div class="highlight-text highlight-spacing"><span
-                                    t-field="o.tractor_id.license_plate"
-                                /></div>
+                                t-field="o.tractor_id.license_plate"
+                            /></div>
                             </div>
                         </div>
                         <div class="row">
@@ -397,8 +397,8 @@
                             </div>
                             <div class="col-7">
                                 <div class="highlight-text highlight-spacing"><span
-                                    t-field="o.trailer_id.license_plate"
-                                /></div>
+                                t-field="o.trailer_id.license_plate"
+                            /></div>
                             </div>
                         </div>
                         <div class="row">
@@ -407,8 +407,8 @@
                             </div>
                             <div class="col-7">
                                 <div class="highlight-text highlight-spacing"><span
-                                    t-field="o.seal"
-                                /></div>
+                                t-field="o.seal"
+                            /></div>
                             </div>
                         </div>
                         <div class="row">
@@ -418,9 +418,9 @@
                             <div class="col-7">
                                 <div>
                                     <span
-                                    class="highlight-text highlight-spacing"
-                                    t-field="o.equipment_id"
-                                />
+                                class="highlight-text highlight-spacing"
+                                t-field="o.equipment_id"
+                            />
                                 </div>
                             </div>
                         </div>
@@ -431,9 +431,9 @@
                             <div class="col-7">
                                 <div>
                                     <span
-                                    class="highlight-text highlight-spacing"
-                                    t-esc="'[%s]' % o.equipment_size_type_id.code"
-                                />
+                                class="highlight-text highlight-spacing"
+                                t-esc="'[%s]' % o.equipment_size_type_id.code"
+                            />
                                 </div>
                             </div>
                         </div>
@@ -445,8 +445,8 @@
                             </div>
                             <div class="col-7">
                                 <div class="highlight-text"><span
-                                    t-field="o.port_id"
-                                /></div>
+                                t-field="o.port_id"
+                            /></div>
                             </div>
                         </div>
                         <div class="row" t-if="o.shipment_port_id">
@@ -455,8 +455,8 @@
                             </div>
                             <div class="col-7">
                                 <div class="highlight-text"><span
-                                    t-field="o.shipment_port_id"
-                                /></div>
+                                t-field="o.shipment_port_id"
+                            /></div>
                             </div>
                         </div>
                         <div class="row" t-if="o.vessel">
@@ -465,8 +465,8 @@
                             </div>
                             <div class="col-7">
                                 <div class="highlight-text"><span
-                                    t-field="o.vessel"
-                                /></div>
+                                t-field="o.vessel"
+                            /></div>
                             </div>
                         </div>
                         <div class="row" t-if="o.wagon">
@@ -475,8 +475,8 @@
                             </div>
                             <div class="col-7">
                                 <div class="highlight-text"><span
-                                    t-field="o.wagon"
-                                /></div>
+                                t-field="o.wagon"
+                            /></div>
                             </div>
                         </div>
                     </div>
@@ -494,10 +494,10 @@
                                         </div>
                                         <div class="col-9">
                                             <span
-                                        class="highlight-text"
-                                        t-field="o.release_id"
-                                        t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'
-                                    />
+                                    class="highlight-text"
+                                    t-field="o.release_id"
+                                    t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'
+                                />
                                         </div>
                                     </div>
                                 </div>
@@ -507,8 +507,8 @@
                                     </div>
                                     <div class="col-12">
                                         <div class="highlight-text"><span
-                                        t-field="o.release_locator"
-                                    /></div>
+                                    t-field="o.release_locator"
+                                /></div>
                                     </div>
                                     <div class="col-12">
                                         <div class="pull-left">Load State</div>
@@ -531,10 +531,10 @@
                                         </div>
                                         <div class="col-9">
                                             <span
-                                        class="highlight-text"
-                                        t-field="o.acceptance_id"
-                                        t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'
-                                    />
+                                    class="highlight-text"
+                                    t-field="o.acceptance_id"
+                                    t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'
+                                />
                                         </div>
                                     </div>
                                 </div>
@@ -544,8 +544,8 @@
                                     </div>
                                     <div class="col-12">
                                         <div class="highlight-text"><span
-                                        t-field="o.acceptance_locator"
-                                    /></div>
+                                    t-field="o.acceptance_locator"
+                                /></div>
                                     </div>
                                     <div class="col-12">
                                         <div class="pull-left">Load State</div>
@@ -564,9 +564,9 @@
 
     <template id="tms_package_loading">
         <t
-                t-set="shipping_partner"
-                t-value="o.unload_service and line.shipping_destination_id or line.shipping_origin_id"
-            />
+            t-set="shipping_partner"
+            t-value="o.unload_service and line.shipping_destination_id or line.shipping_origin_id"
+        />
         <div id="package_loading" style="padding-top:1px;">
             <t t-if="line_index == 0">
                 <div class="row">
@@ -599,29 +599,29 @@
             <div class="row">
                 <div class="col-2">
                     <t
-                            t-set="icon"
-                            t-value="'fa fa-download' if service=='load' else 'fa fa-upload'"
-                        />
+                        t-set="icon"
+                        t-value="'fa fa-download' if service=='load' else 'fa fa-upload'"
+                    />
                     <div>
                         <i t-att-class="icon" aria-hidden="true" />
                         <span
-                                t-if="service=='load'"
-                                class="highlight-text"
-                                t-field="line.pickup_date"
-                            />
+                            t-if="service=='load'"
+                            class="highlight-text"
+                            t-field="line.pickup_date"
+                        />
                         <span
-                                t-if="service=='unload'"
-                                class="highlight-text"
-                                t-esc="line.forecast_unload_date or line.pickup_date"
-                                t-options="{'widget': 'datetime'}"
-                            />
+                            t-if="service=='unload'"
+                            class="highlight-text"
+                            t-esc="line.forecast_unload_date or line.pickup_date"
+                            t-options="{'widget': 'datetime'}"
+                        />
                     </div>
                 </div>
                 <div id="ref" class="col-4">
                     <span
-                            class="highlight-text"
-                            t-esc="line.carrier_tracking_ref or line.customer_ref"
-                        />
+                        class="highlight-text"
+                        t-esc="line.carrier_tracking_ref or line.customer_ref"
+                    />
                 </div>
                 <div class="col-4">
                     <span class="highlight-text" t-field="line.goods_id" />
@@ -633,19 +633,19 @@
                         <div class="row">
                             <div class="col-6">
                                 <span
-                                        class="highlight-text"
-                                        t-field="line.number_of_packages"
-                                    /> /
+                                    class="highlight-text"
+                                    t-field="line.number_of_packages"
+                                /> /
                                 <span
-                                        class="highlight-text"
-                                        t-field="line.euro_pallet_qty"
-                                    />
+                                    class="highlight-text"
+                                    t-field="line.euro_pallet_qty"
+                                />
                             </div>
                             <div class="col-6">
                                 <span
-                                        class="highlight-text"
-                                        t-field="line.shipping_weight"
-                                    />
+                                    class="highlight-text"
+                                    t-field="line.shipping_weight"
+                                />
                             </div>
                         </div>
                     </div>
@@ -690,29 +690,29 @@
         <tr>
             <td>
                 <t
-                        t-set="icon"
-                        t-value="'fa fa-download' if service=='load' else 'fa fa-upload'"
-                    />
+                    t-set="icon"
+                    t-value="'fa fa-download' if service=='load' else 'fa fa-upload'"
+                />
                 <div>
                     <i t-att-class="icon" aria-hidden="true" />
                     <span
-                            t-if="service=='load'"
-                            class="highlight-text"
-                            t-field="line.pickup_date"
-                        />
+                        t-if="service=='load'"
+                        class="highlight-text"
+                        t-field="line.pickup_date"
+                    />
                     <span
-                            t-if="service=='unload'"
-                            class="highlight-text"
-                            t-esc="line.forecast_unload_date or line.pickup_date"
-                            t-options="{'widget': 'datetime'}"
-                        />
+                        t-if="service=='unload'"
+                        class="highlight-text"
+                        t-esc="line.forecast_unload_date or line.pickup_date"
+                        t-options="{'widget': 'datetime'}"
+                    />
                 </div>
             </td>
             <td id="ref">
                 <span
-                        class="highlight-text"
-                        t-esc="line.carrier_tracking_ref or line.customer_ref"
-                    />
+                    class="highlight-text"
+                    t-esc="line.carrier_tracking_ref or line.customer_ref"
+                />
             </td>
             <td>
                 <span class="highlight-text" t-field="line.goods_id" />
@@ -728,8 +728,8 @@
             </td>
         </tr>
         <tr
-                t-if="(service=='load' and line.note) or (service=='unload' and line.unload_note)"
-            >
+            t-if="(service=='load' and line.note) or (service=='unload' and line.unload_note)"
+        >
             <td colspan="6">
                 <span>Remarks: </span>
                 <span t-if="service=='load'" t-field="line.note" />
@@ -754,20 +754,20 @@
                     <div class="row">
                         <div class="col-2">
                             <span
-                                    class="highlight-text"
-                                    t-esc="sum(lines.mapped('number_of_packages'))"
-                                /> /
+                                class="highlight-text"
+                                t-esc="sum(lines.mapped('number_of_packages'))"
+                            /> /
                             <span
-                                    class="highlight-text"
-                                    t-esc="sum(lines.mapped('euro_pallet_qty'))"
-                                />
+                                class="highlight-text"
+                                t-esc="sum(lines.mapped('euro_pallet_qty'))"
+                            />
                         </div>
                         <div class="col-6">
                             <span
-                                    class="highlight-text"
-                                    t-esc="sum(lines.mapped('shipping_weight'))"
-                                    t-options="{'widget': 'float', 'decimal_precision': 'Product Price'}"
-                                />
+                                class="highlight-text"
+                                t-esc="sum(lines.mapped('shipping_weight'))"
+                                t-options="{'widget': 'float', 'decimal_precision': 'Product Price'}"
+                            />
                         </div>
                     </div>
                 </div>
@@ -785,22 +785,22 @@
                 </td>
                 <td class="text-right totals">
                     <span
-                            class="highlight-text"
-                            t-esc="sum(lines.mapped('number_of_packages'))"
-                        />
+                        class="highlight-text"
+                        t-esc="sum(lines.mapped('number_of_packages'))"
+                    />
                 </td>
                 <td class="text-right totals">
                     <span
-                            class="highlight-text"
-                            t-esc="sum(lines.mapped('euro_pallet_qty'))"
-                        />
+                        class="highlight-text"
+                        t-esc="sum(lines.mapped('euro_pallet_qty'))"
+                    />
                 </td>
                 <td class="text-right totals">
                     <span
-                            class="highlight-text"
-                            t-esc="sum(lines.mapped('shipping_weight'))"
-                            t-options="{'widget': 'float', 'decimal_precision': 'Product Price'}"
-                        />
+                        class="highlight-text"
+                        t-esc="sum(lines.mapped('shipping_weight'))"
+                        t-options="{'widget': 'float', 'decimal_precision': 'Product Price'}"
+                    />
                 </td>
             </tr>
         </tfoot>
@@ -808,9 +808,9 @@
 
     <template id="tms_subtask">
         <t
-                t-set="shipping_partner"
-                t-value="o.parent_id.unload_service and line.shipping_destination_id or line.shipping_origin_id"
-            />
+            t-set="shipping_partner"
+            t-value="o.parent_id.unload_service and line.shipping_destination_id or line.shipping_origin_id"
+        />
         <div id="subtask" style="padding-top:10px;">
             <div class="row">
                 <div class="col-4">
@@ -819,16 +819,16 @@
                 <div class="col-8 highlight-text">
                     <t t-if="o.unload_service">
                         <span
-                                t-field="line.shipping_destination_id"
-                                t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True}'
-                            />
+                            t-field="line.shipping_destination_id"
+                            t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True}'
+                        />
 
                     </t>
                     <t t-if="not o.unload_service">
                         <span
-                                t-field="line.shipping_origin_id"
-                                t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True}'
-                            />
+                            t-field="line.shipping_origin_id"
+                            t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True}'
+                        />
                     </t>
                 </div>
 
@@ -837,9 +837,9 @@
                 <div class="col-2">Hours: </div>
                 <div class="col-10 highlight-text">
                     <t t-foreach="shipping_partner.schedule_ids" t-as="hour"> <span
-                                class="highlight-text"
-                                t-field="hour.name"
-                            /></t>
+                            class="highlight-text"
+                            t-field="hour.name"
+                        /></t>
                 </div>
             </div>
             <div class="row" t-if="line.description">
@@ -871,17 +871,17 @@
                 <div class="row" style="padding-top: 60px;">
                     <div>
                         <span>Driver:</span> <span
-                                class="highlight-text"
-                                t-field="o.driver_id.name"
-                            />
+                            class="highlight-text"
+                            t-field="o.driver_id.name"
+                        />
                     </div>
                 </div>
                 <div class="row">
                     <div>
                         <span>VAT:</span> <span
-                                class="highlight-text"
-                                t-esc="o.driver_id.vat or o.driver_id.ref"
-                            />
+                            class="highlight-text"
+                            t-esc="o.driver_id.vat or o.driver_id.ref"
+                        />
                     </div>
                 </div>
             </div>
@@ -892,21 +892,21 @@
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="o">
                 <t
-                        t-call="tms_reporting.tms_transportation_order_document"
-                        t-lang="o.partner_id.lang"
-                    />
+                    t-call="tms_reporting.tms_transportation_order_document"
+                    t-lang="o.partner_id.lang"
+                />
             </t>
         </t>
     </template>
 
     <report
-            id="report_tms_transportation_order"
-            model="project.task"
-            string="Transport Order"
-            report_type="qweb-pdf"
-            name="tms_reporting.tms_transportation_order"
-            file="tms_reporting.tms_transportation_order"
-        />
+        id="report_tms_transportation_order"
+        model="project.task"
+        string="Transport Order"
+        report_type="qweb-pdf"
+        name="tms_reporting.tms_transportation_order"
+        file="tms_reporting.tms_transportation_order"
+    />
 
     <record id="report_tms_transportation_order" model="ir.actions.report">
         <field name="paperformat_id" ref="tms_reporting.paperformat_euro_lowmargin" />

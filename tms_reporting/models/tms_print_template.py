@@ -19,7 +19,6 @@ class TmsPrintTemplate(models.Model):
     )
     field_order = fields.Selection(
         [("order_id", "Sale Order"), ("pickup_date", "Pickup Date")],
-        string="Field Order",
         default="order_id",
     )
     display_order = fields.Boolean()

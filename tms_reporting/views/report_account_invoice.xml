@@ -3,10 +3,16 @@
 
     <!-- Select template from tms print template-->
     <template id="report_invoice" inherit_id="account.report_invoice_with_payments">
-         <field name="priority" eval="150" />
+        <field name="priority" eval="150" />
         <xpath
             expr="//t[@t-call='account.report_invoice_document_with_payments']"
-            position="replace"
+            position="attributes"
+        >
+            <attribute name="invisible">1</attribute>
+        </xpath>
+        <xpath
+            expr="//t[@t-call='account.report_invoice_document_with_payments']"
+            position="after"
         >
             <t
                 t-set="pt"
@@ -32,7 +38,11 @@
         inherit_id="account.report_invoice_document"
         primary="True"
     >
-        <xpath expr="//table[@name='invoice_line_table']" position="replace">
+        <xpath expr="//table[@name='invoice_line_table']" position="attributes">
+            <attribute name="invisible">1</attribute>
+        </xpath>
+
+        <xpath expr="//table[@name='invoice_line_table']" position="after">
             <t t-call="tms_reporting.tms_base_invoice_document" />
         </xpath>
     </template>
@@ -62,20 +72,24 @@
                     <th t-if="pt.display_release">Release</th>
                     <th
                         t-if="pt.display_origin or pt.display_origin_zip or pt.display_origin_city"
-                    >Origin</th>
+                    >Origin
+                    </th>
                     <th
                         t-if="pt.display_destination or pt.display_destination_zip or pt.display_destination_city"
-                    >Destination</th>
+                    >Destination
+                    </th>
                     <th
                         t-if="pt.display_shipping_place or pt.display_shipping_place_zip or pt.display_shipping_place_city"
-                    >Place</th>
+                    >Place
+                    </th>
                     <th t-if="pt.display_acceptance">Acceptance</th>
                     <th t-if="pt.display_quantity" class="text-right">Quantity</th>
                     <th t-if="pt.display_price" class="text-right">Unit Price</th>
                     <th
                         t-if="pt.display_discount and display_discount"
                         class="text-right"
-                    >Disc.(%)</th>
+                    >Disc.(%)
+                    </th>
                     <th t-if="pt.display_taxes" class="text-right">Taxes</th>
                     <th t-if="pt.display_total" class="text-right">Total</th>
                 </tr>

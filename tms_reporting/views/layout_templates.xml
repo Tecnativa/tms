@@ -9,8 +9,10 @@
     >
         <xpath
             expr="//div[@t-attf-class='footer o_standard_footer o_company_#{company.id}_layout']"
-            position="replace"
-        />
+            position="attributes"
+        >
+            <attribute name="invisible">1</attribute>
+        </xpath>
     </template>
 
     <template
