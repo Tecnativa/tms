@@ -5,7 +5,7 @@
 {
     "name": "TMS Analytic Distribution",
     "summary": "Adds analytic fields in analytic distribution",
-    "version": "13.0.1.0.0",
+    "version": "15.0.1.0.0",
     "category": "Accounting & Finance",
     "website": "https://github.com/OCA/tms",
     "author": "Tecnativa, " "Odoo Community Association (OCA)",
