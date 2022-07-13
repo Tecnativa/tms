@@ -1,0 +1,107 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* tms_division
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-07-02 09:51+0000\n"
+"PO-Revision-Date: 2022-01-09 20:43+0100\n"
+"Last-Translator: Carlos Dauden <carlos.dauden@tecnativa.com>\n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.3\n"
+
+#. module: tms_division
+#: model:ir.model,name:tms_division.model_tms_division
+msgid "Analytic division field for TMS"
+msgstr "Campo división analítica para TMS"
+
+#. module: tms_division
+#: model:ir.model.fields,field_description:tms_division.field_tms_division__company_id
+msgid "Company"
+msgstr "Compañía"
+
+#. module: tms_division
+#: model:ir.model.fields,field_description:tms_division.field_tms_division__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: tms_division
+#: model:ir.model.fields,field_description:tms_division.field_tms_division__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: tms_division
+#: model:ir.model.fields,field_description:tms_division.field_tms_division__display_name
+msgid "Display Name"
+msgstr "Nombre a mostrar"
+
+#. module: tms_division
+#: model:ir.model.fields,field_description:tms_division.field_account_analytic_distribution__division_id
+#: model:ir.model.fields,field_description:tms_division.field_account_analytic_line__division_id
+#: model:ir.model.fields,field_description:tms_division.field_account_asset__division_id
+#: model:ir.model.fields,field_description:tms_division.field_account_move_line__division_id
+#: model:ir.model.fields,field_description:tms_division.field_project_task__division_id
+#: model:ir.model.fields,field_description:tms_division.field_purchase_order_line__division_id
+#: model:ir.model.fields,field_description:tms_division.field_sale_order__division_id
+#: model:ir.model.fields,field_description:tms_division.field_sale_order_line__division_id
+#: model:ir.model.fields,field_description:tms_division.field_tms_analytic__division_id
+msgid "Division"
+msgstr "División"
+
+#. module: tms_division
+#: model_terms:ir.ui.view,arch_db:tms_division.tms_division_view_search
+msgid "Divisions"
+msgstr "Divisiones"
+
+#. module: tms_division
+#: model:ir.model.fields,field_description:tms_division.field_tms_division__id
+msgid "ID"
+msgstr "ID (identificación)"
+
+#. module: tms_division
+#: model:ir.model.fields,field_description:tms_division.field_tms_division____last_update
+msgid "Last Modified on"
+msgstr "Última modificación el"
+
+#. module: tms_division
+#: model:ir.model.fields,field_description:tms_division.field_tms_division__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: tms_division
+#: model:ir.model.fields,field_description:tms_division.field_tms_division__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: tms_division
+#: model:ir.model.fields,field_description:tms_division.field_tms_division__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: tms_division
+#: model:ir.model,name:tms_division.model_sale_order
+msgid "Sales Order"
+msgstr "Pedido de venta"
+
+#. module: tms_division
+#: model:ir.model,name:tms_division.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea de pedido de venta"
+
+#. module: tms_division
+#: model:ir.model,name:tms_division.model_tms_analytic
+msgid "TMS Analityc"
+msgstr "TMS Analitica"
+
+#. module: tms_division
+#: model:ir.actions.act_window,name:tms_division.action_tms_division
+#: model:ir.ui.menu,name:tms_division.menu_tms_division
+msgid "TMS Divisions"
+msgstr "TMS Divisiones"

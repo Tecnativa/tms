@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2017 Sergio Teruel - Tecnativa <sergio.teruel@tecnativa.com>
+     Copyright 2017 Carlos Dauden - Tecnativa <carlos.dauden@tecnativa.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+<record id="tms_division_tree_view" model="ir.ui.view">
+    <field name="name">tms.division.tree</field>
+    <field name="model">tms.division</field>
+    <field name="arch" type="xml">
+        <tree>
+            <field name="name" />
+        </tree>
+    </field>
+</record>
+
+<record id="tms_division_form_view" model="ir.ui.view">
+    <field name="name">tms.division.form</field>
+    <field name="model">tms.division</field>
+    <field name="arch" type="xml">
+        <form>
+            <group>
+                <field name="name" />
+            </group>
+        </form>
+    </field>
+</record>
+
+<record id="tms_division_view_search" model='ir.ui.view'>
+    <field name="name">tms.division.search</field>
+    <field name="model">tms.division</field>
+    <field name="arch" type="xml">
+        <search string="Divisions">
+            <field name="name" filter_domain="[('name', 'ilike', self)]" />
+        </search>
+    </field>
+</record>
+
+
+<record id="action_tms_division" model="ir.actions.act_window">
+    <field name="name">TMS Divisions</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">tms.division</field>
+    <field name="view_mode">tree,form</field>
+</record>
+
+<menuitem
+        id="menu_tms_division"
+        action="action_tms_division"
+        parent="tms.menu_tms_management"
+        sequence="35"
+        groups="sales_team.group_sale_manager"
+    />
+
+</odoo>
