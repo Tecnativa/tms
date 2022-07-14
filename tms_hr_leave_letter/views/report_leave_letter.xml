@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <template id="report_tms_hr_leave_letter_document">
+        <!--<t t-call="report.minimal_layout">-->
+            <!--<t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>-->
+            <style type="text/css">
+#content.table {
+    border: 1px solid;
+    width: 100%;
+}
+        </style>
+            <t
+            t-set="date_doc"
+            t-value="datetime.datetime.strftime(o.date_to + datetime.timedelta(days=1), '%Y-%m-%d %H:%M:%S')"
+        />
+            <div class="header">
+                <div class="text-center"><strong>ANNEX</strong></div>
+                <div class="text-center">ATTESTATION OF ACTIVITIES1</div>
+                <div class="text-center">(REGULATION (EC) 561/2006 OR THE AETR)</div>
+                <div
+                class="text-center"
+            >To be filled in by typing and signed before a journey. To be kept with the original control device records wherever they are required to be kept</div>
+                <div class="text-center"><strong
+                >False attestations constitute an infringement</strong></div>
+            </div>
+            <div class="page">
+                <!--<table style="border:1px solid; width:100%">-->
+                <table id='content' class="table table-sm o_main_table">
+                    <tr>
+                        <td colspan="2"><strong
+                        >Part to be filled in by the undertaking</strong></td>
+                    </tr>
+                    <tr>
+                        <td>(1)</td>
+                        <td>Name of the undertaking: <span
+                            t-field="user.company_id"
+                        /></td>
+                    </tr>
+                    <tr>
+                        <td>(2)</td>
+                        <td>Street address, postal code, city, country: <span
+                            t-field="user.company_id.street"
+                        />, <span t-field="user.company_id.zip" />, <span
+                            t-field="user.company_id.city"
+                        />, <span t-field="user.company_id.country_id" /></td>
+                    </tr>
+                    <tr>
+                        <td>(3)</td>
+                        <td>Telephone number (including international prefix): <span
+                            t-field="user.company_id.phone"
+                        /></td>
+                    </tr>
+                    <tr>
+                        <td>(4)</td>
+                        <td>Fax number (including international prefix): <span /></td>
+                    </tr>
+                    <tr>
+                        <td>(5)</td>
+                        <td>E-mail address: <span
+                            t-field="user.company_id.email"
+                        /></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><strong>I, the undersigned:</strong></td>
+                    </tr>
+                    <tr>
+                        <td>(6)</td>
+                        <td>Name and first name: <span
+                            t-field="o.employee_id.parent_id"
+                        /></td>
+                    </tr>
+                    <tr>
+                        <td>(7)</td>
+                        <td>Position in the undertaking: <span
+                            t-field="o.employee_id.parent_id.job_id"
+                        /></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><strong>declare that the driver:</strong></td>
+                    </tr>
+                    <tr>
+                        <td>(8)</td>
+                        <td>Name and first name: <span t-field="o.employee_id" /></td>
+                    </tr>
+                    <tr>
+                        <td>(9)</td>
+                        <td>Date of birth (day/month/year): <span
+                            t-field="o.employee_id.birthday"
+                        /></td>
+                    </tr>
+                    <tr>
+                        <td>(10)</td>
+                        <td>Driving licence or identity card or passport number: <span
+                            t-esc="o.employee_id.identification_id or o.employee_id.passport_id"
+                        /></td>
+                    </tr>
+                    <tr>
+                        <td>(11)</td>
+                        <td
+                    >who has started to work at the undertaking on (day/month/year): <span
+                            t-field="o.employee_id.initial_employment_date"
+                        /></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><strong>for the period:</strong></td>
+                    </tr>
+                    <tr>
+                        <td>(12)</td>
+                        <td>from (hour/day/month/year): <span
+                            t-field="o.date_from"
+                        /></td>
+                    </tr>
+                    <tr>
+                        <td>(13)</td>
+                        <td>to (hour/day/month/year): <span t-field="o.date_to" /></td>
+                    </tr>
+                    <tr>
+                        <td>(14)</td>
+                        <td><input
+                            type="checkbox"
+                            t-att-checked="o.holiday_status_id.leave_letter_type == 'sick_leave'"
+                        />  <span> was on sick leave***</span></td>
+                    </tr>
+                    <tr>
+                        <td>(15)</td>
+                        <td>
+                            <input
+                            type="checkbox"
+                            t-att-checked="o.holiday_status_id.leave_letter_type == 'holidays_leave'"
+                        />
+                            <span> was on annual leave***</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>(16)</td>
+                        <td>
+                            <input
+                            type="checkbox"
+                            t-att-checked="o.holiday_status_id.leave_letter_type == 'rest_leave'"
+                        />
+                            <span> was on leave or rest***</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>(17)</td>
+                        <td>
+                            <input
+                            type="checkbox"
+                            t-att-checked="o.holiday_status_id.leave_letter_type == 'no_regulation_leave'"
+                        />
+                            <span
+                        > drove a vehicle exempted from the scope of Regulation (EC) 561/2006 or the AETR***</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>(18)</td>
+                        <td>
+                            <input
+                            type="checkbox"
+                            t-att-checked="o.holiday_status_id.leave_letter_type == 'do_other_work'"
+                        />
+                            <span> performed other work than driving***</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>(19)</td>
+                        <td>
+                            <input
+                            type="checkbox"
+                            t-att-checked="o.holiday_status_id.leave_letter_type == 'available'"
+                        />
+                            <span> was available***</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>(20)</td>
+                        <td><span>Place: <span
+                                t-field="user.company_id.state_id"
+                            /></span><span> Date: <t
+                                t-esc="date_doc"
+                                t-options="{'widget': 'date'}"
+                            /></span></td>
+                    </tr>
+                    <tr>
+                        <td style="padding-top:40px;">Signature:</td>
+                        <td style="padding-top:40px;"><div
+                            id="stamp"
+                            class="row"
+                        /></td>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <td>(21)</td>
+                        <td><span
+                        > I, the driver, confirm that I have not been driving a vehicle falling under the scope of Regulation (EC) 561/2006 or the AETR during the period mentioned above.</span></td>
+                    </tr>
+                    <tr>
+                        <td>(22)</td>
+                        <td><span>Place: <span
+                                t-field="user.company_id.state_id"
+                            /></span><span> Date: <t
+                                t-esc="date_doc"
+                                t-options="{'widget': 'date'}"
+                            /></span></td>
+                    </tr>
+                    <tr>
+                        <td style="padding-top:60px;">Signature of the driver:</td>
+                        <td
+                        style="padding-top:60px;"
+                    >________________________________________</td>
+                    </tr>
+                </table>
+            </div>
+    </template>
+
+    <template id="report_tms_hr_leave_letter">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t
+                    t-call="tms_hr_leave_letter.report_tms_hr_leave_letter_document"
+                    t-lang="o.env.user.lang"
+                />
+            </t>
+        </t>
+    </template>
+
+</odoo>
