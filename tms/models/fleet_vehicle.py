@@ -93,11 +93,9 @@ class FleetVehicle(models.Model):
         @return: the task view
         """
         self.ensure_one()
-        res = self.env["ir.actions.act_window"].for_xml_id(
-            "project", "action_view_task"
-        )
+        action = self.env.ref("project.action_view_task").read()[0]
         task_field = "%s_id" % (self.vehicle_type or "tractor")
-        res.update(
+        action.update(
             context=dict(
                 self.env.context,
                 default_vehicle_id=self.id,
@@ -105,4 +103,4 @@ class FleetVehicle(models.Model):
             ),
             domain=[(task_field, "=", self.id)],
         )
-        return res
+        return action
