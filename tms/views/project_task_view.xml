@@ -336,7 +336,7 @@
         <field name="model">project.task</field>
         <field name="inherit_id" ref="project.view_task_kanban" />
         <field name="arch" type="xml">
-            <field name="user_id" position="after">
+            <field name="user_ids" position="after">
                 <field name="child_ids" />
                 <field name="tractor_id" />
                 <field name="shipping_origin_id" />

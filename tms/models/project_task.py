@@ -2,10 +2,10 @@
 # Copyright 2017 Carlos Dauden <carlos.dauden@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+import json
 from collections import defaultdict
 
 import requests
-import simplejson as json
 
 from odoo import SUPERUSER_ID, _, api, exceptions, fields, models
 
@@ -228,11 +228,11 @@ class ProjectTask(models.Model):
     def _onchange_tractor_id_user(self):
         user = self.tractor_id.driver_id.user_ids[:1]
         if user:
-            self.user_id = user
+            self.user_ids = [(6, 0, user.ids)]
 
-    @api.onchange("user_id")
-    def _onchange_user_id(self):
-        partner_user = self.user_id.partner_id
+    @api.onchange("user_ids")
+    def _onchange_user_ids(self):
+        partner_user = self.user_ids[0].partner_id
         if partner_user.is_driver:
             self.driver_id = partner_user
 
@@ -248,7 +248,7 @@ class ProjectTask(models.Model):
         return [
             "tractor_id",
             "trailer_id",
-            "user_id",
+            "user_ids",
             "driver_id",
             "vendor_id",
         ]
