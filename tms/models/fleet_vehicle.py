@@ -8,14 +8,6 @@ from odoo import api, fields, models
 class FleetVehicle(models.Model):
     _inherit = "fleet.vehicle"
 
-    vehicle_type = fields.Selection(
-        [
-            ("tractor", "Tractor"),
-            ("trailer", "Trailer"),
-        ],
-        string="Type",
-        index=True,
-    )
     trailer_id = fields.Many2one(
         comodel_name="fleet.vehicle",
         domain="[('vehicle_type', '=', 'trailer')]",

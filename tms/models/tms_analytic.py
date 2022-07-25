@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
+from odoo.tools import OrderedSet
 
 
 class TmsAnalytic(models.AbstractModel):
@@ -37,9 +38,14 @@ class TmsAnalytic(models.AbstractModel):
         help="Driver of the vehicle",
     )
 
+    # @api.model
+    # def _proper_fields(self):
+    #     return OrderedSet({"tractor_id", "trailer_id", "driver_id"})
+
     @api.model
     def analytic_fields(self):
-        return self._proper_fields - {"display_name", "__last_update", "id"}
+        return OrderedSet({"tractor_id", "trailer_id", "driver_id"})
+        # return proper_fields - {"display_name", "__last_update", "id"}
 
     @api.model
     def analytic_fields_vals(self, record):

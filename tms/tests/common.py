@@ -82,13 +82,13 @@ class TestTMS(common.SavepointCase):
             {
                 "name": "Test Model",
                 "brand_id": cls.vehicle_model_brand.id,
+                "vehicle_type": "tractor",
             }
         )
         cls.vehicle = cls.env["fleet.vehicle"].create(
             {
                 "model_id": cls.vehicle_model.id,
                 "license_plate": "Test-Vehicle",
-                "vehicle_type": "tractor",
                 "driver_id": cls.driver.id,
             }
         )

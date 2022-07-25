@@ -105,7 +105,7 @@ class SaleOrderLine(models.Model):
         vals.update(sol_task_vals)
         vals.update(
             {
-                "user_id": False,
+                "user_ids": False,
                 "date_start": self.pickup_date,
                 "date_deadline": fields.Date.to_string(
                     fields.Datetime.context_timestamp(

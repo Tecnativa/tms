@@ -226,7 +226,7 @@ class ProjectTask(models.Model):
 
     @api.onchange("tractor_id")
     def _onchange_tractor_id_user(self):
-        user = self.tractor_id.driver_id.user_ids[:1]
+        user = self.tractor_id.driver_id.user_id
         if user:
             self.user_ids = [(6, 0, user.ids)]
 
