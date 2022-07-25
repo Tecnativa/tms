@@ -3,7 +3,7 @@
 from odoo.tests import common
 
 
-class TestTMS(common.SavepointCase):
+class TestTMS(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()

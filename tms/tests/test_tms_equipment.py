@@ -4,7 +4,7 @@ from odoo.exceptions import ValidationError
 from odoo.tests import common
 
 
-class TestTMSEquipment(common.SavepointCase):
+class TestTMSEquipment(common.TransactionCase):
     def test_create_equipment_invalid_name(self):
         # Check Enabled
         equipment = False
