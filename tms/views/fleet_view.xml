@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2022 Sergio Teruel <sergio.teruel@tecnativa.com>
+     Copyright 2022 César A. Sánchez
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record id="fleet_vehicle_view_form" model="ir.ui.view">
+        <field name="model">fleet.vehicle</field>
+        <field name="inherit_id" ref="fleet.fleet_vehicle_view_form" />
+        <field name="arch" type="xml">
+            <field name="driver_id" position="attributes">
+                <attribute name="domain">[('is_driver', '=', True)]</attribute>
+                <attribute name="context">{'default_is_driver': True}</attribute>
+            </field>
+            <field name="driver_id" position="before">
+                <field name="vehicle_type" />
+                <field
+                    name="trailer_id"
+                    attrs="{'invisible': [('vehicle_type', '!=', 'tractor')]}"
+                    context="{'default_vehicle_type': 'trailer'}"
+                />
+            </field>
+            <field name="company_id" position="before">
+                <separator />
+                <field
+                    name="always_show_in_kanban"
+                    attrs="{'invisible': [('vehicle_type', '!=', 'tractor')]}"
+                />
+                <field name="company_owner_id" />
+            </field>
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button
+                    name="act_show_task"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-tasks"
+                    help="show the tasks for this vehicle"
+                >
+                    <field name="task_count" widget="statinfo" string="Tasks" />
+                </button>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+<record id="vehicle_tag_pneumatics" model="fleet.vehicle.tag">
+    <field name="name">Pneumatics</field>
+    <field name="color" eval="8" />
+</record>
+
+<!--DECIMAL PRECISION-->
+<record forcecreate="True" id="decimal_tms_distance" model="decimal.precision">
+    <field name="name">TMS Distance</field>
+    <field name="digits">0</field>
+</record>
+
+<record forcecreate="True" id="decimal_tms_weight" model="decimal.precision">
+    <field name="name">TMS Weight</field>
+    <field name="digits">2</field>
+</record>
+
+<record forcecreate="True" id="decimal_tms_volume" model="decimal.precision">
+    <field name="name">TMS Volume</field>
+    <field name="digits">2</field>
+</record>
+
+</odoo>
