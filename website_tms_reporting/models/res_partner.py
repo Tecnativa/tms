@@ -9,5 +9,7 @@ class ResPartner(models.Model):
     _inherit = "res.partner"
 
     show_in_sheet = fields.Boolean(
-        index=True, string="Show sheet", help="Show driver in website sheet",
+        index=True,
+        string="Show sheet",
+        help="Show driver in website sheet",
     )

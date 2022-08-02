@@ -12,7 +12,11 @@
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "depends": ["tms", "hr_holidays", "website",],
+    "depends": [
+        "tms",
+        "hr_holidays",
+        "website",
+    ],
     "data": [
         "views/assets.xml",
         "views/website_tms_reporting_driver_template.xml",

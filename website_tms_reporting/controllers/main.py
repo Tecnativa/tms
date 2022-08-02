@@ -75,7 +75,12 @@ class WebsiteTMSReporting(http.Controller):
                 "distance_estimated": 0.0,
                 "distance_traveled": 0.0,
                 "partners": defaultdict(int),
-                "days_dict": defaultdict(lambda: {"subtotal": 0.0, "count": 0,}),
+                "days_dict": defaultdict(
+                    lambda: {
+                        "subtotal": 0.0,
+                        "count": 0,
+                    }
+                ),
             }
 
         partners = request.env["res.partner"].search(
