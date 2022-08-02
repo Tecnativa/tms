@@ -5,10 +5,10 @@
 {
     "name": "TMS Website Reporting",
     "summary": "Transport Management System Reporting(TMS)",
-    "version": "13.0.1.0.0",
+    "version": "15.0.1.0.0",
     "category": "Logistic",
     "website": "https://github.com/OCA/tms",
-    "author": "Tecnativa, " "Odoo Community Association (OCA)",
+    "author": "Tecnativa, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "application": False,
     "installable": True,
@@ -18,11 +18,15 @@
         "website",
     ],
     "data": [
-        "views/assets.xml",
         "views/website_tms_reporting_driver_template.xml",
         "views/website_tms_reporting_equipment_template.xml",
         "views/res_partner_view.xml",
         "views/tms_equipment_view.xml",
         "views/website_tms_reporting_views.xml",
     ],
+    "assets": {
+        "web.assets_frontend": [
+            "/website_tms_reporting/static/src/scss/website_tms_reporting.scss"
+        ]
+    },
 }
