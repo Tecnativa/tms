@@ -1,0 +1,43 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_fixed_quantity
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_fixed_quantity
+#: model:ir.model.fields,field_description:purchase_fixed_quantity.field_product_product__fixed_purchase_qty
+#: model:ir.model.fields,field_description:purchase_fixed_quantity.field_product_template__fixed_purchase_qty
+msgid "Fixed Purchase Quantity"
+msgstr ""
+
+#. module: purchase_fixed_quantity
+#: model:ir.model.fields,help:purchase_fixed_quantity.field_product_product__fixed_purchase_qty
+#: model:ir.model.fields,help:purchase_fixed_quantity.field_product_template__fixed_purchase_qty
+msgid ""
+"Not zero value to fix units in purchase order line. If zero normal quantity "
+"assignament"
+msgstr ""
+
+#. module: purchase_fixed_quantity
+#: model:ir.model,name:purchase_fixed_quantity.model_product_template
+msgid "Product Template"
+msgstr ""
+
+#. module: purchase_fixed_quantity
+#: model:ir.model,name:purchase_fixed_quantity.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: purchase_fixed_quantity
+#: model:ir.model,name:purchase_fixed_quantity.model_stock_rule
+msgid "Stock Rule"
+msgstr ""
