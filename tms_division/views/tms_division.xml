@@ -8,7 +8,7 @@
     <field name="name">tms.division.tree</field>
     <field name="model">tms.division</field>
     <field name="arch" type="xml">
-        <tree>
+        <tree editable="top">
             <field name="name" />
         </tree>
     </field>
@@ -41,7 +41,7 @@
     <field name="name">TMS Divisions</field>
     <field name="type">ir.actions.act_window</field>
     <field name="res_model">tms.division</field>
-    <field name="view_mode">tree,form</field>
+    <field name="view_mode">tree</field>
 </record>
 
 <menuitem

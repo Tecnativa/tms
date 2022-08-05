@@ -2,7 +2,7 @@
 # Copyright 2017 Carlos Dauden <carlos.dauden@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class TmsAnalytic(models.AbstractModel):
@@ -13,3 +13,9 @@ class TmsAnalytic(models.AbstractModel):
         string="Division",
         ondelete="restrict",
     )
+
+    @api.model
+    def analytic_fields(self):
+        res = super().analytic_fields()
+        res.add("division_id")
+        return res
