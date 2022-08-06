@@ -8,6 +8,7 @@ from odoo import fields, models
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
+    auto_confirm = fields.Boolean()
     booking_number = fields.Char()
     wagon = fields.Char()
     vessel = fields.Char()
