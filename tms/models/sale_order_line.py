@@ -65,8 +65,8 @@ class SaleOrderLine(models.Model):
         self.level = self.product_id.level
         return res
 
-    def _prepare_invoice_line(self):
-        vals = super()._prepare_invoice_line()
+    def _prepare_invoice_line(self, **optional_values):
+        vals = super()._prepare_invoice_line(**optional_values)
         vals.update(self.env["tms.analytic"].analytic_fields_vals(self))
         return vals
 
