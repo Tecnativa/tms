@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <!-- Email template for transport orders -->
+<record id="transport_order_email" model="mail.template">
+    <field name="name">Send Transport Order</field>
+    <field name="model_id" ref="project.model_project_task" />
+    <field name="auto_delete" eval="True" />
+    <!-- <field name="report_template" ref="report_tms_transportation_order" />
+    <field
+            name="report_name"
+        >Transport_Order_${(object.name or '').replace('/','_')}</field> -->
+    <field name="lang">${object.driver_id.lang}</field>
+    <field name="email_from">${(object.company_id.email or user.email)|safe}</field>
+    <field name="partner_to">${object.driver_id.id|safe}</field>
+    <field name="subject">Transport Order ${object.name}></field>
+    <field name="body_html" type="html">
+<div
+                style="padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777"
+            >
+    <table
+                    cellspacing="0"
+                    cellpadding="0"
+                    style="width:600px;border-collapse:collapse;background:inherit;color:inherit"
+                >
+        <tbody><tr>
+            <td
+                                valign="center"
+                                width="200"
+                                style="padding:10px 10px 10px 5px;font-size: 12px"
+                            >
+                <img
+                                    src="/logo.png"
+                                    style="padding: 0px; margin: 0px; height: auto; width: 80px;"
+                                    alt="${user.company_id.name}"
+                                />
+            </td>
+        </tr></tbody>
+    </table>
+</div>
+<div
+                style="padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777"
+            >
+<p>Dear ${object.driver_id.name},</p>
+    <p>
+        Attach transport order from "${object.company_id.name}".
+    </p>
+    <p>Best regards,</p>
+</div>
+<div
+                style="padding:0px;width:600px;margin:auto; margin-top: 10px; background: #fff repeat top /100%;color:#777777"
+            >
+    ${user.signature | safe}
+</div>
+    </field>
+</record>
+
+<act_window
+        id="action_transport_order_email"
+        name="Send Transport Order"
+        res_model="mail.compose.message"
+        binding_model="project.task"
+        view_mode="form"
+        target="new"
+        context="{
+                'default_composition_mode': 'mass_mail',
+                'default_partner_to': '${object.driver_id.id or \'\'}',
+                'default_use_template': True,
+                'default_template_id': ref('transport_order_email'),
+            }"
+    />
+
+</odoo>

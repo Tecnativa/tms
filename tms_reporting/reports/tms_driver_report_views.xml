@@ -1,0 +1,61 @@
+<?xml version="1.0" ?>
+<!-- Copyright 2017 Sergio Teruel <sergio.teruel@tecnativa.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+<record id="view_order_driver_pivot" model="ir.ui.view">
+    <field name="name">tms.driver.report.pivot</field>
+    <field name="model">tms.driver.report</field>
+    <field name="arch" type="xml">
+        <pivot string="Order Drivers">
+            <field name="driver_id" type="row" />
+            <field name="date" interval="day" type="col" />
+            <field name="nbr_order" type="measure" />
+            <field name="nbr_order_line" type="measure" />
+            <field name="nbr_partner_12" type="measure" />
+            <field name="price_subtotal" type="measure" />
+        </pivot>
+    </field>
+</record>
+
+<record id="view_order_driver_search" model="ir.ui.view">
+    <field name="name">tms.driver.report.search</field>
+    <field name="model">tms.driver.report</field>
+    <field name="arch" type="xml">
+        <search string="Order Driver Search">
+            <field name="driver_id" operator="child_of" />
+            <field name="date" />
+        </search>
+    </field>
+</record>
+
+<record id="view_order_driver_tree" model="ir.ui.view">
+    <field name="name">tms.driver.report.tree</field>
+    <field name="model">tms.driver.report</field>
+    <field name="arch" type="xml">
+        <tree>
+            <field name="driver_id" />
+            <field name="date" />
+            <field name="nbr_order" />
+            <field name="nbr_order_line" />
+            <field name="nbr_partner_12" />
+            <field name="price_subtotal" />
+        </tree>
+    </field>
+</record>
+
+<record id="action_view_order_driver" model="ir.actions.act_window">
+    <field name="name">Driver Analysis</field>
+    <field name="res_model">tms.driver.report</field>
+    <field name="view_mode">pivot,tree,graph</field>
+    <field name="search_view_id" ref="view_order_driver_search" />
+</record>
+
+<menuitem
+        id="menu_report_order_driver"
+        action="action_view_order_driver"
+        parent="sale.menu_sale_report"
+        sequence="50"
+    />
+
+</odoo>

@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <!-- Select template from tms print template-->
+    <template
+        id="report_invoice"
+        inherit_id="account.report_invoice_with_payments"
+        priority="100"
+    >
+        <xpath expr="//t[@t-call='account.report_invoice_document']" position="replace">
+            <t
+                t-set="pt"
+                t-value="o.tms_print_template_id or o.partner_shipping_id.tms_print_template_id or o.partner_id.tms_print_template_id"
+            />
+            <t t-if="not pt.print_template_type">
+                <t t-call="account.report_invoice_document" t-lang="lang" />
+            </t>
+            <t t-elif="pt.print_template_type == 'dynamic'">
+                <t
+                    t-call="tms_reporting.tms_report_dynamic_invoice_document"
+                    t-lang="lang"
+                />
+            </t>
+        </xpath>
+    </template>
+
+    <template
+        id="tms_report_dynamic_invoice_document"
+        inherit_id="account.report_invoice_document"
+        primary="True"
+        priority="100"
+    >
+        <xpath expr="//table[@name='invoice_line_table']" position="replace">
+            <t t-call="tms_reporting.tms_base_invoice_document" />
+        </xpath>
+    </template>
+
+    <template id="tms_base_invoice_document">
+        <table class="table table-sm o_main_table" name="invoice_line_table">
+            <thead>
+                <tr>
+                    <th t-if="pt.display_order">Order</th>
+                    <th t-if="pt.display_date">Date</th>
+                    <th t-if="pt.display_client_ref">Client Ref.</th>
+                    <th t-if="pt.display_description">Description</th>
+                    <th t-if="pt.display_vehicle">Vehicle</th>
+                    <th t-if="pt.display_equipment">Equipment</th>
+                    <th t-if="pt.display_wagon">Wagon</th>
+                    <th t-if="pt.display_vessel">Vessel</th>
+                    <th t-if="pt.display_voyage_number">Voyage</th>
+                    <th t-if="pt.display_booking_number">Booking</th>
+                    <th t-if="pt.display_port">Port</th>
+                    <th t-if="pt.display_shipment_port">Shipment Port</th>
+                    <th t-if="pt.display_loading_port">Loading Port</th>
+                    <th t-if="pt.display_unloading_port">Unloading Port</th>
+                    <th t-if="pt.display_dua_ref">DUA</th>
+                    <th t-if="pt.display_tracking_ref">Ref. Load</th>
+                    <th t-if="pt.display_goods">Goods</th>
+                    <th t-if="pt.display_weight" class="text-right">Weight</th>
+                    <th t-if="pt.display_release">Release</th>
+                    <th
+                        t-if="pt.display_origin or pt.display_origin_zip or pt.display_origin_city"
+                    >Origin
+                    </th>
+                    <th
+                        t-if="pt.display_destination or pt.display_destination_zip or pt.display_destination_city"
+                    >Destination
+                    </th>
+                    <th
+                        t-if="pt.display_shipping_place or pt.display_shipping_place_zip or pt.display_shipping_place_city"
+                    >Place
+                    </th>
+                    <th t-if="pt.display_acceptance">Acceptance</th>
+                    <th t-if="pt.display_quantity" class="text-right">Quantity</th>
+                    <th t-if="pt.display_price" class="text-right">Unit Price</th>
+                    <th
+                        t-if="pt.display_discount and display_discount"
+                        class="text-right"
+                    >Disc.(%)
+                    </th>
+                    <th t-if="pt.display_taxes" class="text-right">Taxes</th>
+                    <th t-if="pt.display_total" class="text-right">Total</th>
+                </tr>
+            </thead>
+            <tbody class="invoice_tbody">
+                <t t-if="pt.field_order == 'pickup_date'">
+                    <t
+                        t-set="invoice_lines"
+                        t-value="o.invoice_line_ids.sorted(key=lambda x: ((x.sale_line_ids[:1].pickup_date or datetime.datetime.min).date(), x.sequence))"
+                    />
+                </t>
+                <t t-elif="pt.field_order == 'order_id'">
+                    <t
+                        t-set="invoice_lines"
+                        t-value="o.invoice_line_ids.sorted(key=lambda x: (x.sale_line_ids[:1].order_id.name or '', x.sequence))"
+                    />
+                </t>
+                <t t-else="">
+                    <t
+                        t-set="invoice_lines"
+                        t-value="o.invoice_line_ids.sorted('sequence')"
+                    />
+                </t>
+                <tr t-foreach="invoice_lines" t-as="l">
+                    <t
+                        t-set="order_line"
+                        t-value="o.reversed_entry_id and l.origin_line_id.sale_line_ids[:1] or l.sale_line_ids[:1]"
+                    />
+                    <t t-set="package" t-value="order_line.tms_package_ids" />
+                    <t
+                        t-set="shipping_place"
+                        t-value="order_line.unload_service and order_line.shipping_destination_id or order_line.shipping_origin_id"
+                    />
+                    <td t-if="pt.display_order">
+                        <span t-field="l.sale_line_ids[:1].order_id.name" />
+                    </td>
+                    <td t-if="pt.display_date">
+                        <t t-if="order_line.pickup_date">
+                            <span
+                                t-field="order_line.pickup_date"
+                                t-options="{'widget': 'date'}"
+                            />
+                        </t>
+                        <t t-else="1">
+                            <span
+                                t-field="order_line.order_id.date_order"
+                                t-options="{'widget': 'date'}"
+                            />
+                        </t>
+                    </td>
+                    <td t-if="pt.display_client_ref">
+                        <span t-field="order_line.order_id.client_order_ref" />
+                    </td>
+                    <td t-if="pt.display_description">
+                        <span t-field="l.name" />
+                    </td>
+                    <td t-if="pt.display_vehicle">
+                        <span t-field="order_line.tractor_id.license_plate" />
+                        <p t-field="order_line.trailer_id.license_plate" />
+                    </td>
+                    <td t-if="pt.display_equipment">
+                        <span t-field="order_line.equipment_id.name" />
+                    </td>
+                    <td t-if="pt.display_wagon">
+                        <span t-field="order_line.order_id.wagon" />
+                    </td>
+                    <td t-if="pt.display_vessel">
+                        <span t-field="order_line.order_id.vessel" />
+                    </td>
+                    <td t-if="pt.display_voyage_number">
+                        <span t-field="order_line.order_id.voyage_number" />
+                    </td>
+                    <td t-if="pt.display_booking_number">
+                        <span t-field="order_line.order_id.booking_number" />
+                    </td>
+                    <td t-if="pt.display_port">
+                        <span t-field="order_line.order_id.port_id" />
+                    </td>
+                    <td t-if="pt.display_shipment_port">
+                        <span t-field="order_line.order_id.shipment_port_id" />
+                    </td>
+                    <td t-if="pt.display_loading_port">
+                        <span t-field="order_line.order_id.loading_port_id" />
+                    </td>
+                    <td t-if="pt.display_unloading_port">
+                        <span t-field="order_line.order_id.unloading_port_id" />
+                    </td>
+                    <td t-if="pt.display_dua_ref">
+                        <span t-field="order_line.order_id.dua_ref" />
+                    </td>
+                    <td t-if="pt.display_tracking_ref">
+                        <span
+                            t-esc="' / '.join(package.filtered('carrier_tracking_ref').mapped('carrier_tracking_ref'))"
+                        />
+                    </td>
+                    <td t-if="pt.display_goods">
+                        <span
+                            t-esc="' / '.join(package.filtered('goods_id').mapped('goods_id.name'))"
+                        />
+                    </td>
+                    <td t-if="pt.display_weight" class="text-right">
+                        <span
+                            t-esc="sum(order_line.tms_package_ids.mapped('shipping_weight'))"
+                        />
+                    </td>
+                    <td t-if="pt.display_release">
+                        <span t-field="order_line.order_id.release_id.display_name" />
+                    </td>
+                    <td
+                        t-if="pt.display_origin or pt.display_origin_zip or pt.display_origin_city"
+                    >
+                        <span
+                            t-if="pt.display_origin_zip"
+                            t-field="order_line.shipping_origin_id.zip"
+                        />
+                        <span
+                            t-if="pt.display_origin_city"
+                            t-field="order_line.shipping_origin_id.city"
+                        />
+                        <span
+                            t-if="pt.display_origin"
+                            t-field="order_line.shipping_origin_id.display_name"
+                        />
+                    </td>
+                    <td
+                        t-if="pt.display_destination or pt.display_destination_zip or pt.display_destination_city"
+                    >
+                        <span
+                            t-if="pt.display_destination_zip"
+                            t-field="order_line.shipping_destination_id.zip"
+                        />
+                        <span
+                            t-if="pt.display_destination_city"
+                            t-field="order_line.shipping_destination_id.city"
+                        />
+                        <span
+                            t-if="pt.display_destination"
+                            t-field="order_line.shipping_destination_id.display_name"
+                        />
+                    </td>
+                    <td
+                        t-if="pt.display_shipping_place or pt.display_shipping_place_zip or pt.display_shipping_place_city"
+                    >
+                        <span
+                            t-if="pt.display_shipping_place_zip"
+                            t-field="shipping_place.zip"
+                        />
+                        <span
+                            t-if="pt.display_shipping_place_city"
+                            t-field="shipping_place.city"
+                        />
+                        <span
+                            t-if="pt.display_shipping_place"
+                            t-field="shipping_place.display_name"
+                        />
+                    </td>
+                    <td t-if="pt.display_acceptance">
+                        <span
+                            t-field="order_line.order_id.acceptance_id.display_name"
+                        />
+                    </td>
+                    <td t-if="pt.display_quantity" class="text-right">
+                        <span t-field="l.quantity" />
+                        <span t-field="l.uom_id" groups="uom.group_uom" />
+                    </td>
+                    <td t-if="pt.display_price" class="text-right">
+                        <span t-field="l.price_unit" />
+                    </td>
+                    <td
+                        t-if="pt.display_discount and display_discount"
+                        class="text-right"
+                    >
+                        <span t-field="l.discount" />
+                    </td>
+                    <td t-if="pt.display_taxes" class="text-right">
+                        <span
+                            t-esc="', '.join(map(lambda x: (x.description or x.name), l.tax_ids))"
+                        />
+                    </td>
+                    <td t-if="pt.display_total" class="text-right">
+                        <span
+                            t-field="l.price_subtotal"
+                            t-options='{"widget": "monetary", "display_currency": o.currency_id}'
+                        />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </template>
+
+</odoo>

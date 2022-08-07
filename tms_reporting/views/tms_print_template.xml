@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2017 Sergio Teruel - Tecnativa <sergio.teruel@tecnativa.com>
+     Copyright 2017 Carlos Dauden - Tecnativa <carlos.dauden@tecnativa.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+<record id="tms_print_template_tree_view" model="ir.ui.view">
+    <field name="name">tms.print.template.tree</field>
+    <field name="model">tms.print.template</field>
+    <field name="arch" type="xml">
+        <tree>
+            <field name="name" />
+            <field name="print_template_type" />
+            <field name="field_order" />
+            <field name="display_order" />
+            <field name="display_date" />
+            <field name="display_client_ref" />
+            <field name="display_description" />
+            <field name="display_vehicle" />
+            <field name="display_equipment" />
+            <field name="display_wagon" />
+            <field name="display_vessel" />
+            <field name="display_voyage_number" />
+            <field name="display_booking_number" />
+            <field name="display_port" />
+            <field name="display_shipment_port" />
+            <field name="display_loading_port" />
+            <field name="display_unloading_port" />
+            <field name="display_dua_ref" />
+            <field name="display_tracking_ref" />
+            <field name="display_goods" />
+            <field name="display_weight" />
+            <field name="display_release" />
+            <field name="display_origin_zip" />
+            <field name="display_origin_city" />
+            <field name="display_origin" />
+            <field name="display_destination_zip" />
+            <field name="display_destination_city" />
+            <field name="display_destination" />
+            <field name="display_shipping_place_zip" />
+            <field name="display_shipping_place_city" />
+            <field name="display_shipping_place" />
+            <field name="display_acceptance" />
+            <field name="display_quantity" />
+            <field name="display_price" />
+            <field name="display_discount" />
+            <field name="display_taxes" />
+            <field name="display_total" />
+        </tree>
+    </field>
+</record>
+
+<record id="tms_print_template_form_view" model="ir.ui.view">
+    <field name="name">tms.print.template.form</field>
+    <field name="model">tms.print.template</field>
+    <field name="arch" type="xml">
+        <form>
+            <sheet>
+                <group>
+                    <field name="name" />
+                    <field name="print_template_type" />
+                    <field name="field_order" />
+                </group>
+                <group>
+                    <field name="display_order" />
+                    <field name="display_date" />
+                    <field name="display_client_ref" />
+                    <field name="display_description" />
+                    <field name="display_vehicle" />
+                    <field name="display_equipment" />
+                    <field name="display_wagon" />
+                    <field name="display_vessel" />
+                    <field name="display_voyage_number" />
+                    <field name="display_booking_number" />
+                    <field name="display_port" />
+                    <field name="display_shipment_port" />
+                    <field name="display_loading_port" />
+                    <field name="display_unloading_port" />
+                    <field name="display_dua_ref" />
+                    <field name="display_tracking_ref" />
+                    <field name="display_goods" />
+                    <field name="display_weight" />
+                    <field name="display_release" />
+                    <field name="display_origin_zip" />
+                    <field name="display_origin_city" />
+                    <field name="display_origin" />
+                    <field name="display_destination_zip" />
+                    <field name="display_destination_city" />
+                    <field name="display_destination" />
+                    <field name="display_shipping_place_zip" />
+                    <field name="display_shipping_place_city" />
+                    <field name="display_shipping_place" />
+                    <field name="display_acceptance" />
+                    <field name="display_quantity" />
+                    <field name="display_price" />
+                    <field name="display_discount" />
+                    <field name="display_taxes" />
+                    <field name="display_total" />
+                </group>
+            </sheet>
+        </form>
+    </field>
+</record>
+
+<record id="tms_print_template_view_search" model='ir.ui.view'>
+    <field name="name">tms.print.template.search</field>
+    <field name="model">tms.print.template</field>
+    <field name="arch" type="xml">
+        <search string="Print Templates">
+            <field name="name" filter_domain="[('name', 'ilike', self)]" />
+        </search>
+    </field>
+</record>
+
+
+<record id="action_tms_print_template" model="ir.actions.act_window">
+    <field name="name">Print Templates</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">tms.print.template</field>
+    <field name="view_mode">tree,form</field>
+</record>
+
+<menuitem
+        id="menu_tms_print_template"
+        action="action_tms_print_template"
+        parent="tms.menu_tms_management"
+        sequence="35"
+        groups="sales_team.group_sale_manager"
+    />
+
+</odoo>

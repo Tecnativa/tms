@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_tms_driver_report,access_tms_driver_report,model_tms_driver_report,,1,1,1,1
+access_tms_print_template,access_tms_print_template,model_tms_print_template,,1,1,1,1

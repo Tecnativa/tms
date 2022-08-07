@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <!-- Do not load footer -->
+    <template
+        id="external_layout_standard_tms_order"
+        inherit_id="web.external_layout_standard"
+        primary="True"
+    >
+        <xpath
+            expr="//div[@t-attf-class='footer o_standard_footer o_company_#{company.id}_layout']"
+            position="attributes"
+        >
+            <attribute name="invisible">1</attribute>
+        </xpath>
+    </template>
+
+    <template
+        id="external_layout_tms_order"
+        inherit_id="web.external_layout"
+        primary="True"
+    >
+        <xpath
+            expr="//t[@t-if='company.external_report_layout_id']"
+            position="attributes"
+        >
+            <attribute
+                name="t-call"
+            >tms_reporting.external_layout_standard_tms_order</attribute>
+        </xpath>
+    </template>
+
+</odoo>

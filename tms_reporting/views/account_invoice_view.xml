@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+<record id="invoice_form" model="ir.ui.view">
+    <field name="name">account.invoice.form.tms.print.template</field>
+    <field name="model">account.move</field>
+    <field name="inherit_id" ref="account.view_move_form" />
+    <field name="arch" type="xml">
+        <xpath expr="//group[@id='other_tab_group']" position="inside">
+            <group
+                    string="Print template"
+                    name="tms_print_template"
+                    attrs="{'invisible': [('move_type', 'not in', ('out_invoice', 'out_refund', 'in_invoice', 'in_refund'))]}"
+                >
+                <field name="tms_print_template_id" />
+            </group>
+        </xpath>
+    </field>
+</record>
+
+</odoo>
