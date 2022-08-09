@@ -1,0 +1,327 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* tms_hr_leave_letter
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-08-09 08:02+0000\n"
+"PO-Revision-Date: 2022-08-09 10:03+0200\n"
+"Last-Translator: Sergio Teruel <sergio.teruel@tecnativa.com>\n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.3\n"
+
+#. module: tms_hr_leave_letter
+#: model:ir.actions.report,print_report_name:tms_hr_leave_letter.tms_hr_leave_letter
+msgid "'HR Leave Letter - %s' % object.display_name"
+msgstr ""
+
+#. module: tms_hr_leave_letter
+#: model_terms:ir.ui.view,arch_db:tms_hr_leave_letter.report_tms_hr_leave_letter_document
+msgid "(10)"
+msgstr "(10)"
+
+#. module: tms_hr_leave_letter
+#: model_terms:ir.ui.view,arch_db:tms_hr_leave_letter.report_tms_hr_leave_letter_document
+msgid "(11)"
+msgstr "(11)"
+
+#. module: tms_hr_leave_letter
+#: model_terms:ir.ui.view,arch_db:tms_hr_leave_letter.report_tms_hr_leave_letter_document
+msgid "(12)"
+msgstr "(12)"
+
+#. module: tms_hr_leave_letter
+#: model_terms:ir.ui.view,arch_db:tms_hr_leave_letter.report_tms_hr_leave_letter_document
+msgid "(13)"
+msgstr "(13)"
+
+#. module: tms_hr_leave_letter
+#: model_terms:ir.ui.view,arch_db:tms_hr_leave_letter.report_tms_hr_leave_letter_document
+msgid "(14)"
+msgstr "(14)"
+
+#. module: tms_hr_leave_letter
+#: model_terms:ir.ui.view,arch_db:tms_hr_leave_letter.report_tms_hr_leave_letter_document
+msgid "(15)"
+msgstr "(15)"
+
+#. module: tms_hr_leave_letter
+#: model_terms:ir.ui.view,arch_db:tms_hr_leave_letter.report_tms_hr_leave_letter_document
+msgid "(16)"
+msgstr "(16)"
+
+#. module: tms_hr_leave_letter
+#: model_terms:ir.ui.view,arch_db:tms_hr_leave_letter.report_tms_hr_leave_letter_document
+msgid "(17)"
+msgstr "(17)"
+
+#. module: tms_hr_leave_letter
+#: model_terms:ir.ui.view,arch_db:tms_hr_leave_letter.report_tms_hr_leave_letter_document
+msgid "(18)"
+msgstr "(18)"
+
+#. module: tms_hr_leave_letter
+#: model_terms:ir.ui.view,arch_db:tms_hr_leave_letter.report_tms_hr_leave_letter_document
+msgid "(19)"
+msgstr "(19)"
+
+#. module: tms_hr_leave_letter
+#: model_terms:ir.ui.view,arch_db:tms_hr_leave_letter.report_tms_hr_leave_letter_document
+msgid "(20)"
+msgstr "(20)"
+
+#. module: tms_hr_leave_letter
+#: model_terms:ir.ui.view,arch_db:tms_hr_leave_letter.report_tms_hr_leave_letter_document
+msgid "(21)"
+msgstr "(21)"
+
+#. module: tms_hr_leave_letter
+#: model_terms:ir.ui.view,arch_db:tms_hr_leave_letter.report_tms_hr_leave_letter_document
+msgid "(22)"
+msgstr "(22)"
+
+#. module: tms_hr_leave_letter
+#: model_terms:ir.ui.view,arch_db:tms_hr_leave_letter.report_tms_hr_leave_letter_document
+msgid "(REGULATION (EC) 561/2006 OR THE AETR)"
+msgstr "(REGLAMENTO (CE) Nº 561/2006 O AETR)"
+
+#. module: tms_hr_leave_letter
+#: model_terms:ir.ui.view,arch_db:tms_hr_leave_letter.report_tms_hr_leave_letter_document
+msgid ""
+"<span> I, the driver, confirm that I have not been driving a vehicle falling "
+"under the scope of Regulation (EC) 561/2006 or the AETR during the period "
+"mentioned above.</span>"
+msgstr ""
+"<span>El abajo firmante, conductor, confirma que no ha conducido un vehículo "
+"incluido en el ámbito de aplicación del Reglamento (CE) nº 561/2006 o del "
+"AETR durante el periodo antes mencionado.</span>"
+
+#. module: tms_hr_leave_letter
+#: model_terms:ir.ui.view,arch_db:tms_hr_leave_letter.report_tms_hr_leave_letter_document
+msgid ""
+"<span> drove a vehicle exempted from the scope of Regulation (EC) 561/2006 "
+"or the AETR***</span>"
+msgstr ""
+"<span> condujo un vehículo excluido del ámbito de aplicación del Reglamento "
+"CE (Nº 561/2006 o del AETR) ***</span>"
+
+#. module: tms_hr_leave_letter
+#: model_terms:ir.ui.view,arch_db:tms_hr_leave_letter.report_tms_hr_leave_letter_document
+msgid "<span> performed other work than driving***</span>"
+msgstr "<span> efectuó un trabajo distinto del de conducción ***</span>"
+
+#. module: tms_hr_leave_letter
+#: model_terms:ir.ui.view,arch_db:tms_hr_leave_letter.report_tms_hr_leave_letter_document
+msgid "<span> was available***</span>"
+msgstr "<span> estuvo disponible ***</span>"
+
+#. module: tms_hr_leave_letter
+#: model_terms:ir.ui.view,arch_db:tms_hr_leave_letter.report_tms_hr_leave_letter_document
+msgid "<span> was on annual leave***</span>"
+msgstr "<span> estuvo de vacaciones ***</span>"
+
+#. module: tms_hr_leave_letter
+#: model_terms:ir.ui.view,arch_db:tms_hr_leave_letter.report_tms_hr_leave_letter_document
+msgid "<span> was on leave or rest***</span>"
+msgstr "<span> estuvo de permiso o de descanso ***</span>"
+
+#. module: tms_hr_leave_letter
+#: model_terms:ir.ui.view,arch_db:tms_hr_leave_letter.report_tms_hr_leave_letter_document
+msgid "<span> was on sick leave***</span>"
+msgstr "<span> estuvo de baja por enfermedad ***</span>"
+
+#. module: tms_hr_leave_letter
+#: model_terms:ir.ui.view,arch_db:tms_hr_leave_letter.report_tms_hr_leave_letter_document
+msgid "<strong>ANNEX</strong>"
+msgstr "<strong>ANEXO</strong>"
+
+#. module: tms_hr_leave_letter
+#: model_terms:ir.ui.view,arch_db:tms_hr_leave_letter.report_tms_hr_leave_letter_document
+msgid "<strong>False attestations constitute an infringement</strong>"
+msgstr ""
+"<strong>LAS CERTIFICACIONES FALSAS CONSTITUYEN UNA INFRACCIÓN.</strong>"
+
+#. module: tms_hr_leave_letter
+#: model_terms:ir.ui.view,arch_db:tms_hr_leave_letter.report_tms_hr_leave_letter_document
+msgid "<strong>I, the undersigned:</strong>"
+msgstr "<strong>El abajo firmante:</strong>"
+
+#. module: tms_hr_leave_letter
+#: model_terms:ir.ui.view,arch_db:tms_hr_leave_letter.report_tms_hr_leave_letter_document
+msgid "<strong>Part to be filled in by the undertaking</strong>"
+msgstr "<strong>Parte que debe rellenar la empresa</strong>"
+
+#. module: tms_hr_leave_letter
+#: model_terms:ir.ui.view,arch_db:tms_hr_leave_letter.report_tms_hr_leave_letter_document
+msgid "<strong>declare that the driver:</strong>"
+msgstr "<strong>declara que el conductor:</strong>"
+
+#. module: tms_hr_leave_letter
+#: model_terms:ir.ui.view,arch_db:tms_hr_leave_letter.report_tms_hr_leave_letter_document
+msgid "<strong>for the period:</strong>"
+msgstr "<strong>durante el periodo :</strong>"
+
+#. module: tms_hr_leave_letter
+#: model_terms:ir.ui.view,arch_db:tms_hr_leave_letter.report_tms_hr_leave_letter_document
+msgid "ATTESTATION OF ACTIVITIES1"
+msgstr "CERTIFICACIÓN DE ACTIVIDADES"
+
+#. module: tms_hr_leave_letter
+#: model_terms:ir.ui.view,arch_db:tms_hr_leave_letter.report_tms_hr_leave_letter_document
+msgid "Date of birth (day/month/year):"
+msgstr "Fecha de nacimiento (día, mes, año):"
+
+#. module: tms_hr_leave_letter
+#: model_terms:ir.ui.view,arch_db:tms_hr_leave_letter.report_tms_hr_leave_letter_document
+msgid "Date:"
+msgstr "Fecha:"
+
+#. module: tms_hr_leave_letter
+#: model:ir.model.fields.selection,name:tms_hr_leave_letter.selection__hr_leave_type__leave_letter_type__do_other_work
+msgid "Do other work"
+msgstr "Haciendo otro trabajo"
+
+#. module: tms_hr_leave_letter
+#: model_terms:ir.ui.view,arch_db:tms_hr_leave_letter.report_tms_hr_leave_letter_document
+msgid "Driving licence or identity card or passport number:"
+msgstr ""
+"Número de permiso de conducción, de documento de identidad o de pasaporte:"
+
+#. module: tms_hr_leave_letter
+#: model_terms:ir.ui.view,arch_db:tms_hr_leave_letter.report_tms_hr_leave_letter_document
+msgid "E-mail address:"
+msgstr "Correo electrónico:"
+
+#. module: tms_hr_leave_letter
+#: model:ir.model,name:tms_hr_leave_letter.model_hr_employee
+msgid "Employee"
+msgstr "Empleado"
+
+#. module: tms_hr_leave_letter
+#: model_terms:ir.ui.view,arch_db:tms_hr_leave_letter.report_tms_hr_leave_letter_document
+msgid "Fax number (including international prefix): <span/>"
+msgstr "Número de fax (incluido el prefijo internacional): <span/>"
+
+#. module: tms_hr_leave_letter
+#: model:ir.model.fields.selection,name:tms_hr_leave_letter.selection__hr_leave_type__leave_letter_type__holidays_leave
+msgid "Holidays Leave"
+msgstr "Vacaciones"
+
+#. module: tms_hr_leave_letter
+#: model:ir.model.fields,field_description:tms_hr_leave_letter.field_hr_employee__initial_employment_date
+msgid "Initial Date of Employment"
+msgstr "Fecha inicial de empleo"
+
+#. module: tms_hr_leave_letter
+#: model:ir.actions.report,name:tms_hr_leave_letter.tms_hr_leave_letter
+msgid "Leave Letter"
+msgstr "Carta de ausencias"
+
+#. module: tms_hr_leave_letter
+#: model:ir.model.fields,field_description:tms_hr_leave_letter.field_hr_leave_type__leave_letter_type
+#, fuzzy
+#| msgid "Leave letter type"
+msgid "Leave Letter Type"
+msgstr "Tipo carta de ausencias"
+
+#. module: tms_hr_leave_letter
+#: model_terms:ir.ui.view,arch_db:tms_hr_leave_letter.report_tms_hr_leave_letter_document
+msgid "Name and first name:"
+msgstr "Apellidos y nombre:"
+
+#. module: tms_hr_leave_letter
+#: model_terms:ir.ui.view,arch_db:tms_hr_leave_letter.report_tms_hr_leave_letter_document
+msgid "Name of the undertaking:"
+msgstr "Nombre de la empresa:"
+
+#. module: tms_hr_leave_letter
+#: model:ir.model.fields.selection,name:tms_hr_leave_letter.selection__hr_leave_type__leave_letter_type__no_regulation_leave
+msgid "No Regulation Leave"
+msgstr "No regulada"
+
+#. module: tms_hr_leave_letter
+#: model_terms:ir.ui.view,arch_db:tms_hr_leave_letter.report_tms_hr_leave_letter_document
+msgid "Place:"
+msgstr "Lugar:"
+
+#. module: tms_hr_leave_letter
+#: model_terms:ir.ui.view,arch_db:tms_hr_leave_letter.report_tms_hr_leave_letter_document
+msgid "Position in the undertaking:"
+msgstr "Cargo en la empresa:"
+
+#. module: tms_hr_leave_letter
+#: model:ir.model.fields.selection,name:tms_hr_leave_letter.selection__hr_leave_type__leave_letter_type__rest_leave
+msgid "Rest Leave"
+msgstr "Desanso"
+
+#. module: tms_hr_leave_letter
+#: model:ir.model.fields.selection,name:tms_hr_leave_letter.selection__hr_leave_type__leave_letter_type__sick_leave
+msgid "Sick Leave"
+msgstr "Enfermedad"
+
+#. module: tms_hr_leave_letter
+#: model_terms:ir.ui.view,arch_db:tms_hr_leave_letter.report_tms_hr_leave_letter_document
+msgid "Signature of the driver:"
+msgstr "Firma del conductor:"
+
+#. module: tms_hr_leave_letter
+#: model_terms:ir.ui.view,arch_db:tms_hr_leave_letter.report_tms_hr_leave_letter_document
+msgid "Signature:"
+msgstr "Firma:"
+
+#. module: tms_hr_leave_letter
+#: model_terms:ir.ui.view,arch_db:tms_hr_leave_letter.report_tms_hr_leave_letter_document
+msgid "Street address, postal code, city, country:"
+msgstr "Dirección, código postal, ciudad, país:"
+
+#. module: tms_hr_leave_letter
+#: model_terms:ir.ui.view,arch_db:tms_hr_leave_letter.report_tms_hr_leave_letter_document
+msgid "Telephone number (including international prefix):"
+msgstr "Número de teléfono (incluido el prefijo internacional):"
+
+#. module: tms_hr_leave_letter
+#: model:ir.model,name:tms_hr_leave_letter.model_hr_leave_type
+msgid "Time Off Type"
+msgstr ""
+
+#. module: tms_hr_leave_letter
+#: model_terms:ir.ui.view,arch_db:tms_hr_leave_letter.report_tms_hr_leave_letter_document
+msgid ""
+"To be filled in by typing and signed before a journey. To be kept with the "
+"original control device records wherever they are required to be kept"
+msgstr ""
+"Deberá rellenarse a máquina y firmarse antes del viaje. Deberá conservarse "
+"junto con los datos originales registrados por el\n"
+"aparato de control, donde corresponda"
+
+#. module: tms_hr_leave_letter
+#: model:ir.model.fields.selection,name:tms_hr_leave_letter.selection__hr_leave_type__leave_letter_type__available
+msgid "Was available"
+msgstr "Estaba disponible"
+
+#. module: tms_hr_leave_letter
+#: model_terms:ir.ui.view,arch_db:tms_hr_leave_letter.report_tms_hr_leave_letter_document
+msgid "________________________________________"
+msgstr "_________________________________________"
+
+#. module: tms_hr_leave_letter
+#: model_terms:ir.ui.view,arch_db:tms_hr_leave_letter.report_tms_hr_leave_letter_document
+msgid "from (hour/day/month/year):"
+msgstr "desde (hora, día, mes, año):"
+
+#. module: tms_hr_leave_letter
+#: model_terms:ir.ui.view,arch_db:tms_hr_leave_letter.report_tms_hr_leave_letter_document
+msgid "to (hour/day/month/year):"
+msgstr "hasta (hora, día, mes, año):"
+
+#. module: tms_hr_leave_letter
+#: model_terms:ir.ui.view,arch_db:tms_hr_leave_letter.report_tms_hr_leave_letter_document
+msgid "who has started to work at the undertaking on (day/month/year):"
+msgstr "que empezó a trabajar en la empresa el (día, mes, año):"
