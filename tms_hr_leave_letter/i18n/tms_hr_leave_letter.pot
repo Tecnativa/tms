@@ -4,14 +4,21 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 13.0\n"
+"Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-08-09 08:02+0000\n"
+"PO-Revision-Date: 2022-08-09 08:02+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: tms_hr_leave_letter
+#: model:ir.actions.report,print_report_name:tms_hr_leave_letter.tms_hr_leave_letter
+msgid "'HR Leave Letter - %s' % object.display_name"
+msgstr ""
 
 #. module: tms_hr_leave_letter
 #: model_terms:ir.ui.view,arch_db:tms_hr_leave_letter.report_tms_hr_leave_letter_document
@@ -210,7 +217,7 @@ msgstr ""
 
 #. module: tms_hr_leave_letter
 #: model:ir.model.fields,field_description:tms_hr_leave_letter.field_hr_leave_type__leave_letter_type
-msgid "Leave letter type"
+msgid "Leave Letter Type"
 msgstr ""
 
 #. module: tms_hr_leave_letter

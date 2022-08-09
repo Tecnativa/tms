@@ -12,6 +12,7 @@
             name="print_report_name"
         >'HR Leave Letter - %s' % object.display_name</field>
         <field name="binding_type">report</field>
+        <field name="binding_model_id" ref="hr_holidays.model_hr_leave" />
     </record>
 
 </odoo>
