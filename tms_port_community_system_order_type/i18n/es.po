@@ -1,0 +1,28 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* tms_port_community_system_order_type
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-08-30 14:08+0000\n"
+"PO-Revision-Date: 2022-08-30 16:09+0200\n"
+"Last-Translator: Sergio Teruel <sergio.teruel@tecnativa.com>\n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#. module: tms_port_community_system_order_type
+#: model:ir.model.fields,field_description:tms_port_community_system_order_type.field_tms_pcs_backend__sale_order_type_id
+msgid "Sale Order Type"
+msgstr "Tipo de pedido de venta"
+
+#. module: tms_port_community_system_order_type
+#: model:ir.model,name:tms_port_community_system_order_type.model_tms_pcs_backend
+msgid "TMS Valencia ports backend"
+msgstr "TMS Valencia ports backend"
