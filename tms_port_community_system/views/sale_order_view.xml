@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+<record id="view_order_form" model="ir.ui.view">
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="tms.view_order_form" />
+    <field name="arch" type="xml">
+        <group name="ports" position="after">
+            <group name="pcs_info">
+                <field name="pcs_message_function" readonly="0" />
+                <field name="pcs_message_number" readonly="0" />
+            </group>
+        </group>
+        <!-- For technical purpose -->
+        <xpath expr="//header/button[last()]" position="after">
+            <button
+                    name="reprocess_attach_file"
+                    type="object"
+                    string="Re-process attach"
+                    invisible="1"
+                />
+        </xpath>
+    </field>
+</record>
+
+<record id="view_sales_order_line_input_tree" model="ir.ui.view">
+    <field name="model">sale.order.line</field>
+    <field
+            name="inherit_id"
+            ref="tms_sale_quick_input.view_sales_order_line_input_tree"
+        />
+    <field name="arch" type="xml">
+        <field name="product_uom" position="after">
+            <field name="pcs_message_function" invisible="1" />
+        </field>
+        <xpath expr="//tree" position="attributes">
+            <attribute
+                    name="decoration-danger"
+                >pcs_message_function == 'CANCELLATION'</attribute>
+        </xpath>
+    </field>
+</record>
+
+<record id="view_order_tree" model="ir.ui.view">
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale.view_order_tree" />
+    <field name="arch" type="xml">
+        <field name="name" position="after">
+            <field name="pcs_message_function" invisible="1" />
+        </field>
+        <xpath expr="//tree" position="attributes">
+            <attribute
+                    name="decoration-danger"
+                >pcs_message_function == 'CANCELLATION'</attribute>
+        </xpath>
+    </field>
+</record>
+
+<record id="view_quotation_tree" model="ir.ui.view">
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale.view_quotation_tree" />
+    <field name="arch" type="xml">
+        <field name="name" position="after">
+            <field name="pcs_message_function" invisible="1" />
+        </field>
+        <xpath expr="//tree" position="attributes">
+            <attribute
+                    name="decoration-danger"
+                >pcs_message_function == 'CANCELLATION'</attribute>
+        </xpath>
+    </field>
+</record>
+
+</odoo>
