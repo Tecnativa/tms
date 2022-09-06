@@ -40,6 +40,10 @@ class FleetVehicle(models.Model):
         Task = self.env["project.task"]
         max_tasks = self.env.context.get("max_vehicle_tasks", 0)
         for vehicle in self:
+            if vehicle.vehicle_type not in ["tractor", "trailer"]:
+                vehicle.task_count = 0.0
+                vehicle.is_available = False
+                continue
             tms_date = self.env.context.get("tms_date")
             task_field = "%s_id" % (vehicle.vehicle_type or "tractor")
             domain = [(task_field, "=", vehicle.id), ("stage_id.fold", "=", False)]
