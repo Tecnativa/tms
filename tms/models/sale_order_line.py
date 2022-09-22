@@ -105,6 +105,7 @@ class SaleOrderLine(models.Model):
         vals.update(sol_task_vals)
         vals.update(
             {
+                # TODO: Check if (5,0,0) is needed
                 "user_ids": False,
                 "date_start": self.pickup_date,
                 "date_deadline": fields.Date.to_string(

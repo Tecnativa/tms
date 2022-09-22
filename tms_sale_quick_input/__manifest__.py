@@ -16,7 +16,6 @@
         "sale_order_line_input",
     ],
     "data": [
-        "security/quick_input_security.xml",
         "views/sale_view.xml",
     ],
 }

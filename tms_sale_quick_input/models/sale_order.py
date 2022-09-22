@@ -51,39 +51,33 @@ class SaleOrderLine(models.Model):
         string="Volume for Shipping",
         compute="_compute_shipping_volume",
         inverse="_inverse_shipping_volume",
-        groups="tms.group_tms_volume",
     )
     shipping_weight = fields.Float(
         digits="TMS Weight",
         string="Weight for Shipping",
         compute="_compute_shipping_weight",
         inverse="_inverse_shipping_weight",
-        groups="tms.group_tms_weight",
     )
     number_of_packages = fields.Integer(
         string="Number of Packages",
         compute="_compute_number_of_packages",
         inverse="_inverse_number_of_packages",
-        groups="tms.group_tms_package",
     )
     pallet_qty = fields.Integer(
         string="Pallets",
         compute="_compute_pallet_qty",
         inverse="_inverse_pallet_qty",
-        groups="tms.group_tms_pallet",
     )
     euro_pallet_qty = fields.Integer(
         string="Euro Pallets",
         compute="_compute_euro_pallet_qty",
         inverse="_inverse_euro_pallet_qty",
-        groups="tms.group_tms_pallet",
     )
     goods_id = fields.Many2one(
         comodel_name="tms.goods",
         string="Goods",
         ondelete="restrict",
         related="tms_package_ids.goods_id",
-        groups="tms.group_tms_goods",
         readonly=False,
     )
     carrier_tracking_ref = fields.Char(

@@ -60,7 +60,7 @@ class TestTMS(common.TransactionCase):
         cls.partner_origin = cls.env["res.partner"].create(
             {
                 "name": "Origin Test",
-                "company_type": "company",
+                "is_shipping_place": True,
             }
         )
 
@@ -68,7 +68,7 @@ class TestTMS(common.TransactionCase):
         cls.partner_destination = cls.env["res.partner"].create(
             {
                 "name": "Destination Test",
-                "company_type": "company",
+                "is_shipping_place": True,
             }
         )
 

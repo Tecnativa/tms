@@ -476,6 +476,7 @@ class ProjectTask(models.Model):
             if google_key:
                 params.update({"key": google_key})
             try:
+                # TODO: test after change simplejson to json
                 result = json.loads(requests.get(url, params=params).content)
                 total_distance = total_duration = 0.0
                 if result["status"] != "OK":

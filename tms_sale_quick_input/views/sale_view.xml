@@ -201,7 +201,6 @@
         action="action_order_lines_quick_input"
         parent="tms.menu_tms_management"
         sequence="0"
-        groups="group_tms_sale_quick_input"
     />
 
 </odoo>
