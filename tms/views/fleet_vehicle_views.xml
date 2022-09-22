@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!-- Copyright 2022 Sergio Teruel <sergio.teruel@tecnativa.com>
-     Copyright 2022 César A. Sánchez
+     Copyright 2022 Carlos Dauden
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
 
@@ -39,6 +39,38 @@
                     <field name="task_count" widget="statinfo" string="Tasks" />
                 </button>
             </xpath>
+        <!-- Extend options vehicle_type car to tractor and trailer -->
+            <!--  Odometer smartbutton-->
+            <xpath expr="//field[@name='odometer_count']/.." position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': [('vehicle_type', 'not in', ('car', 'tractor', 'trailer'))]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='horsepower']/.." position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': [('vehicle_type', 'not in', ('car', 'bike', 'tractor'))]}</attribute>
+            </xpath>
+            <field name="acquisition_date" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': [('vehicle_type', 'not in', ('car', 'tractor', 'trailer'))]}</attribute>
+            </field>
+            <xpath expr="//label[@for='odometer']" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': [('vehicle_type', 'not in', ('car', 'tractor', 'trailer'))]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='odometer']/.." position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': [('vehicle_type', 'not in', ('car', 'tractor', 'trailer'))]}</attribute>
+            </xpath>
+            <field name="transmission" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': [('vehicle_type', 'not in', ('car', 'bike', 'tractor'))]}</attribute>
+            </field>
         </field>
     </record>
 
