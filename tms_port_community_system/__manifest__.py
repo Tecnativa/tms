@@ -16,6 +16,7 @@
         "tms",
         "tms_sale_quick_input",
     ],
+    "external_dependencies": {"python": ["suds-bis"]},
     "data": [
         "security/ir.model.access.csv",
         "data/tms_port_community_system_data.xml",
