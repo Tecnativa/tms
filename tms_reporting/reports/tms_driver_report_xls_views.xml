@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <report
-        id="tms_driver_report_xlsx"
-        model="tms.driver.report"
-        string="Print to XLSX"
-        report_type="xlsx"
-        name="tms_reporting.tms_driver_report_xlsx"
-        file="tms.driver.report.xlsx"
-        attachment_use="False"
-    />
+    <record id="tms_driver_report_xlsx" model="ir.actions.report">
+        <field name="name">Print to XLSX</field>
+        <field name="model">tms.driver.report</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">tms_reporting.tms_driver_report_xlsx</field>
+        <field name="report_file">tms.driver.report.xlsx</field>
+        <field name="attachment_use">False</field>
+    </record>
 
 </odoo>

@@ -55,19 +55,18 @@
     </field>
 </record>
 
-<act_window
-        id="action_transport_order_email"
-        name="Send Transport Order"
-        res_model="mail.compose.message"
-        binding_model="project.task"
-        view_mode="form"
-        target="new"
-        context="{
-                'default_composition_mode': 'mass_mail',
-                'default_partner_to': '${object.driver_id.id or \'\'}',
-                'default_use_template': True,
-                'default_template_id': ref('transport_order_email'),
-            }"
-    />
+<record id="action_transport_order_email" model="ir.actions.act_window">
+    <field name="name">Send Transport Order</field>
+    <field name="res_model">mail.compose.message</field>
+    <field name="binding_model_id" ref="model_project_task" />
+    <field name="view_mode">form</field>
+    <field name="target">new</field>
+    <field name="context">{
+            'default_composition_mode': 'mass_mail',
+            'default_partner_to': '${object.driver_id.id or \'\'}',
+            'default_use_template': True,
+            'default_template_id': ref('transport_order_email'),
+        }</field>
+</record>
 
 </odoo>

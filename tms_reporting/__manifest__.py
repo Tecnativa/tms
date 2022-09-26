@@ -26,7 +26,7 @@
         "views/report_transport_order.xml",
         "reports/tms_driver_report_views.xml",
         "reports/tms_driver_report_xls_views.xml",
-        "reports/package_datail_report.xml",
+        "reports/package_detail_report.xml",
         "views/report_package_detail.xml",
         "views/project_task_view.xml",
         "views/report_account_invoice.xml",

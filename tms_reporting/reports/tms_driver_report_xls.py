@@ -7,6 +7,7 @@ from odoo import models
 class TmsDriverReportXlsx(models.AbstractModel):
     _name = "report.tms_reporting.tms_driver_report_xlsx"
     _inherit = "report.report_xlsx.abstract"
+    _description = "TMS Driver Report XLSX"
 
     def generate_xlsx_report(self, workbook, data, drivers):
         report_name = "Drivers_report"

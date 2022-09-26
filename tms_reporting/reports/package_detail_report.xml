@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="report_tms_package_detail" model="ir.actions.report">
+        <field name="name">Package Detail</field>
+        <field name="model">project.task</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">tms_reporting.tms_package_detail</field>
+        <field name="report_file">tms_reporting.tms_package_detail</field>
+    </record>
+
+</odoo>
