@@ -1,10 +1,10 @@
 # Copyright 2021 Tecnativa - Carlos Roca
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo.exceptions import UserError
-from odoo.tests import Form, SavepointCase
+from odoo.tests import Form, common
 
 
-class TestTmsSaleQuickInput(SavepointCase):
+class TestTmsSaleQuickInput(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
