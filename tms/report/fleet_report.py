@@ -9,7 +9,7 @@ class FleetReport(models.Model):
 
     vehicle_type = fields.Selection(
         selection_add=[
-            ("tractor", "Tractor"),
+            ("tractor", "Cargo vehicle"),
             ("trailer", "Trailer"),
         ],
     )

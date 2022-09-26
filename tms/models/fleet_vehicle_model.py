@@ -10,7 +10,7 @@ class FleetVehicleModel(models.Model):
 
     vehicle_type = fields.Selection(
         selection_add=[
-            ("tractor", "Tractor"),
+            ("tractor", "Cargo vehicle"),
             ("trailer", "Trailer"),
         ],
         ondelete={"tractor": "set default", "trailer": "set default"},

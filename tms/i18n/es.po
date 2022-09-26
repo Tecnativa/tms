@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: 2022-04-29 17:51+0200\n"
+"POT-Creation-Date: 2022-09-26 08:54+0000\n"
+"PO-Revision-Date: 2022-09-26 11:03+0200\n"
 "Last-Translator: Carlos Dauden <carlos.dauden@tecnativa.com>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: tms
 #: model_terms:ir.ui.view,arch_db:tms.view_task_kanban
@@ -91,12 +91,18 @@ msgid "Cancelled"
 msgstr "Cancelado"
 
 #. module: tms
+#: model:ir.model.fields.selection,name:tms.selection__fleet_vehicle_cost_report__vehicle_type__tractor
+#: model:ir.model.fields.selection,name:tms.selection__fleet_vehicle_model__vehicle_type__tractor
+msgid "Cargo vehicle"
+msgstr "Vehículo de carga"
+
+#. module: tms
 #: model:ir.model,name:tms.model_project_task_checkpoint
+#: model:ir.model.fields,field_description:tms.field_project_task__checkpoint_ids
 msgid "Checkpoint"
 msgstr "Punto de control"
 
 #. module: tms
-#: model:ir.model.fields,field_description:tms.field_project_task__checkpoint_ids
 #: model_terms:ir.ui.view,arch_db:tms.tms_view_task_form2
 msgid "Checkpoints"
 msgstr "Puntos de control"
@@ -241,7 +247,6 @@ msgstr "Terminal descarga"
 #: model:ir.model.fields,field_description:tms.field_project_task_checkpoint__display_name
 #: model:ir.model.fields,field_description:tms.field_res_partner_schedule__display_name
 #: model:ir.model.fields,field_description:tms.field_res_partner_zone__display_name
-#: model:ir.model.fields,field_description:tms.field_tms_analytic__display_name
 #: model:ir.model.fields,field_description:tms.field_tms_equipment__display_name
 #: model:ir.model.fields,field_description:tms.field_tms_goods__display_name
 #: model:ir.model.fields,field_description:tms.field_tms_goods_adr__display_name
@@ -317,7 +322,6 @@ msgstr "Duración estimada"
 #: model:ir.model.fields,field_description:tms.field_project_task__equipment_id
 #: model:ir.model.fields,field_description:tms.field_sale_order_line__equipment_id
 #: model_terms:ir.ui.view,arch_db:tms.tms_equipment_form_view
-#: model_terms:ir.ui.view,arch_db:tms.tms_equipment_tree_view
 msgid "Equipment"
 msgstr "Equipamiento"
 
@@ -366,6 +370,11 @@ msgid "Fleet"
 msgstr "Flota"
 
 #. module: tms
+#: model:ir.model,name:tms.model_fleet_vehicle_cost_report
+msgid "Fleet Analysis Report"
+msgstr ""
+
+#. module: tms
 #: model:ir.model.fields,field_description:tms.field_project_task__force_destination
 msgid "Force Destination"
 msgstr "Forzar destino"
@@ -400,7 +409,6 @@ msgstr "De"
 #: model:ir.model.fields,field_description:tms.field_product_template__goods_id
 #: model:ir.model.fields,field_description:tms.field_project_task__goods_id
 #: model:ir.model.fields,field_description:tms.field_tms_package__goods_id
-#: model:res.groups,name:tms.group_tms_goods
 msgid "Goods"
 msgstr "Mercancía"
 
@@ -439,7 +447,6 @@ msgstr "Le ayuda a gestionar TMS."
 #: model:ir.model.fields,field_description:tms.field_project_task_checkpoint__id
 #: model:ir.model.fields,field_description:tms.field_res_partner_schedule__id
 #: model:ir.model.fields,field_description:tms.field_res_partner_zone__id
-#: model:ir.model.fields,field_description:tms.field_tms_analytic__id
 #: model:ir.model.fields,field_description:tms.field_tms_equipment__id
 #: model:ir.model.fields,field_description:tms.field_tms_goods__id
 #: model:ir.model.fields,field_description:tms.field_tms_goods_adr__id
@@ -481,7 +488,6 @@ msgstr "Apunte contable"
 #: model:ir.model.fields,field_description:tms.field_project_task_checkpoint____last_update
 #: model:ir.model.fields,field_description:tms.field_res_partner_schedule____last_update
 #: model:ir.model.fields,field_description:tms.field_res_partner_zone____last_update
-#: model:ir.model.fields,field_description:tms.field_tms_analytic____last_update
 #: model:ir.model.fields,field_description:tms.field_tms_equipment____last_update
 #: model:ir.model.fields,field_description:tms.field_tms_goods____last_update
 #: model:ir.model.fields,field_description:tms.field_tms_goods_adr____last_update
@@ -575,6 +581,11 @@ msgid "Miscellaneous"
 msgstr "Miscelánea"
 
 #. module: tms
+#: model:ir.model,name:tms.model_fleet_vehicle_model
+msgid "Model of a vehicle"
+msgstr "Modelo de un vehículo"
+
+#. module: tms
 #: model:ir.model.fields,field_description:tms.field_iso6346_length__name
 #: model:ir.model.fields,field_description:tms.field_iso6346_second_size__name
 #: model:ir.model.fields,field_description:tms.field_iso6346_size_type__name
@@ -606,7 +617,7 @@ msgstr "No orden de transporte"
 
 #. module: tms
 #: model:ir.model.fields,field_description:tms.field_project_task__number_of_packages
-msgid "Number of Packages"
+msgid "Number Of Packages"
 msgstr "Número de bultos"
 
 #. module: tms
@@ -638,11 +649,6 @@ msgid "Own vehicle"
 msgstr "Vehículo propio"
 
 #. module: tms
-#: model:res.groups,name:tms.group_tms_package
-msgid "Package"
-msgstr "Paquete"
-
-#. module: tms
 #: model:ir.model.fields,field_description:tms.field_project_task__tms_package_ids
 #: model:ir.model.fields,field_description:tms.field_sale_order_line__tms_package_ids
 #: model_terms:ir.ui.view,arch_db:tms.tms_package_form_view
@@ -663,11 +669,6 @@ msgstr "Paquetes destino"
 #: model:ir.model.fields,field_description:tms.field_project_task_checkpoint__package_origin_ids
 msgid "Packages Origin"
 msgstr "Paquetes origen"
-
-#. module: tms
-#: model:res.groups,name:tms.group_tms_pallet
-msgid "Pallet"
-msgstr "Palet"
 
 #. module: tms
 #: model:ir.model.fields,field_description:tms.field_project_task__pallet_qty
@@ -805,11 +806,6 @@ msgid "Sale Lines"
 msgstr "Líneas de pedido de venta"
 
 #. module: tms
-#: model_terms:ir.ui.view,arch_db:tms.product_template_form_view
-msgid "Sale Options"
-msgstr "Opciones de venta"
-
-#. module: tms
 #: model_terms:ir.ui.view,arch_db:tms.tms_package_view_search
 msgid "Sale Order"
 msgstr "Pedido de venta"
@@ -835,23 +831,16 @@ msgid "Sales Order Item"
 msgstr "Elemento del pedido de venta"
 
 #. module: tms
+#: model:ir.model.fields,help:tms.field_project_task__sale_line_id
+msgid ""
+"Sales Order Item to which the time spent on this task will be added, in "
+"order to be invoiced to your customer."
+msgstr ""
+
+#. module: tms
 #: model:ir.model,name:tms.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Líneas de pedido"
-
-#. module: tms
-#: model:ir.model.fields,help:tms.field_project_task__sale_line_id
-msgid ""
-"Sales order item to which the task is linked. If an employee timesheets on a "
-"this task, and if this employee is not in the 'Employee/Sales Order Item "
-"Mapping' of the project, the timesheet entry will be linked to this sales "
-"order item."
-msgstr ""
-"Artículo de pedido de ventas al que está vinculada la tarea. Si las hojas de "
-"tiempo de un empleado en esta tarea, y si este empleado no está en la "
-"'Asignación de artículos de pedido de Empleado/Ventas' del proyecto, la "
-"entrada de la hoja de tiempo se vinculará a este artículo de pedido de "
-"ventas."
 
 #. module: tms
 #: model:ir.model.fields,field_description:tms.field_res_partner__schedule_ids
@@ -919,15 +908,9 @@ msgid "Show Route"
 msgstr "Mostrar ruta"
 
 #. module: tms
-#: model:res.groups,name:tms.group_tms_size
-msgid "Size"
-msgstr "Tamaño"
-
-#. module: tms
 #: model:ir.model.fields,field_description:tms.field_project_task__equipment_size_type_id
 #: model:ir.model.fields,field_description:tms.field_sale_order_line__equipment_size_type_id
 #: model:ir.model.fields,field_description:tms.field_tms_equipment__size_type_id
-#: model_terms:ir.ui.view,arch_db:tms.tms_equipment_size_type_tree_view
 #: model_terms:ir.ui.view,arch_db:tms.view_task_search_form
 msgid "Size Type"
 msgstr "Tipo medida"
@@ -995,16 +978,6 @@ msgid "TMS Goods Adr"
 msgstr "TMS ADR Mercancias"
 
 #. module: tms
-#: model:ir.module.category,name:tms.module_category_tms_measure
-msgid "TMS Measures"
-msgstr "Medidas TMS"
-
-#. module: tms
-#: model:ir.module.category,name:tms.module_category_tms_options
-msgid "TMS Options"
-msgstr "Opciones TMS"
-
-#. module: tms
 #: model:ir.model,name:tms.model_tms_package
 msgid "TMS Package"
 msgstr "TMS Paquete"
@@ -1043,8 +1016,8 @@ msgstr "¡El código debe ser único!"
 #. module: tms
 #: code:addons/tms/models/tms_equipment.py:0
 #, python-format
-msgid "The name is invalid: %s"
-msgstr "El nombre no es válido: %s"
+msgid "The name is invalid: %(error)s"
+msgstr "El nombre no es válido: %(error)s"
 
 #. module: tms
 #: code:addons/tms/models/tms_equipment.py:0
@@ -1052,6 +1025,11 @@ msgstr "El nombre no es válido: %s"
 #, python-format
 msgid "The name must be unique !"
 msgstr "¡El nombre debe ser único!"
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.product_template_form_view
+msgid "Tms Options"
+msgstr "Opciones TMS"
 
 #. module: tms
 #: model:ir.model.fields,field_description:tms.field_res_partner_schedule__hour_to
@@ -1085,7 +1063,6 @@ msgstr "Tracking Ref."
 #: model:ir.model.fields,field_description:tms.field_purchase_order_line__tractor_id
 #: model:ir.model.fields,field_description:tms.field_sale_order_line__tractor_id
 #: model:ir.model.fields,field_description:tms.field_tms_analytic__tractor_id
-#: model:ir.model.fields.selection,name:tms.selection__fleet_vehicle__vehicle_type__tractor
 #: model_terms:ir.ui.view,arch_db:tms.purchase_order_line_search
 #: model_terms:ir.ui.view,arch_db:tms.view_task_search_form
 msgid "Tractor"
@@ -1099,7 +1076,8 @@ msgstr "Tractora"
 #: model:ir.model.fields,field_description:tms.field_purchase_order_line__trailer_id
 #: model:ir.model.fields,field_description:tms.field_sale_order_line__trailer_id
 #: model:ir.model.fields,field_description:tms.field_tms_analytic__trailer_id
-#: model:ir.model.fields.selection,name:tms.selection__fleet_vehicle__vehicle_type__trailer
+#: model:ir.model.fields.selection,name:tms.selection__fleet_vehicle_cost_report__vehicle_type__trailer
+#: model:ir.model.fields.selection,name:tms.selection__fleet_vehicle_model__vehicle_type__trailer
 #: model_terms:ir.ui.view,arch_db:tms.purchase_order_line_search
 msgid "Trailer"
 msgstr "Remolque"
@@ -1139,7 +1117,6 @@ msgid "Transport Order"
 msgstr "Orden de transporte"
 
 #. module: tms
-#: model:ir.model.fields,field_description:tms.field_fleet_vehicle__vehicle_type
 #: model:ir.model.fields,field_description:tms.field_iso6346_size_type__type_id
 #: model:ir.model.fields,field_description:tms.field_project_task__sale_type_id
 #: model:ir.model.fields,field_description:tms.field_tms_equipment__equipment_type
@@ -1184,6 +1161,12 @@ msgid "Vehicle"
 msgstr "Vehículo"
 
 #. module: tms
+#: model:ir.model.fields,field_description:tms.field_fleet_vehicle_cost_report__vehicle_type
+#: model:ir.model.fields,field_description:tms.field_fleet_vehicle_model__vehicle_type
+msgid "Vehicle Type"
+msgstr "Tipo de vehículo"
+
+#. module: tms
 #: model:ir.ui.menu,name:tms.fleet_vehicle_menu
 msgid "Vehicles"
 msgstr "Vehículos"
@@ -1205,7 +1188,6 @@ msgstr "Bandera buque"
 #: model:ir.model.fields,field_description:tms.field_tms_package__shipping_volume
 #: model_terms:ir.ui.view,arch_db:tms.tms_package_tree_view
 #: model_terms:ir.ui.view,arch_db:tms.view_task_tree2
-#: model:res.groups,name:tms.group_tms_volume
 msgid "Volume"
 msgstr "Volumen"
 
@@ -1226,7 +1208,6 @@ msgstr "Vagón"
 #: model:ir.model.fields,field_description:tms.field_tms_package__shipping_weight
 #: model_terms:ir.ui.view,arch_db:tms.tms_package_tree_view
 #: model_terms:ir.ui.view,arch_db:tms.view_task_tree2
-#: model:res.groups,name:tms.group_tms_weight
 msgid "Weight"
 msgstr "Peso"
 
