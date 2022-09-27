@@ -20,9 +20,9 @@
         <field name="model">project.task</field>
         <field name="inherit_id" ref="project.view_task_form2" />
         <field name="arch" type="xml">
-            <field name="project_id" position="before">
+            <label for="project_id" position="before">
                 <field name="unload_service" />
-            </field>
+            </label>
             <page name="description_page" position="before">
                 <page name="tms_info" string="Transport Info">
                     <group>
@@ -380,7 +380,7 @@
                     <t t-if="record.equipment_size_type_id.raw_value">
                         <div class="oe_kanban_bottom_right">
                             <span>
-                                <i class='fa fa-th-large' />
+                                <i class='fa fa-th-large' title="Equipment size type" />
                                 <field name="equipment_size_type_id" />
                             </span>
                         </div>
