@@ -461,7 +461,11 @@
                                         />
                                     </p>
                                     <div class="row">
-                                        <div class="col-6" style="height: 50px">
+                                        <div
+                                            class="col-12"
+                                            style="height: 50px"
+                                            attrs="{'invisible': [('arrival_time', '!=', False)]}"
+                                        >
                                             <button
                                                 class="btn btn-primary w-100 h-100"
                                                 type="object"
@@ -471,7 +475,11 @@
                                                 Register Arrival
                                             </button>
                                         </div>
-                                        <div class="col-6">
+                                        <div
+                                            class="col-12"
+                                            style="height: 50px"
+                                            attrs="{'invisible': ['|', ('arrival_time', '=', False), ('departure_time', '!=', False)]}"
+                                        >
                                             <button
                                                 class="btn btn-warning w-100 h-100"
                                                 type="object"
