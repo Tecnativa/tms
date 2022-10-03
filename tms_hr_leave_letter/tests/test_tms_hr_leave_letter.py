@@ -12,6 +12,7 @@ class TestTmsHrLeaveLetter(TransactionCase):
     def setUpClass(cls):
         super().setUpClass()
         cls.user = new_test_user(cls.env, login="test-user")
+        cls.user.groups_id += cls.env.ref("hr_holidays.group_hr_holidays_user")
         cls.leave_type = cls._create_leave_type(cls)
         cls.department_model = cls.env["hr.department"].with_context(
             tracking_disable=True
