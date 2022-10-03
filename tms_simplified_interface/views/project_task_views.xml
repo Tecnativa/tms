@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright 2022 Tecnativa - Carlos Roca
+  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <record id="view_task_form_simplified" model="ir.ui.view">
+        <field name="name">project.task.form.simplified</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="tms.tms_view_task_form2" />
+        <field name="mode">primary</field>
+        <field name="priority">9999</field>
+        <field name="arch" type="xml">
+            <!-- Move checkpoints to first place -->
+            <xpath expr="//page[@name='tms_info']" position="before">
+                <xpath expr="//page[@name='tms_checkpoint']" position="move" />
+            </xpath>
+            <!-- Set task info at new page -->
+            <xpath expr="//page[@name='tms_info']" position="after">
+                <page name="tms_task" string="Task info" />
+            </xpath>
+            <xpath expr="//page[@name='tms_task']" position="inside">
+                <xpath expr="//label[@for='project_id']/../.." position="move" />
+            </xpath>
+            <!-- Hide unnecessary pages -->
+            <xpath expr="//page[@name='sub_tasks_page']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//page[@id='timesheets_tab']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//page[@name='extra_info']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <!-- Hide fields when they are not filled -->
+            <xpath expr="//field[@name='release_id']" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': [('release_id', '=', False)]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='acceptance_id']" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': [('acceptance_id', '=', False)]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='shipping_origin_id']" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': [('shipping_origin_id', '=', False)]}</attribute>
+            </xpath>
+            <xpath
+                expr="//field[@name='shipping_destination_id']"
+                position="attributes"
+            >
+                <attribute
+                    name="attrs"
+                >{'invisible': [('shipping_destination_id', '=', False)]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='force_origin']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='force_destination']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='tractor_id']" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': [('tractor_id', '=', False)]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='trailer_id']" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': [('trailer_id', '=', False)]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='driver_id']" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': [('driver_id', '=', False)]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='analytic_tag_ids']" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': [('analytic_tag_ids', '=', [])]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='wagon']" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': [('wagon', '=', False)]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='vessel']" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': [('vessel', '=', False)]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='voyage_number']" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': [('voyage_number', '=', False)]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='equipment_size_type_id']" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': [('equipment_size_type_id', '=', False)]}</attribute>
+            </xpath>
+            <xpath
+                expr="//field[@name='trailer_requirement_ids']"
+                position="attributes"
+            >
+                <attribute
+                    name="attrs"
+                >{'invisible': [('trailer_requirement_ids', '=', [])]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='equipment_id']" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': [('equipment_id', '=', False)]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='seal']" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': [('seal', '=', False)]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='port_id']" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': [('port_id', '=', False)]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='loading_port_id']" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': [('loading_port_id', '=', False)]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='shipment_port_id']" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': [('shipment_port_id', '=', False)]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='unloading_port_id']" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': [('unloading_port_id', '=', False)]}</attribute>
+            </xpath>
+        </field>
+    </record>
+    <record id="action_open_task_form_simplified" model="ir.actions.act_window">
+            <field name="name">Simplified Tasks</field>
+            <field name="res_model">project.task</field>
+            <field
+            name="view_mode"
+        >kanban,tree,form,calendar,pivot,graph,activity</field>
+            <field name="context">{'search_default_my_tasks': 1}</field>
+            <field name="domain">[('display_project_id', '!=', False)]</field>
+            <field name="search_view_id" ref="project.view_task_search_form" />
+            <field
+            name="view_ids"
+            eval="[(5, 0, 0),
+                (0, 0, {'view_mode':'kanban'}),
+                (0, 0, {'view_mode':'tree'}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('view_task_form_simplified')}),
+                (0, 0, {'view_mode':'calendar'}),
+                (0, 0, {'view_mode':'pivot'}),
+                (0, 0, {'view_mode':'graph'}),
+                (0, 0, {'view_mode':'activity'})]"
+        />
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No tasks found. Let's create one!
+                </p><p>
+                    To get things done, use activities and status on tasks.<br />
+                    Chat in real-time or by email to collaborate efficiently.
+                </p>
+            </field>
+        </record>
+    <menuitem
+        name="Task mobile view"
+        id="menu_mobile_task"
+        parent="tms.menu_tms_project"
+        action="action_open_task_form_simplified"
+        sequence="500"
+    />
+</odoo>
