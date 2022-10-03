@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-26 08:54+0000\n"
-"PO-Revision-Date: 2022-09-26 08:54+0000\n"
+"POT-Creation-Date: 2022-09-30 15:36+0000\n"
+"PO-Revision-Date: 2022-09-30 15:36+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,8 +16,77 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.tms_package_kanban_view
+msgid ""
+"<br/>\n"
+"                                            <strong>Customer:</strong>"
+msgstr ""
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.tms_package_kanban_view
+msgid ""
+"<br/>\n"
+"                                            <strong>Number of Packages:</strong>"
+msgstr ""
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.tms_package_kanban_view
+msgid ""
+"<br/>\n"
+"                                            <strong>Weight:</strong>"
+msgstr ""
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.project_task_checkpoint_kanban_view
+msgid ""
+"<i class=\"fa fa-sign-in\"/>\n"
+"                                                Register Arrival"
+msgstr ""
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.project_task_checkpoint_kanban_view
+msgid ""
+"<i class=\"fa fa-sign-out\"/>\n"
+"                                                Register Departure"
+msgstr ""
+
+#. module: tms
 #: model_terms:ir.ui.view,arch_db:tms.view_task_kanban
-msgid "<span><i class=\"fa fa-tasks\"/> Sub-Tasks</span>"
+msgid "<i class=\"fa fa-th-large\" title=\"Equipment size type\"/>"
+msgstr ""
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.view_task_kanban
+msgid ""
+"<span>\n"
+"                            <i class=\"fa fa-tasks\"/>\n"
+"                            Sub-Tasks\n"
+"                        </span>"
+msgstr ""
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.project_task_checkpoint_kanban_view
+msgid "<strong>Arrival:</strong><br/>"
+msgstr ""
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.project_task_checkpoint_kanban_view
+msgid "<strong>Departure:</strong><br/>"
+msgstr ""
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.tms_package_kanban_view
+msgid "<strong>Goods:</strong>"
+msgstr ""
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.project_task_checkpoint_kanban_view
+msgid "<strong>Stopped time:</strong>"
+msgstr ""
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.tms_package_kanban_view
+msgid "<strong>Volume:</strong>"
 msgstr ""
 
 #. module: tms
@@ -65,6 +134,11 @@ msgstr ""
 #. module: tms
 #: model:ir.model.fields,field_description:tms.field_project_task_checkpoint__arrival_time
 msgid "Arrival"
+msgstr ""
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_sale_order__auto_confirm
+msgid "Auto Confirm"
 msgstr ""
 
 #. module: tms

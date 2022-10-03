@@ -78,7 +78,12 @@
                         </group>
                     </group>
                     <group string="Packages">
-                        <field name="tms_package_ids" nolabel="1" colspan="2">
+                        <field
+                            name="tms_package_ids"
+                            nolabel="1"
+                            colspan="2"
+                            mode="tree,kanban"
+                        >
                             <tree editable="bottom" order="sequence, id DESC">
                                 <!--<field name="product_id" readonly="1"/>-->
                                 <field name="sequence" widget="handle" />
@@ -175,7 +180,7 @@
                         <field name="free_stoped_time" widget="float_time" />
                     </group>
                     <group>
-                        <field name="checkpoint_ids" nolabel="1">
+                        <field name="checkpoint_ids" nolabel="1" mode="tree,kanban">
                             <tree editable="bottom">
                                 <field name="sequence" widget="handle" />
                                 <field name="place_id" optional="show" />
@@ -427,5 +432,63 @@
     <!--</field>-->
     <!--</field>-->
     <!--</record>-->
+
+    <record id="project_task_checkpoint_kanban_view" model="ir.ui.view">
+        <field name="name">project.task.checkpoint.kanban</field>
+        <field name="model">project.task.checkpoint</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_card oe_kanban_global_click">
+                            <div class="o_kanban_card_content d-flex">
+                                <div class="card-body p-0">
+                                    <h2 class="card-title"><field name="name" /></h2>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <strong>Arrival:</strong><br />
+                                            <field name="arrival_time" />
+                                        </div>
+                                        <div class="col-6">
+                                            <strong>Departure:</strong><br />
+                                            <field name="departure_time" />
+                                        </div>
+                                    </div>
+                                    <p class="card-text mt-3">
+                                        <strong>Stopped time:</strong> <field
+                                            name="stopped_time"
+                                            widget="float_time"
+                                        />
+                                    </p>
+                                    <div class="row">
+                                        <div class="col-6" style="height: 50px">
+                                            <button
+                                                class="btn btn-primary w-100 h-100"
+                                                type="object"
+                                                name="register_arrival_time"
+                                            >
+                                                <i class="fa fa-sign-in" />
+                                                Register Arrival
+                                            </button>
+                                        </div>
+                                        <div class="col-6">
+                                            <button
+                                                class="btn btn-warning w-100 h-100"
+                                                type="object"
+                                                name="register_departure_time"
+                                            >
+                                                <i class="fa fa-sign-out" />
+                                                Register Departure
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
 
 </odoo>
