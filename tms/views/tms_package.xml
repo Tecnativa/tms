@@ -34,6 +34,57 @@
         </field>
     </record>
 
+    <record id="tms_package_kanban_view" model="ir.ui.view">
+        <field name="name">tms.package.kanban</field>
+        <field name="model">tms.package</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_card oe_kanban_global_click">
+                            <div class="o_kanban_card_content d-flex">
+                                <div class="card-body p-0">
+                                    <h1 class="card-title"><field name="name" /></h1>
+                                    <h6 class="card-subtitle mb-2 text-muted"><field
+                                            name="carrier_tracking_ref"
+                                        /></h6>
+                                    <p class="card-text">
+                                        <field name="shipping_origin_id" /> <span
+                                            class="fa fa-long-arrow-right"
+                                        /> <field name="shipping_destination_id" />
+                                        <br />
+                                        <field name="pickup_date" />
+                                    </p>
+                                    <div class="row">
+                                        <div class="col-7">
+                                            <strong>Goods:</strong> <field
+                                                name="goods_id"
+                                            /><br />
+                                            <strong>Customer:</strong> <field
+                                                name="customer_ref"
+                                            /><br />
+                                        </div>
+                                        <div class="col-5">
+                                            <strong>Volume:</strong> <field
+                                                name="shipping_volume"
+                                            /><br />
+                                            <strong>Weight:</strong> <field
+                                                name="shipping_weight"
+                                            /><br />
+                                            <strong>Number of Packages:</strong> <field
+                                                name="number_of_packages"
+                                            /><br />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
     <record id="tms_package_form_view" model="ir.ui.view">
         <field name="name">tms.package.form</field>
         <field name="model">tms.package</field>

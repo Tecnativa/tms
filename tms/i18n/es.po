@@ -6,20 +6,104 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-26 08:54+0000\n"
-"PO-Revision-Date: 2022-09-26 11:03+0200\n"
+"POT-Creation-Date: 2022-09-30 15:36+0000\n"
+"PO-Revision-Date: 2022-09-30 17:38+0200\n"
 "Last-Translator: Carlos Dauden <carlos.dauden@tecnativa.com>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 2.3\n"
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.tms_package_kanban_view
+msgid ""
+"<br/>\n"
+"                                            <strong>Customer:</strong>"
+msgstr ""
+"<br/>\n"
+"                                            <strong>Cliente:</strong>"
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.tms_package_kanban_view
+msgid ""
+"<br/>\n"
+"                                            <strong>Number of Packages:</"
+"strong>"
+msgstr ""
+"<br/>\n"
+"                                            <strong>Bultos:</strong>"
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.tms_package_kanban_view
+msgid ""
+"<br/>\n"
+"                                            <strong>Weight:</strong>"
+msgstr ""
+"<br/>\n"
+"                                            <strong>Peso:</strong>"
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.project_task_checkpoint_kanban_view
+msgid ""
+"<i class=\"fa fa-sign-in\"/>\n"
+"                                                Register Arrival"
+msgstr ""
+"<i class=\"fa fa-sign-in\"/>\n"
+"                                                Registrar Llegada"
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.project_task_checkpoint_kanban_view
+msgid ""
+"<i class=\"fa fa-sign-out\"/>\n"
+"                                                Register Departure"
+msgstr ""
+"<i class=\"fa fa-sign-out\"/>\n"
+"                                                Registrar Salida"
 
 #. module: tms
 #: model_terms:ir.ui.view,arch_db:tms.view_task_kanban
-msgid "<span><i class=\"fa fa-tasks\"/> Sub-Tasks</span>"
-msgstr "<span><i class=\"fa fa-tasks\"/> Sub-Tareas</span>"
+msgid "<i class=\"fa fa-th-large\" title=\"Equipment size type\"/>"
+msgstr "<i class=\"fa fa-th-large\" title=\"Tipo de tamaño del equipo\"/>"
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.view_task_kanban
+msgid ""
+"<span>\n"
+"                            <i class=\"fa fa-tasks\"/>\n"
+"                            Sub-Tasks\n"
+"                        </span>"
+msgstr ""
+"<span>\n"
+"                            <i class=\"fa fa-tasks\"/>\n"
+"                            Subtareas\n"
+"                        </span>"
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.project_task_checkpoint_kanban_view
+msgid "<strong>Arrival:</strong><br/>"
+msgstr "<strong>Llegada:</strong><br/>"
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.project_task_checkpoint_kanban_view
+msgid "<strong>Departure:</strong><br/>"
+msgstr "<strong>Salida:</strong><br/>"
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.tms_package_kanban_view
+msgid "<strong>Goods:</strong>"
+msgstr "<strong>Mercancía:</strong>"
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.project_task_checkpoint_kanban_view
+msgid "<strong>Stopped time:</strong>"
+msgstr "<strong>Tiempo paralización:</strong>"
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.tms_package_kanban_view
+msgid "<strong>Volume:</strong>"
+msgstr "<strong>Volumen:</strong>"
 
 #. module: tms
 #: model:ir.model.fields,field_description:tms.field_tms_goods__adr_id
@@ -67,6 +151,11 @@ msgstr "Línea analítica"
 #: model:ir.model.fields,field_description:tms.field_project_task_checkpoint__arrival_time
 msgid "Arrival"
 msgstr "Llegada"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_sale_order__auto_confirm
+msgid "Auto Confirm"
+msgstr "Autoconfirmar"
 
 #. module: tms
 #: model:ir.model.fields,field_description:tms.field_project_task_checkpoint__automatic
@@ -372,7 +461,7 @@ msgstr "Flota"
 #. module: tms
 #: model:ir.model,name:tms.model_fleet_vehicle_cost_report
 msgid "Fleet Analysis Report"
-msgstr ""
+msgstr "Informe de análisis de la flota"
 
 #. module: tms
 #: model:ir.model.fields,field_description:tms.field_project_task__force_destination
@@ -836,6 +925,8 @@ msgid ""
 "Sales Order Item to which the time spent on this task will be added, in "
 "order to be invoiced to your customer."
 msgstr ""
+"Partida del pedido de venta a la que se añadirá el tiempo empleado en esta "
+"tarea, para ser facturado a su cliente."
 
 #. module: tms
 #: model:ir.model,name:tms.model_sale_order_line
@@ -1256,3 +1347,6 @@ msgstr "oe_kanban_text_blue"
 #: model_terms:ir.ui.view,arch_db:tms.fleet_vehicle_view_form
 msgid "show the tasks for this vehicle"
 msgstr "Mostrar tareas para este vehículo"
+
+#~ msgid "<span><i class=\"fa fa-tasks\"/> Sub-Tasks</span>"
+#~ msgstr "<span><i class=\"fa fa-tasks\"/> Sub-Tareas</span>"

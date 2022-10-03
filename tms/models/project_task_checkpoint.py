@@ -64,3 +64,11 @@ class ProjectTaskCheckpoint(models.Model):
             checkpoint.stopped_time = (
                 checkpoint.departure_time - checkpoint.arrival_time
             ).total_seconds() / 3600
+
+    def register_arrival_time(self):
+        self.ensure_one()
+        self.arrival_time = fields.Datetime.now()
+
+    def register_departure_time(self):
+        self.ensure_one()
+        self.departure_time = fields.Datetime.now()
