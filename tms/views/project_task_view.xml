@@ -230,12 +230,6 @@
         <field name="inherit_id" ref="project.view_task_search_form" />
         <field name="arch" type="xml">
             <field name="name" position="after">
-                <field
-                    name="date_start"
-                    string="Start from"
-                    filter_domain="[('date_start', '&gt;=', self)]"
-                    context="{'tms_date': self}"
-                />
                 <field name="date_deadline" />
                 <field name="shipping_origin_id" />
                 <field name="shipping_destination_id" />
@@ -254,6 +248,19 @@
             <filter name="unassigned" position="after">
                 <separator />
                 <filter
+                    string="Today"
+                    name="date_start_today"
+                    domain="[('date_start','&gt;=', datetime.datetime.combine(context_today(), datetime.time(0,0,0))),
+                             ('date_start','&lt;=', datetime.datetime.combine(context_today(), datetime.time(23,59,59)))]"
+                />
+                <filter
+                    string="Tomorrow"
+                    name="date_start_tomorrow"
+                    domain="[('date_start','&gt;=', datetime.datetime.combine(context_today() + datetime.timedelta(days=1), datetime.time(0,0,0))),
+                             ('date_start','&lt;=', datetime.datetime.combine(context_today() + datetime.timedelta(days=1), datetime.time(23,59,59)))]"
+                />
+                <separator />
+                <filter
                     string="Unassigned Tractor"
                     name="unassigned_tractor"
                     domain="[('tractor_id', '=', False)]"
@@ -262,46 +269,45 @@
                 <filter
                     string="Pending"
                     name="pending"
-                    domain="[('stage_id.fold', '=', False)]"
+                    domain="[('stage_id.is_closed', '=', False)]"
                 />
-                <separator />
-                <filter
-                    string="Primary"
-                    name="parent_id"
-                    domain="[('parent_id', '=', False)]"
-                />
-                <separator />
-                <filter
-                    string="Origin"
-                    name="has_origin"
-                    domain="[('shipping_origin_id', '!=', False)]"
-                />
-                <separator />
-                <filter
-                    string="Destination"
-                    name="has_destination"
-                    domain="[('shipping_destination_id', '!=', False)]"
-                />
-                <separator />
                 <filter
                     string="In Progress"
                     name="in_progress"
-                    domain="[('stage_id.sequence', '&gt;', 1), ('stage_id.fold', '=', False)]"
+                    domain="[('stage_id.sequence', '&gt;', 1), ('stage_id.is_closed', '=', False)]"
                 />
                 <separator />
                 <filter
-                    string="Transport Order"
-                    name="is_transport_order"
-                    domain="[('is_transport_order', '=', True)]"
-                />
-                <filter
-                    string="Not Transport Order"
-                    name="not_is_transport_order"
-                    domain="[('is_transport_order', '=', False)]"
+                    string="Subtask hidden"
+                    name="subtask_hidden"
+                    domain="[('display_project_id', '!=', False)]"
                 />
                 <separator />
                 <filter name="date_start_month" string="Date start" date="date_start" />
                 <separator />
+<!--                <filter-->
+<!--                    string="Origin"-->
+<!--                    name="has_origin"-->
+<!--                    domain="[('shipping_origin_id', '!=', False)]"-->
+<!--                />-->
+<!--                <separator />-->
+<!--                <filter-->
+<!--                    string="Destination"-->
+<!--                    name="has_destination"-->
+<!--                    domain="[('shipping_destination_id', '!=', False)]"-->
+<!--                />-->
+<!--                <separator />-->
+<!--                <filter-->
+<!--                    string="Transport Order"-->
+<!--                    name="is_transport_order"-->
+<!--                    domain="[('is_transport_order', '=', True)]"-->
+<!--                />-->
+<!--                <filter-->
+<!--                    string="Not Transport Order"-->
+<!--                    name="not_is_transport_order"-->
+<!--                    domain="[('is_transport_order', '=', False)]"-->
+<!--                />-->
+<!--                <separator />-->
             </filter>
             <filter name="my_tasks" position="before">
                 <filter
@@ -498,5 +504,24 @@
             </kanban>
         </field>
     </record>
+
+    <!-- Copy from original to change domain and context  -->
+    <record id="action_view_task" model="ir.actions.act_window">
+        <field name="name">Tasks</field>
+        <field name="res_model">project.task</field>
+        <field name="view_mode">kanban,tree,form,calendar,pivot,graph,activity</field>
+        <field name="context">{'search_default_subtask_hidden': 1}</field>
+        <field name="domain">[]</field>
+        <field name="search_view_id" ref="project.view_task_search_form" />
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No tasks found. Let's create one!
+            </p><p>
+                To get things done, use activities and status on tasks.<br />
+                Chat in real-time or by email to collaborate efficiently.
+            </p>
+        </field>
+    </record>
+
 
 </odoo>

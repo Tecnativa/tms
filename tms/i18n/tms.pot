@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-30 15:36+0000\n"
-"PO-Revision-Date: 2022-09-30 15:36+0000\n"
+"POT-Creation-Date: 2022-10-14 18:20+0000\n"
+"PO-Revision-Date: 2022-10-14 18:20+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -53,6 +53,11 @@ msgstr ""
 #. module: tms
 #: model_terms:ir.ui.view,arch_db:tms.view_task_kanban
 msgid "<i class=\"fa fa-th-large\" title=\"Equipment size type\"/>"
+msgstr ""
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.tms_package_kanban_view
+msgid "<span class=\"fa fa-long-arrow-right\" title=\"From &gt; to\"/>"
 msgstr ""
 
 #. module: tms
@@ -298,7 +303,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:tms.field_project_task__shipping_destination_id
 #: model:ir.model.fields,field_description:tms.field_tms_package__shipping_destination_id
 #: model_terms:ir.ui.view,arch_db:tms.tms_package_view_search
-#: model_terms:ir.ui.view,arch_db:tms.view_task_search_form
 msgid "Destination"
 msgstr ""
 
@@ -684,8 +688,8 @@ msgid "Next Checkpoints"
 msgstr ""
 
 #. module: tms
-#: model_terms:ir.ui.view,arch_db:tms.view_task_search_form
-msgid "Not Transport Order"
+#: model_terms:ir.actions.act_window,help:tms.action_view_task
+msgid "No tasks found. Let's create one!"
 msgstr ""
 
 #. module: tms
@@ -707,7 +711,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:tms.field_project_task__shipping_origin_id
 #: model:ir.model.fields,field_description:tms.field_tms_package__shipping_origin_id
 #: model_terms:ir.ui.view,arch_db:tms.tms_package_view_search
-#: model_terms:ir.ui.view,arch_db:tms.view_task_search_form
 msgid "Origin"
 msgstr ""
 
@@ -810,13 +813,13 @@ msgid "Ports"
 msgstr ""
 
 #. module: tms
-#: model_terms:ir.ui.view,arch_db:tms.view_task_search_form
-msgid "Primary"
+#: model:ir.model,name:tms.model_product_template
+msgid "Product Template"
 msgstr ""
 
 #. module: tms
-#: model:ir.model,name:tms.model_product_template
-msgid "Product Template"
+#: model:ir.ui.menu,name:tms.menu_products
+msgid "Products"
 msgstr ""
 
 #. module: tms
@@ -999,11 +1002,6 @@ msgid "Start date"
 msgstr ""
 
 #. module: tms
-#: model_terms:ir.ui.view,arch_db:tms.view_task_search_form
-msgid "Start from"
-msgstr ""
-
-#. module: tms
 #: model:ir.model.fields,field_description:tms.field_tms_package__state
 #: model_terms:ir.ui.view,arch_db:tms.tms_package_view_search
 msgid "State"
@@ -1023,6 +1021,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:tms.field_project_task__stopped_time
 #: model:ir.model.fields,field_description:tms.field_project_task_checkpoint__stopped_time
 msgid "Stopped Time"
+msgstr ""
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.view_task_search_form
+msgid "Subtask hidden"
 msgstr ""
 
 #. module: tms
@@ -1069,6 +1072,7 @@ msgid "Task"
 msgstr ""
 
 #. module: tms
+#: model:ir.actions.act_window,name:tms.action_view_task
 #: model:ir.model.fields,field_description:tms.field_fleet_vehicle__task_count
 #: model:ir.model.fields,field_description:tms.field_tms_package__task_ids
 #: model:ir.ui.menu,name:tms.menu_action_view_task
@@ -1110,6 +1114,23 @@ msgstr ""
 #. module: tms
 #: model:ir.model.fields,field_description:tms.field_res_partner_schedule__hour_to
 msgid "To"
+msgstr ""
+
+#. module: tms
+#: model_terms:ir.actions.act_window,help:tms.action_view_task
+msgid ""
+"To get things done, use activities and status on tasks.<br>\n"
+"                Chat in real-time or by email to collaborate efficiently."
+msgstr ""
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.view_task_search_form
+msgid "Today"
+msgstr ""
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.view_task_search_form
+msgid "Tomorrow"
 msgstr ""
 
 #. module: tms
@@ -1188,7 +1209,6 @@ msgstr ""
 
 #. module: tms
 #: model:ir.model.fields,field_description:tms.field_project_task__is_transport_order
-#: model_terms:ir.ui.view,arch_db:tms.view_task_search_form
 msgid "Transport Order"
 msgstr ""
 

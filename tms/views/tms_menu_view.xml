@@ -34,6 +34,7 @@
         name="Configuration"
         parent="menu_main_tms"
         sequence="50"
+        groups="sales_team.group_sale_manager"
     />
 
 
@@ -43,6 +44,15 @@
         action="sale.action_quotations"
         parent="menu_tms_management"
         sequence="5"
+        groups="sales_team.group_sale_salesman,sales_team.group_sale_salesman"
+    />
+
+    <!-- Products from tms menu-->
+    <menuitem
+        id="menu_products"
+        action="sale.product_template_action"
+        parent="menu_tms_management"
+        sequence="105"
         groups="sales_team.group_sale_salesman,sales_team.group_sale_salesman"
     />
 
@@ -58,7 +68,7 @@
     <!-- Project tasks from tms menu-->
     <menuitem
         id="menu_action_view_task"
-        action="project.action_view_task"
+        action="tms.action_view_task"
         parent="menu_tms_project"
         sequence="5"
         groups="base.group_no_one,project.group_project_user"

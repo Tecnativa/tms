@@ -123,9 +123,8 @@
 <menuitem
         id="menu_tms_print_template"
         action="action_tms_print_template"
-        parent="tms.menu_tms_management"
-        sequence="35"
-        groups="sales_team.group_sale_manager"
+        parent="tms.menu_tms_config"
+        sequence="100"
     />
 
 </odoo>

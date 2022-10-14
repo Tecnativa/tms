@@ -357,7 +357,9 @@ class ProjectTask(models.Model):
         )
         tractors = tractors.browse(tractor_ids)
         if "max_vehicle_tasks" in self.env.context:
-            tractors = tractors.filtered("is_available")
+            tractors = tractors.with_context(task_domain=domain).filtered(
+                "is_available"
+            )
         return tractors
 
     def _all_places(self):

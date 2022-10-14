@@ -127,7 +127,7 @@ class TmsPackage(models.Model):
         "checkpoint_origin_ids.departure_time",
         "checkpoint_origin_ids.arrival_time",
         "task_ids.timesheet_ids",
-        "task_ids.stage_id.fold",
+        "task_ids.stage_id.is_closed",
     )
     def _compute_state(self):
         for package in self:
@@ -146,7 +146,7 @@ class TmsPackage(models.Model):
             elif package.checkpoint_origin_ids and package.checkpoint_destination_ids:
                 package.state = "ready"
             # TODO: Find better cancel state check
-            elif all(package.task_ids.mapped("stage_id.fold")):
+            elif all(package.task_ids.mapped("stage_id.is_closed")):
                 package.state = "cancel"
             else:
                 package.state = "pending"

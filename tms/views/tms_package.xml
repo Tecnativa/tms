@@ -51,6 +51,7 @@
                                     <p class="card-text">
                                         <field name="shipping_origin_id" /> <span
                                             class="fa fa-long-arrow-right"
+                                            title="From > to"
                                         /> <field name="shipping_destination_id" />
                                         <br />
                                         <field name="pickup_date" />
