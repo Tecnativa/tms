@@ -1,8 +1,11 @@
-# Copyright 2017 Sergio Teruel <sergio.teruel@tecnativa.com>
-# Copyright 2017 Carlos Dauden <carlos.dauden@tecnativa.com>
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# Copyright 2017-2022 Tecnativa - Sergio Teruel
+# Copyright 2017-2022 Tecnativa - Carlos Dauden
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+
+from collections import defaultdict
 
 from odoo import api, fields, models
+from odoo.osv import expression
 
 
 class FleetVehicle(models.Model):
@@ -38,23 +41,28 @@ class FleetVehicle(models.Model):
 
     def _compute_task_count(self):
         Task = self.env["project.task"]
-        max_tasks = self.env.context.get("max_vehicle_tasks", 0)
+        max_tasks = max(self.env.context.get("max_vehicle_tasks", [0]))
+        # Keep only date fields to search vehicle tasks
+        # TODO: Use expression when fix https://github.com/odoo/odoo/issues/103214
+        TRUE_DOMAIN = ("id", "!=", False)  # expression.TRUE_DOMAIN
+        task_domain = [
+            TRUE_DOMAIN if (isinstance(t, (list, tuple)) and "date" not in t[0]) else t
+            for t in self.env.context.get("task_domain", [])
+        ]
+        tasks_data = Task.read_group(
+            domain=expression.AND([[("stage_id.is_closed", "=", False)], task_domain]),
+            fields=["tractor_id", "trailer_id"],
+            groupby=["tractor_id", "trailer_id"],
+            lazy=False,
+        )
+        vehicle_task_dic = defaultdict(int)
+        for group in tasks_data:
+            if group["tractor_id"]:
+                vehicle_task_dic[group["tractor_id"][0]] += group["__count"]
+            if group["trailer_id"]:
+                vehicle_task_dic[group["trailer_id"][0]] += group["__count"]
         for vehicle in self:
-            if vehicle.vehicle_type not in ["tractor", "trailer"]:
-                vehicle.task_count = 0.0
-                vehicle.is_available = False
-                continue
-            tms_date = self.env.context.get("tms_date")
-            task_field = "%s_id" % (vehicle.vehicle_type or "tractor")
-            domain = [(task_field, "=", vehicle.id), ("stage_id.fold", "=", False)]
-            if tms_date:
-                domain.extend(
-                    [
-                        ("date_start", ">=", tms_date),
-                        ("date_end", "<", tms_date),
-                    ]
-                )
-            vehicle.task_count = Task.search_count(domain)
+            vehicle.task_count = vehicle_task_dic[vehicle.id]
             vehicle.is_available = vehicle.task_count <= max_tasks
 
     def _compute_next_checkpoint_ids(self):
@@ -66,7 +74,7 @@ class FleetVehicle(models.Model):
         tasks = self.env["project.task"].search(
             [
                 ("stage_id.sequence", ">", 1),
-                ("stage_id.fold", "=", False),
+                ("stage_id.is_closed", "=", False),
                 ("tractor_id", "in", self.ids),
             ]
         )

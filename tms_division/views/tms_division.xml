@@ -47,9 +47,8 @@
 <menuitem
         id="menu_tms_division"
         action="action_tms_division"
-        parent="tms.menu_tms_management"
+        parent="tms.menu_tms_config"
         sequence="35"
-        groups="sales_team.group_sale_manager"
     />
 
 </odoo>

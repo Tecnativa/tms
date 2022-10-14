@@ -62,7 +62,8 @@ class SaleOrderLine(models.Model):
     @api.onchange("product_id")
     def product_id_change(self):
         res = super().product_id_change()
-        self.level = self.product_id.level
+        if not self.level:
+            self.level = self.product_id.level
         return res
 
     def _prepare_invoice_line(self, **optional_values):
@@ -124,8 +125,6 @@ class SaleOrderLine(models.Model):
         if self.parent_line_id:
             vals["parent_id"] = self.parent_line_id.task_id.id
             vals["sequence"] = 50
-            if not project.subtask_project_id:
-                project.subtask_project_id = project
         else:
             vals.update(
                 {
