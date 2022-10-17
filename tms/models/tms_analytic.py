@@ -31,7 +31,6 @@ class TmsAnalytic(models.AbstractModel):
     driver_id = fields.Many2one(
         comodel_name="res.partner",
         string="Driver",
-        domain=[("is_driver", "=", True)],
         context={"default_is_driver": True},
         index=True,
         copy=False,
