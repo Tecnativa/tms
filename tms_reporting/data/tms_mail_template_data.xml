@@ -10,10 +10,12 @@
     <field
             name="report_name"
         >Transport_Order_${(object.name or '').replace('/','_')}</field> -->
-    <field name="lang">${object.driver_id.lang}</field>
-    <field name="email_from">${(object.company_id.email or user.email)|safe}</field>
-    <field name="partner_to">${object.driver_id.id|safe}</field>
-    <field name="subject">Transport Order ${object.name}></field>
+    <field name="lang">{{ object.driver_id.lang }}</field>
+    <field
+            name="email_from"
+        >"{{ object.company_id.name }}" &lt;{{ (object.company_id.email or user.email) }}&gt;</field>
+    <field name="partner_to">{{ object.driver_id.id }}</field>
+    <field name="subject">Transport Order {{ object.name }}></field>
     <field name="body_html" type="html">
 <div
                 style="padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777"
@@ -32,7 +34,7 @@
                 <img
                                     src="/logo.png"
                                     style="padding: 0px; margin: 0px; height: auto; width: 80px;"
-                                    alt="${user.company_id.name}"
+                                    alt="{{ user.company_id.name }}"
                                 />
             </td>
         </tr></tbody>
@@ -41,16 +43,18 @@
 <div
                 style="padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777"
             >
-<p>Dear ${object.driver_id.name},</p>
+<p>Dear <t t-out="object.driver_id.name or ''">Brandon Freeman</t>,</p>
     <p>
-        Attach transport order from "${object.company_id.name}".
+        Attach transport order from <t
+                        t-out="object.company_id.name"
+                    >Principal Company</t>.
     </p>
     <p>Best regards,</p>
 </div>
 <div
                 style="padding:0px;width:600px;margin:auto; margin-top: 10px; background: #fff repeat top /100%;color:#777777"
             >
-    ${user.signature | safe}
+    <t t-out="user.signature or ''">Michael Admin</t>
 </div>
     </field>
 </record>
@@ -61,12 +65,15 @@
     <field name="binding_model_id" ref="model_project_task" />
     <field name="view_mode">form</field>
     <field name="target">new</field>
-    <field name="context">{
+    <field
+            name="context"
+            eval="{
             'default_composition_mode': 'mass_mail',
             'default_partner_to': '${object.driver_id.id or \'\'}',
             'default_use_template': True,
             'default_template_id': ref('transport_order_email'),
-        }</field>
+        }"
+        />
 </record>
 
 </odoo>
