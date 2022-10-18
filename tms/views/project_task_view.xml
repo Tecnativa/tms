@@ -412,6 +412,167 @@
         </field>
     </record>
 
+    <!-- Project Task Kanban Simplify View to assign tractor -->
+    <record id="view_task_kanban_to_assign" model="ir.ui.view">
+        <field name="name">project.task.kanban.to_assign</field>
+        <field name="model">project.task</field>
+        <field name="arch" type="xml">
+            <kanban
+                default_group_by="stage_id"
+                class="o_kanban_small_column o_kanban_project_tasks"
+                on_create="quick_create"
+                quick_create_view="project.quick_create_task_form"
+                examples="project"
+                js_class="project_task_kanban"
+                sample="1"
+            >
+                <field name="color" />
+                <field name="priority" />
+                <field
+                    name="stage_id"
+                    options='{"group_by_tooltip": {"description": "Description"}}'
+                />
+                <field name="user_ids" />
+                <field name="tractor_id" />
+                <field name="shipping_company_id" />
+                <field name="shipping_origin_id" />
+                <field name="shipping_destination_id" />
+                <field name="equipment_size_type_id" />
+                <field name="trailer_requirement_ids" />
+                <field name="partner_id" />
+                <field name="sequence" />
+                <field name="is_closed" />
+                <field name="partner_is_company" />
+                <field name="displayed_image_id" />
+                <field name="active" />
+                <field name="legend_blocked" />
+                <field name="legend_normal" />
+                <field name="legend_done" />
+                <field name="activity_ids" />
+                <field name="activity_state" />
+                <field name="rating_last_value" />
+                <field name="rating_ids" />
+                <field name="allow_subtasks" />
+                <field name="child_text" />
+                <field name="is_private" />
+                <field name="unload_service" />
+                <progressbar
+                    field="kanban_state"
+                    colors='{"done": "success", "blocked": "danger", "normal": "muted"}'
+                />
+                <templates>
+                <t t-name="kanban-box">
+                    <div
+                            t-attf-class="{{!selection_mode ? 'oe_kanban_color_' + kanban_getcolor(record.color.raw_value) : ''}} oe_kanban_card oe_kanban_global_click"
+                        >
+                        <div class="oe_kanban_content">
+                            <div class="o_kanban_record_top">
+                                <div class="o_kanban_record_headings">
+                                    <t t-if="record.equipment_size_type_id.value">
+                                        <field
+                                                name="equipment_size_type_id"
+                                                widget="name_with_subtask_count"
+                                            />
+                                    </t>
+                                </div>
+                                <div
+                                        class="o_dropdown_kanban dropdown"
+                                        t-if="!selection_mode"
+                                        groups="base.group_user"
+                                    >
+                                    <a
+                                            role="button"
+                                            class="dropdown-toggle o-no-caret btn"
+                                            data-toggle="dropdown"
+                                            data-display="static"
+                                            href="#"
+                                            aria-label="Dropdown menu"
+                                            title="Dropdown menu"
+                                        >
+                                        <span class="fa fa-ellipsis-v" />
+                                    </a>
+                                    <div class="dropdown-menu" role="menu">
+                                        <a
+                                                t-if="widget.editable"
+                                                role="menuitem"
+                                                type="set_cover"
+                                                class="dropdown-item"
+                                                data-field="displayed_image_id"
+                                            >Set Cover Image</a>
+                                        <a
+                                                name="%(portal.portal_share_action)d"
+                                                role="menuitem"
+                                                type="action"
+                                                class="dropdown-item"
+                                            >Share</a>
+                                        <a
+                                                t-if="widget.editable"
+                                                role="menuitem"
+                                                type="edit"
+                                                class="dropdown-item"
+                                            >Edit</a>
+                                        <div
+                                                role="separator"
+                                                class="dropdown-divider"
+                                            />
+                                        <ul
+                                                class="oe_kanban_colorpicker"
+                                                data-field="color"
+                                            />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="o_kanban_record_body">
+                                <strong class="o_kanban_record_title">
+                                    <t
+                                            t-if="record.shipping_origin_id.value and !record.unload_service.raw_value"
+                                        >
+                                        <field name="shipping_origin_id" />
+                                    </t>
+                                    <t
+                                            t-else="record.shipping_destination_id.value and record.unload_service.raw_value"
+                                        >
+                                        <field name="shipping_destination_id" />
+                                    </t>
+                                    <br />
+                                </strong>
+                                <t
+                                        t-if="record.date_start.raw_value"
+                                        t-set="blue"
+                                    >oe_kanban_text_blue</t>
+                                <span
+                                        style="text-color:blue;"
+                                        t-attf-class="#{blue || ''}"
+                                    >
+                                    <i>
+                                        <field name="date_start" />
+                                    </i>
+                                </span>
+                                <br />
+                                <t t-if="record.shipping_company_id.value">
+                                    <field name="shipping_company_id" />
+                                </t>
+                                <field
+                                        name="tag_ids"
+                                        widget="many2many_tags"
+                                        options="{'color_field': 'color'}"
+                                    />
+                                <div t-if="record.displayed_image_id.value">
+                                    <field
+                                            name="displayed_image_id"
+                                            widget="attachment_image"
+                                        />
+                                </div>
+                            </div>
+                        </div>
+<!--                        <div class="oe_clear"></div>-->
+                    </div>
+                </t>
+                </templates>
+            </kanban>
+        </field>
+     </record>
+
     <record id="project_task_timeline" model="ir.ui.view">
         <field name="model">project.task</field>
         <field name="inherit_id" ref="project_timeline.project_task_timeline" />
@@ -513,6 +674,7 @@
         <field name="view_mode">kanban,tree,form,calendar,pivot,graph,activity</field>
         <field name="context">{'search_default_subtask_hidden': 1}</field>
         <field name="domain">[]</field>
+        <field name="view_id" ref="view_task_kanban_to_assign" />
         <field name="search_view_id" ref="project.view_task_search_form" />
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
