@@ -77,6 +77,7 @@ class ProjectTask(models.Model):
     vessel = fields.Char()
     booking_number = fields.Char()
     voyage_number = fields.Char()
+    shipping_company_id = fields.Many2one(comodel_name="res.partner")
     # Destination port
     shipment_port_id = fields.Many2one(
         comodel_name="res.partner",
@@ -264,6 +265,7 @@ class ProjectTask(models.Model):
             "release_locator",
             "acceptance_id",
             "acceptance_locator",
+            "shipping_company_id",
             "shipment_port_id",
             "port_id",
             "loading_port_id",

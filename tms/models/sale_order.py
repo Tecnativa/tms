@@ -43,6 +43,7 @@ class SaleOrder(models.Model):
             "default_is_shipping_place": True,
         },
     )
+    shipping_company_id = fields.Many2one(comodel_name="res.partner")
     shipment_port_id = fields.Many2one(
         comodel_name="res.partner",
         string="Shipment Port",
@@ -79,6 +80,7 @@ class SaleOrder(models.Model):
             "release_locator",
             "acceptance_id",
             "acceptance_locator",
+            "shipping_company_id",
             "shipment_port_id",
             "port_id",
             "loading_port_id",

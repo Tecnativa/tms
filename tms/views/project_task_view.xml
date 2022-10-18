@@ -65,6 +65,7 @@
                                 context="{'default_size_type_id': equipment_size_type_id}"
                             />
                             <field name="seal" />
+                            <field name="shipping_company_id" />
                         </group>
                         <group>
                             <group>
