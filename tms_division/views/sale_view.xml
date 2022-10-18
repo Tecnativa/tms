@@ -9,6 +9,7 @@
     <field name="inherit_id" ref="tms.view_order_form" />
     <field name="arch" type="xml">
         <xpath expr="//field[@name='shipment_port_id']/.." position="after">
+            <separator />
             <group>
                 <field
                         name="division_id"
