@@ -36,7 +36,6 @@ class SaleOrderLine(models.Model):
     )
     shipping_origin_id = fields.Many2one(
         comodel_name="res.partner",
-        domain=[("is_shipping_place", "=", True)],
         string="Shipping Origin",
         context={
             "default_is_shipping_place": True,
@@ -44,7 +43,6 @@ class SaleOrderLine(models.Model):
     )
     shipping_destination_id = fields.Many2one(
         comodel_name="res.partner",
-        domain=[("is_shipping_place", "=", True)],
         string="Shipping Destination",
         context={
             "default_is_shipping_place": True,

@@ -19,7 +19,6 @@ class SaleOrder(models.Model):
     release_id = fields.Many2one(
         comodel_name="res.partner",
         string="Release",
-        domain=[("is_shipping_place", "=", True)],
         context={
             "default_is_shipping_place": True,
         },
@@ -28,7 +27,6 @@ class SaleOrder(models.Model):
     acceptance_id = fields.Many2one(
         comodel_name="res.partner",
         string="Acceptance",
-        domain=[("is_shipping_place", "=", True)],
         context={
             "default_is_shipping_place": True,
         },
@@ -38,7 +36,6 @@ class SaleOrder(models.Model):
     port_id = fields.Many2one(
         comodel_name="res.partner",
         string="Origin Port",
-        domain=[("is_shipping_place", "=", True)],
         context={
             "default_is_shipping_place": True,
         },
@@ -47,7 +44,6 @@ class SaleOrder(models.Model):
     shipment_port_id = fields.Many2one(
         comodel_name="res.partner",
         string="Shipment Port",
-        domain=[("is_shipping_place", "=", True)],
         context={
             "default_is_shipping_place": True,
         },
@@ -55,7 +51,6 @@ class SaleOrder(models.Model):
     loading_port_id = fields.Many2one(
         comodel_name="res.partner",
         string="Loading Port",
-        domain=[("is_shipping_place", "=", True)],
         context={
             "default_is_shipping_place": True,
         },
@@ -63,7 +58,6 @@ class SaleOrder(models.Model):
     unloading_port_id = fields.Many2one(
         comodel_name="res.partner",
         string="Unloading Port",
-        domain=[("is_shipping_place", "=", True)],
         context={
             "default_is_shipping_place": True,
         },

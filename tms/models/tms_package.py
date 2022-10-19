@@ -44,7 +44,6 @@ class TmsPackage(models.Model):
     shipping_origin_id = fields.Many2one(
         comodel_name="res.partner",
         string="Origin",
-        domain=[("is_shipping_place", "=", True)],
         context={
             "default_is_shipping_place": True,
         },
@@ -52,7 +51,6 @@ class TmsPackage(models.Model):
     shipping_destination_id = fields.Many2one(
         comodel_name="res.partner",
         string="Destination",
-        domain=[("is_shipping_place", "=", True)],
         context={
             "default_is_shipping_place": True,
         },
