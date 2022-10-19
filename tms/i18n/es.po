@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-14 18:20+0000\n"
-"PO-Revision-Date: 2022-10-14 20:24+0200\n"
+"POT-Creation-Date: 2022-10-19 22:49+0000\n"
+"PO-Revision-Date: 2022-10-20 00:50+0200\n"
 "Last-Translator: Carlos Dauden <carlos.dauden@tecnativa.com>\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -392,6 +392,11 @@ msgid "Driver of the vehicle"
 msgstr "Conductor del vehículo"
 
 #. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.view_task_kanban_to_assign
+msgid "Dropdown menu"
+msgstr "Menú desplegable"
+
+#. module: tms
 #: model:ir.actions.server,name:tms.action_duplicate_sale_order_from_line
 msgid "Duplicate Order"
 msgstr "Duplicar pedido"
@@ -410,6 +415,11 @@ msgstr "Duración"
 #: model:ir.model.fields,field_description:tms.field_project_task_checkpoint__duration_estimated
 msgid "Duration Estimated"
 msgstr "Duración estimada"
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.view_task_kanban_to_assign
+msgid "Edit"
+msgstr "Editar"
 
 #. module: tms
 #: model:ir.model.fields,field_description:tms.field_project_task__equipment_id
@@ -960,6 +970,16 @@ msgid "Sequence"
 msgstr "Secuencia"
 
 #. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.view_task_kanban_to_assign
+msgid "Set Cover Image"
+msgstr "Establecer imagen de portada"
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.view_task_kanban_to_assign
+msgid "Share"
+msgstr "Compartir"
+
+#. module: tms
 #: model:ir.model.fields,field_description:tms.field_project_task__shipment_port_id
 #: model:ir.model.fields,field_description:tms.field_sale_order__shipment_port_id
 msgid "Shipment Port"
@@ -979,6 +999,12 @@ msgstr "Tipo envío"
 #: model:ir.model.fields,field_description:tms.field_project_project__shipper_id
 msgid "Shipper"
 msgstr "Expedidor"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_project_task__shipping_company_id
+#: model:ir.model.fields,field_description:tms.field_sale_order__shipping_company_id
+msgid "Shipping Company"
+msgstr "Naviera"
 
 #. module: tms
 #: model:ir.model.fields,field_description:tms.field_sale_order_line__shipping_destination_id
@@ -1364,6 +1390,7 @@ msgstr "iso6346 Tipo"
 
 #. module: tms
 #: model_terms:ir.ui.view,arch_db:tms.view_task_kanban
+#: model_terms:ir.ui.view,arch_db:tms.view_task_kanban_to_assign
 msgid "oe_kanban_text_blue"
 msgstr "oe_kanban_text_blue"
 
