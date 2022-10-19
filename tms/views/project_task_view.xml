@@ -419,7 +419,7 @@
         <field name="arch" type="xml">
             <kanban
                 default_group_by="stage_id"
-                class="o_kanban_small_column o_kanban_project_tasks"
+                class="o_kanban_small_column o_kanban_small_column_tms o_kanban_project_tasks"
                 on_create="quick_create"
                 quick_create_view="project.quick_create_task_form"
                 examples="project"
@@ -523,7 +523,7 @@
                                 </div>
                             </div>
                             <div class="o_kanban_record_body">
-                                <strong class="o_kanban_record_title">
+                                <strong>
                                     <t
                                             t-if="record.shipping_origin_id.value and !record.unload_service.raw_value"
                                         >

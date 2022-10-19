@@ -5,6 +5,12 @@
             font-weight: bold;
         }
     }
+    &.o_kanban_grouped {
+        &.o_kanban_small_column.o_kanban_small_column_tms
+            .o_kanban_group:not(.o_column_folded) {
+            width: 180px !important;
+        }
+    }
 }
 .oe_kanban_card {
     .card-text {
