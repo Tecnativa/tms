@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.web.georoute</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base_setup.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='geolocalize_params']" position="after">
+                <div
+                    id="georoute_params"
+                    class="content-group"
+                    attrs="{'invisible': [('module_base_geolocalize', '=', False)]}"
+                >
+                    API Route: <field name="georoute_provider_id" />
+                    <field name="georoute_provider_techname" invisible="1" />
+                    <div
+                        attrs="{'invisible': [('georoute_provider_techname', '!=', 'openrouteservice')]}"
+                    >
+                        Key Route: <field
+                            name='georoute_provider_openrouteservice_key'
+                        />
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

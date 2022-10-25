@@ -41,6 +41,7 @@
         "views/account_invoice_views.xml",
         "views/fleet_vehicle_model_views.xml",
         "views/fleet_vehicle_views.xml",
+        "views/res_config_settings_views.xml",
         "views/res_partner_view.xml",
         "views/sale_view.xml",
         "views/project_view.xml",

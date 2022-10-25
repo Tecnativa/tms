@@ -3,11 +3,14 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import json
+import logging
 from collections import defaultdict
 
 import requests
 
 from odoo import SUPERUSER_ID, _, api, exceptions, fields, models
+
+_logger = logging.getLogger(__name__)
 
 
 class ProjectTask(models.Model):
@@ -432,7 +435,9 @@ class ProjectTask(models.Model):
     def open_in_webmap(self):
         points_list = []
         google_key = (
-            self.env["ir.config_parameter"].sudo().get_param("google.api_key_maps")
+            self.env["ir.config_parameter"]
+            .sudo()
+            .get_param("base_geolocalize.google_map_api_key")
         )
         for line in self.mapped("checkpoint_ids"):
             latitude = line.place_id.partner_latitude
@@ -450,9 +455,21 @@ class ProjectTask(models.Model):
             "target": "new",
         }
 
-    def get_route_info(self, error=False):
+    def get_route_info(self):
+        google_map_api_key = (
+            self.env["ir.config_parameter"]
+            .sudo()
+            .get_param("base_geolocalize.google_map_api_key")
+        )
+        if google_map_api_key:
+            return self._get_route_googlemap()
+        return self._get_route_openrouteservice()
+
+    def _get_route_googlemap(self):
         google_key = (
-            self.env["ir.config_parameter"].sudo().get_param("google.api_key_maps")
+            self.env["ir.config_parameter"]
+            .sudo()
+            .get_param("base_geolocalize.google_map_api_key")
         )
         for task in self:
             url = "https://maps.googleapis.com/maps/api/distancematrix/json"
@@ -500,3 +517,56 @@ class ProjectTask(models.Model):
                 raise exceptions.UserError(
                     _("Google Maps is not available: %s") % str(err)
                 ) from err
+
+    def _get_route_openrouteservice(self):
+        # TODO: Change to company field
+        token = (
+            self.env["ir.config_parameter"]
+            .sudo()
+            .get_param("base_geolocalize.openrouteservice_api_key")
+        )
+        headers = {
+            "Accept": "application/json, application/geo+json, "
+            "application/gpx+xml, img/png; charset=utf-8",
+            "Authorization": token,
+            "Content-Type": "application/json; charset=utf-8",
+        }
+        url = "https://api.openrouteservice.org/v2/matrix/driving-hgv"
+        for task in self:
+            points_list = []
+            for line in task.checkpoint_ids:
+                latitude = line.place_id.partner_latitude
+                longitude = line.place_id.partner_longitude
+                if latitude and longitude:
+                    points_list.append([longitude, latitude])
+            body = {
+                "locations": points_list,
+                "destinations": list(range(1, len(points_list))),
+                "id": str(task.id),
+                "metrics": ["distance", "duration"],
+                "units": "km",
+            }
+            response = requests.post(url, json=body, headers=headers)
+            if response.status_code != 200:
+                _logger.error(
+                    "Request to openrouteservice failed.\nCode: %s\nContent: %s"
+                    % (response.status_code, response.content)
+                )
+                task.update({"distance_estimated": 0.0, "planned_hours": 0.0})
+                return
+            result = response.json()
+            total_distance = total_duration = 0.0
+            for i, checkpoint in enumerate(task.checkpoint_ids[1:]):
+                distance = result["distances"][i][i]
+                duration = result["durations"][i][i] / 3600.0
+                checkpoint.update(
+                    {"distance_estimated": distance, "duration_estimated": duration}
+                )
+                total_distance += distance
+                total_duration += duration
+            task.update(
+                {
+                    "distance_estimated": total_distance,
+                    "planned_hours": total_duration,
+                }
+            )

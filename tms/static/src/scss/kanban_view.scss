@@ -13,7 +13,7 @@
             flex-wrap: wrap;
             align-content: flex-start;
             .o_kanban_group:not(.o_column_folded) {
-                width: 11.25rem !important; // ~180px
+                width: 15rem !important; // ~180px
                 &:first-child {
                     height: 100vh;
                     overflow-y: scroll;

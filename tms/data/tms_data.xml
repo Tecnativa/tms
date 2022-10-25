@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
+<record id="geoprovider_open_route_service" model="base.geo_provider">
+    <field name="tech_name">openrouteservice</field>
+    <field name="name">Open Route Service</field>
+</record>
+
 <record id="vehicle_tag_pneumatics" model="fleet.vehicle.tag">
     <field name="name">Pneumatics</field>
     <field name="color" eval="8" />
