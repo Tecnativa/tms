@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<!-- Copyright 2017 Sergio Teruel - Tecnativa <sergio.teruel@tecnativa.com>
-     Copyright 2017 Carlos Dauden - Tecnativa <carlos.dauden@tecnativa.com>
-     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<!-- Copyright 2017-2022 Tecnativa - Sergio Teruel
+     Copyright 2017-2022 Tecnativa - Carlos Dauden
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo noupdate="1">
 
     <record id="action_confirm_sale_order" model="ir.actions.server">
         <field name="name">Confirm Sale</field>
         <field name="type">ir.actions.server</field>
         <field name="model_id" ref="sale.model_sale_order" />
-        <field name="binding_model_id" ref="base.model_res_company" />
         <field name="state">code</field>
         <field
             name="code"
@@ -18,7 +17,6 @@
     <!-- Duplicate record in tree view -->
     <record id="action_duplicate_sale_order" model="ir.actions.server">
         <field name="name">Duplicate Sales</field>
-        <field name="type">ir.actions.server</field>
         <field name="model_id" ref="sale.model_sale_order" />
         <field name="binding_model_id" ref="sale.model_sale_order" />
         <field name="state">code</field>
@@ -30,7 +28,6 @@
         <field name="name">Confirm Order</field>
         <field name="type">ir.actions.server</field>
         <field name="model_id" ref="sale.model_sale_order_line" />
-        <field name="binding_model_id" ref="base.model_res_company" />
         <field name="state">code</field>
         <field
             name="code"
@@ -40,7 +37,6 @@
     <!-- Duplicate record in tree view -->
     <record id="action_duplicate_sale_order_from_line" model="ir.actions.server">
         <field name="name">Duplicate Order</field>
-        <field name="type">ir.actions.server</field>
         <field name="model_id" ref="sale.model_sale_order_line" />
         <field name="binding_model_id" ref="sale.model_sale_order_line" />
         <field name="state">code</field>
@@ -50,7 +46,18 @@
     <record id="action_fill_checkpoints" model="ir.actions.server">
         <field name="name">Fill checkpoints</field>
         <field name="model_id" ref="project.model_project_task" />
+        <field name="state">code</field>
         <field name="code">records.fill_checkpoints()</field>
+    </record>
+
+    <record id="action_partner_geo_localize" model="ir.actions.server">
+        <field name="name">Geo Lozalize</field>
+        <field name="model_id" ref="base.model_res_partner" />
+        <field name="binding_model_id" ref="base.model_res_partner" />
+        <field name="state">code</field>
+        <field
+            name="code"
+        >records.filtered(lambda p: not p.partner_latitude and not p.partner_longitude).geo_localize()</field>
     </record>
 
 </odoo>
