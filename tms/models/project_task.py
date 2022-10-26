@@ -25,6 +25,7 @@ class ProjectTask(models.Model):
     )
     shipping_origin_id = fields.Many2one(
         comodel_name="res.partner",
+        domain=[("is_shipping_place", "=", True)],
         context={
             "default_is_shipping_place": True,
         },
@@ -32,6 +33,7 @@ class ProjectTask(models.Model):
     )
     shipping_destination_id = fields.Many2one(
         comodel_name="res.partner",
+        domain=[("is_shipping_place", "=", True)],
         context={
             "default_is_shipping_place": True,
         },
@@ -58,6 +60,7 @@ class ProjectTask(models.Model):
     seal = fields.Char()
     release_id = fields.Many2one(
         comodel_name="res.partner",
+        domain=[("is_shipping_place", "=", True)],
         context={
             "default_is_shipping_place": True,
         },
@@ -66,6 +69,7 @@ class ProjectTask(models.Model):
     release_locator = fields.Char()
     acceptance_id = fields.Many2one(
         comodel_name="res.partner",
+        domain=[("is_shipping_place", "=", True)],
         context={
             "default_is_shipping_place": True,
         },
@@ -80,6 +84,7 @@ class ProjectTask(models.Model):
     # Destination port
     shipment_port_id = fields.Many2one(
         comodel_name="res.partner",
+        domain=[("is_shipping_place", "=", True)],
         context={
             "default_is_shipping_place": True,
         },
@@ -88,6 +93,7 @@ class ProjectTask(models.Model):
     # Origin port
     port_id = fields.Many2one(
         comodel_name="res.partner",
+        domain=[("is_shipping_place", "=", True)],
         context={
             "default_is_shipping_place": True,
         },
@@ -96,6 +102,7 @@ class ProjectTask(models.Model):
     loading_port_id = fields.Many2one(
         comodel_name="res.partner",
         string="Loading Port",
+        domain=[("is_shipping_place", "=", True)],
         context={
             "default_is_shipping_place": True,
         },
@@ -103,6 +110,7 @@ class ProjectTask(models.Model):
     unloading_port_id = fields.Many2one(
         comodel_name="res.partner",
         string="Unloading Port",
+        domain=[("is_shipping_place", "=", True)],
         context={
             "default_is_shipping_place": True,
         },

@@ -23,6 +23,7 @@ class ProjectTaskCheckpoint(models.Model):
     automatic = fields.Boolean()
     place_id = fields.Many2one(
         comodel_name="res.partner",
+        domain=[("is_shipping_place", "=", True)],
         context={
             "default_is_shipping_place": True,
         },

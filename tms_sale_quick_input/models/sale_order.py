@@ -11,6 +11,7 @@ class SaleOrderLine(models.Model):
 
     shipping_place_id = fields.Many2one(
         comodel_name="res.partner",
+        domain=[("is_shipping_place", "=", True)],
         string="Place",
         context={
             "default_is_shipping_place": True,
@@ -27,6 +28,7 @@ class SaleOrderLine(models.Model):
     release_id = fields.Many2one(
         comodel_name="res.partner",
         related="order_id.release_id",
+        domain=[("is_shipping_place", "=", True)],
         context={
             "default_is_shipping_place": True,
         },
@@ -36,6 +38,7 @@ class SaleOrderLine(models.Model):
     acceptance_id = fields.Many2one(
         comodel_name="res.partner",
         related="order_id.acceptance_id",
+        domain=[("is_shipping_place", "=", True)],
         context={
             "default_is_shipping_place": True,
         },
