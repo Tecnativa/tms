@@ -47,6 +47,7 @@ class TmsPackage(models.Model):
         domain=[("is_shipping_place", "=", True)],
         context={
             "default_is_shipping_place": True,
+            "partner_show_only_name": True,
         },
     )
     shipping_destination_id = fields.Many2one(
@@ -55,6 +56,7 @@ class TmsPackage(models.Model):
         domain=[("is_shipping_place", "=", True)],
         context={
             "default_is_shipping_place": True,
+            "partner_show_only_name": True,
         },
     )
     length = fields.Float(digits="TMS Volume")  # pylint: disable=W8105

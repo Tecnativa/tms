@@ -28,6 +28,7 @@ class ProjectTask(models.Model):
         domain=[("is_shipping_place", "=", True)],
         context={
             "default_is_shipping_place": True,
+            "partner_show_only_name": True,
         },
         string="Origin",
     )
@@ -36,6 +37,7 @@ class ProjectTask(models.Model):
         domain=[("is_shipping_place", "=", True)],
         context={
             "default_is_shipping_place": True,
+            "partner_show_only_name": True,
         },
         string="Destination",
     )
@@ -63,6 +65,7 @@ class ProjectTask(models.Model):
         domain=[("is_shipping_place", "=", True)],
         context={
             "default_is_shipping_place": True,
+            "partner_show_only_name": True,
         },
         string="Release",
     )
@@ -72,6 +75,7 @@ class ProjectTask(models.Model):
         domain=[("is_shipping_place", "=", True)],
         context={
             "default_is_shipping_place": True,
+            "partner_show_only_name": True,
         },
         string="Aceptance",
     )
@@ -87,6 +91,7 @@ class ProjectTask(models.Model):
         domain=[("is_shipping_place", "=", True)],
         context={
             "default_is_shipping_place": True,
+            "partner_show_only_name": True,
         },
         string="Shipment Port",
     )
@@ -96,6 +101,7 @@ class ProjectTask(models.Model):
         domain=[("is_shipping_place", "=", True)],
         context={
             "default_is_shipping_place": True,
+            "partner_show_only_name": True,
         },
         string="Port",
     )
@@ -105,6 +111,7 @@ class ProjectTask(models.Model):
         domain=[("is_shipping_place", "=", True)],
         context={
             "default_is_shipping_place": True,
+            "partner_show_only_name": True,
         },
     )
     unloading_port_id = fields.Many2one(
@@ -113,6 +120,7 @@ class ProjectTask(models.Model):
         domain=[("is_shipping_place", "=", True)],
         context={
             "default_is_shipping_place": True,
+            "partner_show_only_name": True,
         },
     )
     unload_service = fields.Boolean(string="Unload")

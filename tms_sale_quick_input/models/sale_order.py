@@ -15,6 +15,7 @@ class SaleOrderLine(models.Model):
         string="Place",
         context={
             "default_is_shipping_place": True,
+            "partner_show_only_name": True,
         },
         compute="_compute_shipping_place_id",
         readonly=False,
@@ -31,6 +32,7 @@ class SaleOrderLine(models.Model):
         domain=[("is_shipping_place", "=", True)],
         context={
             "default_is_shipping_place": True,
+            "partner_show_only_name": True,
         },
         string="Release",
         readonly=False,
@@ -41,6 +43,7 @@ class SaleOrderLine(models.Model):
         domain=[("is_shipping_place", "=", True)],
         context={
             "default_is_shipping_place": True,
+            "partner_show_only_name": True,
         },
         string="Acceptance",
         readonly=False,

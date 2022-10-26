@@ -40,6 +40,7 @@ class SaleOrderLine(models.Model):
         string="Shipping Origin",
         context={
             "default_is_shipping_place": True,
+            "partner_show_only_name": True,
         },
     )
     shipping_destination_id = fields.Many2one(
@@ -48,6 +49,7 @@ class SaleOrderLine(models.Model):
         string="Shipping Destination",
         context={
             "default_is_shipping_place": True,
+            "partner_show_only_name": True,
         },
     )
 

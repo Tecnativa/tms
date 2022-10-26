@@ -22,6 +22,7 @@ class SaleOrder(models.Model):
         domain=[("is_shipping_place", "=", True)],
         context={
             "default_is_shipping_place": True,
+            "partner_show_only_name": True,
         },
     )
     release_locator = fields.Char()
@@ -31,6 +32,7 @@ class SaleOrder(models.Model):
         domain=[("is_shipping_place", "=", True)],
         context={
             "default_is_shipping_place": True,
+            "partner_show_only_name": True,
         },
     )
     acceptance_locator = fields.Char()
@@ -41,6 +43,7 @@ class SaleOrder(models.Model):
         domain=[("is_shipping_place", "=", True)],
         context={
             "default_is_shipping_place": True,
+            "partner_show_only_name": True,
         },
     )
     shipping_company_id = fields.Many2one(comodel_name="res.partner")
@@ -50,6 +53,7 @@ class SaleOrder(models.Model):
         domain=[("is_shipping_place", "=", True)],
         context={
             "default_is_shipping_place": True,
+            "partner_show_only_name": True,
         },
     )
     loading_port_id = fields.Many2one(
@@ -58,6 +62,7 @@ class SaleOrder(models.Model):
         domain=[("is_shipping_place", "=", True)],
         context={
             "default_is_shipping_place": True,
+            "partner_show_only_name": True,
         },
     )
     unloading_port_id = fields.Many2one(
@@ -66,6 +71,7 @@ class SaleOrder(models.Model):
         domain=[("is_shipping_place", "=", True)],
         context={
             "default_is_shipping_place": True,
+            "partner_show_only_name": True,
         },
     )
     unload_service = fields.Boolean(string="Unload")

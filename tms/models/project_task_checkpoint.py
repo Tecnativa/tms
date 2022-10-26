@@ -26,6 +26,7 @@ class ProjectTaskCheckpoint(models.Model):
         domain=[("is_shipping_place", "=", True)],
         context={
             "default_is_shipping_place": True,
+            "partner_show_only_name": True,
         },
         required=True,
         string="Place",
