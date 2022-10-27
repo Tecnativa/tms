@@ -422,6 +422,11 @@
                 class="o_kanban_small_column o_kanban_small_column_tms o_kanban_project_tasks"
                 examples="project"
                 js_class="project_task_kanban"
+                create="false"
+                delete="false"
+                group_create="false"
+                group_delete="false"
+                default_order="priority desc, date_start, sequence, id desc"
             >
                 <field name="color" />
                 <field name="priority" />
@@ -453,6 +458,7 @@
                 <field name="child_text" />
                 <field name="is_private" />
                 <field name="unload_service" />
+                <field name="date_deadline" allow_group_range_value="true" />
                 <progressbar
                     field="kanban_state"
                     colors='{"done": "success", "blocked": "danger", "normal": "muted"}'

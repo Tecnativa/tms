@@ -14,13 +14,20 @@
             align-content: flex-start;
             .o_kanban_group:not(.o_column_folded) {
                 width: 15rem !important; // ~180px
+                padding: 0px 5px 0px 5px;
                 &:first-child {
                     height: 100vh;
                     overflow-y: scroll;
                     width: 30rem !important;
                     .oe_kanban_card {
-                        width: 11.25rem !important;
+                        width: 14.1rem !important;
                     }
+                }
+                .o_column_title {
+                    white-space: break-spaces;
+                }
+                .o_kanban_header_title {
+                    height: 100%;
                 }
             }
         }
