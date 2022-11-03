@@ -29,6 +29,10 @@
                 .o_kanban_header_title {
                     height: 100%;
                 }
+                &.o_kanban_hover {
+                    background-color: #e2e0eb !important;
+                    height: 80vh;
+                }
             }
         }
     }
