@@ -427,6 +427,7 @@
                 group_create="false"
                 group_delete="false"
                 default_order="priority desc, date_start, sequence, id desc"
+                groups_limit="999"
             >
                 <field name="color" />
                 <field name="priority" />
