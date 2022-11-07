@@ -52,5 +52,10 @@
         "views/tms_menu_view.xml",
         "views/tms_package.xml",
     ],
-    "assets": {"web.assets_backend": ["tms/static/src/scss/kanban_view.scss"]},
+    "assets": {
+        "web.assets_backend": [
+            "tms/static/src/scss/kanban_view.scss",
+            "tms/static/src/js/kanban_view.js",
+        ],
+    },
 }
