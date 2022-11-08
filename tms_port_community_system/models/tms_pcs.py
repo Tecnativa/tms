@@ -38,14 +38,15 @@ class PortCommunitySystem(object):
     def list_messages_by_date(
         self,
         from_date="2020-01-12T11:06:05.083+02:00",
-        to_date="2020-01-13T18:06:05.083+02:00",
+        to_date="2022-11-13T18:06:05.083+02:00",
         message_type="DUTv2",
         service_code="TRANS",
         state="All",
         direction="In",
         ticket="",
+        test=False,
     ):
-        TransportService = self.service_wsdl("TransportService")
+        TransportService = self.service_wsdl("TransportService", test=test)
         messages_xml = TransportService.service.ListMessagesByDate(
             from_date, to_date, message_type, service_code, state, direction, ticket
         )
@@ -59,8 +60,9 @@ class PortCommunitySystem(object):
         state="All",
         direction="In",
         ticket="",
+        test=False,
     ):
-        TransportService = self.service_wsdl("TransportService")
+        TransportService = self.service_wsdl("TransportService", test=test)
         messages = TransportService.service.ListMessagesByMessageType(
             message_type, service_code, state, direction, ticket
         )
@@ -140,6 +142,7 @@ class TmsValenciaportsBackend(models.Model):
             vals["name"] = name
         if not partner:
             vals["company_id"] = False
+            vals = self._validate_vat(vals, False)
             partner = Partner.create(vals)
         return partner
 
@@ -156,6 +159,7 @@ class TmsValenciaportsBackend(models.Model):
             "city": self.xml_value(place, "City"),
             "zip": self.xml_value(place, "PostalCode"),
             "customer_rank": 0,
+            "is_shipping_place": True,
         }
         return self._search_or_create_partner(name, street=street, vals=vals)
 
@@ -164,6 +168,7 @@ class TmsValenciaportsBackend(models.Model):
         ref = self.xml_value(port, "UNLOCODE")
         vals = {
             "customer_rank": 0,
+            "is_shipping_place": True,
         }
         return self._search_or_create_partner(name, ref=ref, vals=vals)
 
@@ -202,6 +207,7 @@ class TmsValenciaportsBackend(models.Model):
                 {
                     "name": name,
                     "size_type_id": size_type.id,
+                    "iso6346_ok": False,
                 }
             )
         return equipment
@@ -222,11 +228,11 @@ class TmsValenciaportsBackend(models.Model):
 
     def _attach_file(self, file_content, file_name, sale_order, number):
         data_attach = {
-            "datas": file_content,
+            "datas": base64.b64encode(file_content),
             "name": file_name,
             "res_model": "sale.order",
             "res_id": sale_order.id,
-            "type": "binary",
+            "mimetype": "application/xml",
         }
         self.env["ir.attachment"].create(data_attach)
         # email.write({'attachment_ids': [(6, 0, attachments.ids)]})
@@ -341,7 +347,9 @@ class TmsValenciaportsBackend(models.Model):
                 release_name = self.xml_value(release_company, "Name")
                 vat = self.xml_value(release_company, "NationalIdentityNumber")
                 so_vals["release_id"] = self._search_or_create_partner(
-                    release_name, vat, vals={"customer_rank": 0}
+                    release_name,
+                    vat,
+                    vals={"customer_rank": 0, "is_shipping_place": True},
                 ).id
             so_vals["release_locator"] = self.xml_value(
                 container, "ReleaseDetails/References/LocatorCode"
@@ -353,7 +361,9 @@ class TmsValenciaportsBackend(models.Model):
                 acceptance_name = self.xml_value(acceptance_company, "Name")
                 vat = self.xml_value(acceptance_company, "NationalIdentityNumber")
                 so_vals["acceptance_id"] = self._search_or_create_partner(
-                    acceptance_name, vat, vals={"customer_rank": 0}
+                    acceptance_name,
+                    vat,
+                    vals={"customer_rank": 0, "is_shipping_place": True},
                 ).id
             so_vals["acceptance_locator"] = self.xml_value(
                 container, "AcceptanceDetails/References/LocatorCode"
@@ -416,24 +426,26 @@ class TmsValenciaportsBackend(models.Model):
             domain.extend([("pcs_message_number", "=", doc_number)])
         sale_order = SaleOrder.search(domain, limit=1, order="id DESC")
         if not sale_order:
-            sale_order = SaleOrder.with_context(
-                force_company=so_vals["company_id"],
-            ).create(so_vals)
+            sale_order = SaleOrder.with_company(so_vals["company_id"]).create(so_vals)
         else:
             sol_list = so_vals.pop("order_line", [])
             new_vals = self._clean_false_vals(so_vals)
-            original_doc_xml = etree.fromstring(
-                self.get_file_from_attach(file_name, sale_order)
-            )
-            original_vals = self._clean_false_vals(self._parse_dut(original_doc_xml))
-            original_sol_list = original_vals.pop("order_line", [])
-            key_vals_to_remove = []
-            for k, v in new_vals.items():
-                if k in original_vals and original_vals[k] == v:
-                    key_vals_to_remove.append(k)
-            # To avoid change size dictionary in iteration
-            for key in key_vals_to_remove:
-                new_vals.pop(key)
+            original_file = self.get_file_from_attach(file_name, sale_order)
+            if original_file:
+                original_doc_xml = etree.fromstring(
+                    self.get_file_from_attach(file_name, sale_order)
+                )
+                original_vals = self._clean_false_vals(
+                    self._parse_dut(original_doc_xml)
+                )
+                original_sol_list = original_vals.pop("order_line", [])
+                key_vals_to_remove = []
+                for k, v in new_vals.items():
+                    if k in original_vals and original_vals[k] == v:
+                        key_vals_to_remove.append(k)
+                # To avoid change size dictionary in iteration
+                for key in key_vals_to_remove:
+                    new_vals.pop(key)
             if new_vals:
                 fields_tracking = {}
                 new_vals_tracking = {}
@@ -451,14 +463,15 @@ class TmsValenciaportsBackend(models.Model):
             if len(sol_list) == 1 and len(sale_order.order_line or []) <= 1:
                 line = sale_order.order_line
                 sol_vals = self._clean_false_vals(sol_list[0][2])
-                original_sol_vals = self._clean_false_vals(original_sol_list[0][2])
-                key_vals_to_remove = []
-                for k, v in sol_vals.items():
-                    if k in original_sol_vals and original_sol_vals[k] == v:
-                        key_vals_to_remove.append(k)
-                # To avoid change size dictionary in iteration
-                for key in key_vals_to_remove:
-                    sol_vals.pop(key)
+                if original_file:
+                    original_sol_vals = self._clean_false_vals(original_sol_list[0][2])
+                    key_vals_to_remove = []
+                    for k, v in sol_vals.items():
+                        if k in original_sol_vals and original_sol_vals[k] == v:
+                            key_vals_to_remove.append(k)
+                    # To avoid change size dictionary in iteration
+                    for key in key_vals_to_remove:
+                        sol_vals.pop(key)
                 if sol_vals:
                     if line:
                         package_list = sol_vals.pop("tms_package_ids", [])
@@ -476,7 +489,7 @@ class TmsValenciaportsBackend(models.Model):
                     else:
                         sale_order.order_line = sol_list
         if not self.env.context.get("pcs_skip_store_attachment", False):
-            self._attach_file(file_bin, file_name, sale_order, doc_number)
+            self._attach_file(doc_str, file_name, sale_order, doc_number)
         return sale_order
 
     def import_sale_orders(self):
@@ -493,11 +506,15 @@ class TmsValenciaportsBackend(models.Model):
         ticket = pcs.login_guid(
             self.user, self.password, self.company_code, self.environment_test
         )
-        # messages = pcs.list_messages_by_date(
-        #     message_type='DUTv2', ticket=ticket)
+        # messages = pcs.list_messages_by_date(message_type='DUTv2', ticket=ticket,
+        # test=self.environment_test)
         # messages = pcs.list_messages(ticket=ticket)
-        messages = pcs.list_messages_by_type(message_type="DUTv2", ticket=ticket)
-        TransportService = pcs.service_wsdl("TransportService")
+        messages = pcs.list_messages_by_type(
+            message_type="DUTv2", ticket=ticket, test=self.environment_test
+        )
+        TransportService = pcs.service_wsdl(
+            "TransportService", test=self.environment_test
+        )
         if not isinstance(messages, list):
             messages = [messages]
         for msg in messages:
@@ -515,3 +532,31 @@ class TmsValenciaportsBackend(models.Model):
     def import_sale_orders_planned(self):
         for backend in self.search([]):
             backend.import_sale_orders()
+
+    def _validate_vat(self, vals, country_code):
+        ResPartner = self.env["res.partner"]
+        original_vat = vals.pop("vat", False)
+        vat = original_vat
+        if not vat:
+            return vals
+        # Clean vat
+        vat = (
+            vat.replace("-", "")
+            .replace(".", "")
+            .replace(" ", "")
+            .replace("*", "")
+            .upper()
+        )
+        if not vat[1:2].isnumeric():
+            country_code, vat = ResPartner._split_vat(vat)
+        if not country_code:
+            country_code = "ES"
+        full_vat = "{}{}".format(country_code.upper(), vat)
+        if ResPartner.simple_vat_check(country_code.lower(), vat):
+            vals["vat"] = full_vat
+        else:
+            if vals.get("comment", False):
+                vals["comment"] += "\nVAT: {}".format(original_vat)
+            else:
+                vals["comment"] = "VAT: {}".format(original_vat)
+        return vals

@@ -15,6 +15,6 @@ class TmsValenciaportsBackend(models.Model):
 
     def _parse_dut(self, doc):
         res = super()._parse_dut(doc)
-        if self.type_id:
+        if self.sale_order_type_id:
             res["type_id"] = self.sale_order_type_id.id
         return res
