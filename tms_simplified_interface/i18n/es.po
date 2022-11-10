@@ -1,0 +1,47 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* tms_simplified_interface
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-10-03 14:24+0000\n"
+"PO-Revision-Date: 2022-10-03 16:27+0200\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.3\n"
+"Last-Translator: \n"
+"Language: es\n"
+
+#. module: tms_simplified_interface
+#: model_terms:ir.actions.act_window,help:tms_simplified_interface.action_open_task_form_simplified
+msgid "No tasks found. Let's create one!"
+msgstr "No se encontraron tareas. ¡Creemos una!"
+
+#. module: tms_simplified_interface
+#: model:ir.actions.act_window,name:tms_simplified_interface.action_open_task_form_simplified
+msgid "Simplified Tasks"
+msgstr "Tareas Simplificadas"
+
+#. module: tms_simplified_interface
+#: model_terms:ir.ui.view,arch_db:tms_simplified_interface.view_task_form_simplified
+msgid "Task info"
+msgstr "Información Tarea"
+
+#. module: tms_simplified_interface
+#: model:ir.ui.menu,name:tms_simplified_interface.menu_mobile_task
+msgid "Task mobile view"
+msgstr "Tareas vista móvil"
+
+#. module: tms_simplified_interface
+#: model_terms:ir.actions.act_window,help:tms_simplified_interface.action_open_task_form_simplified
+msgid ""
+"To get things done, use activities and status on tasks.<br>\n"
+"                    Chat in real-time or by email to collaborate efficiently."
+msgstr ""
+"Para ser más eficiente, utilice las actividades y estados para sus tareas.<br>\n"
+"                    Comuníquese en tiempo real o por correo electrónico para colaborar de manera eficaz."
