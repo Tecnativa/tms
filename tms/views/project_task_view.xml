@@ -478,6 +478,9 @@
                                                 widget="name_with_subtask_count"
                                             />
                                     </t>
+                                    <t t-if="record.shipping_company_id.value">
+                                        <field name="shipping_company_id" />
+                                    </t>
                                 </div>
                                 <div
                                         class="o_dropdown_kanban dropdown"
@@ -553,11 +556,8 @@
                                     </i>
                                 </span>
                                 <br />
-                                <t t-if="record.shipping_company_id.value">
-                                    <field name="shipping_company_id" />
-                                </t>
                                 <field
-                                        name="tag_ids"
+                                        name="trailer_requirement_ids"
                                         widget="many2many_tags"
                                         options="{'color_field': 'color'}"
                                     />

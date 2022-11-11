@@ -184,6 +184,15 @@ class ProjectTask(models.Model):
     tractor_id = fields.Many2one(group_expand="_read_group_tractor_ids")
     force_origin = fields.Boolean()
     force_destination = fields.Boolean()
+    progress_status = fields.Selection(
+        [
+            ("not_started", "Not started"),
+            ("in_progress", "In progress"),
+            ("closed", "Closed"),
+        ],
+        compute="_compute_progress_status",
+        store=True,
+    )
 
     @api.depends("tms_package_ids", "child_ids")
     def _compute_tms_package_all_ids(self):
@@ -235,6 +244,16 @@ class ProjectTask(models.Model):
     def _compute_stopped_time(self):
         for task in self:
             task.stopped_time = sum(task.mapped("checkpoint_ids.stopped_time"))
+
+    @api.depends("stage_id")
+    def _compute_progress_status(self):
+        for task in self:
+            if task.stage_id.is_closed:
+                task.progress_status = "closed"
+            elif task.stage_id.sequence == 1:
+                task.progress_status = "not_started"
+            else:
+                task.progress_status = "in_progress"
 
     @api.onchange("tractor_id")
     def _onchange_tractor_id_user(self):
