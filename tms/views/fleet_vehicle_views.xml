@@ -70,6 +70,13 @@
                     name="attrs"
                 >{'invisible': [('vehicle_type', 'not in', ('car', 'bike', 'tractor'))]}</attribute>
             </field>
+            <field name="next_assignation_date" position="after">
+                <field
+                    name="sale_type_ids"
+                    options="{'no_create': True}"
+                    widget="many2many_tags"
+                />
+            </field>
         </field>
     </record>
 

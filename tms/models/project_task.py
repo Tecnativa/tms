@@ -10,6 +10,7 @@ import requests
 
 from odoo import SUPERUSER_ID, _, api, exceptions, fields, models
 from odoo.exceptions import ValidationError
+from odoo.osv import expression
 
 _logger = logging.getLogger(__name__)
 
@@ -398,6 +399,22 @@ class ProjectTask(models.Model):
             ("always_show_in_kanban", "=", True),
             ("vehicle_type", "=", "tractor"),
         ]
+        if self.env.context.get("sale_type_in_domain", False):
+            # TODO: Use expression when fix https://github.com/odoo/odoo/issues/103214
+            TRUE_DOMAIN = ("id", "!=", False)  # expression.TRUE_DOMAIN
+            tractor_domain = []
+            for t in domain:
+                if not isinstance(t, (list, tuple)):
+                    tractor_domain.append(t)
+                elif t[0] == "sale_type_id":
+                    tractor_domain.append(("sale_type_ids", t[1], t[2]))
+                else:
+                    tractor_domain.append(TRUE_DOMAIN)
+            tractor_domain = expression.OR(
+                [tractor_domain, [("sale_type_ids", "=", False)]]
+            )
+            search_domain = expression.AND([search_domain, tractor_domain])
+
         tractor_ids = tractors._search(
             search_domain, order=order, access_rights_uid=SUPERUSER_ID
         )

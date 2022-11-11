@@ -241,7 +241,11 @@
                     filter_domain="[]"
                     context="{'max_vehicle_tasks': self}"
                 />
-                <field name="sale_type_id" string="Sale Type" />
+                <field
+                    name="sale_type_id"
+                    string="Sale Type"
+                    context="{'sale_type_in_domain': True}"
+                />
             </field>
             <filter name="unassigned" position="attributes">
                 <attribute name="string">Unassigned User</attribute>

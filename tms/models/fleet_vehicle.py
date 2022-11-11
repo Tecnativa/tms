@@ -38,6 +38,10 @@ class FleetVehicle(models.Model):
     always_show_in_kanban = fields.Boolean(
         company_dependent=True,
     )
+    sale_type_ids = fields.Many2many(
+        comodel_name="sale.order.type",
+        string="Sale Order Types",
+    )
 
     def _compute_task_count(self):
         Task = self.env["project.task"]
