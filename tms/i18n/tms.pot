@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-19 22:49+0000\n"
-"PO-Revision-Date: 2022-10-19 22:49+0000\n"
+"POT-Creation-Date: 2022-11-11 12:30+0000\n"
+"PO-Revision-Date: 2022-11-11 12:30+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -97,6 +97,16 @@ msgstr ""
 #. module: tms
 #: model:ir.model.fields,field_description:tms.field_tms_goods__adr_id
 msgid "ADR"
+msgstr ""
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_res_config_settings__georoute_provider_id
+msgid "API Route"
+msgstr ""
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.res_config_settings_view_form
+msgid "API Route:"
 msgstr ""
 
 #. module: tms
@@ -196,6 +206,11 @@ msgid "Checkpoints Origin"
 msgstr ""
 
 #. module: tms
+#: model:ir.model.fields.selection,name:tms.selection__project_task__progress_status__closed
+msgid "Closed"
+msgstr ""
+
+#. module: tms
 #: model:ir.model.fields,field_description:tms.field_iso6346_length__code
 #: model:ir.model.fields,field_description:tms.field_iso6346_second_size__code
 #: model:ir.model.fields,field_description:tms.field_iso6346_size_type__code
@@ -219,6 +234,11 @@ msgid "Company Owner"
 msgstr ""
 
 #. module: tms
+#: model:ir.model,name:tms.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: tms
 #: model:ir.ui.menu,name:tms.menu_tms_config
 msgid "Configuration"
 msgstr ""
@@ -229,7 +249,7 @@ msgid "Confirm Order"
 msgstr ""
 
 #. module: tms
-#: model:base.automation,name:tms.rule_confirm_sale_order
+#: model:base.automation,name:tms.automation_confirm_sale_order
 #: model:ir.actions.server,name:tms.action_confirm_sale_order
 msgid "Confirm Sale Order"
 msgstr ""
@@ -440,7 +460,7 @@ msgid "Fill Checkpoints"
 msgstr ""
 
 #. module: tms
-#: model:base.automation,name:tms.rule_fill_checkpoints
+#: model:base.automation,name:tms.automation_fill_checkpoints
 #: model:ir.actions.server,name:tms.action_fill_checkpoints
 msgid "Fill Checkpoints to confirm order"
 msgstr ""
@@ -558,6 +578,17 @@ msgid "In Transit"
 msgstr ""
 
 #. module: tms
+#: model:ir.model.fields.selection,name:tms.selection__project_task__progress_status__in_progress
+msgid "In progress"
+msgstr ""
+
+#. module: tms
+#: code:addons/tms/models/project_task.py:0
+#, python-format
+msgid "Incompatible equipment"
+msgstr ""
+
+#. module: tms
 #: model:ir.model.fields.selection,name:tms.selection__tms_equipment__equipment_type__jail
 msgid "Jail"
 msgstr ""
@@ -565,6 +596,11 @@ msgstr ""
 #. module: tms
 #: model:ir.model,name:tms.model_account_move_line
 msgid "Journal Item"
+msgstr ""
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.res_config_settings_view_form
+msgid "Key Route:"
 msgstr ""
 
 #. module: tms
@@ -703,6 +739,11 @@ msgid "No tasks found. Let's create one!"
 msgstr ""
 
 #. module: tms
+#: model:ir.model.fields.selection,name:tms.selection__project_task__progress_status__not_started
+msgid "Not started"
+msgstr ""
+
+#. module: tms
 #: model:ir.model.fields,field_description:tms.field_project_task__number_of_packages
 msgid "Number Of Packages"
 msgstr ""
@@ -715,6 +756,11 @@ msgstr ""
 #. module: tms
 #: model:ir.model.fields,field_description:tms.field_project_task__odometer_stop
 msgid "Odometer Stop"
+msgstr ""
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_res_config_settings__georoute_provider_openrouteservice_key
+msgid "Open Route Service API Key"
 msgstr ""
 
 #. module: tms
@@ -775,6 +821,12 @@ msgid "Partner"
 msgstr ""
 
 #. module: tms
+#: model:base.automation,name:tms.automation_partner_geo_localize
+#: model:ir.actions.server,name:tms.action_partner_geo_localize
+msgid "Partner Geo Localize"
+msgstr ""
+
+#. module: tms
 #: model:ir.model,name:tms.model_res_partner_schedule
 msgid "Partner Schedule"
 msgstr ""
@@ -830,6 +882,11 @@ msgstr ""
 #. module: tms
 #: model:ir.ui.menu,name:tms.menu_products
 msgid "Products"
+msgstr ""
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_project_task__progress_status
+msgid "Progress Status"
 msgstr ""
 
 #. module: tms
@@ -1107,6 +1164,11 @@ msgid "Tasks"
 msgstr ""
 
 #. module: tms
+#: model:ir.model.fields,field_description:tms.field_res_config_settings__georoute_provider_techname
+msgid "Tech Name"
+msgstr ""
+
+#. module: tms
 #: code:addons/tms/models/tms_equipment.py:0
 #: code:addons/tms/models/tms_equipment.py:0
 #: code:addons/tms/models/tms_equipment.py:0
@@ -1303,6 +1365,11 @@ msgstr ""
 #. module: tms
 #: model:ir.model.fields,field_description:tms.field_project_project__vessel_flag
 msgid "Vessel Flag"
+msgstr ""
+
+#. module: tms
+#: model:ir.model.fields,help:tms.field_res_config_settings__georoute_provider_openrouteservice_key
+msgid "Visit https://openrouteservice.org/services/ for more information."
 msgstr ""
 
 #. module: tms

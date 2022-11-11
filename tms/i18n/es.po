@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-19 22:49+0000\n"
-"PO-Revision-Date: 2022-10-20 00:50+0200\n"
-"Last-Translator: Carlos Dauden <carlos.dauden@tecnativa.com>\n"
+"POT-Creation-Date: 2022-11-11 12:30+0000\n"
+"PO-Revision-Date: 2022-11-11 13:35+0100\n"
+"Last-Translator: Sergio Teruel <sergio.teruel@tecnativa.com>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -116,6 +116,20 @@ msgid "ADR"
 msgstr "ADR"
 
 #. module: tms
+#: model:ir.model.fields,field_description:tms.field_res_config_settings__georoute_provider_id
+#, fuzzy
+#| msgid "Show Route"
+msgid "API Route"
+msgstr "Mostrar ruta"
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.res_config_settings_view_form
+#, fuzzy
+#| msgid "Show Route"
+msgid "API Route:"
+msgstr "Mostrar ruta"
+
+#. module: tms
 #: model:ir.model.fields,field_description:tms.field_sale_order__acceptance_id
 msgid "Acceptance"
 msgstr "Admítase"
@@ -212,6 +226,11 @@ msgid "Checkpoints Origin"
 msgstr "Checkpoints Origen"
 
 #. module: tms
+#: model:ir.model.fields.selection,name:tms.selection__project_task__progress_status__closed
+msgid "Closed"
+msgstr ""
+
+#. module: tms
 #: model:ir.model.fields,field_description:tms.field_iso6346_length__code
 #: model:ir.model.fields,field_description:tms.field_iso6346_second_size__code
 #: model:ir.model.fields,field_description:tms.field_iso6346_size_type__code
@@ -235,6 +254,11 @@ msgid "Company Owner"
 msgstr "Compañía propietaria"
 
 #. module: tms
+#: model:ir.model,name:tms.model_res_config_settings
+msgid "Config Settings"
+msgstr "Ajustes de configuración"
+
+#. module: tms
 #: model:ir.ui.menu,name:tms.menu_tms_config
 msgid "Configuration"
 msgstr "Configuración"
@@ -245,7 +269,7 @@ msgid "Confirm Order"
 msgstr "Confirmar pedido"
 
 #. module: tms
-#: model:base.automation,name:tms.rule_confirm_sale_order
+#: model:base.automation,name:tms.automation_confirm_sale_order
 #: model:ir.actions.server,name:tms.action_confirm_sale_order
 msgid "Confirm Sale Order"
 msgstr "Confirmar pedido de venta"
@@ -456,7 +480,7 @@ msgid "Fill Checkpoints"
 msgstr "Rellenar checkpoints"
 
 #. module: tms
-#: model:base.automation,name:tms.rule_fill_checkpoints
+#: model:base.automation,name:tms.automation_fill_checkpoints
 #: model:ir.actions.server,name:tms.action_fill_checkpoints
 msgid "Fill Checkpoints to confirm order"
 msgstr "Rellenar checkpoints al confirmar orden"
@@ -574,6 +598,17 @@ msgid "In Transit"
 msgstr "En tránsito"
 
 #. module: tms
+#: model:ir.model.fields.selection,name:tms.selection__project_task__progress_status__in_progress
+msgid "In progress"
+msgstr "En proceso"
+
+#. module: tms
+#: code:addons/tms/models/project_task.py:0
+#, python-format
+msgid "Incompatible equipment"
+msgstr "Equipamiento incompatible"
+
+#. module: tms
 #: model:ir.model.fields.selection,name:tms.selection__tms_equipment__equipment_type__jail
 msgid "Jail"
 msgstr "Jaula"
@@ -582,6 +617,13 @@ msgstr "Jaula"
 #: model:ir.model,name:tms.model_account_move_line
 msgid "Journal Item"
 msgstr "Apunte contable"
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.res_config_settings_view_form
+#, fuzzy
+#| msgid "Show Route"
+msgid "Key Route:"
+msgstr "Mostrar ruta"
 
 #. module: tms
 #: model:ir.model.fields,field_description:tms.field_iso6346_length____last_update
@@ -719,6 +761,11 @@ msgid "No tasks found. Let's create one!"
 msgstr "No se encontraron tareas. ¡Creemos una!"
 
 #. module: tms
+#: model:ir.model.fields.selection,name:tms.selection__project_task__progress_status__not_started
+msgid "Not started"
+msgstr "No comenzada"
+
+#. module: tms
 #: model:ir.model.fields,field_description:tms.field_project_task__number_of_packages
 msgid "Number Of Packages"
 msgstr "Número de bultos"
@@ -732,6 +779,11 @@ msgstr "Odómetro inicio"
 #: model:ir.model.fields,field_description:tms.field_project_task__odometer_stop
 msgid "Odometer Stop"
 msgstr "Odómetro fin"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_res_config_settings__georoute_provider_openrouteservice_key
+msgid "Open Route Service API Key"
+msgstr ""
 
 #. module: tms
 #: model:ir.model.fields,field_description:tms.field_project_task__shipping_origin_id
@@ -791,6 +843,14 @@ msgid "Partner"
 msgstr "Empresa"
 
 #. module: tms
+#: model:base.automation,name:tms.automation_partner_geo_localize
+#: model:ir.actions.server,name:tms.action_partner_geo_localize
+#, fuzzy
+#| msgid "Partner Zone"
+msgid "Partner Geo Localize"
+msgstr "Zona de la empresa"
+
+#. module: tms
 #: model:ir.model,name:tms.model_res_partner_schedule
 msgid "Partner Schedule"
 msgstr "Horario empresa"
@@ -847,6 +907,11 @@ msgstr "Plantilla producto"
 #: model:ir.ui.menu,name:tms.menu_products
 msgid "Products"
 msgstr "Productos"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_project_task__progress_status
+msgid "Progress Status"
+msgstr "Estado del progreso"
 
 #. module: tms
 #: model:ir.model,name:tms.model_project_project
@@ -1125,6 +1190,13 @@ msgid "Tasks"
 msgstr "Tareas"
 
 #. module: tms
+#: model:ir.model.fields,field_description:tms.field_res_config_settings__georoute_provider_techname
+#, fuzzy
+#| msgid "Name"
+msgid "Tech Name"
+msgstr "Nombre"
+
+#. module: tms
 #: code:addons/tms/models/tms_equipment.py:0
 #: model:ir.model.constraint,message:tms.constraint_iso6346_length_uniq_code
 #: model:ir.model.constraint,message:tms.constraint_iso6346_second_size_uniq_code
@@ -1323,6 +1395,11 @@ msgstr "Buque"
 #: model:ir.model.fields,field_description:tms.field_project_project__vessel_flag
 msgid "Vessel Flag"
 msgstr "Bandera buque"
+
+#. module: tms
+#: model:ir.model.fields,help:tms.field_res_config_settings__georoute_provider_openrouteservice_key
+msgid "Visit https://openrouteservice.org/services/ for more information."
+msgstr ""
 
 #. module: tms
 #: model:ir.model.fields,field_description:tms.field_project_task__volume

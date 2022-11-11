@@ -9,6 +9,7 @@ from collections import defaultdict
 import requests
 
 from odoo import SUPERUSER_ID, _, api, exceptions, fields, models
+from odoo.exceptions import ValidationError
 
 _logger = logging.getLogger(__name__)
 
@@ -342,6 +343,18 @@ class ProjectTask(models.Model):
         if sale_line_vals:
             sale_lines.with_context(write_from_task=True).write(sale_line_vals)
 
+    def _check_incompatible_tags(self, vals):
+        fleet_vehicle = self.env["fleet.vehicle"]
+        if "tractor_id" in vals or "trailer_id" in vals:
+            for task in self:
+                if task.trailer_requirement_ids:
+                    vehicles = fleet_vehicle.browse(
+                        [vals.get("tractor_id", False), vals.get("trailer_id", False)]
+                    )
+                    tags = vehicles.mapped("tag_ids")
+                    if not task.trailer_requirement_ids <= tags:
+                        raise ValidationError(_("Incompatible equipment"))
+
     def write(self, vals):
         # Onchange values are not stored when drag and drop in kanban view
         force_onchange = (
@@ -365,6 +378,7 @@ class ProjectTask(models.Model):
                 vals[field] = parent_task._fields[field].convert_to_write(
                     parent_task[field], parent_task
                 )
+        self._check_incompatible_tags(vals)
         childs = self.mapped("child_ids")
         if childs:
             child_vals = {}
