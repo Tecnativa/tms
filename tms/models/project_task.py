@@ -195,6 +195,9 @@ class ProjectTask(models.Model):
         compute="_compute_progress_status",
         store=True,
     )
+    pending_duration_estimated = fields.Float(
+        compute="_compute_pending_duration_estimated", store=True
+    )
 
     @api.depends("tms_package_ids", "child_ids")
     def _compute_tms_package_all_ids(self):
@@ -256,6 +259,18 @@ class ProjectTask(models.Model):
                 task.progress_status = "not_started"
             else:
                 task.progress_status = "in_progress"
+
+    @api.depends("progress_status", "checkpoint_ids.departure_time")
+    def _compute_pending_duration_estimated(self):
+        for task in self:
+            if task.progress_status == "closed":
+                task.pending_duration_estimated = 0.0
+            else:
+                task.pending_duration_estimated = sum(
+                    task.checkpoint_ids.filtered(lambda c: not c.departure_time).mapped(
+                        "duration_estimated"
+                    )
+                )
 
     @api.onchange("tractor_id")
     def _onchange_tractor_id_user(self):
@@ -423,7 +438,7 @@ class ProjectTask(models.Model):
             tractors = tractors.with_context(task_domain=domain).filtered(
                 "is_available"
             )
-        return tractors
+        return tractors.sorted(key="task_pending_duration_estimated")
 
     def _all_places(self):
         places = self.release_id | self.shipping_origin_id

@@ -42,6 +42,7 @@ class FleetVehicle(models.Model):
         comodel_name="sale.order.type",
         string="Sale Order Types",
     )
+    task_pending_duration_estimated = fields.Float(compute="_compute_task_count")
 
     def _compute_task_count(self):
         Task = self.env["project.task"]
@@ -55,19 +56,28 @@ class FleetVehicle(models.Model):
         ]
         tasks_data = Task.read_group(
             domain=expression.AND([[("stage_id.is_closed", "=", False)], task_domain]),
-            fields=["tractor_id", "trailer_id"],
+            fields=["tractor_id", "trailer_id", "pending_duration_estimated"],
             groupby=["tractor_id", "trailer_id"],
             lazy=False,
         )
-        vehicle_task_dic = defaultdict(int)
+        vehicle_task_dic = defaultdict(lambda: {"count": 0, "duration": 0.0})
         for group in tasks_data:
             if group["tractor_id"]:
-                vehicle_task_dic[group["tractor_id"][0]] += group["__count"]
+                vehicle_task_dic[group["tractor_id"][0]]["count"] += group["__count"]
+                vehicle_task_dic[group["tractor_id"][0]]["duration"] += group[
+                    "pending_duration_estimated"
+                ]
             if group["trailer_id"]:
-                vehicle_task_dic[group["trailer_id"][0]] += group["__count"]
+                vehicle_task_dic[group["trailer_id"][0]]["count"] += group["__count"]
+                vehicle_task_dic[group["trailer_id"][0]]["duration"] += group[
+                    "pending_duration_estimated"
+                ]
         for vehicle in self:
-            vehicle.task_count = vehicle_task_dic[vehicle.id]
+            vehicle.task_count = vehicle_task_dic[vehicle.id]["count"]
             vehicle.is_available = vehicle.task_count <= max_tasks
+            vehicle.task_pending_duration_estimated = vehicle_task_dic[vehicle.id][
+                "duration"
+            ]
 
     def _compute_next_checkpoint_ids(self):
         """

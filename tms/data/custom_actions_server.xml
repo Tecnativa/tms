@@ -47,7 +47,10 @@
         <field name="name">Fill checkpoints</field>
         <field name="model_id" ref="project.model_project_task" />
         <field name="state">code</field>
-        <field name="code">records.fill_checkpoints()</field>
+        <field name="code">
+records.fill_checkpoints()
+records.get_route_info()
+        </field>
     </record>
 
     <record id="action_partner_geo_localize" model="ir.actions.server">

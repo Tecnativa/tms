@@ -463,10 +463,13 @@
                 <field name="child_text" />
                 <field name="is_private" />
                 <field name="unload_service" />
+                <field name="progress_status" />
+                <field name="pending_duration_estimated" />
                 <field name="date_deadline" allow_group_range_value="true" />
                 <progressbar
-                    field="kanban_state"
-                    colors='{"done": "success", "blocked": "danger", "normal": "muted"}'
+                    field="progress_status"
+                    colors='{"closed": "success", "in_progress": "warning", "not_started": "muted"}'
+                    sum_field="pending_duration_estimated"
                 />
                 <templates>
                 <t t-name="kanban-box">
