@@ -9,11 +9,11 @@
     <field name="arch" type="xml">
         <form string="PCS">
             <header>
-                <button name="import_sale_orders" string="Import" type="object" />
+                <button name="call_pcs_method" string="Call method" type="object" />
             </header>
             <sheet>
                 <group>
-                    <field name="url" />
+                    <field name="name" />
                     <field name="environment_test" />
                     <field name="user" />
                     <field name="password" password="True" />
@@ -26,6 +26,49 @@
                     <field name="warehouse_id" />
                     <field name="company_id" />
                 </group>
+                <group string="Service">
+                    <field name="service_method" />
+                    <field
+                            name="service_code"
+                            attrs="{'invisible': [('service_method', 'not in',
+                           ('pcs_list_messages_by_service', 'pcs_list_messages_by_message_type', 'pcs_list_messages_by_date'))]}"
+                        />
+                    <field
+                            name="message_type"
+                            attrs="{'invisible': [('service_method', 'not in',
+                           ('pcs_list_messages_by_message_type', 'pcs_list_messages_by_date'))]}"
+                        />
+                    <field
+                            name="message_state"
+                            attrs="{'invisible': [('service_method', 'not in', ('pcs_list_messages_by_date'))]}"
+                        />
+                    <field
+                            name="message_direction"
+                            attrs="{'invisible': [('service_method', 'not in',
+                           ('pcs_list_messages', 'pcs_list_messages_by_service', 'pcs_list_messages_by_message_type', 'pcs_list_messages_by_date'))]}"
+                        />
+                    <field
+                            name="from_date"
+                            attrs="{'invisible': [('service_method', 'not in', ('pcs_list_messages_by_date'))]}"
+                        />
+                    <field
+                            name="to_date"
+                            attrs="{'invisible': [('service_method', 'not in', ('pcs_list_messages_by_date'))]}"
+                        />
+                </group>
+                <group>
+                    <field
+                            name="pcs_file"
+                            filename="pcs_filename"
+                            placeholder="Upload/download file"
+                        />
+                    <field name="pcs_filename" invisible="1" />
+                </group>
+                <group string="Service">
+                    <field name="session_ticket" />
+                    <field name="message_guid" />
+                </group>
+                <field name="messages_text" />
             </sheet>
         </form>
     </field>
@@ -36,8 +79,11 @@
     <field name="model">tms.pcs.backend</field>
     <field name="arch" type="xml">
         <tree>
-            <field name="url" />
+            <field name="name" />
             <field name="company_code" />
+            <field name="service_method" />
+            <field name="service_code" />
+            <field name="message_type" />
             <field name="company_id" />
         </tree>
     </field>

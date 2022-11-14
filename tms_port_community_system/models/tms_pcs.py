@@ -1,11 +1,10 @@
-# Copyright 2017 Sergio Teruel <sergio.teruel@tecnativa.com>
-# Copyright 2017 Carlos Dauden <carlos.dauden@tecnativa.com>
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
+# Copyright 2017-2022 Tecnativa - Sergio Teruel
+# Copyright 2017-2022 Tecnativa - Carlos Dauden
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 import base64
 import logging
 from datetime import datetime
 
-import pytz
 from lxml import etree, objectify
 from suds.client import Client  # TODO: See if suds-jurko works the same way in P3
 
@@ -13,72 +12,39 @@ from odoo import api, fields, models
 
 _logger = logging.getLogger(__name__)
 
+SERVICE_CODES = [
+    ("SHIPP", "Shipping Instructions"),
+    ("TRACK", "Track & Trace"),
+    ("TRANS", "Servicio de Transporte Terrestre"),
+    ("BKING", "Booking"),
+    ("STEIN", "Servicio de Instrucciones a Terminales"),
+    ("CUSTM", "Servicio de intercambio de mensajería con la Aduana"),
+    ("RAILW", "Servicio de Ferrocarril"),
+]
 
-class PortCommunitySystem(object):
-    def login(self, user, password, organization, test=False):
-        Login = self.service_wsdl("Login", test)
-        return Login.service.Login(user, password, organization)
 
-    def login_guid(self, user, password, organization, test=False):
-        session = self.login(user, password, organization, test)
-        return session.diffgram.UserSession.UserSession.TicketGUID
-
-    def service_wsdl(self, service, test=False):
-        url = "{}.valenciaportpcs.net/services/{}.asmx?wsdl".format(
-            test and "http://test" or "https://www", service
-        )
-        _logger.info("Pcs URL login: {}".format(url))
-        return Client(url)
-
-    def list_messages(self, ticket, state="Pending", direction="In", test=False):
-        TransportService = self.service_wsdl("TransportService", test)
-        messages = TransportService.service.ListMessages(state, direction, ticket)
-        return messages.diffgram and messages.diffgram.MessageData.Messages or []
-
-    def list_messages_by_date(
-        self,
-        from_date="2020-01-12T11:06:05.083+02:00",
-        to_date="2022-11-13T18:06:05.083+02:00",
-        message_type="DUTv2",
-        service_code="TRANS",
-        state="All",
-        direction="In",
-        ticket="",
-        test=False,
-    ):
-        TransportService = self.service_wsdl("TransportService", test=test)
-        messages_xml = TransportService.service.ListMessagesByDate(
-            from_date, to_date, message_type, service_code, state, direction, ticket
-        )
-        messages = objectify.fromstring(messages_xml)
-        return messages.getchildren()
-
-    def list_messages_by_type(
-        self,
-        message_type="DUTv2",
-        service_code="TRANS",
-        state="All",
-        direction="In",
-        ticket="",
-        test=False,
-    ):
-        TransportService = self.service_wsdl("TransportService", test=test)
-        messages = TransportService.service.ListMessagesByMessageType(
-            message_type, service_code, state, direction, ticket
-        )
-        return messages.diffgram and messages.diffgram.MessageData.Messages or []
+# class TmsValenciaportsMessageType(models.Model):
+#     _name = "tms.pcs.message.type"
+#     _description = "TMS Valencia ports message type"
+#
+#     code = fields.Char()
+#     name = fields.Char()
+#     service_code = fields.Selection(
+#         selection=SERVICE_CODES, string='Service Code', required=True, default='TRANS')
 
 
 class TmsValenciaportsBackend(models.Model):
     _name = "tms.pcs.backend"
     _description = "TMS Valencia ports backend"
 
+    # _transport_service = False  # To keep TransportService
+
     company_id = fields.Many2one(
         comodel_name="res.company",
         string="Company",
         default=lambda self: self.env.company.id,
     )
-    url = fields.Char()
+    name = fields.Char()
     environment_test = fields.Boolean(default=False)
     user = fields.Char()
     password = fields.Char()
@@ -92,32 +58,169 @@ class TmsValenciaportsBackend(models.Model):
         comodel_name="stock.warehouse",
         string="Warehouse",
     )
+    service_method = fields.Selection(
+        selection=[
+            # ("pcs_upload", "Upload"),
+            # ("pcs_Upload_zipped_message", "UploadZippedMessage"),
+            # ("pcs_upload_zipped_file", "UploadZippedFile"),
+            ("pcs_list_messages", "ListMessages"),
+            ("pcs_list_messages_by_service", "ListMessagesByService"),
+            ("pcs_list_messages_by_message_type", "ListMessagesByMessageType"),
+            ("pcs_list_messages_by_date", "ListMessagesByDate"),
+            ("pcs_download", "Download"),
+            # ("pcs_download_zipped_message", "DownloadZippedMessage"),
+            # ("pcs_download_zipped_file", "DownloadZippedFile"),
+        ]
+    )
+    service_code = fields.Selection(selection=SERVICE_CODES, default="TRANS")
+    message_type = fields.Selection(
+        selection=[
+            # Mensajes del Servicio de Instrucciones de Embarque
+            ("IFTMIN", "Shipping Instruction"),
+            ("CONTRL", "Track & Trace"),
+            ("APERAK", "Servicio de Transporte Terrestre"),
+            # Mensajes del Servicio de Seguimiento
+            ("IFTSTA", "Track & Trace"),
+            # Mensajes del Servicio de Ferrocarril
+            ("COPRAR", "Lista de contenedores a cargar/descargar por la terminal"),
+            ("COARRI", "Confirmación de carga/descarga de la terminal"),
+            (
+                "CONTRL",
+                "Confirmación de recepción del mensaje por parte del sistema receptor",
+            ),
+            # Mensajes del Servicio de Transporte Terrestre (formato valenciaportpcs.net)
+            ("DUTv2", "Documento Único de Transporte"),
+            ("ReleaseOrderv2", "Orden de Entrega"),
+            ("AcceptanceOrderv2", "Orden de Admisión"),
+            ("InlandTransportDetailsv2", "Asignación de los Datos de Transporte"),
+            ("ReleaseConfirmationv2", "Confirmación de Entrega"),
+            ("AcceptanceConfirmationv2", "Confirmación de Admisión"),
+            (
+                "Acknowledgementv2",
+                "Confirmación de recepción (respuesta de aceptación o rechazo)",
+            ),
+            # Mensajes del Servicio de Reservas de Carga
+        ],
+        default="DUTv2",
+    )
+    message_state = fields.Selection(
+        selection=[
+            ("Pending", "Pending"),
+            ("NoPending", "NoPending"),
+            ("All", "All"),
+        ],
+        default="Pending",
+    )
+    message_direction = fields.Selection(
+        selection=[
+            ("Out", "Out"),
+            ("In", "In"),
+        ],
+        default="In",
+    )
+    from_date = fields.Datetime()
+    to_date = fields.Datetime()
+    pcs_file = fields.Binary()
+    pcs_filename = fields.Char()
+    # Technical fields
+    session_ticket = fields.Char()
+    message_guid = fields.Char()
+    messages_text = fields.Text()
+
+    def pcs_new_session_ticket(self):
+        self.ensure_one()
+        Login = self.pcs_service_wsdl("Login")
+        session = Login.service.Login(self.user, self.password, self.company_code)
+        self.session_ticket = session.diffgram.UserSession.UserSession.TicketGUID
+        return self.session_ticket
+
+    def pcs_service_wsdl(self, service):
+        self.ensure_one()
+        url = "{}.valenciaportpcs.net/services/{}.asmx?wsdl".format(
+            self.environment_test and "http://test" or "https://www", service
+        )
+        _logger.info("PCS service {}: {}".format(service, url))
+        return Client(url)
+
+    def get_transport_service(self, force_reconnect=False):
+        return self.pcs_service_wsdl("TransportService")
+        # Try reuse service exploration
+        # if force_reconnect or not self._transport_service:
+        #     self._transport_service = self.pcs_service_wsdl("TransportService")
+        # return self._transport_service
+
+    def pcs_list_messages(self):
+        self.ensure_one()
+        messages = self.get_transport_service().service.ListMessages(
+            "Pending", self.message_direction, self.session_ticket
+        )
+        return messages.diffgram and messages.diffgram.MessageData.Messages or []
+
+    def pcs_list_messages_by_service(self):
+        self.ensure_one()
+        messages = self.get_transport_service().service.ListMessagesByMessageType(
+            self.service_code, "Pending", self.message_direction, self.session_ticket
+        )
+        return messages.diffgram and messages.diffgram.MessageData.Messages or []
+
+    def pcs_list_messages_by_message_type(self):
+        self.ensure_one()
+        messages = self.get_transport_service().service.ListMessagesByMessageType(
+            self.message_type,
+            self.service_code,
+            "Pending",
+            self.message_direction,
+            self.session_ticket,
+        )
+        return messages.diffgram and messages.diffgram.MessageData.Messages or []
+
+    def pcs_list_messages_by_date(self):
+        self.ensure_one()
+        TransportService = self.pcs_service_wsdl("TransportService")
+        messages_xml = TransportService.service.ListMessagesByDate(
+            self.from_date.isoformat(),
+            self.to_date.isoformat(),
+            self.message_type or None,
+            self.service_code or None,
+            self.message_state,
+            self.message_direction,
+            self.session_ticket,
+        )
+        messages = objectify.fromstring(messages_xml)
+        return messages.getchildren()
+
+    def pcs_download(self, message_guid=False):
+        TransportService = self.pcs_service_wsdl("TransportService")
+        pcs_file = TransportService.service.Download(
+            message_guid or self.message_guid, self.session_ticket
+        )
+        self.pcs_file = pcs_file
+        self.pcs_filename = message_guid or self.message_guid
+        return pcs_file
 
     @api.onchange("warehouse_id")
     def _onchange_warehouse_id(self):
         if self.warehouse_id.company_id:
             self.company_id = self.warehouse_id.company_id.id
 
+    @api.model
     def xml_element(self, element, key):
         value = element.find(key)
         return value is not None and value or False
 
+    @api.model
     def xml_value(self, element, key):
         value = element.find(key)
         return value is not None and value.text or False
 
+    @api.model
     def xml_value_time(self, element, key):
         value = self.xml_value(element, key)
         if value:
-            value_datetime = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S")
-            value_utc = (
-                pytz.timezone("Europe/Madrid")
-                .localize(value_datetime, is_dst=None)
-                .astimezone(pytz.utc)
-            )
-            value = fields.Datetime.to_string(value_utc)
+            value = datetime.fromisoformat(value)
         return value
 
+    @api.model
     def _search_or_create_partner(
         self, name, vat=False, ref=False, street=False, vals=None
     ):
@@ -146,12 +249,14 @@ class TmsValenciaportsBackend(models.Model):
             partner = Partner.create(vals)
         return partner
 
+    @api.model
     def _partner_from_party(self, party):
         name = self.xml_value(party, "Name")
         vat = self.xml_value(party, "NationalIdentityNumber")
         ref = self.xml_value(party, "PCSCode")
         return self._search_or_create_partner(name, vat, ref, vals={})
 
+    @api.model
     def _partner_from_place(self, place):
         name = self.xml_value(place, "LocationName")
         street = self.xml_value(place, "StreetAddress")
@@ -163,6 +268,7 @@ class TmsValenciaportsBackend(models.Model):
         }
         return self._search_or_create_partner(name, street=street, vals=vals)
 
+    @api.model
     def _partner_from_port(self, port):
         name = self.xml_value(port, "Name")
         ref = self.xml_value(port, "UNLOCODE")
@@ -172,6 +278,7 @@ class TmsValenciaportsBackend(models.Model):
         }
         return self._search_or_create_partner(name, ref=ref, vals=vals)
 
+    @api.model
     def _search_or_create_goods(self, name):
         Goods = self.env["tms.goods"]
         if not name:
@@ -181,6 +288,7 @@ class TmsValenciaportsBackend(models.Model):
             goods = Goods.create({"name": name})
         return goods
 
+    @api.model
     def _search_or_create_container_type(self, name, iso_type):
         SizeType = self.env["iso6346.size.type"]
         if not iso_type:
@@ -197,6 +305,7 @@ class TmsValenciaportsBackend(models.Model):
             size_type = SizeType.create(size_type._convert_to_write(size_type._cache))
         return size_type
 
+    @api.model
     def _search_or_create_equipment(self, name, size_type):
         Equipment = self.env["tms.equipment"]
         if not name:
@@ -212,6 +321,7 @@ class TmsValenciaportsBackend(models.Model):
             )
         return equipment
 
+    @api.model
     def get_file_from_attach(self, file_name, sale):
         attachments = self.env["ir.attachment"].search(
             [
@@ -226,6 +336,7 @@ class TmsValenciaportsBackend(models.Model):
                 return base64.b64decode(attach.datas)
         return ""
 
+    @api.model
     def _attach_file(self, file_content, file_name, sale_order, number):
         data_attach = {
             "datas": base64.b64encode(file_content),
@@ -237,10 +348,12 @@ class TmsValenciaportsBackend(models.Model):
         self.env["ir.attachment"].create(data_attach)
         # email.write({'attachment_ids': [(6, 0, attachments.ids)]})
 
+    @api.model
     def _clean_false_vals(self, vals):
         return {k: v for k, v in vals.items() if v}
 
     def _parse_dut(self, doc):  # noqa
+        self.ensure_one()
         so_vals = {
             "warehouse_id": self.warehouse_id.id,
             "company_id": self.company_id.id,
@@ -406,6 +519,7 @@ class TmsValenciaportsBackend(models.Model):
         return so_vals
 
     def _create_sale_order(self, file_bin, file_name, doc_str, msg_type):  # noqa: C901
+        self.ensure_one()
         SaleOrder = self.env["sale.order"]
         doc_xml = etree.fromstring(doc_str)
         so_vals = self._parse_dut(doc_xml)
@@ -492,7 +606,8 @@ class TmsValenciaportsBackend(models.Model):
             self._attach_file(doc_str, file_name, sale_order, doc_number)
         return sale_order
 
-    def import_sale_orders(self):
+    def call_pcs_method(self):
+        self.ensure_one()
         # Re-process a file already downloaded
         # attachment = self.env["ir.attachment"].browse(182576)
         # file_bin = attachment.datas
@@ -502,36 +617,33 @@ class TmsValenciaportsBackend(models.Model):
         # )
         # return
 
-        pcs = PortCommunitySystem()
-        ticket = pcs.login_guid(
-            self.user, self.password, self.company_code, self.environment_test
-        )
-        # messages = pcs.list_messages_by_date(message_type='DUTv2', ticket=ticket,
-        # test=self.environment_test)
-        # messages = pcs.list_messages(ticket=ticket)
-        messages = pcs.list_messages_by_type(
-            message_type="DUTv2", ticket=ticket, test=self.environment_test
-        )
-        TransportService = pcs.service_wsdl(
-            "TransportService", test=self.environment_test
-        )
+        self.pcs_new_session_ticket()
+        ws_response = getattr(self, self.service_method)()
+        if "list_messages" not in self.service_method:
+            return  # May be return ws_response?
+        messages = ws_response
         if not isinstance(messages, list):
             messages = [messages]
+        self.messages_text = ""
+        TransportService = self.get_transport_service()
         for msg in messages:
             # text needed if list_messages_by_date objectify
             # message_guid = msg.MessageGUID.text
             message_guid = msg.MessageGUID
-            file_bin = TransportService.service.Download(message_guid, ticket)
+            file_bin = TransportService.service.Download(
+                message_guid, self.session_ticket
+            )
             doc_xml = base64.b64decode(file_bin)
             if msg.MessageType in ["DUTv2", "ReleaseOrderv2", "AcceptanceOrderv2"]:
                 self._create_sale_order(
                     file_bin, message_guid, doc_xml, msg.MessageType
                 )
+            self.messages_text += "\n{}".format(message_guid)
 
     @api.model
-    def import_sale_orders_planned(self):
+    def call_pcs_method_planned(self):
         for backend in self.search([]):
-            backend.import_sale_orders()
+            backend.call_pcs_method()
 
     def _validate_vat(self, vals, country_code):
         ResPartner = self.env["res.partner"]

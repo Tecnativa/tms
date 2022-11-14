@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-03 02:15+0000\n"
-"PO-Revision-Date: 2020-07-03 04:19+0200\n"
+"POT-Creation-Date: 2022-11-14 19:55+0000\n"
+"PO-Revision-Date: 2022-11-14 20:56+0100\n"
 "Last-Translator: Carlos Dauden <carlos.dauden@tecnativa.com>\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -15,7 +15,22 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#. module: tms_port_community_system
+#: model:ir.model.fields.selection,name:tms_port_community_system.selection__tms_pcs_backend__message_state__all
+msgid "All"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model:ir.model.fields.selection,name:tms_port_community_system.selection__tms_pcs_backend__message_type__inlandtransportdetailsv2
+msgid "Asignación de los Datos de Transporte"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model:ir.model.fields.selection,name:tms_port_community_system.selection__tms_pcs_backend__service_code__bking
+msgid "Booking"
+msgstr ""
 
 #. module: tms_port_community_system
 #: model:ir.model.fields.selection,name:tms_port_community_system.selection__sale_order__pcs_message_function__cancellation
@@ -68,6 +83,11 @@ msgid "CHANGE_RO_OUT"
 msgstr ""
 
 #. module: tms_port_community_system
+#: model_terms:ir.ui.view,arch_db:tms_port_community_system.tms_pcs_backend_form_view
+msgid "Call method"
+msgstr ""
+
+#. module: tms_port_community_system
 #: model:ir.model.fields,field_description:tms_port_community_system.field_tms_pcs_backend__company_id
 #: model_terms:ir.ui.view,arch_db:tms_port_community_system.tms_pcs_backend_form_view
 msgid "Company"
@@ -76,6 +96,31 @@ msgstr "Compañía"
 #. module: tms_port_community_system
 #: model:ir.model.fields,field_description:tms_port_community_system.field_tms_pcs_backend__company_code
 msgid "Company Code"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model:ir.model.fields.selection,name:tms_port_community_system.selection__tms_pcs_backend__message_type__acceptanceconfirmationv2
+msgid "Confirmación de Admisión"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model:ir.model.fields.selection,name:tms_port_community_system.selection__tms_pcs_backend__message_type__releaseconfirmationv2
+msgid "Confirmación de Entrega"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model:ir.model.fields.selection,name:tms_port_community_system.selection__tms_pcs_backend__message_type__coarri
+msgid "Confirmación de carga/descarga de la terminal"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model:ir.model.fields.selection,name:tms_port_community_system.selection__tms_pcs_backend__message_type__acknowledgementv2
+msgid "Confirmación de recepción (respuesta de aceptación o rechazo)"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model:ir.model.fields.selection,name:tms_port_community_system.selection__tms_pcs_backend__message_type__contrl
+msgid "Confirmación de recepción del mensaje por parte del sistema receptor"
 msgstr ""
 
 #. module: tms_port_community_system
@@ -94,10 +139,30 @@ msgid "Display Name"
 msgstr "Nombre a mostrar"
 
 #. module: tms_port_community_system
+#: model:ir.model.fields.selection,name:tms_port_community_system.selection__tms_pcs_backend__message_type__dutv2
+msgid "Documento Único de Transporte"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model:ir.model.fields.selection,name:tms_port_community_system.selection__tms_pcs_backend__service_method__pcs_download
+msgid "Download"
+msgstr ""
+
+#. module: tms_port_community_system
 #: model:ir.actions.server,name:tms_port_community_system.ir_cron_tms_pcs_download_ir_actions_server
 #: model:ir.cron,cron_name:tms_port_community_system.ir_cron_tms_pcs_download
 #: model:ir.cron,name:tms_port_community_system.ir_cron_tms_pcs_download
 msgid "Download PCS Documents"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model:ir.model.fields.selection,name:tms_port_community_system.selection__tms_pcs_backend__service_method__pcs_download_zipped_file
+msgid "DownloadZippedFile"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model:ir.model.fields.selection,name:tms_port_community_system.selection__tms_pcs_backend__service_method__pcs_download_zipped_message
+msgid "DownloadZippedMessage"
 msgstr ""
 
 #. module: tms_port_community_system
@@ -106,13 +171,18 @@ msgid "Environment Test"
 msgstr ""
 
 #. module: tms_port_community_system
+#: model:ir.model.fields,field_description:tms_port_community_system.field_tms_pcs_backend__from_date
+msgid "From Date"
+msgstr ""
+
+#. module: tms_port_community_system
 #: model:ir.model.fields,field_description:tms_port_community_system.field_tms_pcs_backend__id
 msgid "ID"
 msgstr "ID (identificación)"
 
 #. module: tms_port_community_system
-#: model_terms:ir.ui.view,arch_db:tms_port_community_system.tms_pcs_backend_form_view
-msgid "Import"
+#: model:ir.model.fields.selection,name:tms_port_community_system.selection__tms_pcs_backend__message_direction__in
+msgid "In"
 msgstr ""
 
 #. module: tms_port_community_system
@@ -137,13 +207,87 @@ msgid "Last Updated on"
 msgstr "Última actualización el"
 
 #. module: tms_port_community_system
+#: model:ir.model.fields.selection,name:tms_port_community_system.selection__tms_pcs_backend__service_method__pcs_list_messages
+msgid "ListMessages"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model:ir.model.fields.selection,name:tms_port_community_system.selection__tms_pcs_backend__service_method__pcs_list_messages_by_date
+msgid "ListMessagesByDate"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model:ir.model.fields.selection,name:tms_port_community_system.selection__tms_pcs_backend__service_method__pcs_list_messages_by_message_type
+msgid "ListMessagesByMessageType"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model:ir.model.fields.selection,name:tms_port_community_system.selection__tms_pcs_backend__service_method__pcs_list_messages_by_service
+msgid "ListMessagesByService"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model:ir.model.fields.selection,name:tms_port_community_system.selection__tms_pcs_backend__message_type__coprar
+msgid "Lista de contenedores a cargar/descargar por la terminal"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model:ir.model.fields,field_description:tms_port_community_system.field_tms_pcs_backend__message_direction
+msgid "Message Direction"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model:ir.model.fields,field_description:tms_port_community_system.field_tms_pcs_backend__message_guid
+msgid "Message Guid"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model:ir.model.fields,field_description:tms_port_community_system.field_tms_pcs_backend__message_state
+msgid "Message State"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model:ir.model.fields,field_description:tms_port_community_system.field_tms_pcs_backend__message_type
+msgid "Message Type"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model:ir.model.fields,field_description:tms_port_community_system.field_tms_pcs_backend__messages_text
+msgid "Messages Text"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model:ir.model.fields,field_description:tms_port_community_system.field_tms_pcs_backend__name
+msgid "Name"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model:ir.model.fields.selection,name:tms_port_community_system.selection__tms_pcs_backend__message_state__nopending
+msgid "NoPending"
+msgstr ""
+
+#. module: tms_port_community_system
 #: model:ir.model.fields.selection,name:tms_port_community_system.selection__sale_order__pcs_message_function__original
 msgid "ORIGINAL"
 msgstr ""
 
 #. module: tms_port_community_system
+#: model:ir.model.fields.selection,name:tms_port_community_system.selection__tms_pcs_backend__message_type__acceptanceorderv2
+msgid "Orden de Admisión"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model:ir.model.fields.selection,name:tms_port_community_system.selection__tms_pcs_backend__message_type__releaseorderv2
+msgid "Orden de Entrega"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model:ir.model.fields.selection,name:tms_port_community_system.selection__tms_pcs_backend__message_direction__out
+msgid "Out"
+msgstr ""
+
+#. module: tms_port_community_system
 #: model_terms:ir.ui.view,arch_db:tms_port_community_system.tms_pcs_backend_form_view
-#: model_terms:ir.ui.view,arch_db:tms_port_community_system.tms_pcs_backend_tree_view
 msgid "PCS"
 msgstr ""
 
@@ -158,6 +302,16 @@ msgid "Password"
 msgstr "Contraseña"
 
 #. module: tms_port_community_system
+#: model:ir.model.fields,field_description:tms_port_community_system.field_tms_pcs_backend__pcs_file
+msgid "Pcs File"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model:ir.model.fields,field_description:tms_port_community_system.field_tms_pcs_backend__pcs_filename
+msgid "Pcs Filename"
+msgstr ""
+
+#. module: tms_port_community_system
 #: model:ir.model.fields,field_description:tms_port_community_system.field_sale_order_line__pcs_item_number
 msgid "Pcs Item Number"
 msgstr ""
@@ -165,6 +319,11 @@ msgstr ""
 #. module: tms_port_community_system
 #: model:ir.model.fields,field_description:tms_port_community_system.field_sale_order__pcs_message_number
 msgid "Pcs Message Number"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model:ir.model.fields.selection,name:tms_port_community_system.selection__tms_pcs_backend__message_state__pending
+msgid "Pending"
 msgstr ""
 
 #. module: tms_port_community_system
@@ -193,6 +352,57 @@ msgid "Sales Order Line"
 msgstr "Línea de pedido de venta"
 
 #. module: tms_port_community_system
+#: model_terms:ir.ui.view,arch_db:tms_port_community_system.tms_pcs_backend_form_view
+msgid "Service"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model:ir.model.fields,field_description:tms_port_community_system.field_tms_pcs_backend__service_code
+msgid "Service Code"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model:ir.model.fields,field_description:tms_port_community_system.field_tms_pcs_backend__service_method
+msgid "Service Method"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model:ir.model.fields.selection,name:tms_port_community_system.selection__tms_pcs_backend__service_code__railw
+msgid "Servicio de Ferrocarril"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model:ir.model.fields.selection,name:tms_port_community_system.selection__tms_pcs_backend__service_code__stein
+msgid "Servicio de Instrucciones a Terminales"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model:ir.model.fields.selection,name:tms_port_community_system.selection__tms_pcs_backend__message_type__aperak
+#: model:ir.model.fields.selection,name:tms_port_community_system.selection__tms_pcs_backend__service_code__trans
+msgid "Servicio de Transporte Terrestre"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model:ir.model.fields.selection,name:tms_port_community_system.selection__tms_pcs_backend__service_code__custm
+msgid "Servicio de intercambio de mensajería con la Aduana"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model:ir.model.fields,field_description:tms_port_community_system.field_tms_pcs_backend__session_ticket
+msgid "Session Ticket"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model:ir.model.fields.selection,name:tms_port_community_system.selection__tms_pcs_backend__message_type__iftmin
+msgid "Shipping Instruction"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model:ir.model.fields.selection,name:tms_port_community_system.selection__tms_pcs_backend__service_code__shipp
+msgid "Shipping Instructions"
+msgstr ""
+
+#. module: tms_port_community_system
 #: model:ir.actions.act_window,name:tms_port_community_system.action_pcs_backend
 #: model:ir.ui.menu,name:tms_port_community_system.menu_tms_pcs_backend
 msgid "TMS PCS Backend"
@@ -204,8 +414,34 @@ msgid "TMS Valencia ports backend"
 msgstr ""
 
 #. module: tms_port_community_system
-#: model:ir.model.fields,field_description:tms_port_community_system.field_tms_pcs_backend__url
-msgid "Url"
+#: model:ir.model.fields,field_description:tms_port_community_system.field_tms_pcs_backend__to_date
+msgid "To Date"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model:ir.model.fields.selection,name:tms_port_community_system.selection__tms_pcs_backend__message_type__iftsta
+#: model:ir.model.fields.selection,name:tms_port_community_system.selection__tms_pcs_backend__service_code__track
+msgid "Track & Trace"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model:ir.model.fields.selection,name:tms_port_community_system.selection__tms_pcs_backend__service_method__pcs_upload
+msgid "Upload"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model_terms:ir.ui.view,arch_db:tms_port_community_system.tms_pcs_backend_form_view
+msgid "Upload/download file"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model:ir.model.fields.selection,name:tms_port_community_system.selection__tms_pcs_backend__service_method__pcs_upload_zipped_file
+msgid "UploadZippedFile"
+msgstr ""
+
+#. module: tms_port_community_system
+#: model:ir.model.fields.selection,name:tms_port_community_system.selection__tms_pcs_backend__service_method__pcs_upload_zipped_message
+msgid "UploadZippedMessage"
 msgstr ""
 
 #. module: tms_port_community_system
