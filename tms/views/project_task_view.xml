@@ -244,7 +244,7 @@
                 <field
                     name="sale_type_id"
                     string="Sale Type"
-                    context="{'sale_type_in_domain': True}"
+                    context="{'pass_task2vehicle_filter': True}"
                 />
             </field>
             <filter name="unassigned" position="attributes">

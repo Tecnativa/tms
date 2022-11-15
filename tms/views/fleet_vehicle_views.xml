@@ -25,7 +25,7 @@
                     name="always_show_in_kanban"
                     attrs="{'invisible': [('vehicle_type', '!=', 'tractor')]}"
                 />
-                <field name="company_owner_id" />
+                <field name="company_owner_id" options="{'no_create': True}" />
             </field>
             <xpath expr="//div[@name='button_box']" position="inside">
                 <button

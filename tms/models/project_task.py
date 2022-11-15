@@ -342,7 +342,7 @@ class ProjectTask(models.Model):
             x.sale_line_id for x in self
         ):
             return
-        sale_lines = self.mapped("sale_line_id")
+        sale_lines = self.sudo().mapped("sale_line_id")
         sale_vals = {
             field: vals[field]
             for field in vals.keys()
@@ -408,6 +408,11 @@ class ProjectTask(models.Model):
         return super().write(vals)
 
     @api.model
+    def map_task2vehicle_fields(self):
+        """Map equivalency between task and vehicle fields to pass filter domain"""
+        return {"sale_type_id": "sale_type_ids"}
+
+    @api.model
     def _read_group_tractor_ids(self, tractors, domain, order):
         search_domain = [
             "|",
@@ -415,21 +420,23 @@ class ProjectTask(models.Model):
             ("always_show_in_kanban", "=", True),
             ("vehicle_type", "=", "tractor"),
         ]
-        if self.env.context.get("sale_type_in_domain", False):
+        if self.env.context.get("pass_task2vehicle_filter", False):
             # TODO: Use expression when fix https://github.com/odoo/odoo/issues/103214
             TRUE_DOMAIN = ("id", "!=", False)  # expression.TRUE_DOMAIN
-            tractor_domain = []
+            vehicle_domain = []
+            task2vehicle_map = self.map_task2vehicle_fields()
             for t in domain:
                 if not isinstance(t, (list, tuple)):
-                    tractor_domain.append(t)
-                elif t[0] == "sale_type_id":
-                    tractor_domain.append(("sale_type_ids", t[1], t[2]))
+                    vehicle_domain.append(t)
+                elif t[0] in task2vehicle_map.keys():
+                    vehicle_field = task2vehicle_map[t[0]]
+                    # Show vehicles with empty field too
+                    vehicle_domain.extend(
+                        ["|", (vehicle_field, t[1], t[2]), (vehicle_field, "=", False)]
+                    )
                 else:
-                    tractor_domain.append(TRUE_DOMAIN)
-            tractor_domain = expression.OR(
-                [tractor_domain, [("sale_type_ids", "=", False)]]
-            )
-            search_domain = expression.AND([search_domain, tractor_domain])
+                    vehicle_domain.append(TRUE_DOMAIN)
+            search_domain = expression.AND([search_domain, vehicle_domain])
 
         tractor_ids = tractors._search(
             search_domain, order=order, access_rights_uid=SUPERUSER_ID
