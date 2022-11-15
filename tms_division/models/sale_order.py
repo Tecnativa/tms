@@ -12,6 +12,7 @@ class SaleOrder(models.Model):
         comodel_name="tms.division",
         string="Division",
         ondelete="restrict",
+        check_company=True,
     )
 
 

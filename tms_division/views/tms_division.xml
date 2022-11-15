@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<!-- Copyright 2017 Sergio Teruel - Tecnativa <sergio.teruel@tecnativa.com>
-     Copyright 2017 Carlos Dauden - Tecnativa <carlos.dauden@tecnativa.com>
+<!-- Copyright 2017-2022 Sergio Teruel - Tecnativa <sergio.teruel@tecnativa.com>
+     Copyright 2017-2022 Carlos Dauden - Tecnativa <carlos.dauden@tecnativa.com>
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
 
@@ -10,6 +10,7 @@
     <field name="arch" type="xml">
         <tree editable="top">
             <field name="name" />
+            <field name="company_id" groups="base.group_multi_company" />
         </tree>
     </field>
 </record>
@@ -21,6 +22,7 @@
         <form>
             <group>
                 <field name="name" />
+                <field name="company_id" groups="base.group_multi_company" />
             </group>
         </form>
     </field>

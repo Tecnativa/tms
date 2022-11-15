@@ -16,6 +16,8 @@
     ],
     "data": [
         "security/ir.model.access.csv",
+        "views/fleet_vehicle_view.xml",
+        "views/project_task_view.xml",
         "views/sale_view.xml",
         "views/tms_division.xml",
     ],

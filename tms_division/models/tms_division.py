@@ -9,7 +9,7 @@ class TmsDivision(models.Model):
     _name = "tms.division"
     _description = "Analytic division field for TMS"
 
-    name = fields.Char(required=True, default="/")
+    name = fields.Char(required=True)
     company_id = fields.Many2one(
         comodel_name="res.company",
         default=lambda self: self.env.company,

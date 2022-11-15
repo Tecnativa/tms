@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-02 09:51+0000\n"
-"PO-Revision-Date: 2022-01-09 20:43+0100\n"
+"POT-Creation-Date: 2022-11-15 21:39+0000\n"
+"PO-Revision-Date: 2022-11-15 22:40+0100\n"
 "Last-Translator: Carlos Dauden <carlos.dauden@tecnativa.com>\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: tms_division
 #: model:ir.model,name:tms_division.model_tms_division
@@ -45,13 +45,14 @@ msgstr "Nombre a mostrar"
 #. module: tms_division
 #: model:ir.model.fields,field_description:tms_division.field_account_analytic_distribution__division_id
 #: model:ir.model.fields,field_description:tms_division.field_account_analytic_line__division_id
-#: model:ir.model.fields,field_description:tms_division.field_account_asset__division_id
 #: model:ir.model.fields,field_description:tms_division.field_account_move_line__division_id
+#: model:ir.model.fields,field_description:tms_division.field_fleet_vehicle__division_id
 #: model:ir.model.fields,field_description:tms_division.field_project_task__division_id
 #: model:ir.model.fields,field_description:tms_division.field_purchase_order_line__division_id
 #: model:ir.model.fields,field_description:tms_division.field_sale_order__division_id
 #: model:ir.model.fields,field_description:tms_division.field_sale_order_line__division_id
 #: model:ir.model.fields,field_description:tms_division.field_tms_analytic__division_id
+#: model_terms:ir.ui.view,arch_db:tms_division.view_task_search_form
 msgid "Division"
 msgstr "División"
 
@@ -105,3 +106,13 @@ msgstr "TMS Analitica"
 #: model:ir.ui.menu,name:tms_division.menu_tms_division
 msgid "TMS Divisions"
 msgstr "TMS Divisiones"
+
+#. module: tms_division
+#: model:ir.model,name:tms_division.model_project_task
+msgid "Task"
+msgstr "Tarea"
+
+#. module: tms_division
+#: model:ir.model,name:tms_division.model_fleet_vehicle
+msgid "Vehicle"
+msgstr "Vehículo"

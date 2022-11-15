@@ -4,8 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 13.0\n"
+"Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-11-15 21:39+0000\n"
+"PO-Revision-Date: 2022-11-15 21:39+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -41,13 +43,14 @@ msgstr ""
 #. module: tms_division
 #: model:ir.model.fields,field_description:tms_division.field_account_analytic_distribution__division_id
 #: model:ir.model.fields,field_description:tms_division.field_account_analytic_line__division_id
-#: model:ir.model.fields,field_description:tms_division.field_account_asset__division_id
 #: model:ir.model.fields,field_description:tms_division.field_account_move_line__division_id
+#: model:ir.model.fields,field_description:tms_division.field_fleet_vehicle__division_id
 #: model:ir.model.fields,field_description:tms_division.field_project_task__division_id
 #: model:ir.model.fields,field_description:tms_division.field_purchase_order_line__division_id
 #: model:ir.model.fields,field_description:tms_division.field_sale_order__division_id
 #: model:ir.model.fields,field_description:tms_division.field_sale_order_line__division_id
 #: model:ir.model.fields,field_description:tms_division.field_tms_analytic__division_id
+#: model_terms:ir.ui.view,arch_db:tms_division.view_task_search_form
 msgid "Division"
 msgstr ""
 
@@ -100,4 +103,14 @@ msgstr ""
 #: model:ir.actions.act_window,name:tms_division.action_tms_division
 #: model:ir.ui.menu,name:tms_division.menu_tms_division
 msgid "TMS Divisions"
+msgstr ""
+
+#. module: tms_division
+#: model:ir.model,name:tms_division.model_project_task
+msgid "Task"
+msgstr ""
+
+#. module: tms_division
+#: model:ir.model,name:tms_division.model_fleet_vehicle
+msgid "Vehicle"
 msgstr ""
