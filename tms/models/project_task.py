@@ -274,9 +274,10 @@ class ProjectTask(models.Model):
 
     @api.onchange("tractor_id")
     def _onchange_tractor_id_user(self):
-        user = self.tractor_id.driver_id.user_id
-        if user:
-            self.user_ids = [(6, 0, user.ids)]
+        # Normally is only one user linked
+        users = self.tractor_id.driver_id.user_ids
+        if users:
+            self.user_ids = [(6, 0, users.ids)]
 
     @api.onchange("user_ids")
     def _onchange_user_ids(self):
