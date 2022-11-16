@@ -4,7 +4,7 @@
     <template id="project_sharing_portal_tms" name="Project Sharing View in Portal">
         <t t-call="portal.frontend_layout">
             <t t-set="no_footer" t-value="true" />
-            <t t-call="tms.project_sharing_tms" />
+            <t t-call="tms_driver_portal.project_sharing_tms" />
         </t>
     </template>
 
