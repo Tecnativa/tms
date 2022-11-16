@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <template id="portal_my_home" inherit_id="portal.portal_my_home">
+        <xpath expr="//div[hasclass('o_portal_my_home')]" position="before">
+            <t t-if="request.env.user.partner_id.is_driver">
+                <div class="row">
+                    <div class="col text-center">
+                        <a class="btn btn-warning" href="/my/alltasks"> Start work </a>
+                    </div>
+                </div>
+            </t>
+        </xpath>
+    </template>
+
+</odoo>

@@ -18,6 +18,7 @@
         # TODO: Try remove for display in views portal
         "security/ir.model.access.csv",
         # Keep order
+        "views/portal_templates.xml",
         "views/project_sharing_views.xml",
         "views/project_sharing_templates.xml",
         "views/project_task_views.xml",
