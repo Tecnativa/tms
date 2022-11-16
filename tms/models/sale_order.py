@@ -74,6 +74,14 @@ class SaleOrder(models.Model):
             "partner_show_only_name": True,
         },
     )
+    final_destination_id = fields.Many2one(
+        comodel_name="res.partner",
+        domain=[("is_shipping_place", "=", True)],
+        context={
+            "default_is_shipping_place": True,
+            "partner_show_only_name": True,
+        },
+    )
     unload_service = fields.Boolean(string="Unload")
 
     def task_sync_field_list(self):
@@ -91,6 +99,7 @@ class SaleOrder(models.Model):
             "port_id",
             "loading_port_id",
             "unloading_port_id",
+            "final_destination_id",
             "unload_service",
         ]
 

@@ -2,7 +2,7 @@
 <odoo>
 
     <record id="project_sharing_all_task_action" model="ir.actions.act_window">
-        <field name="name">Project Sharing All Tasks</field>
+        <field name="name">Tasks</field>
         <field name="res_model">project.task</field>
         <field name="view_mode">kanban,form</field>
         <field
@@ -14,7 +14,7 @@
             'delete': 0,
             'create': 0,
             'edit': 0,
-            'skip_project_check_tms': True
+            'skip_project_check_tms': True,
         }</field>
     </record>
     <record id="project_sharing_kanban_action_view" model="ir.actions.act_window.view">
@@ -23,7 +23,7 @@
             name="act_window_id"
             ref="tms_driver_portal.project_sharing_all_task_action"
         />
-        <field name="view_id" ref="tms.view_task_kanban" />
+        <field name="view_id" ref="tms_driver_portal.view_task_kanban_driver" />
     </record>
 
     <record id="project_sharing_tree_action_view" model="ir.actions.act_window.view">
@@ -41,6 +41,9 @@
             name="act_window_id"
             ref="tms_driver_portal.project_sharing_all_task_action"
         />
-        <field name="view_id" ref="project.project_sharing_project_task_view_form" />
+        <field
+            name="view_id"
+            ref="tms_driver_portal.project_sharing_project_task_view_form_driver"
+        />
     </record>
 </odoo>

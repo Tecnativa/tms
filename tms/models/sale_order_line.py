@@ -156,9 +156,10 @@ class SaleOrderLine(models.Model):
 
     def action_tms_package_form(self):
         self.ensure_one()
-        action = self.env.ref("tms.action_order_line_tms_package")
+        action = self.env["ir.actions.act_window"]._for_xml_id(
+            "tms.action_order_line_tms_package"
+        )
         form = self.env.ref("tms.view_order_line_tms_package")
-        action = action.read()[0]
         action["views"] = [(form.id, "form")]
         action["res_id"] = self.id
         return action

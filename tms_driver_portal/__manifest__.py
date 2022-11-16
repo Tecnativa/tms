@@ -15,8 +15,12 @@
         "tms",
     ],
     "data": [
-        "views/project_sharing_templates.xml",
+        # TODO: Try remove for display in views portal
+        "security/ir.model.access.csv",
+        # Keep order
         "views/project_sharing_views.xml",
+        "views/project_sharing_templates.xml",
         "views/project_task_views.xml",
+        "wizards/project_task_equipment_views.xml",
     ],
 }

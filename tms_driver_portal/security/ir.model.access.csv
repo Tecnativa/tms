@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_tms_vehicle_tag_portal,access_tms_fleet_vehicle_tag_portal,fleet.model_fleet_vehicle_tag,base.group_portal,1,0,0,0
+access_project_task_equipment_wiz_portal,access_project_task_equipment_wiz_portal,tms_driver_portal.model_project_task_equipment_wiz,base.group_portal,1,1,1,1

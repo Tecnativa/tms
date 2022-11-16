@@ -66,6 +66,7 @@
                             />
                             <field name="seal" />
                             <field name="shipping_company_id" />
+                            <field name="final_destination_id" />
                         </group>
                         <group>
                             <group>
@@ -683,17 +684,14 @@
         <field name="name">Tasks</field>
         <field name="res_model">project.task</field>
         <field name="view_mode">kanban,tree,form,calendar,pivot,graph,activity</field>
-        <field name="context">{'search_default_subtask_hidden': 1}</field>
+        <field
+            name="context"
+        >{'search_default_subtask_hidden': True, 'tms_show_all_kanban_vehicles': True}</field>
         <field name="domain">[]</field>
         <field name="view_id" ref="view_task_kanban_to_assign" />
         <field name="search_view_id" ref="project.view_task_search_form" />
         <field name="help" type="html">
-            <p class="o_view_nocontent_smiling_face">
-                No tasks found. Let's create one!
-            </p><p>
-                To get things done, use activities and status on tasks.<br />
-                Chat in real-time or by email to collaborate efficiently.
-            </p>
+            <span />
         </field>
     </record>
 

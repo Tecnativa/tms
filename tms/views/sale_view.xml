@@ -34,6 +34,7 @@
                         <field name="unloading_port_id" />
                     </group>
                     <field name="shipping_company_id" />
+                    <field name="final_destination_id" />
                 </group>
             </page>
         </notebook>

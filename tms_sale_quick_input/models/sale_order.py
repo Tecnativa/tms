@@ -109,6 +109,21 @@ class SaleOrderLine(models.Model):
         readonly=False,
     )
     editable_package_rel = fields.Boolean(compute="_compute_editable_package_rel")
+    sale_type_id = fields.Many2one(
+        comodel_name="sale.order.type",
+        related="order_id.type_id",
+        readonly=False,
+    )
+    shipping_company_id = fields.Many2one(
+        comodel_name="res.partner",
+        related="order_id.shipping_company_id",
+        readonly=False,
+    )
+    final_destination_id = fields.Many2one(
+        comodel_name="res.partner",
+        related="order_id.final_destination_id",
+        readonly=False,
+    )
 
     # unload_service not included to avoid compute shipping_place_id before
     # _onchange_unload_service assignaments

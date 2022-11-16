@@ -57,6 +57,9 @@
             ref="sale_order_line_input.view_sales_order_line_input_tree"
         />
     <field name="arch" type="xml">
+        <field name="order_partner_id" position="after">
+            <field name="sale_type_id" optional="hide" />
+        </field>
         <field name="price_total" position="after">
             <field name="editable_package_rel" invisible="1" />
             <field name="pickup_date" optional="show" />
@@ -66,6 +69,7 @@
             <field name="shipping_place_id" optional="show" />
             <field name="shipping_origin_id" optional="hide" />
             <field name="shipping_destination_id" optional="hide" />
+            <field name="final_destination_id" optional="hide" />
             <field
                     name="carrier_tracking_ref"
                     optional="show"
@@ -81,6 +85,7 @@
                              'default_pickup_date': pickup_date}"
                     optional="show"
                 />
+            <button name="action_tms_package_form" type="object" icon="fa-dropbox" />
             <field
                     name="shipping_weight"
                     optional="show"
@@ -107,6 +112,7 @@
                     attrs="{'readonly': [('editable_package_rel', '=', False)]}"
                 />
             <field name="goods_id" optional="show" />
+            <field name="shipping_company_id" optional="show" />
             <field name="equipment_size_type_id" optional="show" />
             <field name="tractor_id" optional="hide" />
             <field name="trailer_id" optional="hide" />

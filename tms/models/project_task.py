@@ -47,6 +47,7 @@ class ProjectTask(models.Model):
         comodel_name="fleet.vehicle.tag",
         compute="_compute_trailer_requirement_ids",
         string="Trailer Req.",
+        compute_sudo=True,
     )
     goods_id = fields.Many2one(
         comodel_name="tms.goods",
@@ -124,6 +125,15 @@ class ProjectTask(models.Model):
             "default_is_shipping_place": True,
             "partner_show_only_name": True,
         },
+    )
+    final_destination_id = fields.Many2one(
+        comodel_name="res.partner",
+        domain=[("is_shipping_place", "=", True)],
+        context={
+            "default_is_shipping_place": True,
+            "partner_show_only_name": True,
+        },
+        string="Port",
     )
     unload_service = fields.Boolean(string="Unload")
     distance_estimated = fields.Float(
@@ -321,6 +331,7 @@ class ProjectTask(models.Model):
             "port_id",
             "loading_port_id",
             "unloading_port_id",
+            "final_destination_id",
             "unload_service",
         ]
 
@@ -417,6 +428,8 @@ class ProjectTask(models.Model):
 
     @api.model
     def _read_group_tractor_ids(self, tractors, domain, order):
+        if not self.env.context.get("tms_show_all_kanban_vehicles", False):
+            return tractors
         search_domain = [
             "|",
             ("id", "in", tractors.ids),

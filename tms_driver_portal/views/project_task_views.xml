@@ -173,6 +173,307 @@
             </xpath>
         </field>
     </record>
+    <record id="project_sharing_project_task_view_form_driver" model="ir.ui.view">
+        <field name="name">project.sharing.project.task.view.form.driver</field>
+        <field name="model">project.task</field>
+        <field name="priority">999</field>
+        <field
+            name="groups_id"
+            eval="[(4, ref('base.group_portal')), (4, ref('base.group_user'))]"
+        />
+        <field name="arch" type="xml">
+            <form string="Project Sharing: Task" class="o_form_project_tasks">
+                <header>
+                    <field
+                        name="stage_id"
+                        widget="statusbar"
+                        options="{'clickable': '0', 'fold_field': 'fold'}"
+                        attrs="{'invisible': [('project_id', '=', False), ('stage_id', '=', False)]}"
+                    />
+                </header>
+                <sheet string="Task">
+                    <div class="oe_button_box" name="button_box">
+                        <button
+                            name="action_open_parent_task"
+                            type="object"
+                            special="cancel"
+                            class="oe_stat_button o_debounce_disabled"
+                            icon="fa-tasks"
+                            string="Parent Task"
+                            attrs="{'invisible': [('parent_id', '=', False)]}"
+                        />
+                        <button
+                            name="action_start_task"
+                            type="object"
+                            attrs="{'invisible': [('progress_status','!=', 'not_started')]}"
+                            class="oe_stat_button"
+                            icon="fa-play"
+                            string="Start"
+                        />
+                        <button
+                            name="action_finish_task"
+                            type="object"
+                            attrs="{'invisible': [('progress_status','!=', 'in_progress')]}"
+                            class="oe_stat_button"
+                            icon="fa-stop"
+                            string="Finish"
+                        />
+                        <button
+                            name="action_project_task_equipment_wiz"
+                            type="object"
+                            attrs="{'invisible': [('progress_status','=', 'not_started')]}"
+                            class="oe_stat_button"
+                            icon="fa-truck"
+                            string="Equipment"
+                        />
+                    </div>
+                    <widget
+                        name="web_ribbon"
+                        title="Archived"
+                        bg_color="bg-danger"
+                        attrs="{'invisible': [('active', '=', True)]}"
+                    />
+                    <div class="pr-0">
+                        <h1 class="d-flex flex-row justify-content-between">
+                            <field
+                                name="priority"
+                                widget="priority"
+                                class="mr-3"
+                                readonly="1"
+                            />
+                            <field
+                                name="name"
+                                class="o_task_name"
+                                placeholder="Task Title..."
+                            />
+                            <field
+                                name="kanban_state"
+                                widget="state_selection"
+                                class="ml-auto"
+                            />
+                            <field name="legend_blocked" invisible="1" />
+                            <field name="legend_normal" invisible="1" />
+                            <field name="legend_done" invisible="1" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="project_id" invisible="1" />
+                            <field
+                                name="display_project_id"
+                                string="Project"
+                                invisible="1"
+                            />
+                            <field name="user_ids" invisible="1" />
+                            <field name="progress_status" invisible="1" />
+                            <field
+                                name="portal_user_names"
+                                string="Assignees"
+                                class="o_task_user_field"
+                                invisible="1"
+                            />
+                        </group>
+                        <group>
+                            <field name="active" invisible="1" />
+                            <field name="parent_id" invisible="1" />
+                            <field name="company_id" invisible="1" />
+                            <field name="is_closed" invisible="1" />
+                            <field name="allow_subtasks" invisible="1" />
+                            <field
+                                name="partner_id"
+                                options="{'no_open': True, 'no_create': True, 'no_edit': True}"
+                                invisible="1"
+                            />
+<!--                            <field name="date_start" attrs="{'invisible': [('is_closed', '=', True)]}"/>-->
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="tms_checkpoint" string="Checkpoints">
+                            <group>
+                                <field
+                                    name="checkpoint_ids"
+                                    nolabel="1"
+                                    mode="tree,kanban"
+                                >
+                                    <tree editable="bottom">
+                                        <field name="sequence" widget="handle" />
+                                        <field name="place_id" optional="show" />
+                                        <field
+                                            name="distance_estimated"
+                                            sum="Distance"
+                                            optional="show"
+                                        />
+                                        <field
+                                            name="duration_estimated"
+                                            widget="float_time"
+                                            sum="Duration"
+                                            optional="show"
+                                        />
+                                        <field name="arrival_time" optional="show" />
+                                        <field name="departure_time" optional="show" />
+                                        <field
+                                            name="stopped_time"
+                                            widget="float_time"
+                                            sum="Stopped"
+                                            optional="show"
+                                        />
+                                        <field
+                                            name="package_origin_ids"
+                                            widget="many2many_tags"
+                                            optional="show"
+                                        />
+                                        <field
+                                            name="package_destination_ids"
+                                            widget="many2many_tags"
+                                            optional="show"
+                                        />
+                                    </tree>
+                                </field>
+                            </group>
+                        </page>
+                        <page name="tms_odoometer" string="Odometer">
+                            <group col="4">
+                                <field name="odometer_start" />
+                                <field name="odometer_stop" />
+                                <field name="distance_traveled" />
+                                <field name="distance_estimated" />
+                                <field name="stopped_time" widget="float_time" />
+                                <field name="free_stoped_time" widget="float_time" />
+                            </group>
+                        </page>
+                        <page name="tms_info" string="Info">
+                            <group>
+                                <field name="equipment_id" />
+                                <field name="seal" />
+                                <field name="shipping_company_id" />
+                            </group>
+                        </page>
+                        <page name="description_page" string="Description">
+                            <field
+                                name="description"
+                                type="html"
+                                options="{'collaborative': true}"
+                            />
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter" />
+            </form>
+        </field>
+    </record>
+
+    <record id="view_task_kanban_driver" model="ir.ui.view">
+        <field name="name">project.task.kanban.driver</field>
+        <field name="model">project.task</field>
+        <field name="arch" type="xml">
+            <kanban
+                default_group_by="stage_id"
+                class="o_kanban_small_column o_kanban_project_tasks"
+                js_class="project_task_kanban"
+                create="false"
+                delete="false"
+                group_create="false"
+                group_delete="false"
+                default_order="priority desc, date_start, sequence, id desc"
+            >
+                <field name="color" />
+                <field name="priority" />
+                <field
+                    name="stage_id"
+                    options='{"group_by_tooltip": {"description": "Description"}}'
+                />
+                <field name="user_ids" />
+                <field name="tractor_id" />
+                <field name="shipping_company_id" />
+                <field name="shipping_origin_id" />
+                <field name="shipping_destination_id" />
+                <field name="equipment_size_type_id" />
+                <field name="trailer_requirement_ids" />
+                <field name="partner_id" />
+                <field name="sequence" />
+                <field name="is_closed" />
+                <field name="partner_is_company" />
+                <field name="displayed_image_id" />
+                <field name="active" />
+                <field name="legend_blocked" />
+                <field name="legend_normal" />
+                <field name="legend_done" />
+                <field name="activity_ids" />
+                <field name="activity_state" />
+                <field name="rating_last_value" />
+                <field name="rating_ids" />
+                <field name="allow_subtasks" />
+                <field name="child_text" />
+                <field name="is_private" />
+                <field name="unload_service" />
+                <field name="progress_status" />
+                <field name="date_deadline" allow_group_range_value="true" />
+<!--                <progressbar-->
+<!--                    field="progress_status"-->
+<!--                    colors='{"closed": "success", "in_progress": "warning", "not_started": "muted"}'-->
+<!--                />-->
+                <templates>
+                <t t-name="kanban-box">
+                    <div
+                            t-attf-class="{{!selection_mode ? 'oe_kanban_color_' + kanban_getcolor(record.color.raw_value) : ''}} oe_kanban_card oe_kanban_global_click"
+                        >
+                        <div class="oe_kanban_content">
+                            <div class="o_kanban_record_top">
+                                <div class="o_kanban_record_headings">
+                                    <t t-if="record.equipment_size_type_id.value">
+                                        <field
+                                                name="equipment_size_type_id"
+                                                widget="name_with_subtask_count"
+                                            />
+                                    </t>
+                                    <t t-if="record.shipping_company_id.value">
+                                        <field name="shipping_company_id" />
+                                    </t>
+                                </div>
+                            </div>
+                            <div class="o_kanban_record_body">
+                                <strong>
+                                    <t
+                                            t-if="record.shipping_origin_id.value and !record.unload_service.raw_value"
+                                        >
+                                        <field name="shipping_origin_id" />
+                                    </t>
+                                    <t
+                                            t-else="record.shipping_destination_id.value and record.unload_service.raw_value"
+                                        >
+                                        <field name="shipping_destination_id" />
+                                    </t>
+                                    <br />
+                                </strong>
+                                <t
+                                        t-if="record.date_start.raw_value"
+                                        t-set="blue"
+                                    >oe_kanban_text_blue</t>
+                                <span
+                                        style="text-color:blue;"
+                                        t-attf-class="#{blue || ''}"
+                                    >
+                                    <i>
+                                        <field name="date_start" />
+                                    </i>
+                                </span>
+                                <br />
+                                <div>
+                                    <field
+                                            name="trailer_requirement_ids"
+                                            widget="many2many_tags"
+                                            options="{'color_field': 'color', 'no_create_edit': True}"
+                                        />
+                                </div>
+                            </div>
+                        </div>
+<!--                        <div class="oe_clear"></div>-->
+                    </div>
+                </t>
+                </templates>
+            </kanban>
+        </field>
+     </record>
     <record id="action_open_task_form_simplified" model="ir.actions.act_window">
             <field name="name">Simplified Tasks</field>
             <field name="res_model">project.task</field>
