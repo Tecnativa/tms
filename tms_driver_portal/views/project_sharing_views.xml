@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="project_sharing_all_task_action" model="ir.actions.act_window">
+        <field name="name">Project Sharing All Tasks</field>
+        <field name="res_model">project.task</field>
+        <field name="view_mode">kanban,form</field>
+        <field
+            name="search_view_id"
+            ref="project.project_sharing_project_task_view_search"
+        />
+        <field name="domain">[]</field>
+        <field name="context">{
+            'delete': 0,
+            'create': 0,
+            'edit': 0,
+            'skip_project_check_tms': True
+        }</field>
+    </record>
+    <record id="project_sharing_kanban_action_view" model="ir.actions.act_window.view">
+        <field name="view_mode">kanban</field>
+        <field
+            name="act_window_id"
+            ref="tms_driver_portal.project_sharing_all_task_action"
+        />
+        <field name="view_id" ref="tms.view_task_kanban" />
+    </record>
+
+    <record id="project_sharing_tree_action_view" model="ir.actions.act_window.view">
+        <field name="view_mode">tree</field>
+        <field
+            name="act_window_id"
+            ref="tms_driver_portal.project_sharing_all_task_action"
+        />
+        <field name="view_id" ref="project.project_sharing_project_task_view_tree" />
+    </record>
+
+    <record id="project_sharing_form_action_view" model="ir.actions.act_window.view">
+        <field name="view_mode">form</field>
+        <field
+            name="act_window_id"
+            ref="tms_driver_portal.project_sharing_all_task_action"
+        />
+        <field name="view_id" ref="project.project_sharing_project_task_view_form" />
+    </record>
+</odoo>

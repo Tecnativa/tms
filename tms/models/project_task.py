@@ -241,9 +241,12 @@ class ProjectTask(models.Model):
         for task in self:
             task.is_transport_order = bool(task.tractor_id)
 
+    @api.depends("checkpoint_ids")
     def _compute_trailer_requirement_ids(self):
-        for task in self:
-            task.trailer_requirement_ids = task._all_places().mapped("trailer_tag_ids")
+        for task in self.sudo():
+            task.trailer_requirement_ids = task.checkpoint_ids.mapped(
+                "place_id.trailer_tag_ids"
+            )
 
     @api.depends("checkpoint_ids.stopped_time")
     def _compute_stopped_time(self):

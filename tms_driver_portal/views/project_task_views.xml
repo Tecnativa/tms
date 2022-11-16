@@ -11,6 +11,37 @@
         <field name="mode">primary</field>
         <field name="priority">9999</field>
         <field name="arch" type="xml">
+            <notebook position="before">
+                <group>
+                <field name="progress_status" invisible="1" />
+                <field
+                        name="equipment_id"
+                        context="{'default_size_type_id': equipment_size_type_id}"
+                    />
+                <field name="seal" />
+                </group>
+            </notebook>
+            <!-- Change stage task to the next stage -->
+            <div name="button_box" position="inside">
+                <button
+                    name="action_start_task"
+                    type="object"
+                    attrs="{'invisible': [('progress_status','!=', 'not_started')]}"
+                    class="oe_stat_button"
+                    icon="fa-play"
+                    string="Start"
+                >
+                </button>
+                <button
+                    name="action_finish_task"
+                    type="object"
+                    attrs="{'invisible': [('progress_status','!=', 'in_progress')]}"
+                    class="oe_stat_button"
+                    icon="fa-stop"
+                    string="Finish"
+                >
+                </button>
+            </div>
             <!-- Move checkpoints to first place -->
             <xpath expr="//page[@name='tms_info']" position="before">
                 <xpath expr="//page[@name='tms_checkpoint']" position="move" />
@@ -110,16 +141,16 @@
                     name="attrs"
                 >{'invisible': [('trailer_requirement_ids', '=', [])]}</attribute>
             </xpath>
-            <xpath expr="//field[@name='equipment_id']" position="attributes">
-                <attribute
-                    name="attrs"
-                >{'invisible': [('equipment_id', '=', False)]}</attribute>
-            </xpath>
-            <xpath expr="//field[@name='seal']" position="attributes">
-                <attribute
-                    name="attrs"
-                >{'invisible': [('seal', '=', False)]}</attribute>
-            </xpath>
+<!--            <xpath expr="//field[@name='equipment_id']" position="attributes">-->
+<!--                <attribute-->
+<!--                    name="attrs"-->
+<!--                >{'invisible': [('equipment_id', '=', False)]}</attribute>-->
+<!--            </xpath>-->
+<!--            <xpath expr="//field[@name='seal']" position="attributes">-->
+<!--                <attribute-->
+<!--                    name="attrs"-->
+<!--                >{'invisible': [('seal', '=', False)]}</attribute>-->
+<!--            </xpath>-->
             <xpath expr="//field[@name='port_id']" position="attributes">
                 <attribute
                     name="attrs"
@@ -162,14 +193,6 @@
                 (0, 0, {'view_mode':'graph'}),
                 (0, 0, {'view_mode':'activity'})]"
         />
-            <field name="help" type="html">
-                <p class="o_view_nocontent_smiling_face">
-                    No tasks found. Let's create one!
-                </p><p>
-                    To get things done, use activities and status on tasks.<br />
-                    Chat in real-time or by email to collaborate efficiently.
-                </p>
-            </field>
         </record>
     <menuitem
         name="Task mobile view"
