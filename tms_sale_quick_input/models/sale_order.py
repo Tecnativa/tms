@@ -263,3 +263,7 @@ class SaleOrderLine(models.Model):
     @api.onchange("carrier_tracking_ref")
     def onchange_carrier_tracking_ref(self):
         self._update_package()
+
+    @api.onchange("sale_type_id")
+    def onchange_sale_type_id(self):
+        self.order_id.onchange_type_id()
