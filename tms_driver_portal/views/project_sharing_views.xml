@@ -15,6 +15,9 @@
             'create': 0,
             'edit': 0,
             'skip_project_check_tms': True,
+            'check_equipment_required': True,
+            'check_start_actual_task': True,
+            'search_default_date_start_today': True,
         }</field>
     </record>
     <record id="project_sharing_kanban_action_view" model="ir.actions.act_window.view">

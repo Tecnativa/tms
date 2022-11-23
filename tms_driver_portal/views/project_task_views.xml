@@ -88,7 +88,7 @@
                             <field name="legend_done" invisible="1" />
                         </h1>
                     </div>
-                    <group>
+                    <group invisible="1">
                         <group>
                             <field name="project_id" invisible="1" />
                             <field
@@ -251,19 +251,25 @@
                         <div class="oe_kanban_content">
                             <div class="o_kanban_record_top">
                                 <div class="o_kanban_record_headings">
-                                    <t t-if="record.equipment_size_type_id.value">
-                                        <field
-                                                name="equipment_size_type_id"
-                                                widget="name_with_subtask_count"
-                                            />
-                                    </t>
-                                    <t t-if="record.shipping_company_id.value">
-                                        <field name="shipping_company_id" />
-                                    </t>
+                                    <div class="row">
+                                        <div class="col">
+                                            <t
+                                                    t-if="record.equipment_size_type_id.value"
+                                                >
+                                                <field name="equipment_size_type_id" />
+                                            </t>
+                                            <t t-if="record.shipping_company_id.value">
+                                                <field name="shipping_company_id" />
+                                            </t>
+                                            <t t-if="record.sale_order_id.value">
+                                                <field name="sale_order_id" />
+                                            </t>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="o_kanban_record_body">
-                                <strong>
+                                <strong name="places">
                                     <t
                                             t-if="record.shipping_origin_id.value and !record.unload_service.raw_value"
                                         >
@@ -274,8 +280,8 @@
                                         >
                                         <field name="shipping_destination_id" />
                                     </t>
-                                    <br />
                                 </strong>
+                                <br />
                                 <t
                                         t-if="record.date_start.raw_value"
                                         t-set="blue"

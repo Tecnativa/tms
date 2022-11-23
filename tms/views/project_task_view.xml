@@ -646,10 +646,15 @@
                                             style="height: 50px"
                                             attrs="{'invisible': [('arrival_time', '!=', False)]}"
                                         >
+                                            <field
+                                                name="progress_status"
+                                                invisible="1"
+                                            />
                                             <button
                                                 class="btn btn-primary w-100 h-100"
                                                 type="object"
                                                 name="register_arrival_time"
+                                                attrs="{'invisible': [('progress_status','!=', 'in_progress')]}"
                                             >
                                                 <i class="fa fa-sign-in" />
                                                 Register Arrival

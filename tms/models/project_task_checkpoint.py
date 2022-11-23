@@ -19,6 +19,7 @@ class ProjectTaskCheckpoint(models.Model):
         string="Task",
         index=True,
     )
+    progress_status = fields.Selection(related="task_id.progress_status")
     sequence = fields.Integer()
     automatic = fields.Boolean()
     place_id = fields.Many2one(
