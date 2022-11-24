@@ -58,7 +58,11 @@
         />
     <field name="arch" type="xml">
         <field name="order_partner_id" position="after">
-            <field name="sale_type_id" optional="hide" />
+            <field
+                    name="sale_type_id"
+                    optional="hide"
+                    attrs="{'readonly': [('product_updatable', '=', False)]}"
+                />
         </field>
         <field name="price_total" position="after">
             <field name="editable_package_rel" invisible="1" />

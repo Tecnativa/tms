@@ -6,6 +6,20 @@ from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
 
+class SaleOrder(models.Model):
+    _inherit = "sale.order"
+
+    @api.model
+    def create(self, vals):
+        """default_type_id passed in context do not work because type_id is a field
+        computed, writable and has a default method.
+        So we force inject into vals.
+        """
+        if "type_id" not in vals and "default_type_id" in self.env.context:
+            vals["type_id"] = self.env.context["default_type_id"]
+        return super(SaleOrder, self).create(vals)
+
+
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
@@ -272,3 +286,13 @@ class SaleOrderLine(models.Model):
     @api.onchange("goods_id")
     def onchange_goods_id(self):
         self._update_package()
+
+    @api.onchange("order_partner_id")
+    def _onchange_order_partner_id(self):
+        """The module sal_line_quick_input not depends on sale_order_type, in
+        create method of sale order has not type_id in vals.
+        """
+        return super(
+            SaleOrderLine,
+            self.with_context(default_type_id=self.order_partner_id.sale_type.id),
+        )._onchange_order_partner_id()
