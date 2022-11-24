@@ -225,13 +225,14 @@ class SaleOrderLine(models.Model):
             self.shipping_destination_id = self.acceptance_id
 
     def _update_package(self):
-        if not self.carrier_tracking_ref:
+        if not self.carrier_tracking_ref and not self.goods_id:
             return
         packages = self.tms_package_ids
         vals = {
             "shipping_origin_id": self.shipping_origin_id.id,
             "shipping_destination_id": self.shipping_destination_id.id,
             "carrier_tracking_ref": self.carrier_tracking_ref,
+            "goods_id": self.goods_id.id,
         }
         if not packages:
             vals.update(
@@ -267,3 +268,7 @@ class SaleOrderLine(models.Model):
     @api.onchange("sale_type_id")
     def onchange_sale_type_id(self):
         self.order_id.onchange_type_id()
+
+    @api.onchange("goods_id")
+    def onchange_goods_id(self):
+        self._update_package()
