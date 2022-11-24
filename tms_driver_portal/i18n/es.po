@@ -111,7 +111,7 @@ msgstr "Equipamiento"
 #. module: tms_driver_portal
 #: model:ir.model.fields,field_description:tms_driver_portal.field_project_task_equipment_wiz__equipment_size_type_id
 msgid "Equipment Size Type"
-msgstr "<i class=\"fa fa-th-large\" title=\"Tipo de tamaño del equipo\"/>"
+msgstr "Tipo de equipamiento"
 
 #. module: tms_driver_portal
 #: model:ir.model,name:tms_driver_portal.model_project_task_equipment_wiz
