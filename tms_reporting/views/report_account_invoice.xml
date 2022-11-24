@@ -241,7 +241,7 @@
                     </td>
                     <td t-if="pt.display_quantity" class="text-right">
                         <span t-field="l.quantity" />
-                        <span t-field="l.uom_id" groups="uom.group_uom" />
+                        <span t-field="l.product_uom_id" groups="uom.group_uom" />
                     </td>
                     <td t-if="pt.display_price" class="text-right">
                         <span t-field="l.price_unit" />
