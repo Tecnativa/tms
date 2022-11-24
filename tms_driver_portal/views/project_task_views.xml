@@ -329,10 +329,6 @@
                     </button>
                 </div>
             </xpath>
-            <div name="area_button" position="inside">
-                <div class="row mt8">
-                </div>
-            </div>
         </field>
      </record>
 
