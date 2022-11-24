@@ -4,7 +4,7 @@
 from odoo import api, fields, models
 
 
-class ProjectTask(models.TransientModel):
+class ProjectTaskEquipmentWiz(models.TransientModel):
     _name = "project.task.equipment.wiz"
     _description = "Fill project task equipment wizard"
 

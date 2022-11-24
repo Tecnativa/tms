@@ -311,4 +311,29 @@
             </kanban>
         </field>
      </record>
+    <record id="project_task_checkpoint_kanban_view" model="ir.ui.view">
+        <field name="inherit_id" ref="tms.project_task_checkpoint_kanban_view" />
+        <field name="model">project.task.checkpoint</field>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='register_arrival_time']/.." position="before">
+                <div class="col-4">
+                    <field name="package_origin_ids" invisible="1" />
+                    <button
+                        class="btn btn-secondary"
+                        type="object"
+                        name="action_package_info"
+                        attrs="{'invisible': ['|', ('progress_status','!=', 'in_progress'), ('package_origin_ids', '=', [])]}"
+                    >
+                        <i class="fa fa-pencil" />
+                        Package info
+                    </button>
+                </div>
+            </xpath>
+            <div name="area_button" position="inside">
+                <div class="row mt8">
+                </div>
+            </div>
+        </field>
+     </record>
+
 </odoo>

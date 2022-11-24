@@ -86,3 +86,14 @@ class ProjectTask(models.Model):
             "default_equipment_size_type_id": self.equipment_size_type_id.id,
         }
         return action
+
+    def write(self, vals):
+        res = super().write(vals)
+        if vals.get("user_ids", False):
+            for project in self.mapped("project_id"):
+                partners = self.filtered(lambda t: t.project_id == project).mapped(
+                    "user_ids.partner_id"
+                )
+                project._add_collaborators(partners)
+                project.message_subscribe(partner_ids=partners.ids)
+        return res

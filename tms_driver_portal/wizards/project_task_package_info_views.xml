@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright 2022 Tecnativa - Sergio Teruel
+  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <record id="view_project_task_package_info_wiz" model="ir.ui.view">
+        <field name="name">project.task.package.info.wiz</field>
+        <field name="model">project.task.package.info.wiz</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <field name="checkpoint_id" invisible="1" />
+                    <field name="line_ids">
+                        <tree editable="top" create="0" delete="0">
+                            <field name="package_id" invisible="1" />
+                            <field name="carrier_tracking_ref" />
+                            <field
+                                name="shipping_weight"
+                                optional="show"
+                                widget="numeric_step"
+                            />
+                            <field
+                                name="shipping_volume"
+                                optional="show"
+                                widget="numeric_step"
+                            />
+                        </tree>
+                    </field>
+                </sheet>
+                <footer>
+                    <button
+                        name="action_apply"
+                        type="object"
+                        string="Apply"
+                        class="oe_highlight"
+                    />
+                    <button special="cancel" string="Cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_project_task_package_info_wiz" model="ir.actions.act_window">
+            <field name="name">Package Info</field>
+            <field name="res_model">project.task.package.info.wiz</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+    </record>
+</odoo>

@@ -23,5 +23,6 @@
         "views/project_sharing_views.xml",
         "views/project_sharing_templates.xml",
         "wizards/project_task_equipment_views.xml",
+        "wizards/project_task_package_info_views.xml",
     ],
 }

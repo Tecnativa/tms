@@ -16,3 +16,14 @@ class ProjectTaskCheckpoint(models.Model):
         ):
             return self.task_id.action_project_task_equipment_wiz()
         return super().register_departure_time()
+
+    def action_package_info(self):
+        self.ensure_one()
+        action = self.env["ir.actions.act_window"]._for_xml_id(
+            "tms_driver_portal.action_project_task_package_info_wiz"
+        )
+        action["context"] = {
+            "active_model": self._name,
+            "active_id": self.id,
+        }
+        return action
