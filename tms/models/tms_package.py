@@ -161,3 +161,27 @@ class TmsPackage(models.Model):
                     self.env["ir.sequence"].next_by_code("tms.package") or "/"
                 )
         return super().create(vals_list)
+
+    def write(self, vals):
+        res = super(TmsPackage, self).write(vals)
+        if "shipping_weight" in vals:
+            weight_uom_category = self.env.ref("uom.product_uom_categ_kgm")
+            so_lines = self.sudo().sale_line_ids.filtered(
+                lambda sol: sol.product_id.invoice_policy == "delivery"
+                and sol.product_uom_category_id == weight_uom_category
+            )
+            for so_line in so_lines:
+                so_line.qty_delivered = sum(
+                    so_line.tms_package_ids.mapped("shipping_weight")
+                )
+        if "shipping_volume" in vals:
+            volume_uom_category = self.env.ref("uom.product_uom_categ_vol")
+            so_lines = self.sudo().sale_line_ids.filtered(
+                lambda sol: sol.product_id.invoice_policy == "delivery"
+                and sol.product_uom_category_id == volume_uom_category
+            )
+            for so_line in so_lines:
+                so_line.qty_delivered = sum(
+                    so_line.tms_package_ids.mapped("shipping_volume")
+                )
+        return res

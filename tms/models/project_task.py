@@ -294,7 +294,7 @@ class ProjectTask(models.Model):
 
     @api.onchange("user_ids")
     def _onchange_user_ids(self):
-        partner_user = self.user_ids[0].partner_id
+        partner_user = self.user_ids[:1].partner_id
         if partner_user.is_driver:
             self.driver_id = partner_user
 
@@ -376,7 +376,7 @@ class ProjectTask(models.Model):
 
     def _check_incompatible_tags(self, vals):
         fleet_vehicle = self.env["fleet.vehicle"]
-        if "tractor_id" in vals or "trailer_id" in vals:
+        if vals.get("tractor_id", False) or vals.get("trailer_id", False):
             for task in self:
                 if task.trailer_requirement_ids:
                     vehicles = fleet_vehicle.browse(
