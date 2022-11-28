@@ -1,5 +1,6 @@
 from . import tms_analytic
 from . import tms_goods
+from . import tms_goods_adr
 from . import tms_package
 from . import tms_equipment
 from . import project_task_checkpoint

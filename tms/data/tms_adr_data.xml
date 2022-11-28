@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+
+    <!-- ADR Class -->
+    <record id="tms_goods_adr_class_1" model="tms.goods.adr.class">
+        <field name="code">1</field>
+        <field name="name">Explosives</field>
+    </record>
+    <record id="tms_goods_adr_class_2" model="tms.goods.adr.class">
+        <field name="code">2</field>
+        <field name="name">Gases</field>
+    </record>
+    <record id="tms_goods_adr_class_2" model="tms.goods.adr.class">
+        <field name="code">2</field>
+        <field name="name">Gases</field>
+    </record>
+    <record id="tms_goods_adr_class_2_2" model="tms.goods.adr.class">
+        <field name="code">2.1</field>
+        <field name="name">Flammable gases</field>
+    </record>
+    <record id="tms_goods_adr_class_2_2" model="tms.goods.adr.class">
+        <field name="code">2.2</field>
+        <field name="name">Non-flammable, non-toxic gases</field>
+    </record>
+    <record id="tms_goods_adr_class_2_3" model="tms.goods.adr.class">
+        <field name="code">2.3</field>
+        <field name="name">Toxic gases</field>
+    </record>
+    <record id="tms_goods_adr_class_3" model="tms.goods.adr.class">
+        <field name="code">3</field>
+        <field name="name">Flammable liquids</field>
+    </record>
+    <record id="tms_goods_adr_class_4" model="tms.goods.adr.class">
+        <field name="code">4</field>
+        <field name="name">Flammable solids</field>
+    </record>
+    <record id="tms_goods_adr_class_4_1" model="tms.goods.adr.class">
+        <field name="code">4.1</field>
+        <field
+            name="name"
+        >Flammable solids, self-reactive substances and desensitized explosives</field>
+    </record>
+    <record id="tms_goods_adr_class_4_2" model="tms.goods.adr.class">
+        <field name="code">4.2</field>
+        <field name="name">Substances liable to spontaneous combustion</field>
+    </record>
+    <record id="tms_goods_adr_class_4_3" model="tms.goods.adr.class">
+        <field name="code">4.3</field>
+        <field
+            name="name"
+        >Substances which, in contact with water, emit flammable gases</field>
+    </record>
+    <record id="tms_goods_adr_class_5" model="tms.goods.adr.class">
+        <field name="code">5</field>
+        <field name="name">Oxidizing substances and organic peroxides</field>
+    </record>
+    <record id="tms_goods_adr_class_5_1" model="tms.goods.adr.class">
+        <field name="code">5.1</field>
+        <field name="name">Oxidizing substances</field>
+    </record>
+    <record id="tms_goods_adr_class_5_2" model="tms.goods.adr.class">
+        <field name="code">5.2</field>
+        <field name="name">Organic peroxides</field>
+    </record>
+    <record id="tms_goods_adr_class_6" model="tms.goods.adr.class">
+        <field name="code">6</field>
+        <field name="name">Toxic and infectious substances</field>
+    </record>
+    <record id="tms_goods_adr_class_6_1" model="tms.goods.adr.class">
+        <field name="code">6.1</field>
+        <field name="name">Toxic substances</field>
+    </record>
+    <record id="tms_goods_adr_class_6_2" model="tms.goods.adr.class">
+        <field name="code">6.2</field>
+        <field name="name">Infectious substances</field>
+    </record>
+    <record id="tms_goods_adr_class_7" model="tms.goods.adr.class">
+        <field name="code">7</field>
+        <field name="name">Radioactive material</field>
+    </record>
+    <record id="tms_goods_adr_class_8" model="tms.goods.adr.class">
+        <field name="code">8</field>
+        <field name="name">Corrosive substances</field>
+    </record>
+    <record id="tms_goods_adr_class_9" model="tms.goods.adr.class">
+        <field name="code">9</field>
+        <field name="name">Miscellaneous dangerous substances and articles</field>
+    </record>
+
+</odoo>

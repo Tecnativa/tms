@@ -10,3 +10,4 @@ access_iso6346_second_size,access_iso6346_second_size,model_iso6346_second_size,
 access_tms_package,access_tms_package,model_tms_package,,1,1,1,1
 access_res_partner_zone,access_res_partner_zone,model_res_partner_zone,,1,1,1,1
 access_res_partner_schedule,access_res_partner_schedule,model_res_partner_schedule,,1,1,1,1
+access_tms_goods_adr_class,access_tms_goods_adr_class,tms.model_tms_goods_adr_class,base.group_user,1,1,1,1

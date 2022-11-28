@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="tms_goods_tree_view" model="ir.ui.view">
+        <field name="name">tms.goods.tree</field>
+        <field name="model">tms.goods</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="adr_id" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="tms_goods_form_view" model="ir.ui.view">
+        <field name="name">tms.goods.form</field>
+        <field name="model">tms.goods</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="name" />
+                    <field name="adr_id" />
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="tms_goods_view_search" model='ir.ui.view'>
+        <field name="name">tms.goods.search</field>
+        <field name="model">tms.goods</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="adr_id" />
+            </search>
+        </field>
+    </record>
+
+    <record id="action_tms_goods" model="ir.actions.act_window">
+        <field name="name">Goods</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">tms.goods</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="menu_tms_goods"
+        action="action_tms_goods"
+        parent="menu_tms_config"
+        sequence="50"
+        groups="sales_team.group_sale_manager"
+    />
+
+</odoo>

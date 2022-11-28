@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-24 12:31+0000\n"
-"PO-Revision-Date: 2022-11-24 13:34+0100\n"
-"Last-Translator: Sergio Teruel <sergio.teruel@tecnativa.com>\n"
+"POT-Creation-Date: 2022-11-28 17:14+0000\n"
+"PO-Revision-Date: 2022-11-28 18:16+0100\n"
+"Last-Translator: Carlos Dauden <carlos.dauden@tecnativa.com>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -111,23 +111,21 @@ msgid "<strong>Volume:</strong>"
 msgstr "<strong>Volumen:</strong>"
 
 #. module: tms
+#: model:ir.actions.act_window,name:tms.action_tms_goods_adr
 #: model:ir.model.fields,field_description:tms.field_tms_goods__adr_id
+#: model:ir.ui.menu,name:tms.menu_tms_goods_adr
 msgid "ADR"
 msgstr "ADR"
 
 #. module: tms
 #: model:ir.model.fields,field_description:tms.field_res_config_settings__georoute_provider_id
-#, fuzzy
-#| msgid "Show Route"
 msgid "API Route"
-msgstr "Mostrar ruta"
+msgstr "API Route"
 
 #. module: tms
 #: model_terms:ir.ui.view,arch_db:tms.res_config_settings_view_form
-#, fuzzy
-#| msgid "Show Route"
 msgid "API Route:"
-msgstr "Mostrar ruta"
+msgstr "API Route:"
 
 #. module: tms
 #: model:ir.model.fields,field_description:tms.field_sale_order__acceptance_id
@@ -226,6 +224,16 @@ msgid "Checkpoints Origin"
 msgstr "Checkpoints Origen"
 
 #. module: tms
+#: model:ir.model.fields,field_description:tms.field_tms_goods_adr__adr_class
+msgid "Class"
+msgstr "Clase"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_tms_goods_adr__classification_code
+msgid "Classification Code"
+msgstr "Código de clasificación"
+
+#. module: tms
 #: model:ir.model.fields.selection,name:tms.selection__project_task__progress_status__closed
 msgid "Closed"
 msgstr "Cerrado"
@@ -235,6 +243,7 @@ msgstr "Cerrado"
 #: model:ir.model.fields,field_description:tms.field_iso6346_second_size__code
 #: model:ir.model.fields,field_description:tms.field_iso6346_size_type__code
 #: model:ir.model.fields,field_description:tms.field_iso6346_type__code
+#: model:ir.model.fields,field_description:tms.field_tms_goods_adr_class__code
 msgid "Code"
 msgstr "Código"
 
@@ -290,6 +299,11 @@ msgid "Container"
 msgstr "Contenedor"
 
 #. module: tms
+#: model:tms.goods.adr.class,name:tms.tms_goods_adr_class_8
+msgid "Corrosive substances"
+msgstr "Sustancias corrosivas"
+
+#. module: tms
 #: model:ir.model.fields,field_description:tms.field_iso6346_length__create_uid
 #: model:ir.model.fields,field_description:tms.field_iso6346_second_size__create_uid
 #: model:ir.model.fields,field_description:tms.field_iso6346_size_type__create_uid
@@ -300,6 +314,7 @@ msgstr "Contenedor"
 #: model:ir.model.fields,field_description:tms.field_tms_equipment__create_uid
 #: model:ir.model.fields,field_description:tms.field_tms_goods__create_uid
 #: model:ir.model.fields,field_description:tms.field_tms_goods_adr__create_uid
+#: model:ir.model.fields,field_description:tms.field_tms_goods_adr_class__create_uid
 #: model:ir.model.fields,field_description:tms.field_tms_package__create_uid
 msgid "Created by"
 msgstr "Creado por"
@@ -315,6 +330,7 @@ msgstr "Creado por"
 #: model:ir.model.fields,field_description:tms.field_tms_equipment__create_date
 #: model:ir.model.fields,field_description:tms.field_tms_goods__create_date
 #: model:ir.model.fields,field_description:tms.field_tms_goods_adr__create_date
+#: model:ir.model.fields,field_description:tms.field_tms_goods_adr_class__create_date
 #: model:ir.model.fields,field_description:tms.field_tms_package__create_date
 msgid "Created on"
 msgstr "Creado en"
@@ -367,6 +383,7 @@ msgstr "Terminal descarga"
 #: model:ir.model.fields,field_description:tms.field_tms_equipment__display_name
 #: model:ir.model.fields,field_description:tms.field_tms_goods__display_name
 #: model:ir.model.fields,field_description:tms.field_tms_goods_adr__display_name
+#: model:ir.model.fields,field_description:tms.field_tms_goods_adr_class__display_name
 #: model:ir.model.fields,field_description:tms.field_tms_package__display_name
 msgid "Display Name"
 msgstr "Nombre a mostrar"
@@ -475,6 +492,11 @@ msgid "Expedition"
 msgstr "Expedición"
 
 #. module: tms
+#: model:tms.goods.adr.class,name:tms.tms_goods_adr_class_1
+msgid "Explosives"
+msgstr "Explosivos"
+
+#. module: tms
 #: model_terms:ir.ui.view,arch_db:tms.tms_view_task_form2
 msgid "Fill Checkpoints"
 msgstr "Rellenar checkpoints"
@@ -495,6 +517,28 @@ msgstr "Destino final"
 #: model_terms:ir.ui.view,arch_db:tms.tms_package_view_search
 msgid "Finished"
 msgstr "Terminado"
+
+#. module: tms
+#: model:tms.goods.adr.class,name:tms.tms_goods_adr_class_2_2
+msgid "Flammable gases"
+msgstr "Gases inflamables"
+
+#. module: tms
+#: model:tms.goods.adr.class,name:tms.tms_goods_adr_class_3
+msgid "Flammable liquids"
+msgstr "Líquidos inflamables"
+
+#. module: tms
+#: model:tms.goods.adr.class,name:tms.tms_goods_adr_class_4
+msgid "Flammable solids"
+msgstr "Sólidos inflamables"
+
+#. module: tms
+#: model:tms.goods.adr.class,name:tms.tms_goods_adr_class_4_1
+msgid "Flammable solids, self-reactive substances and desensitized explosives"
+msgstr ""
+"Materias sólidas inflamables, materias autorreactivas y materias explosivas "
+"desensibilizadas sólidas"
 
 #. module: tms
 #: model:ir.ui.menu,name:tms.menu_tms_fleet
@@ -537,10 +581,17 @@ msgid "From"
 msgstr "De"
 
 #. module: tms
+#: model:tms.goods.adr.class,name:tms.tms_goods_adr_class_2
+msgid "Gases"
+msgstr "Gases"
+
+#. module: tms
+#: model:ir.actions.act_window,name:tms.action_tms_goods
 #: model:ir.model.fields,field_description:tms.field_product_product__goods_id
 #: model:ir.model.fields,field_description:tms.field_product_template__goods_id
 #: model:ir.model.fields,field_description:tms.field_project_task__goods_id
 #: model:ir.model.fields,field_description:tms.field_tms_package__goods_id
+#: model:ir.ui.menu,name:tms.menu_tms_goods
 msgid "Goods"
 msgstr "Mercancía"
 
@@ -582,9 +633,20 @@ msgstr "Le ayuda a gestionar TMS."
 #: model:ir.model.fields,field_description:tms.field_tms_equipment__id
 #: model:ir.model.fields,field_description:tms.field_tms_goods__id
 #: model:ir.model.fields,field_description:tms.field_tms_goods_adr__id
+#: model:ir.model.fields,field_description:tms.field_tms_goods_adr_class__id
 #: model:ir.model.fields,field_description:tms.field_tms_package__id
 msgid "ID"
 msgstr "ID (identificación)"
+
+#. module: tms
+#: model:ir.model.fields.selection,name:tms.selection__tms_goods_adr__packing_group__ii
+msgid "II"
+msgstr "II"
+
+#. module: tms
+#: model:ir.model.fields.selection,name:tms.selection__tms_goods_adr__packing_group__iii
+msgid "III"
+msgstr "III"
 
 #. module: tms
 #: model:ir.model.fields,field_description:tms.field_tms_equipment__iso6346_ok
@@ -614,6 +676,11 @@ msgid "Incompatible equipment"
 msgstr "Equipamiento incompatible"
 
 #. module: tms
+#: model:tms.goods.adr.class,name:tms.tms_goods_adr_class_6_2
+msgid "Infectious substances"
+msgstr "Materias infecciosas"
+
+#. module: tms
 #: model:ir.model.fields.selection,name:tms.selection__tms_equipment__equipment_type__jail
 msgid "Jail"
 msgstr "Jaula"
@@ -625,10 +692,8 @@ msgstr "Apunte contable"
 
 #. module: tms
 #: model_terms:ir.ui.view,arch_db:tms.res_config_settings_view_form
-#, fuzzy
-#| msgid "Show Route"
 msgid "Key Route:"
-msgstr "Mostrar ruta"
+msgstr "Key Route:"
 
 #. module: tms
 #: model:ir.model.fields,field_description:tms.field_iso6346_length____last_update
@@ -641,6 +706,7 @@ msgstr "Mostrar ruta"
 #: model:ir.model.fields,field_description:tms.field_tms_equipment____last_update
 #: model:ir.model.fields,field_description:tms.field_tms_goods____last_update
 #: model:ir.model.fields,field_description:tms.field_tms_goods_adr____last_update
+#: model:ir.model.fields,field_description:tms.field_tms_goods_adr_class____last_update
 #: model:ir.model.fields,field_description:tms.field_tms_package____last_update
 msgid "Last Modified on"
 msgstr "Última actualización el"
@@ -656,6 +722,7 @@ msgstr "Última actualización el"
 #: model:ir.model.fields,field_description:tms.field_tms_equipment__write_uid
 #: model:ir.model.fields,field_description:tms.field_tms_goods__write_uid
 #: model:ir.model.fields,field_description:tms.field_tms_goods_adr__write_uid
+#: model:ir.model.fields,field_description:tms.field_tms_goods_adr_class__write_uid
 #: model:ir.model.fields,field_description:tms.field_tms_package__write_uid
 msgid "Last Updated by"
 msgstr "Última actualización por"
@@ -671,6 +738,7 @@ msgstr "Última actualización por"
 #: model:ir.model.fields,field_description:tms.field_tms_equipment__write_date
 #: model:ir.model.fields,field_description:tms.field_tms_goods__write_date
 #: model:ir.model.fields,field_description:tms.field_tms_goods_adr__write_date
+#: model:ir.model.fields,field_description:tms.field_tms_goods_adr_class__write_date
 #: model:ir.model.fields,field_description:tms.field_tms_package__write_date
 msgid "Last Updated on"
 msgstr "Última actualización el"
@@ -731,6 +799,11 @@ msgid "Miscellaneous"
 msgstr "Miscelánea"
 
 #. module: tms
+#: model:tms.goods.adr.class,name:tms.tms_goods_adr_class_9
+msgid "Miscellaneous dangerous substances and articles"
+msgstr "Materias y objetos que presentan peligros diversos"
+
+#. module: tms
 #: model:ir.model,name:tms.model_fleet_vehicle_model
 msgid "Model of a vehicle"
 msgstr "Modelo de un vehículo"
@@ -746,6 +819,7 @@ msgstr "Modelo de un vehículo"
 #: model:ir.model.fields,field_description:tms.field_tms_equipment__name
 #: model:ir.model.fields,field_description:tms.field_tms_goods__name
 #: model:ir.model.fields,field_description:tms.field_tms_goods_adr__name
+#: model:ir.model.fields,field_description:tms.field_tms_goods_adr_class__name
 #: model:ir.model.fields,field_description:tms.field_tms_package__name
 msgid "Name"
 msgstr "Nombre"
@@ -754,6 +828,11 @@ msgstr "Nombre"
 #: model:ir.model.constraint,message:tms.constraint_tms_package_name_unique
 msgid "Name for this package already exists!"
 msgstr "¡Este nombre de paquete ya existe!"
+
+#. module: tms
+#: model:ir.model.fields,help:tms.field_tms_goods_adr__name
+msgid "Name of the substance or article"
+msgstr "Nombre de la sustancia o artículo"
 
 #. module: tms
 #: model:ir.model.fields,field_description:tms.field_fleet_vehicle__next_checkpoint_ids
@@ -783,7 +862,12 @@ msgstr "Odómetro fin"
 #. module: tms
 #: model:ir.model.fields,field_description:tms.field_res_config_settings__georoute_provider_openrouteservice_key
 msgid "Open Route Service API Key"
-msgstr ""
+msgstr "API Key del servicio Open Route"
+
+#. module: tms
+#: model:tms.goods.adr.class,name:tms.tms_goods_adr_class_5_2
+msgid "Organic peroxides"
+msgstr "Peróxidos orgánicos"
 
 #. module: tms
 #: model:ir.model.fields,field_description:tms.field_project_task__shipping_origin_id
@@ -801,6 +885,16 @@ msgstr "Puerto origen"
 #: model:ir.model.fields,field_description:tms.field_fleet_vehicle__is_own_vehicle
 msgid "Own vehicle"
 msgstr "Vehículo propio"
+
+#. module: tms
+#: model:tms.goods.adr.class,name:tms.tms_goods_adr_class_5_1
+msgid "Oxidizing substances"
+msgstr "Sustancias comburentes"
+
+#. module: tms
+#: model:tms.goods.adr.class,name:tms.tms_goods_adr_class_5
+msgid "Oxidizing substances and organic peroxides"
+msgstr "Sustancias comburentes y peróxidos orgánicos"
 
 #. module: tms
 #: model:ir.model.fields,field_description:tms.field_project_task__tms_package_ids
@@ -825,6 +919,11 @@ msgid "Packages Origin"
 msgstr "Paquetes origen"
 
 #. module: tms
+#: model:ir.model.fields,field_description:tms.field_tms_goods_adr__packing_group
+msgid "Packing Group"
+msgstr "Grupo de embalaje"
+
+#. module: tms
 #: model:ir.model.fields,field_description:tms.field_project_task__pallet_qty
 #: model:ir.model.fields,field_description:tms.field_tms_package__pallet_qty
 msgid "Pallets"
@@ -845,10 +944,8 @@ msgstr "Empresa"
 #. module: tms
 #: model:base.automation,name:tms.automation_partner_geo_localize
 #: model:ir.actions.server,name:tms.action_partner_geo_localize
-#, fuzzy
-#| msgid "Partner Zone"
 msgid "Partner Geo Localize"
-msgstr "Zona de la empresa"
+msgstr "Geolocalizar empresa"
 
 #. module: tms
 #: model:ir.model,name:tms.model_res_partner_schedule
@@ -942,6 +1039,11 @@ msgid "Quotations"
 msgstr "Pedidos"
 
 #. module: tms
+#: model:tms.goods.adr.class,name:tms.tms_goods_adr_class_7
+msgid "Radioactive material"
+msgstr "Materias radioactivas"
+
+#. module: tms
 #: model:ir.model.fields.selection,name:tms.selection__tms_package__state__ready
 #: model_terms:ir.ui.view,arch_db:tms.tms_package_view_search
 msgid "Ready"
@@ -987,7 +1089,7 @@ msgstr "Pedido de venta"
 #. module: tms
 #: model:ir.model.fields,field_description:tms.field_fleet_vehicle__sale_type_ids
 msgid "Sale Order Types"
-msgstr "Tipos de pedido de venta"
+msgstr "Tipos de pedido"
 
 #. module: tms
 #: model_terms:ir.ui.view,arch_db:tms.view_task_search_form
@@ -1145,6 +1247,16 @@ msgid "Stopped Time"
 msgstr "Tiempo paralización"
 
 #. module: tms
+#: model:tms.goods.adr.class,name:tms.tms_goods_adr_class_4_2
+msgid "Substances liable to spontaneous combustion"
+msgstr "Materias que pueden experimentar inflamación espontánea"
+
+#. module: tms
+#: model:tms.goods.adr.class,name:tms.tms_goods_adr_class_4_3
+msgid "Substances which, in contact with water, emit flammable gases"
+msgstr "Materias que en contacto con el agua desprenden gases inflamables"
+
+#. module: tms
 #: model_terms:ir.ui.view,arch_db:tms.view_task_search_form
 msgid "Subtask hidden"
 msgstr "Subtareas ocultas"
@@ -1171,8 +1283,13 @@ msgstr "TMS Mercancias"
 
 #. module: tms
 #: model:ir.model,name:tms.model_tms_goods_adr
-msgid "TMS Goods Adr"
-msgstr "TMS ADR Mercancias"
+msgid "TMS Goods ADR"
+msgstr "TMS Mercancía ADR"
+
+#. module: tms
+#: model:ir.model,name:tms.model_tms_goods_adr_class
+msgid "TMS Goods ADR Class"
+msgstr "TMS Clase ADR mercancía"
 
 #. module: tms
 #: model:ir.model,name:tms.model_tms_package
@@ -1187,6 +1304,11 @@ msgid "TMS Packages"
 msgstr "Paquetes TMS"
 
 #. module: tms
+#: model:ir.model.fields,field_description:tms.field_tms_goods_adr__adr_tag
+msgid "Tag"
+msgstr "Etiqueta"
+
+#. module: tms
 #: model:ir.model,name:tms.model_project_task
 #: model:ir.model.fields,field_description:tms.field_project_task_checkpoint__task_id
 msgid "Task"
@@ -1195,7 +1317,7 @@ msgstr "Tarea"
 #. module: tms
 #: model:ir.model.fields,field_description:tms.field_fleet_vehicle__task_pending_duration_estimated
 msgid "Task Pending Duration Estimated"
-msgstr "Duración estimada de tareas pendientes"
+msgstr "Duración estimada tarea pendiente"
 
 #. module: tms
 #: model:ir.actions.act_window,name:tms.action_view_task
@@ -1208,10 +1330,8 @@ msgstr "Tareas"
 
 #. module: tms
 #: model:ir.model.fields,field_description:tms.field_res_config_settings__georoute_provider_techname
-#, fuzzy
-#| msgid "Name"
 msgid "Tech Name"
-msgstr "Nombre"
+msgstr "Nombre técnico"
 
 #. module: tms
 #: code:addons/tms/models/tms_equipment.py:0
@@ -1270,6 +1390,21 @@ msgstr "Volumen total"
 #: model_terms:ir.ui.view,arch_db:tms.tms_view_task_form2
 msgid "Total Weight"
 msgstr "Peso total"
+
+#. module: tms
+#: model:tms.goods.adr.class,name:tms.tms_goods_adr_class_6
+msgid "Toxic and infectious substances"
+msgstr "Materias tóxicas e infecciosas"
+
+#. module: tms
+#: model:tms.goods.adr.class,name:tms.tms_goods_adr_class_2_3
+msgid "Toxic gases"
+msgstr "Gases tóxicos"
+
+#. module: tms
+#: model:tms.goods.adr.class,name:tms.tms_goods_adr_class_6_1
+msgid "Toxic substances"
+msgstr "Materias tóxicas"
 
 #. module: tms
 #: model:ir.model.fields,field_description:tms.field_tms_package__carrier_tracking_ref
@@ -1343,6 +1478,16 @@ msgid "Type"
 msgstr "Tipo"
 
 #. module: tms
+#: model:ir.model.fields,field_description:tms.field_tms_goods_adr__un_number
+msgid "UN No."
+msgstr "Nº ONU"
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.tms_goods_adr_view_search
+msgid "UN No./Name"
+msgstr "Nº ONU/Nombre"
+
+#. module: tms
 #: model_terms:ir.ui.view,arch_db:tms.view_task_search_form
 msgid "Unassigned Tractor"
 msgstr "Tractora no asignada"
@@ -1405,7 +1550,7 @@ msgstr "Bandera buque"
 #. module: tms
 #: model:ir.model.fields,help:tms.field_res_config_settings__georoute_provider_openrouteservice_key
 msgid "Visit https://openrouteservice.org/services/ for more information."
-msgstr ""
+msgstr "Visite https://openrouteservice.org/services/ para más información."
 
 #. module: tms
 #: model:ir.model.fields,field_description:tms.field_project_task__volume
@@ -1481,15 +1626,3 @@ msgstr "oe_kanban_text_blue"
 #: model_terms:ir.ui.view,arch_db:tms.fleet_vehicle_view_form
 msgid "show the tasks for this vehicle"
 msgstr "Mostrar tareas para este vehículo"
-
-#~ msgid "No tasks found. Let's create one!"
-#~ msgstr "No se encontraron tareas. ¡Creemos una!"
-
-#~ msgid ""
-#~ "To get things done, use activities and status on tasks.<br>\n"
-#~ "                Chat in real-time or by email to collaborate efficiently."
-#~ msgstr ""
-#~ "Para hacer las cosas, utilice las actividades y el estado de las tareas. "
-#~ "<br>\n"
-#~ "                    Comuníquese en tiempo real o por email para colaborar "
-#~ "eficientemente."

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!--  ADR Class Views-->
+    <record id="tms_goods_adr_class_tree_view" model="ir.ui.view">
+        <field name="name">tms.goods.adr.class.tree</field>
+        <field name="model">tms.goods.adr.class</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="code" />
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="tms_goods_adr_class_form_view" model="ir.ui.view">
+        <field name="name">tms.goods.adr.class.form</field>
+        <field name="model">tms.goods.adr.class</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                        <field name="code" />
+                    </group>
+                    <group>
+                        <field name="name" />
+                    </group>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <!--  ADR Views-->
+    <record id="tms_goods_adr_tree_view" model="ir.ui.view">
+        <field name="name">tms.goods.adr.tree</field>
+        <field name="model">tms.goods.adr</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="un_number" />
+                <field name="name" />
+                <field name="adr_class" optional="show" />
+                <field name="classification_code" optional="show" />
+                <field name="packing_group" optional="show" />
+                <field name="adr_tag" optional="show" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="tms_goods_adr_form_view" model="ir.ui.view">
+        <field name="name">tms.goods.adr.form</field>
+        <field name="model">tms.goods.adr</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="name" />
+                </group>
+                <group>
+                    <group>
+                        <field name="un_number" />
+                        <field name="adr_class" />
+                        <field name="classification_code" />
+                    </group>
+                    <group>
+                        <field name="packing_group" />
+                        <field name="adr_tag" />
+                    </group>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="tms_goods_adr_view_search" model='ir.ui.view'>
+        <field name="name">tms.goods.adr.search</field>
+        <field name="model">tms.goods.adr</field>
+        <field name="arch" type="xml">
+            <search>
+                <field
+                    name="name"
+                    string="UN No./Name"
+                    filter_domain="['|', ('name', 'ilike', self), ('un_number', 'ilike', self)]"
+                />
+                <field name="adr_class" options="{'no_create':True}" />
+                <field name="classification_code" />
+                <field name="packing_group" />
+                <field name="adr_tag" />
+            </search>
+        </field>
+    </record>
+
+    <record id="action_tms_goods_adr" model="ir.actions.act_window">
+        <field name="name">ADR</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">tms.goods.adr</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="menu_tms_goods_adr"
+        action="action_tms_goods_adr"
+        parent="menu_tms_config"
+        sequence="55"
+        groups="sales_team.group_sale_manager"
+    />
+
+</odoo>
