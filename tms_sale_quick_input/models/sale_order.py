@@ -296,3 +296,13 @@ class SaleOrderLine(models.Model):
             SaleOrderLine,
             self.with_context(default_type_id=self.order_partner_id.sale_type.id),
         )._onchange_order_partner_id()
+
+    def write(self, vals):
+        res = super().write(vals)
+        if "final_destination_id" in vals:
+            orders = self.mapped("order_id")
+            for order in orders:
+                order.onchange_final_destination_id()
+            # Recompute taxes when the fiscal position is changed on the SO
+            orders._compute_tax_id()
+        return res

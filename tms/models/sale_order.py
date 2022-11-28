@@ -2,7 +2,7 @@
 # Copyright 2017 Carlos Dauden <carlos.dauden@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class SaleOrder(models.Model):
@@ -120,3 +120,17 @@ class SaleOrder(models.Model):
     def write(self, vals):
         self.write_task_fields(vals)
         return super().write(vals)
+
+    @api.onchange("final_destination_id")
+    def onchange_final_destination_id(self):
+        """
+        Trigger the change of fiscal position when the final destination is modified.
+        """
+        if not self.final_destination_id.country_id:
+            return self.onchange_partner_shipping_id()
+        self.fiscal_position_id = (
+            self.env["account.fiscal.position"]
+            .with_company(self.company_id)
+            .get_fiscal_position(self.final_destination_id.id)
+        )
+        return {}

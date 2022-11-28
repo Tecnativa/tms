@@ -28,13 +28,13 @@
                     <group>
                         <field name="port_id" />
                         <field name="loading_port_id" />
+                        <field name="shipping_company_id" />
                     </group>
                     <group>
                         <field name="shipment_port_id" />
                         <field name="unloading_port_id" />
+                        <field name="final_destination_id" />
                     </group>
-                    <field name="shipping_company_id" />
-                    <field name="final_destination_id" />
                 </group>
             </page>
         </notebook>
