@@ -223,12 +223,4 @@
         <field name="view_mode">tree,form</field>
     </record>
 
-    <menuitem
-        id="menu_tms_package"
-        action="action_tms_package"
-        parent="menu_tms_management"
-        sequence="25"
-        groups="sales_team.group_sale_manager"
-    />
-
 </odoo>

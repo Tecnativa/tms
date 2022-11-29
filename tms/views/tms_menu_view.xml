@@ -11,8 +11,8 @@
     />
 
     <menuitem
-        name="Sales"
         id="menu_tms_management"
+        name="Sales"
         parent="menu_main_tms"
         sequence="10"
     />
@@ -37,22 +37,28 @@
         groups="sales_team.group_sale_manager"
     />
 
-
     <!-- Sale quotations from tms menu-->
     <menuitem
         id="menu_sale_quotations"
         action="sale.action_quotations"
         parent="menu_tms_management"
-        sequence="5"
+        sequence="10"
         groups="sales_team.group_sale_salesman,sales_team.group_sale_salesman"
     />
-
+    <!-- Packages from tms menu-->
+    <menuitem
+        id="menu_tms_package"
+        action="action_tms_package"
+        parent="menu_tms_management"
+        sequence="20"
+        groups="sales_team.group_sale_manager"
+    />
     <!-- Products from tms menu-->
     <menuitem
         id="menu_products"
         action="sale.product_template_action"
         parent="menu_tms_management"
-        sequence="105"
+        sequence="50"
         groups="sales_team.group_sale_salesman,sales_team.group_sale_salesman"
     />
 
@@ -62,7 +68,7 @@
         action="project.open_view_project_all"
         name="Projects"
         parent="menu_tms_project"
-        sequence="1"
+        sequence="10"
     />
 
     <!-- Project tasks from tms menu-->
@@ -70,7 +76,7 @@
         id="menu_action_view_task"
         action="tms.action_view_task"
         parent="menu_tms_project"
-        sequence="5"
+        sequence="20"
         groups="base.group_no_one,project.group_project_user"
     />
     <!-- Vehicles from tms menu-->
@@ -78,13 +84,32 @@
         id="fleet_vehicle_menu"
         action="fleet.fleet_vehicle_action"
         parent="menu_tms_fleet"
+        sequence="20"
         groups="fleet.fleet_group_user"
     />
+    <!-- Equipment from tms menu-->
     <menuitem
         id="tms_equipment_menu"
         action="tms.tms_equipment_action"
         parent="menu_tms_fleet"
+        sequence="20"
         groups="base.group_user"
     />
+    <!-- Goods and ADR menu -->
+    <menuitem
+        id="menu_tms_goods"
+        action="action_tms_goods"
+        parent="menu_tms_config"
+        sequence="50"
+        groups="sales_team.group_sale_manager"
+    />
+    <menuitem
+        id="menu_tms_goods_adr"
+        action="action_tms_goods_adr"
+        parent="menu_tms_config"
+        sequence="60"
+        groups="sales_team.group_sale_manager"
+    />
+
 
 </odoo>

@@ -93,12 +93,4 @@
         <field name="view_mode">tree,form</field>
     </record>
 
-    <menuitem
-        id="menu_tms_goods_adr"
-        action="action_tms_goods_adr"
-        parent="menu_tms_config"
-        sequence="55"
-        groups="sales_team.group_sale_manager"
-    />
-
 </odoo>

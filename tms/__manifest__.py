@@ -52,8 +52,8 @@
         "views/tms_equipment_view.xml",
         "views/tms_goods_views.xml",
         "views/tms_goods_adr_views.xml",
-        "views/tms_menu_view.xml",
         "views/tms_package.xml",
+        "views/tms_menu_view.xml",
     ],
     "assets": {
         "web.assets_backend": [
