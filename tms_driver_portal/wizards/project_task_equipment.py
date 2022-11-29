@@ -11,7 +11,7 @@ class ProjectTaskEquipmentWiz(models.TransientModel):
     task_id = fields.Many2one(comodel_name="project.task")
     equipment_id = fields.Many2one(comodel_name="tms.equipment")
     equipment_size_type_id = fields.Many2one(comodel_name="iso6346.size.type")
-    equipment = fields.Char()
+    equipment = fields.Char(string="Equipment code")
     seal = fields.Char(related="task_id.seal", readonly=False)
 
     @api.model

@@ -133,7 +133,6 @@ class ProjectTask(models.Model):
             "default_is_shipping_place": True,
             "partner_show_only_name": True,
         },
-        string="Port",
     )
     unload_service = fields.Boolean(string="Unload")
     distance_estimated = fields.Float(

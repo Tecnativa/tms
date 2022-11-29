@@ -14,7 +14,9 @@ class ResConfigSettings(models.TransientModel):
         # default=lambda x: x.env['base.geocoder']._get_provider()
     )
     georoute_provider_techname = fields.Char(
-        related="georoute_provider_id.tech_name", readonly=1
+        string="Georoute provider techname",
+        related="georoute_provider_id.tech_name",
+        readonly=1,
     )
     georoute_provider_openrouteservice_key = fields.Char(
         string="Open Route Service API Key",
