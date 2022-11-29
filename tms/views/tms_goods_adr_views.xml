@@ -17,14 +17,16 @@
         <field name="model">tms.goods.adr.class</field>
         <field name="arch" type="xml">
             <form>
-                <group>
+                <sheet>
                     <group>
-                        <field name="code" />
+                        <group>
+                            <field name="code" />
+                        </group>
+                        <group>
+                            <field name="name" />
+                        </group>
                     </group>
-                    <group>
-                        <field name="name" />
-                    </group>
-                </group>
+                </sheet>
             </form>
         </field>
     </record>
@@ -50,20 +52,22 @@
         <field name="model">tms.goods.adr</field>
         <field name="arch" type="xml">
             <form>
-                <group>
-                    <field name="name" />
-                </group>
-                <group>
+                <sheet>
                     <group>
-                        <field name="un_number" />
-                        <field name="adr_class" />
-                        <field name="classification_code" />
+                        <field name="name" />
                     </group>
                     <group>
-                        <field name="packing_group" />
-                        <field name="adr_tag" />
+                        <group>
+                            <field name="un_number" />
+                            <field name="adr_class" />
+                            <field name="classification_code" />
+                        </group>
+                        <group>
+                            <field name="packing_group" />
+                            <field name="adr_tag" />
+                        </group>
                     </group>
-                </group>
+                </sheet>
             </form>
         </field>
     </record>

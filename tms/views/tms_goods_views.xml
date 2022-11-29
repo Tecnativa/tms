@@ -17,10 +17,12 @@
         <field name="model">tms.goods</field>
         <field name="arch" type="xml">
             <form>
-                <group>
-                    <field name="name" />
-                    <field name="adr_id" />
-                </group>
+                <sheet>
+                    <group>
+                        <field name="name" />
+                        <field name="adr_id" />
+                    </group>
+                </sheet>
             </form>
         </field>
     </record>
