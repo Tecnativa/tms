@@ -26,6 +26,7 @@ class TestTMS(common.TransactionCase):
         cls.goods_adr = cls.env["tms.goods.adr"].create(
             {
                 "name": "Test ADR",
+                "un_number": "1234",
             }
         )
         cls.goods = cls.env["tms.goods"].create(
