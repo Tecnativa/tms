@@ -151,6 +151,7 @@
                     name="pickup_date"
                     filter_domain="[('pickup_date', '&lt;', self)]"
                 />
+            <field name="sale_type_id" />
             <separator />
             <filter string="Pickup date" name="filter_pickup_date" date="pickup_date" />
             <separator />

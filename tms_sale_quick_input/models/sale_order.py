@@ -125,6 +125,7 @@ class SaleOrderLine(models.Model):
     editable_package_rel = fields.Boolean(compute="_compute_editable_package_rel")
     sale_type_id = fields.Many2one(
         comodel_name="sale.order.type",
+        string="Sale Type",
         related="order_id.type_id",
         readonly=False,
     )

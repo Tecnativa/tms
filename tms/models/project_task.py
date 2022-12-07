@@ -22,6 +22,7 @@ class ProjectTask(models.Model):
     sale_line_id = fields.Many2one(index=True)
     sale_type_id = fields.Many2one(
         comodel_name="sale.order.type",
+        string="Sale Type",
         related="sale_line_id.order_id.type_id",
         store=True,
     )
