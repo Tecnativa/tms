@@ -10,11 +10,7 @@
         <field name="code">2</field>
         <field name="name">Gases</field>
     </record>
-    <record id="tms_goods_adr_class_2" model="tms.goods.adr.class">
-        <field name="code">2</field>
-        <field name="name">Gases</field>
-    </record>
-    <record id="tms_goods_adr_class_2_2" model="tms.goods.adr.class">
+    <record id="tms_goods_adr_class_2_1" model="tms.goods.adr.class">
         <field name="code">2.1</field>
         <field name="name">Flammable gases</field>
     </record>
