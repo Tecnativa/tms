@@ -19,7 +19,7 @@
                     context="{'res_partner_search_mode': 'supplier'}"
                 />
             <field
-                    name="vendor_price_unit"
+                    name="purchase_price"
                     attrs="{'readonly': [('state', '=', 'done')]}"
                     optional="show"
                 />

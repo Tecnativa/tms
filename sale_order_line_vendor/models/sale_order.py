@@ -17,10 +17,10 @@ class SaleOrderLine(models.Model):
             "default_customer_rank": 0,
         },
     )
-    vendor_price_unit = fields.Float(
+    purchase_price = fields.Float(
         string="Cost Price",
         digits="Product Price",
-        compute="_compute_vendor_price_unit",
+        compute="_compute_purchase_price",
         store=True,
         readonly=False,
     )
@@ -33,7 +33,7 @@ class SaleOrderLine(models.Model):
     # product_id.sale_line_cost_zero is not added to depends to avoid
     # recompute if this field change
     @api.depends("product_uom_qty", "product_uom", "vendor_id")
-    def _compute_vendor_price_unit(self):
+    def _compute_purchase_price(self):
         for line in self:
             if (
                 line.vendor_id
@@ -45,9 +45,9 @@ class SaleOrderLine(models.Model):
                     quantity=line.product_uom_qty,
                     uom_id=line.product_uom,
                 )
-                line.vendor_price_unit = suplierinfo.price
+                line.purchase_price = suplierinfo.price
             else:
-                line.vendor_price_unit = 0.0
+                line.purchase_price = 0.0
 
     def _purchase_service_create(self, quantity=False):
         unprocessed_lines = self.browse()
@@ -71,7 +71,7 @@ class SaleOrderLine(models.Model):
                 so_line.update(
                     {
                         "vendor_id": vendor.id,
-                        "vendor_price_unit": purchase_line.price_unit,
+                        "purchase_price": purchase_line.price_unit,
                     }
                 )
         sale_line_purchase_map.update(process_map)
@@ -80,10 +80,10 @@ class SaleOrderLine(models.Model):
     def _get_vendor_qty(self):
         return self.product_uom_qty
 
-    @api.depends("product_uom_qty", "vendor_id", "vendor_price_unit")
+    @api.depends("product_uom_qty", "vendor_id", "purchase_price")
     def _compute_amount_vendor(self):
         for line in self.filtered("vendor_id"):
-            line.vendor_price_subtotal = line._get_vendor_qty() * line.vendor_price_unit
+            line.vendor_price_subtotal = line._get_vendor_qty() * line.purchase_price
 
     def _purchase_decrease_ordered_qty(self, new_qty, origin_values):
         # Remove PO lines and PO in draft state when qty to buy is zero
@@ -117,13 +117,11 @@ class SaleOrderLine(models.Model):
 
     def write(self, vals):
         res = super().write(vals)
-        if "vendor_price_unit" in vals and not self.env.context.get(
-            "write_from_purchase"
-        ):
+        if "purchase_price" in vals and not self.env.context.get("write_from_purchase"):
             self.mapped("purchase_line_ids").filtered(
                 lambda pl: not pl.qty_invoiced
             ).with_context(write_from_sale=True).write(
-                {"price_unit": vals["vendor_price_unit"]}
+                {"price_unit": vals["purchase_price"]}
             )
         # Discard check state because related field compute don't come here
         if "vendor_id" in vals:

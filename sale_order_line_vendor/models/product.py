@@ -15,7 +15,7 @@ class ProductProduct(models.Model):
         return self.env["product.supplierinfo"].new(
             {
                 "name": so_line.vendor_id.id,
-                "price": so_line.vendor_price_unit,
+                "price": so_line.purchase_price,
                 "product_tmpl_id": so_line.product_id.product_tmpl_id.id,
                 "product_id": so_line.product_id.id,
                 "product_uom": so_line.product_uom.id,

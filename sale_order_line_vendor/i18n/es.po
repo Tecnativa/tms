@@ -15,7 +15,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_order_line_vendor
-#: model:ir.model.fields,field_description:sale_order_line_vendor.field_sale_order_line__vendor_price_unit
+#: model:ir.model.fields,field_description:sale_order_line_vendor.field_sale_order_line__purchase_price
 msgid "Cost Price"
 msgstr "Precio de coste"
 
