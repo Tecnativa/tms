@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+<!-- Page -->
+<template id="equipment_sheet" name="Equipment Sheet">
+    <t t-call="website.layout">
+        <div id="equipment_wrap">
+            <!--<meta http-equiv="refresh" content="5"/>-->
+            <div class="row mt8">
+                <div class="col-lg-12">
+                    <form
+                            id="equipments_sheet_request"
+                            action="/tms/equipments/sheet"
+                            method="post"
+                        >
+                        <input
+                                type="hidden"
+                                name="csrf_token"
+                                t-att-value="request.csrf_token()"
+                            />
+                        <div class="form-inline pull-left">
+                            <label class="" id="date_from">Date From</label>
+                            <input
+                                    type="date"
+                                    class="form-control"
+                                    placeholder="Date From..."
+                                    name="date_from"
+                                    t-att-value="date_from"
+                                />
+                        </div>
+                        <div class="form-inline pull-left">
+                            <label class="" id="date_to">Date To</label>
+                            <input
+                                    type="date"
+                                    class="form-control"
+                                    placeholder="Date To..."
+                                    name="date_to"
+                                    t-att-value="date_to"
+                                />
+                        </div>
+                        <div class="pull-left">
+                            <button
+                                    type="submit"
+                                    name="filter"
+                                    class="btn button-search"
+                                >
+                                <i class="fa fa-search" title="Search"> </i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row mt8">
+                <div class="col-lg-12">
+                    <table
+                            t-if="equipments_info"
+                            class="table table-sm o_main_table table-bordered"
+                        >
+                        <thead class="thead-inverse">
+                            <th>
+                                <span>Day</span>
+                            </th>
+                            <t t-foreach="equipments" t-as="equipment">
+                                <th>
+                                    <span t-field="equipment.name" />
+                                </th>
+                            </t>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="days" t-as="day">
+                                <tr t-att-class="'bg-warning' if day[1] &gt; 5 else ''">
+                                    <td>
+                                        <span t-esc="day[0]" />
+                                    </td>
+                                    <t t-foreach="equipments" t-as="equipment">
+                                        <td>
+                                            <span
+                                                    t-esc="equipments_info[equipment.id]['days_dict'][day[0]]"
+                                                />
+                                        </td>
+                                    </t>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </t>
+</template>
+
+</odoo>

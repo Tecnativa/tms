@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="action_open_tms_reporting_drivers_sheet" model="ir.actions.act_url">
+        <field name="name">Website Drivers Sheet</field>
+        <field name="target">new</field>
+        <field name="url">/tms/drivers/sheet</field>
+    </record>
+
+    <menuitem
+        id="menu_website_drivers_sheet"
+        name="Website Drivers Sheet"
+        action="action_open_tms_reporting_drivers_sheet"
+        parent="tms.menu_tms_report"
+        sequence="60"
+    />
+
+    <record id="action_open_tms_reporting_equipments_sheet" model="ir.actions.act_url">
+        <field name="name">Website Equipments Sheet</field>
+        <field name="target">new</field>
+        <field name="url">/tms/equipments/sheet</field>
+    </record>
+
+    <menuitem
+        id="menu_website_equipments_sheet"
+        name="Website Equipments Sheet"
+        action="action_open_tms_reporting_equipments_sheet"
+        parent="tms.menu_tms_report"
+        sequence="70"
+    />
+
+</odoo>
