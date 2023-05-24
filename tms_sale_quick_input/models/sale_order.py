@@ -69,6 +69,13 @@ class SaleOrderLine(models.Model):
         compute="_compute_shipping_volume",
         inverse="_inverse_shipping_volume",
     )
+    shipping_lineal_length = fields.Float(
+        digits="TMS Lineal Length",
+        string="Lineal Length for Shipping",
+        compute="_compute_shipping_lineal_length",
+        inverse="_inverse_shipping_lineal_length",
+        groups="tms.group_tms_lineal_length",
+    )
     shipping_weight = fields.Float(
         digits="TMS Weight",
         string="Weight for Shipping",
@@ -157,6 +164,13 @@ class SaleOrderLine(models.Model):
 
     def _inverse_shipping_volume(self):
         self.set_field_to_packages("shipping_volume")
+
+    @api.depends("tms_package_ids.shipping_lineal_length")
+    def _compute_shipping_lineal_length(self):
+        self.get_field_from_packages_numeric("shipping_lineal_length")
+
+    def _inverse_shipping_lineal_length(self):
+        self.set_field_to_packages("shipping_lineal_length")
 
     @api.depends("tms_package_ids.shipping_weight")
     def _compute_shipping_weight(self):
@@ -255,6 +269,7 @@ class SaleOrderLine(models.Model):
                     "name": "/",
                     "partner_id": self.order_partner_id.id,
                     "pickup_date": self.pickup_date,
+                    "forecast_unload_date": self.forecast_unload_date,
                 }
             )
             packages = packages.create(vals)
