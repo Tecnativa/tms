@@ -178,6 +178,11 @@ class ProjectTask(models.Model):
         compute="_compute_package_totals",
         digits="TMS Volume",
     )
+    lineal_length = fields.Float(
+        compute="_compute_package_totals",
+        digits="TMS Lineal Lenght",
+        string="Lineal Lenght",
+    )
     weight = fields.Float(
         compute="_compute_package_totals",
         digits="TMS Weight",
@@ -222,17 +227,19 @@ class ProjectTask(models.Model):
     @api.depends(
         "tms_package_ids.shipping_weight",
         "tms_package_ids.shipping_volume",
+        "tms_package_ids.shipping_lineal_length",
         "tms_package_ids.number_of_packages",
         "tms_package_ids.pallet_qty",
         "tms_package_ids.euro_pallet_qty",
     )
     def _compute_package_totals(self):
         for task in self:
-            weight = volume = number_of_packages = 0.0
+            weight = volume = lineal_length = number_of_packages = 0.0
             pallet_qty = euro_pallet_qty = 0.0
             for package in task.tms_package_all_ids:
                 weight += package.shipping_weight
                 volume += package.shipping_volume
+                lineal_length += package.shipping_lineal_length
                 number_of_packages += package.number_of_packages
                 pallet_qty += package.pallet_qty
                 euro_pallet_qty += package.euro_pallet_qty
@@ -240,6 +247,7 @@ class ProjectTask(models.Model):
                 {
                     "weight": weight,
                     "volume": volume,
+                    "lineal_length": lineal_length,
                     "number_of_packages": number_of_packages,
                     "pallet_qty": pallet_qty,
                     "euro_pallet_qty": euro_pallet_qty,

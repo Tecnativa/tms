@@ -34,6 +34,7 @@ class SaleOrderLine(models.Model):
     pickup_date = fields.Datetime(
         string="Pick Up Date",
     )
+    forecast_unload_date = fields.Datetime()
     shipping_origin_id = fields.Many2one(
         comodel_name="res.partner",
         domain=[("is_shipping_place", "=", True)],
@@ -51,6 +52,12 @@ class SaleOrderLine(models.Model):
             "default_is_shipping_place": True,
             "partner_show_only_name": True,
         },
+    )
+    shipping_origin_zip = fields.Char(
+        string="OZIP", store=True, related="shipping_origin_id.zip"
+    )
+    shipping_destination_zip = fields.Char(
+        string="DZIP", store=True, related="shipping_destination_id.zip"
     )
 
     @api.depends("order_id.order_line.sequence", "order_id.order_line.level")

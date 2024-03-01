@@ -110,6 +110,11 @@
                                     optional="show"
                                 />
                                 <field
+                                    name="shipping_lineal_length"
+                                    sum="Total Lineal Length"
+                                    optional="show"
+                                />
+                                <field
                                     name="shipping_weight"
                                     sum="Total Weight"
                                     optional="show"
@@ -145,6 +150,11 @@
                                 <field
                                     name="shipping_volume"
                                     sum="Total Volume"
+                                    optional="show"
+                                />
+                                <field
+                                    name="shipping_lineal_length"
+                                    sum="Total Lineal Length"
                                     optional="show"
                                 />
                                 <field
@@ -344,6 +354,7 @@
                 <field name="shipping_destination_id" optional="show" />
                 <field name="weight" sum="Weight" optional="show" />
                 <field name="volume" sum="Volume" optional="show" />
+                <field name="lineal_length" sum="Lineal Length" optional="show" />
                 <field name="number_of_packages" sum="Packages" optional="show" />
             </field>
         </field>

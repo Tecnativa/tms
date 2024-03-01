@@ -20,6 +20,11 @@
                 <field name="shipping_destination_id" optional="show" />
                 <field name="forecast_unload_date" optional="show" />
                 <field name="shipping_volume" sum="Volume" optional="show" />
+                <field
+                    name="shipping_lineal_length"
+                    sum="Lineal Length"
+                    optional="show"
+                />
                 <field name="shipping_weight" sum="Weight" optional="show" />
                 <field name="number_of_packages" sum="Packages" optional="show" />
                 <field name="euro_pallet_qty" optional="show" />
@@ -69,6 +74,9 @@
                                             <strong>Volume:</strong> <field
                                                 name="shipping_volume"
                                             /><br />
+                                            <strong>Volume:</strong> <field
+                                                name="shipping_lineal_length"
+                                            /><br />
                                             <strong>Weight:</strong> <field
                                                 name="shipping_weight"
                                             /><br />
@@ -106,6 +114,7 @@
                 <group col="4">
                     <field name="shipping_weight" />
                     <field name="shipping_volume" />
+                    <field name="shipping_lineal_length" />
                 </group>
                 <group col="4">
                     <field name="number_of_packages" />
@@ -158,6 +167,7 @@
                 <field name="shipping_origin_id" />
                 <field name="shipping_destination_id" />
                 <field name="shipping_volume" />
+                <field name="shipping_lineal_length" />
                 <field name="shipping_weight" />
                 <field name="number_of_packages" />
                 <field name="euro_pallet_qty" />

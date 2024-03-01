@@ -66,6 +66,10 @@ class TmsPackage(models.Model):
         digits="TMS Volume",
         string="Volume",
     )
+    shipping_lineal_length = fields.Float(
+        digits="TMS Lineal Length",
+        string="Lineal Length",
+    )
     shipping_weight = fields.Float(
         digits="TMS Weight",
         string="Weight",
@@ -183,5 +187,15 @@ class TmsPackage(models.Model):
             for so_line in so_lines:
                 so_line.qty_delivered = sum(
                     so_line.tms_package_ids.mapped("shipping_volume")
+                )
+        if "shipping_lineal_length" in vals:
+            lineal_length_uom_category = self.env.ref("uom.uom_categ_length")
+            so_lines = self.sudo().sale_line_ids.filtered(
+                lambda sol: sol.product_id.invoice_policy == "delivery"
+                and sol.product_uom_category_id == lineal_length_uom_category
+            )
+            for so_line in so_lines:
+                so_line.qty_delivered = sum(
+                    so_line.tms_package_ids.mapped("shipping_lineal_length")
                 )
         return res

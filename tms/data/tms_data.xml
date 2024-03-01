@@ -27,4 +27,9 @@
         <field name="digits">2</field>
     </record>
 
+    <record forcecreate="True" id="decimal_tms_lineal_length" model="decimal.precision">
+        <field name="name">TMS Lineal Length</field>
+        <field name="digits">2</field>
+    </record>
+
 </odoo>
