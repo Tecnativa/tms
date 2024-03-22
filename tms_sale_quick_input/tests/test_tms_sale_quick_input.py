@@ -24,6 +24,7 @@ class TestTmsSaleQuickInput(common.TransactionCase):
                 "shipping_origin_id": cls.shipping_origin.id,
                 "shipping_destination_id": cls.shipping_destination.id,
                 "shipping_volume": 10,
+                "shipping_lineal_length": 30,
                 "shipping_weight": 20,
                 "number_of_packages": 2,
                 "pallet_qty": 1,
@@ -44,6 +45,7 @@ class TestTmsSaleQuickInput(common.TransactionCase):
         sale_order_line = sale_order_line_form.save()
         self.assertEqual(sale_order_line.shipping_place_id, self.shipping_origin)
         self.assertEqual(sale_order_line.shipping_volume, 10)
+        self.assertEqual(sale_order_line.shipping_lineal_length, 30)
         self.assertEqual(sale_order_line.shipping_weight, 20)
         self.assertEqual(sale_order_line.number_of_packages, 2)
         self.assertEqual(sale_order_line.pallet_qty, 1)
@@ -61,6 +63,7 @@ class TestTmsSaleQuickInput(common.TransactionCase):
         sale_order_line_form.tms_package_ids.add(package_2)
         sale_order_line_form.shipping_place_id = self.shipping_origin
         sale_order_line_form.shipping_volume = 90
+        sale_order_line_form.shipping_lineal_length = 100
         sale_order_line_form.shipping_weight = 150
         sale_order_line_form.number_of_packages = 30
         sale_order_line_form.pallet_qty = 2
@@ -73,6 +76,7 @@ class TestTmsSaleQuickInput(common.TransactionCase):
             sale_order_line.shipping_destination_id, self.shipping_destination
         )
         self.assertEqual(package_2.shipping_volume, 90)
+        self.assertEqual(package_2.shipping_lineal_length, 100)
         self.assertEqual(package_2.shipping_weight, 150)
         self.assertEqual(package_2.number_of_packages, 30)
         self.assertEqual(package_2.pallet_qty, 2)

@@ -30,6 +30,11 @@
                     attrs="{'readonly': [('editable_package_rel', '=', False)]}"
                 />
             <field
+                    name="shipping_lineal_length"
+                    optional="hide"
+                    attrs="{'readonly': [('editable_package_rel', '=', False)]}"
+                />
+            <field
                     name="number_of_packages"
                     optional="hide"
                     sum="Total Packages"
@@ -67,6 +72,7 @@
         <field name="price_total" position="after">
             <field name="editable_package_rel" invisible="1" />
             <field name="pickup_date" optional="show" />
+            <field name="forecast_unload_date" optional="show" />
             <field name="release_id" optional="show" />
             <field name="acceptance_id" optional="show" />
             <field name="unload_service" optional="show" />
@@ -86,7 +92,8 @@
                     context="{'default_partner_id': order_partner_id,
                              'default_shipping_origin_id': shipping_origin_id,
                              'default_shipping_destination_id': shipping_destination_id,
-                             'default_pickup_date': pickup_date}"
+                             'default_pickup_date': pickup_date,
+                             'default_forecast_unload_date': forecast_unload_date}"
                     optional="show"
                 />
             <button name="action_tms_package_form" type="object" icon="fa-dropbox" />
@@ -97,6 +104,11 @@
                 />
             <field
                     name="shipping_volume"
+                    optional="hide"
+                    attrs="{'readonly': [('editable_package_rel', '=', False)]}"
+                />
+            <field
+                    name="shipping_lineal_length"
                     optional="hide"
                     attrs="{'readonly': [('editable_package_rel', '=', False)]}"
                 />
@@ -154,6 +166,11 @@
             <field name="sale_type_id" />
             <separator />
             <filter string="Pickup date" name="filter_pickup_date" date="pickup_date" />
+            <filter
+                    name="from_today"
+                    string="From today"
+                    domain="[('pickup_date', '>=', (datetime.datetime.combine(context_today(), datetime.time(0,0,0)).to_utc()).strftime('%Y-%m-%d %H:%M:%S'))]"
+                />
             <separator />
             <filter
                     name="not_invoiced"
