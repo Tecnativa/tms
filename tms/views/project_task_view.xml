@@ -26,7 +26,7 @@
             <page name="description_page" position="before">
                 <page name="tms_info" string="Transport Info">
                     <group>
-                        <group col="4">
+                        <group>
                             <field name="release_id" />
                             <field name="acceptance_id" />
                             <field name="shipping_origin_id" />
@@ -34,7 +34,7 @@
                             <field name="force_origin" />
                             <field name="force_destination" />
                         </group>
-                        <group col="4">
+                        <group>
                             <field
                                 name="tractor_id"
                                 context="{'default_vehicle_type': 'tractor'}"
@@ -45,16 +45,14 @@
                             />
                             <field name="driver_id" />
                         </group>
+                    </group>
+                    <group>
                         <group>
-                            <group>
-                                <field name="wagon" />
-                            </group>
-                            <group>
-                                <field name="vessel" />
-                                <field name="voyage_number" />
-                            </group>
+                            <field name="wagon" />
+                            <field name="vessel" />
+                            <field name="voyage_number" />
                         </group>
-                        <group col="4">
+                        <group>
                             <field name="equipment_size_type_id" />
                             <field
                                 name="trailer_requirement_ids"
@@ -68,15 +66,15 @@
                             <field name="shipping_company_id" />
                             <field name="final_destination_id" />
                         </group>
+                    </group>
+                    <group>
                         <group>
-                            <group>
-                                <field name="port_id" />
-                                <field name="shipment_port_id" />
-                            </group>
-                            <group>
-                                <field name="loading_port_id" />
-                                <field name="unloading_port_id" />
-                            </group>
+                            <field name="port_id" />
+                            <field name="shipment_port_id" />
+                        </group>
+                        <group>
+                            <field name="loading_port_id" />
+                            <field name="unloading_port_id" />
                         </group>
                     </group>
                     <group string="Packages">
