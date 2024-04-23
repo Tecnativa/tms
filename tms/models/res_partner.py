@@ -26,7 +26,7 @@ class ResPartner(models.Model):
     def _get_name(self):
         """Extend to allow use partner_show_only_name context"""
         if self.env.context.get("partner_show_only_name"):
-            return self.name or self.commercial_company_name
+            return self.name or self.commercial_company_name or ""
         return super()._get_name()
 
 
