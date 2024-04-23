@@ -35,4 +35,5 @@
         "views/tms_print_template.xml",
         "data/tms_mail_template_data.xml",
     ],
+    "maintainers": ["sergio-teruel", "carlosdauden"],
 }

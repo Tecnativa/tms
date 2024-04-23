@@ -19,4 +19,5 @@
         "views/report_leave_letter.xml",
         "reports/tms_hr_leave_letter_report.xml",
     ],
+    "maintainers": ["sergio-teruel", "carlosdauden"],
 }

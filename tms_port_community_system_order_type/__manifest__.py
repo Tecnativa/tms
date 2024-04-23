@@ -19,4 +19,5 @@
     "data": [
         "views/tms_pcs_view.xml",
     ],
+    "maintainers": ["sergio-teruel", "carlosdauden"],
 }

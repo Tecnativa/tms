@@ -23,4 +23,5 @@
         "views/tms_pcs_view.xml",
         "views/sale_order_view.xml",
     ],
+    "maintainers": ["sergio-teruel", "carlosdauden"],
 }

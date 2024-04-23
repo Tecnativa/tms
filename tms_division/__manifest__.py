@@ -21,4 +21,5 @@
         "views/sale_view.xml",
         "views/tms_division.xml",
     ],
+    "maintainers": ["sergio-teruel", "carlosdauden"],
 }

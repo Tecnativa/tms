@@ -13,4 +13,5 @@
     "data": [
         "views/product_view.xml",
     ],
+    "maintainers": ["sergio-teruel", "carlosdauden"],
 }

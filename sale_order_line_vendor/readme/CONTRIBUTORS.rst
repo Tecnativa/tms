@@ -2,5 +2,3 @@
 
   * Sergio Teruel
   * Carlos Dauden
-  * Alexandre Díaz
-  * César A. Sánchez

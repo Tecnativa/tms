@@ -25,4 +25,5 @@
         "wizards/project_task_equipment_views.xml",
         "wizards/project_task_package_info_views.xml",
     ],
+    "maintainers": ["sergio-teruel", "carlosdauden"],
 }

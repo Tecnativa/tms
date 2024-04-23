@@ -17,4 +17,5 @@
         "security/ir.model.access.csv",
         "wizards/sale_line_reassign_view.xml",
     ],
+    "maintainers": ["sergio-teruel", "carlosdauden"],
 }

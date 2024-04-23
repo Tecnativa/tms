@@ -18,4 +18,5 @@
         "views/account_analytic_distribution_view.xml",
     ],
     "installable": True,
+    "maintainers": ["sergio-teruel", "carlosdauden"],
 }

@@ -1,6 +1,4 @@
-* Tecnativa <https://www.tecnativa.com>
+* `Tecnativa <https://www.tecnativa.com>`_:
 
-  * Sergio Teruel
   * Carlos Dauden
-  * Alexandre Díaz
-  * César A. Sánchez
+  * Sergio Teruel

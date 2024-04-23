@@ -20,4 +20,5 @@
         "wizards/wizard_price_history_view.xml",
     ],
     "auto_install": True,
+    "maintainers": ["sergio-teruel", "carlosdauden"],
 }

@@ -61,4 +61,5 @@
             "tms/static/src/js/kanban_view.js",
         ],
     },
+    "maintainers": ["sergio-teruel", "carlosdauden"],
 }

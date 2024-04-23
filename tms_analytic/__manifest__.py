@@ -20,4 +20,5 @@
         "views/project_task_view.xml",
         "views/fleet_view.xml",
     ],
+    "maintainers": ["sergio-teruel", "carlosdauden"],
 }

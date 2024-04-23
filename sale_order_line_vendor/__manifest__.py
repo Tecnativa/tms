@@ -20,4 +20,5 @@
         "views/purchase_view.xml",
         "views/sale_view.xml",
     ],
+    "maintainers": ["sergio-teruel", "carlosdauden"],
 }
