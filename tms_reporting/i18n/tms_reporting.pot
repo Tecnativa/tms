@@ -4,8 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 13.0\n"
+"Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-05-16 08:55+0000\n"
+"PO-Revision-Date: 2024-05-16 08:55+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -26,6 +28,11 @@ msgstr ""
 #. module: tms_reporting
 #: model:ir.model.fields,field_description:tms_reporting.field_tms_driver_report__nbr_partner_12
 msgid "# of Partner 12"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.actions.report,print_report_name:tms_reporting.report_tms_transportation_order
+msgid "'Transport order %s' % (object.sale_line_id.order_id.name or '')"
 msgstr ""
 
 #. module: tms_reporting
@@ -50,20 +57,20 @@ msgid ""
 "    <table cellspacing=\"0\" cellpadding=\"0\" style=\"width:600px;border-collapse:collapse;background:inherit;color:inherit\">\n"
 "        <tbody><tr>\n"
 "            <td valign=\"center\" width=\"200\" style=\"padding:10px 10px 10px 5px;font-size: 12px\">\n"
-"                <img src=\"/logo.png\" style=\"padding: 0px; margin: 0px; height: auto; width: 80px;\" alt=\"${user.company_id.name}\"/>\n"
+"                <img src=\"/logo.png\" style=\"padding: 0px; margin: 0px; height: auto; width: 80px;\" alt=\"{{ user.company_id.name }}\"/>\n"
 "            </td>\n"
 "        </tr></tbody>\n"
 "    </table>\n"
 "</div>\n"
 "<div style=\"padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777\">\n"
-"<p>Dear ${object.driver_id.name},</p>\n"
+"<p>Dear <t t-out=\"object.driver_id.name or ''\">Brandon Freeman</t>,</p>\n"
 "    <p>\n"
-"        Attach transport order from \"${object.company_id.name}\".\n"
+"        Attach transport order from <t t-out=\"object.company_id.name\">Principal Company</t>.\n"
 "    </p>\n"
 "    <p>Best regards,</p>\n"
 "</div>\n"
 "<div style=\"padding:0px;width:600px;margin:auto; margin-top: 10px; background: #fff repeat top /100%;color:#777777\">\n"
-"    ${user.signature | safe}\n"
+"    <t t-out=\"user.signature or ''\">Michael Admin</t>\n"
 "</div>\n"
 "    "
 msgstr ""
@@ -330,7 +337,6 @@ msgid "Display Loading Port"
 msgstr ""
 
 #. module: tms_reporting
-#: model:ir.model.fields,field_description:tms_reporting.field_report_tms_reporting_tms_driver_report_xlsx__display_name
 #: model:ir.model.fields,field_description:tms_reporting.field_tms_driver_report__display_name
 #: model:ir.model.fields,field_description:tms_reporting.field_tms_print_template__display_name
 msgid "Display Name"
@@ -510,7 +516,6 @@ msgid "Hours:"
 msgstr ""
 
 #. module: tms_reporting
-#: model:ir.model.fields,field_description:tms_reporting.field_report_tms_reporting_tms_driver_report_xlsx__id
 #: model:ir.model.fields,field_description:tms_reporting.field_tms_driver_report__id
 #: model:ir.model.fields,field_description:tms_reporting.field_tms_print_template__id
 msgid "ID"
@@ -528,11 +533,10 @@ msgstr ""
 
 #. module: tms_reporting
 #: model:ir.model,name:tms_reporting.model_account_move
-msgid "Journal Entries"
+msgid "Journal Entry"
 msgstr ""
 
 #. module: tms_reporting
-#: model:ir.model.fields,field_description:tms_reporting.field_report_tms_reporting_tms_driver_report_xlsx____last_update
 #: model:ir.model.fields,field_description:tms_reporting.field_tms_driver_report____last_update
 #: model:ir.model.fields,field_description:tms_reporting.field_tms_print_template____last_update
 msgid "Last Modified on"
@@ -571,11 +575,6 @@ msgstr ""
 #. module: tms_reporting
 #: model_terms:ir.ui.view,arch_db:tms_reporting.tms_base_invoice_document
 msgid "Order"
-msgstr ""
-
-#. module: tms_reporting
-#: model_terms:ir.ui.view,arch_db:tms_reporting.view_order_driver_tree
-msgid "Order Driver"
 msgstr ""
 
 #. module: tms_reporting
@@ -631,7 +630,9 @@ msgid "Port"
 msgstr ""
 
 #. module: tms_reporting
+#: model:ir.model.fields,field_description:tms_reporting.field_account_bank_statement_line__tms_print_template_id
 #: model:ir.model.fields,field_description:tms_reporting.field_account_move__tms_print_template_id
+#: model:ir.model.fields,field_description:tms_reporting.field_account_payment__tms_print_template_id
 #: model:ir.model.fields,field_description:tms_reporting.field_product_product__tms_print_template_id
 #: model:ir.model.fields,field_description:tms_reporting.field_product_template__tms_print_template_id
 #: model:ir.model.fields,field_description:tms_reporting.field_res_partner__tms_print_template_id
@@ -701,6 +702,7 @@ msgstr ""
 
 #. module: tms_reporting
 #: model:ir.actions.act_window,name:tms_reporting.action_transport_order_email
+#: model:mail.template,name:tms_reporting.transport_order_email
 msgid "Send Transport Order"
 msgstr ""
 
@@ -722,6 +724,11 @@ msgstr ""
 #. module: tms_reporting
 #: model_terms:ir.ui.view,arch_db:tms_reporting.tms_package_detail_document
 msgid "TIN:"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.model,name:tms_reporting.model_report_tms_reporting_tms_driver_report_xlsx
+msgid "TMS Driver Report XLSX"
 msgstr ""
 
 #. module: tms_reporting
@@ -771,7 +778,12 @@ msgstr ""
 
 #. module: tms_reporting
 #: model:mail.template,subject:tms_reporting.transport_order_email
-msgid "Transport Order ${object.name}>"
+msgid "Transport Order {{ object.name }}>"
+msgstr ""
+
+#. module: tms_reporting
+#: model:mail.template,report_name:tms_reporting.transport_order_email
+msgid "Transport_Order_{{(object.name or '').replace('/','_')}}"
 msgstr ""
 
 #. module: tms_reporting
@@ -826,9 +838,4 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:tms_reporting.tms_base_invoice_document
 #: model_terms:ir.ui.view,arch_db:tms_reporting.tms_package_detail_document
 msgid "Weight"
-msgstr ""
-
-#. module: tms_reporting
-#: model:ir.model,name:tms_reporting.model_report_tms_reporting_tms_driver_report_xlsx
-msgid "report.tms_reporting.tms_driver_report_xlsx"
 msgstr ""

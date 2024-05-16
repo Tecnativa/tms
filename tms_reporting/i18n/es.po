@@ -6,16 +6,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-13 18:40+0000\n"
-"PO-Revision-Date: 2020-07-13 20:44+0200\n"
-"Last-Translator: Carlos Dauden <carlos.dauden@tecnativa.com>\n"
+"POT-Creation-Date: 2024-05-16 08:55+0000\n"
+"PO-Revision-Date: 2024-05-16 10:59+0200\n"
+"Last-Translator: Sergio Teruel <sergio.teruel@tecnativa.com>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: tms_reporting
 #: model:ir.model.fields,field_description:tms_reporting.field_tms_driver_report__nbr_order_line
@@ -31,6 +31,11 @@ msgstr "# de pedidos"
 #: model:ir.model.fields,field_description:tms_reporting.field_tms_driver_report__nbr_partner_12
 msgid "# of Partner 12"
 msgstr "# de contacto 12"
+
+#. module: tms_reporting
+#: model:ir.actions.report,print_report_name:tms_reporting.report_tms_transportation_order
+msgid "'Transport order %s' % (object.sale_line_id.order_id.name or '')"
+msgstr "'Orden de transporte %s' % (object.sale_line_id.order_id.name or '')"
 
 #. module: tms_reporting
 #: model_terms:ir.ui.view,arch_db:tms_reporting.tms_transportation_order_document
@@ -58,22 +63,23 @@ msgid ""
 "            <td valign=\"center\" width=\"200\" style=\"padding:10px 10px "
 "10px 5px;font-size: 12px\">\n"
 "                <img src=\"/logo.png\" style=\"padding: 0px; margin: 0px; "
-"height: auto; width: 80px;\" alt=\"${user.company_id.name}\"/>\n"
+"height: auto; width: 80px;\" alt=\"{{ user.company_id.name }}\"/>\n"
 "            </td>\n"
 "        </tr></tbody>\n"
 "    </table>\n"
 "</div>\n"
 "<div style=\"padding:0px;width:600px;margin:auto;background: #FFFFFF repeat "
 "top /100%;color:#777777\">\n"
-"<p>Dear ${object.driver_id.name},</p>\n"
+"<p>Dear <t t-out=\"object.driver_id.name or ''\">Brandon Freeman</t>,</p>\n"
 "    <p>\n"
-"        Attach transport order from \"${object.company_id.name}\".\n"
+"        Attach transport order from <t t-out=\"object.company_id."
+"name\">Principal Company</t>.\n"
 "    </p>\n"
 "    <p>Best regards,</p>\n"
 "</div>\n"
 "<div style=\"padding:0px;width:600px;margin:auto; margin-top: 10px; "
 "background: #fff repeat top /100%;color:#777777\">\n"
-"    ${user.signature | safe}\n"
+"    <t t-out=\"user.signature or ''\">Michael Admin</t>\n"
 "</div>\n"
 "    "
 msgstr ""
@@ -342,7 +348,6 @@ msgid "Display Loading Port"
 msgstr "Mostrar puerto de carga"
 
 #. module: tms_reporting
-#: model:ir.model.fields,field_description:tms_reporting.field_report_tms_reporting_tms_driver_report_xlsx__display_name
 #: model:ir.model.fields,field_description:tms_reporting.field_tms_driver_report__display_name
 #: model:ir.model.fields,field_description:tms_reporting.field_tms_print_template__display_name
 msgid "Display Name"
@@ -522,7 +527,6 @@ msgid "Hours:"
 msgstr "Horario"
 
 #. module: tms_reporting
-#: model:ir.model.fields,field_description:tms_reporting.field_report_tms_reporting_tms_driver_report_xlsx__id
 #: model:ir.model.fields,field_description:tms_reporting.field_tms_driver_report__id
 #: model:ir.model.fields,field_description:tms_reporting.field_tms_print_template__id
 msgid "ID"
@@ -540,11 +544,10 @@ msgstr "Elementos"
 
 #. module: tms_reporting
 #: model:ir.model,name:tms_reporting.model_account_move
-msgid "Journal Entries"
+msgid "Journal Entry"
 msgstr ""
 
 #. module: tms_reporting
-#: model:ir.model.fields,field_description:tms_reporting.field_report_tms_reporting_tms_driver_report_xlsx____last_update
 #: model:ir.model.fields,field_description:tms_reporting.field_tms_driver_report____last_update
 #: model:ir.model.fields,field_description:tms_reporting.field_tms_print_template____last_update
 msgid "Last Modified on"
@@ -584,11 +587,6 @@ msgstr "Nombre"
 #: model_terms:ir.ui.view,arch_db:tms_reporting.tms_base_invoice_document
 msgid "Order"
 msgstr "Nº pedido"
-
-#. module: tms_reporting
-#: model_terms:ir.ui.view,arch_db:tms_reporting.view_order_driver_tree
-msgid "Order Driver"
-msgstr "Conductor"
 
 #. module: tms_reporting
 #: model_terms:ir.ui.view,arch_db:tms_reporting.view_order_driver_search
@@ -643,7 +641,9 @@ msgid "Port"
 msgstr "Puerto"
 
 #. module: tms_reporting
+#: model:ir.model.fields,field_description:tms_reporting.field_account_bank_statement_line__tms_print_template_id
 #: model:ir.model.fields,field_description:tms_reporting.field_account_move__tms_print_template_id
+#: model:ir.model.fields,field_description:tms_reporting.field_account_payment__tms_print_template_id
 #: model:ir.model.fields,field_description:tms_reporting.field_product_product__tms_print_template_id
 #: model:ir.model.fields,field_description:tms_reporting.field_product_template__tms_print_template_id
 #: model:ir.model.fields,field_description:tms_reporting.field_res_partner__tms_print_template_id
@@ -713,6 +713,7 @@ msgstr "Precinto"
 
 #. module: tms_reporting
 #: model:ir.actions.act_window,name:tms_reporting.action_transport_order_email
+#: model:mail.template,name:tms_reporting.transport_order_email
 msgid "Send Transport Order"
 msgstr "Enviar orden de transporte"
 
@@ -735,6 +736,11 @@ msgstr "Subtotal"
 #: model_terms:ir.ui.view,arch_db:tms_reporting.tms_package_detail_document
 msgid "TIN:"
 msgstr "NIF:"
+
+#. module: tms_reporting
+#: model:ir.model,name:tms_reporting.model_report_tms_reporting_tms_driver_report_xlsx
+msgid "TMS Driver Report XLSX"
+msgstr ""
 
 #. module: tms_reporting
 #: model_terms:ir.ui.view,arch_db:tms_reporting.tms_transport_header_title
@@ -783,7 +789,14 @@ msgstr "Orden de transporte"
 
 #. module: tms_reporting
 #: model:mail.template,subject:tms_reporting.transport_order_email
-msgid "Transport Order ${object.name}>"
+#, fuzzy
+#| msgid "Transport Order"
+msgid "Transport Order {{ object.name }}>"
+msgstr "Orden de transporte"
+
+#. module: tms_reporting
+#: model:mail.template,report_name:tms_reporting.transport_order_email
+msgid "Transport_Order_{{(object.name or '').replace('/','_')}}"
 msgstr ""
 
 #. module: tms_reporting
@@ -839,8 +852,3 @@ msgstr "Vagón:"
 #: model_terms:ir.ui.view,arch_db:tms_reporting.tms_package_detail_document
 msgid "Weight"
 msgstr "Peso"
-
-#. module: tms_reporting
-#: model:ir.model,name:tms_reporting.model_report_tms_reporting_tms_driver_report_xlsx
-msgid "report.tms_reporting.tms_driver_report_xlsx"
-msgstr ""

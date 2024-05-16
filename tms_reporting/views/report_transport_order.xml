@@ -905,6 +905,7 @@
         <field name="report_type">qweb-pdf</field>
         <field name="report_name">tms_reporting.tms_transportation_order</field>
         <field name="report_file">tms_reporting.tms_transportation_order</field>
+        <field name="print_report_name">'Transport order %s' % (object.sale_line_id.order_id.name or '')</field>
         <field name="paperformat_id" ref="tms_reporting.paperformat_euro_lowmargin" />
     </record>
 
