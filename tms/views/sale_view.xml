@@ -50,7 +50,10 @@
             >
             <field name="qty_to_invoice" />
             <field name="pickup_date" optional="show" />
+            <field name="forecast_unload_date" optional="show" />
+            <field name="shipping_origin_zip" optional="show" />
             <field name="shipping_origin_id" optional="show" />
+            <field name="shipping_destination_zip" optional="show" />
             <field name="shipping_destination_id" optional="show" />
         </xpath>
         <xpath
@@ -65,7 +68,8 @@
                     context="{'default_partner_id': parent.partner_id,
                              'default_shipping_origin_id': shipping_origin_id,
                              'default_shipping_destination_id': shipping_destination_id,
-                             'default_pickup_date': pickup_date}"
+                             'default_pickup_date': pickup_date,
+                             'default_forecast_unload_date': forecast_unload_date}"
                 />
             <button
                     name="action_tms_package_form"
