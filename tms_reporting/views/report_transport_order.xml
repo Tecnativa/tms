@@ -268,17 +268,19 @@
                     </tbody>
                 </table>
                 <!-- Remarks -->
-                <div id="remark" class="row">
+                <div
+                    id="remark"
+                    class="row"
+                    t-if="not is_html_empty(o.sale_line_id.order_id.note)"
+                >
                     <div>
-                        <t t-if="o.sale_line_id.order_id.note">
-                            <div>Remarks:</div>
-                            <div class="schedule">
-                                <div><span
-                                        class="highlight-text"
-                                        t-field="o.sale_line_id.order_id.note"
-                                    /></div>
-                            </div>
-                        </t>
+                        <div>Remarks:</div>
+                        <div class="schedule">
+                            <div><span
+                                    class="highlight-text"
+                                    t-field="o.sale_line_id.order_id.note"
+                                /></div>
+                        </div>
                     </div>
                 </div>
             </div>
