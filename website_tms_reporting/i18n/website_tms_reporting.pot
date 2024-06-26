@@ -1,0 +1,232 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* website_tms_reporting
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: website_tms_reporting
+#: model_terms:ir.ui.view,arch_db:website_tms_reporting.drivers_sheet
+msgid "<i class=\"fa fa-eur\" title=\"Amount\"/>"
+msgstr ""
+
+#. module: website_tms_reporting
+#: model_terms:ir.ui.view,arch_db:website_tms_reporting.drivers_sheet
+msgid "<i class=\"fa fa-money\" title=\"Virtual\"/>"
+msgstr ""
+
+#. module: website_tms_reporting
+#: model_terms:ir.ui.view,arch_db:website_tms_reporting.drivers_sheet
+msgid "<i class=\"fa fa-percent\" title=\"Percent\"/>"
+msgstr ""
+
+#. module: website_tms_reporting
+#: model_terms:ir.ui.view,arch_db:website_tms_reporting.drivers_sheet
+msgid "<i class=\"fa fa-recycle\" title=\"Equipment Reuses\"/>"
+msgstr ""
+
+#. module: website_tms_reporting
+#: model_terms:ir.ui.view,arch_db:website_tms_reporting.drivers_sheet
+#: model_terms:ir.ui.view,arch_db:website_tms_reporting.equipment_sheet
+msgid "<i class=\"fa fa-search\" title=\"Search\"> </i>"
+msgstr ""
+
+#. module: website_tms_reporting
+#: model_terms:ir.ui.view,arch_db:website_tms_reporting.drivers_sheet
+msgid "<i class=\"fa fa-square\" title=\"Groupages\"/>"
+msgstr ""
+
+#. module: website_tms_reporting
+#: model_terms:ir.ui.view,arch_db:website_tms_reporting.drivers_sheet
+msgid "<i class=\"fa fa-tachometer\" title=\"Distance Estimated\"/>"
+msgstr ""
+
+#. module: website_tms_reporting
+#: model_terms:ir.ui.view,arch_db:website_tms_reporting.drivers_sheet
+msgid "<i class=\"fa fa-tachometer\" title=\"Distance Traveled\"/>"
+msgstr ""
+
+#. module: website_tms_reporting
+#: model_terms:ir.ui.view,arch_db:website_tms_reporting.drivers_sheet
+msgid "<i class=\"fa fa-th-list\" title=\"Orders\"/>"
+msgstr ""
+
+#. module: website_tms_reporting
+#: model_terms:ir.ui.view,arch_db:website_tms_reporting.drivers_sheet
+msgid "<i class=\"fa fa-thumbs-down\" title=\"Absences\"/>"
+msgstr ""
+
+#. module: website_tms_reporting
+#: model_terms:ir.ui.view,arch_db:website_tms_reporting.equipment_sheet
+msgid "<span>Day</span>"
+msgstr ""
+
+#. module: website_tms_reporting
+#: model_terms:ir.ui.view,arch_db:website_tms_reporting.drivers_sheet
+msgid "<strong>Name</strong>"
+msgstr ""
+
+#. module: website_tms_reporting
+#: code:addons/website_tms_reporting/controllers/main.py:0
+#, python-format
+msgid "April"
+msgstr ""
+
+#. module: website_tms_reporting
+#: code:addons/website_tms_reporting/controllers/main.py:0
+#, python-format
+msgid "August"
+msgstr ""
+
+#. module: website_tms_reporting
+#: model:ir.model,name:website_tms_reporting.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: website_tms_reporting
+#: model_terms:ir.ui.view,arch_db:website_tms_reporting.equipment_sheet
+msgid "Date From"
+msgstr ""
+
+#. module: website_tms_reporting
+#: model_terms:ir.ui.view,arch_db:website_tms_reporting.equipment_sheet
+msgid "Date From..."
+msgstr ""
+
+#. module: website_tms_reporting
+#: model_terms:ir.ui.view,arch_db:website_tms_reporting.equipment_sheet
+msgid "Date To"
+msgstr ""
+
+#. module: website_tms_reporting
+#: model_terms:ir.ui.view,arch_db:website_tms_reporting.equipment_sheet
+msgid "Date To..."
+msgstr ""
+
+#. module: website_tms_reporting
+#: code:addons/website_tms_reporting/controllers/main.py:0
+#, python-format
+msgid "December"
+msgstr ""
+
+#. module: website_tms_reporting
+#: code:addons/website_tms_reporting/controllers/main.py:0
+#, python-format
+msgid "February"
+msgstr ""
+
+#. module: website_tms_reporting
+#: model_terms:ir.ui.view,arch_db:website_tms_reporting.drivers_sheet
+msgid "Filter Year..."
+msgstr ""
+
+#. module: website_tms_reporting
+#: code:addons/website_tms_reporting/controllers/main.py:0
+#, python-format
+msgid "January"
+msgstr ""
+
+#. module: website_tms_reporting
+#: code:addons/website_tms_reporting/controllers/main.py:0
+#, python-format
+msgid "July"
+msgstr ""
+
+#. module: website_tms_reporting
+#: code:addons/website_tms_reporting/controllers/main.py:0
+#, python-format
+msgid "June"
+msgstr ""
+
+#. module: website_tms_reporting
+#: code:addons/website_tms_reporting/controllers/main.py:0
+#, python-format
+msgid "March"
+msgstr ""
+
+#. module: website_tms_reporting
+#: code:addons/website_tms_reporting/controllers/main.py:0
+#, python-format
+msgid "May"
+msgstr ""
+
+#. module: website_tms_reporting
+#: model_terms:ir.ui.view,arch_db:website_tms_reporting.drivers_sheet
+msgid "Month"
+msgstr ""
+
+#. module: website_tms_reporting
+#: model_terms:ir.ui.view,arch_db:website_tms_reporting.drivers_sheet
+msgid "Month..."
+msgstr ""
+
+#. module: website_tms_reporting
+#: code:addons/website_tms_reporting/controllers/main.py:0
+#, python-format
+msgid "November"
+msgstr ""
+
+#. module: website_tms_reporting
+#: code:addons/website_tms_reporting/controllers/main.py:0
+#, python-format
+msgid "October"
+msgstr ""
+
+#. module: website_tms_reporting
+#: code:addons/website_tms_reporting/controllers/main.py:0
+#, python-format
+msgid "September"
+msgstr ""
+
+#. module: website_tms_reporting
+#: model:ir.model.fields,field_description:website_tms_reporting.field_tms_equipment__sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: website_tms_reporting
+#: model:ir.model.fields,help:website_tms_reporting.field_res_partner__show_in_sheet
+#: model:ir.model.fields,help:website_tms_reporting.field_res_users__show_in_sheet
+msgid "Show driver in website sheet"
+msgstr ""
+
+#. module: website_tms_reporting
+#: model:ir.model.fields,help:website_tms_reporting.field_tms_equipment__show_in_sheet
+msgid "Show equipment in website sheet"
+msgstr ""
+
+#. module: website_tms_reporting
+#: model:ir.model.fields,field_description:website_tms_reporting.field_res_partner__show_in_sheet
+#: model:ir.model.fields,field_description:website_tms_reporting.field_res_users__show_in_sheet
+#: model:ir.model.fields,field_description:website_tms_reporting.field_tms_equipment__show_in_sheet
+msgid "Show sheet"
+msgstr ""
+
+#. module: website_tms_reporting
+#: model:ir.model,name:website_tms_reporting.model_tms_equipment
+msgid "TMS Equipment"
+msgstr ""
+
+#. module: website_tms_reporting
+#: model:ir.actions.act_url,name:website_tms_reporting.action_open_tms_reporting_drivers_sheet
+#: model:ir.ui.menu,name:website_tms_reporting.menu_website_drivers_sheet
+msgid "Website Drivers Sheet"
+msgstr ""
+
+#. module: website_tms_reporting
+#: model:ir.actions.act_url,name:website_tms_reporting.action_open_tms_reporting_equipments_sheet
+#: model:ir.ui.menu,name:website_tms_reporting.menu_website_equipments_sheet
+msgid "Website Equipments Sheet"
+msgstr ""
+
+#. module: website_tms_reporting
+#: model_terms:ir.ui.view,arch_db:website_tms_reporting.drivers_sheet
+msgid "Year"
+msgstr ""
