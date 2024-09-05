@@ -6,7 +6,7 @@
 
     <record id="automation_confirm_sale_order" model="base.automation">
         <field name="name">Confirm Sale Order</field>
-        <field name="active">True</field>
+        <field name="active">False</field>
         <field name="trigger">on_time</field>
         <field name="trg_date_range">1</field>
         <field name="trg_date_range_type">minutes</field>
