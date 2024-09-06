@@ -77,9 +77,10 @@
             <field name="acceptance_id" optional="show" />
             <field name="unload_service" optional="show" />
             <field name="shipping_place_id" optional="show" />
+            <field name="shipping_origin_zip" optional="hide" />
             <field name="shipping_origin_id" optional="hide" />
+            <field name="shipping_destination_zip" optional="hide" />
             <field name="shipping_destination_id" optional="hide" />
-            <field name="final_destination_id" optional="hide" />
             <field
                     name="carrier_tracking_ref"
                     optional="show"
