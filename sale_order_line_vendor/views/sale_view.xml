@@ -33,8 +33,4 @@
     </field>
 </record>
 
-<record id="sale_purchase.sale_order_inherited_form_purchase" model="ir.ui.view">
-    <field name="active" eval="True" />
-</record>
-
 </odoo>
