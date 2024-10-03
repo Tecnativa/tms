@@ -321,7 +321,7 @@
                             </div>
                             <div class="col-7">
                                 <div class="highlight-text"><span
-                                t-field="o.date_start"
+                                t-field="o.planned_date_start"
                                 t-options="{'widget': 'date'}"
                             /></div>
                             </div>

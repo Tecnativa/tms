@@ -7,10 +7,10 @@
         <field name="model">project.task</field>
         <field name="inherit_id" ref="project_timeline.view_task_form2" />
         <field name="arch" type="xml">
-            <field name="date_start" position="attributes">
+            <field name="planned_date_start" position="attributes">
                 <attribute name="invisible">1</attribute>
             </field>
-            <field name="date_end" position="attributes">
+            <field name="planned_date_end" position="attributes">
                 <attribute name="invisible">1</attribute>
             </field>
         </field>
@@ -231,8 +231,8 @@
                 </page>
             </page>
             <field name="date_deadline" position="before">
-                <field name="date_start" />
-                <field name="date_end" />
+                <field name="planned_date_start" />
+                <field name="planned_date_end" />
             </field>
         </field>
     </record>
@@ -266,14 +266,14 @@
                 <filter
                     string="Today"
                     name="date_start_today"
-                    domain="[('date_start','&gt;=', datetime.datetime.combine(context_today(), datetime.time(0,0,0))),
-                             ('date_start','&lt;=', datetime.datetime.combine(context_today(), datetime.time(23,59,59)))]"
+                    domain="[('planned_date_start','&gt;=', datetime.datetime.combine(context_today(), datetime.time(0,0,0))),
+                             ('planned_date_start','&lt;=', datetime.datetime.combine(context_today(), datetime.time(23,59,59)))]"
                 />
                 <filter
                     string="Tomorrow"
                     name="date_start_tomorrow"
-                    domain="[('date_start','&gt;=', datetime.datetime.combine(context_today() + datetime.timedelta(days=1), datetime.time(0,0,0))),
-                             ('date_start','&lt;=', datetime.datetime.combine(context_today() + datetime.timedelta(days=1), datetime.time(23,59,59)))]"
+                    domain="[('planned_date_start','&gt;=', datetime.datetime.combine(context_today() + datetime.timedelta(days=1), datetime.time(0,0,0))),
+                             ('planned_date_start','&lt;=', datetime.datetime.combine(context_today() + datetime.timedelta(days=1), datetime.time(23,59,59)))]"
                 />
                 <separator />
                 <filter
@@ -299,7 +299,11 @@
                     domain="[('display_project_id', '!=', False)]"
                 />
                 <separator />
-                <filter name="date_start_month" string="Date start" date="date_start" />
+                <filter
+                    name="date_start_month"
+                    string="Date start"
+                    date="planned_date_start"
+                />
                 <separator />
 <!--                <filter-->
 <!--                    string="Origin"-->
@@ -339,7 +343,7 @@
                 <filter
                     string="Start date"
                     name="groupby_date_start"
-                    context="{'group_by': 'date_start'}"
+                    context="{'group_by': 'planned_date_start'}"
                 />
             </filter>
         </field>
@@ -374,13 +378,13 @@
             </field>
             <xpath expr="//field[@name='project_id']" position="after">
                 <t
-                    t-if="record.date_start.raw_value"
+                    t-if="record.planned_date_start.raw_value"
                     t-set="blue"
                 >oe_kanban_text_blue</t>
                 <span style="text-color:blue;" t-attf-class="#{blue || ''}">
                     <i>
                         <br />
-                        <field name="date_start" />
+                        <field name="planned_date_start" />
                     </i>
                 </span>
                 <t
@@ -442,7 +446,7 @@
                 delete="false"
                 group_create="false"
                 group_delete="false"
-                default_order="priority desc, date_start, sequence, id desc"
+                default_order="priority desc, planned_date_start, sequence, id desc"
                 groups_limit="999"
             >
                 <field name="color" />
@@ -563,7 +567,7 @@
                                     <br />
                                 </strong>
                                 <t
-                                        t-if="record.date_start.raw_value"
+                                        t-if="record.planned_date_start.raw_value"
                                         t-set="blue"
                                     >oe_kanban_text_blue</t>
                                 <span
@@ -571,7 +575,7 @@
                                         t-attf-class="#{blue || ''}"
                                     >
                                     <i>
-                                        <field name="date_start" />
+                                        <field name="planned_date_start" />
                                     </i>
                                 </span>
                                 <br />

@@ -117,7 +117,7 @@ class SaleOrderLine(models.Model):
             {
                 # TODO: Check if (5,0,0) is needed
                 "user_ids": False,
-                "date_start": self.pickup_date,
+                "planned_date_start": self.pickup_date,
                 "date_deadline": fields.Date.to_string(
                     fields.Datetime.context_timestamp(
                         self, fields.Datetime.from_string(self.pickup_date)

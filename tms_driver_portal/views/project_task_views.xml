@@ -116,7 +116,7 @@
                                 options="{'no_open': True, 'no_create': True, 'no_edit': True}"
                                 invisible="1"
                             />
-<!--                            <field name="date_start" attrs="{'invisible': [('is_closed', '=', True)]}"/>-->
+<!--                            <field name="planned_date_start" attrs="{'invisible': [('is_closed', '=', True)]}"/>-->
                         </group>
                     </group>
                     <notebook>
@@ -205,7 +205,7 @@
                 delete="false"
                 group_create="false"
                 group_delete="false"
-                default_order="priority desc, date_start, sequence, id desc"
+                default_order="priority desc, planned_date_start, sequence, id desc"
             >
                 <field name="color" />
                 <field name="priority" />
@@ -283,7 +283,7 @@
                                 </strong>
                                 <br />
                                 <t
-                                        t-if="record.date_start.raw_value"
+                                        t-if="record.planned_date_start.raw_value"
                                         t-set="blue"
                                     >oe_kanban_text_blue</t>
                                 <span
@@ -291,7 +291,7 @@
                                         t-attf-class="#{blue || ''}"
                                     >
                                     <i>
-                                        <field name="date_start" />
+                                        <field name="planned_date_start" />
                                     </i>
                                 </span>
                                 <br />

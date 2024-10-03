@@ -10,16 +10,17 @@
                             <div class="col-3">Order:</div>
                             <div class="col-9"><span t-field="o.name" /></div>
                         </div>
-                        <div class="row" t-if="o.date_start">
+                        <div class="row" t-if="o.planned_date_start">
                             <div class="col-3">
                                 <span>Start/End:</span>
                             </div>
                             <div class="col-9">
                                 <div class="row">
                                     <div class="col-5">
-                                        <span t-field="o.date_start" />
+                                        <span t-field="o.planned_date_start" />
                                     </div>
                                     <div class="col-5">
+                                        <!-- Don't changed to planned_date_end because date_end is more real -->
                                         <span t-field="o.date_end" />
                                     </div>
                                 </div>

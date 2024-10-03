@@ -17,7 +17,7 @@ class ProjectTask(models.Model):
                 ("user_ids", "=", self.env.user.ids),
                 ("stage_id.is_closed", "=", False),
             ],
-            order="priority desc, date_start, sequence, id desc",
+            order="priority desc, planned_date_start, sequence, id desc",
             limit=1,
         )
         if my_actual_task != self:
@@ -49,7 +49,7 @@ class ProjectTask(models.Model):
             "unload_service",
             "trailer_requirement_ids",
             "is_private",
-            "date_start",
+            "planned_date_start",
             "pending_duration_estimated",
             "shipping_company_id",
             "distance_estimated",
