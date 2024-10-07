@@ -132,7 +132,9 @@ class SaleOrderLine(models.Model):
         vals.update(self.env["tms.analytic"].analytic_fields_vals(self))
         # Extra
         if self.parent_line_id:
-            vals["parent_id"] = self.parent_line_id.task_id.id
+            parent_task = self.parent_line_id.task_id
+            vals["parent_id"] = parent_task.id
+            vals["display_project_id"] = parent_task.project_id.id
             vals["sequence"] = 50
         else:
             vals.update(
