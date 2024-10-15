@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-07 12:04+0000\n"
-"PO-Revision-Date: 2022-12-07 13:08+0100\n"
+"POT-Creation-Date: 2024-10-15 11:28+0000\n"
+"PO-Revision-Date: 2024-10-15 13:30+0200\n"
 "Last-Translator: Carlos Dauden <carlos.dauden@tecnativa.com>\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -58,6 +58,11 @@ msgid "Final Destination"
 msgstr "Destino final"
 
 #. module: tms_sale_quick_input
+#: model_terms:ir.ui.view,arch_db:tms_sale_quick_input.view_sales_order_line_filter
+msgid "From today"
+msgstr "Desde hoy"
+
+#. module: tms_sale_quick_input
 #: code:addons/tms_sale_quick_input/models/sale_order.py:0
 #, python-format
 msgid "Go to packages to change data %s"
@@ -72,6 +77,11 @@ msgstr "Mercancía"
 #: model_terms:ir.ui.view,arch_db:tms_sale_quick_input.view_sales_order_line_filter
 msgid "Invoiced"
 msgstr "Facturado"
+
+#. module: tms_sale_quick_input
+#: model:ir.model.fields,field_description:tms_sale_quick_input.field_sale_order_line__shipping_lineal_length
+msgid "Lineal Length for Shipping"
+msgstr "Longitud lineal para envío"
 
 #. module: tms_sale_quick_input
 #: model_terms:ir.ui.view,arch_db:tms_sale_quick_input.view_sales_order_line_filter

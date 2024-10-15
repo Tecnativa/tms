@@ -65,7 +65,8 @@
         <field name="order_partner_id" position="after">
             <field
                     name="sale_type_id"
-                    optional="hide"
+                    optional="show"
+                    required="1"
                     attrs="{'readonly': [('product_updatable', '=', False)]}"
                 />
         </field>

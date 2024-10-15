@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-07 12:04+0000\n"
-"PO-Revision-Date: 2022-12-07 12:04+0000\n"
+"POT-Creation-Date: 2024-10-15 11:28+0000\n"
+"PO-Revision-Date: 2024-10-15 11:28+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -56,6 +56,11 @@ msgid "Final Destination"
 msgstr ""
 
 #. module: tms_sale_quick_input
+#: model_terms:ir.ui.view,arch_db:tms_sale_quick_input.view_sales_order_line_filter
+msgid "From today"
+msgstr ""
+
+#. module: tms_sale_quick_input
 #: code:addons/tms_sale_quick_input/models/sale_order.py:0
 #, python-format
 msgid "Go to packages to change data %s"
@@ -69,6 +74,11 @@ msgstr ""
 #. module: tms_sale_quick_input
 #: model_terms:ir.ui.view,arch_db:tms_sale_quick_input.view_sales_order_line_filter
 msgid "Invoiced"
+msgstr ""
+
+#. module: tms_sale_quick_input
+#: model:ir.model.fields,field_description:tms_sale_quick_input.field_sale_order_line__shipping_lineal_length
+msgid "Lineal Length for Shipping"
 msgstr ""
 
 #. module: tms_sale_quick_input
