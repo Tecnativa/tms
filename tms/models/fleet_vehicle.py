@@ -33,6 +33,7 @@ class FleetVehicle(models.Model):
     is_own_vehicle = fields.Boolean(
         string="Own vehicle",
         compute="_compute_is_own_vehicle",
+        compute_sudo=True,
         search="_search_is_own_vehicle",
     )
     always_show_in_kanban = fields.Boolean(
