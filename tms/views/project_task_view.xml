@@ -606,10 +606,6 @@
         <field name="arch" type="xml">
             <xpath expr="//timeline" position="attributes">
                 <attribute name="default_group_by">tractor_id</attribute>
-                <attribute
-                    name="colors"
-                >#754d40: user_id == false; #2ecb71: kanban_state == 'done';
-                </attribute>
             </xpath>
         </field>
     </record>
