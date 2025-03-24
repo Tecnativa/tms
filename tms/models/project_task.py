@@ -217,11 +217,9 @@ class ProjectTask(models.Model):
     @api.depends("tms_package_ids", "child_ids")
     def _compute_tms_package_all_ids(self):
         for task in self:
+            tms_packages = task.tms_package_ids
             if task.child_ids:
-                alltasks = task.search([("id", "child_of", [task.id])])
-                tms_packages = alltasks.mapped("tms_package_ids")
-            else:
-                tms_packages = task.tms_package_ids
+                tms_packages |= task.child_ids.tms_package_all_ids
             task.tms_package_all_ids = tms_packages.sorted("sequence")
 
     @api.depends(
