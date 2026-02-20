@@ -13,6 +13,7 @@
             <field name="print_template_type" />
             <field name="field_order" />
             <field name="display_order" />
+            <field name="display_price_unit_0" />
             <field name="display_date" />
             <field name="display_client_ref" />
             <field name="display_description" />
@@ -62,6 +63,7 @@
                     <field name="field_order" />
                 </group>
                 <group>
+                    <field name="display_price_unit_0" />
                     <field name="display_order" />
                     <field name="display_date" />
                     <field name="display_client_ref" />

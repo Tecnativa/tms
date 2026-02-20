@@ -55,3 +55,4 @@ class TmsPrintTemplate(models.Model):
     display_discount = fields.Boolean()
     display_taxes = fields.Boolean()
     display_total = fields.Boolean()
+    display_price_unit_0 = fields.Boolean()

@@ -6,16 +6,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-16 08:55+0000\n"
-"PO-Revision-Date: 2024-05-16 10:59+0200\n"
-"Last-Translator: Sergio Teruel <sergio.teruel@tecnativa.com>\n"
+"POT-Creation-Date: 2026-02-20 12:16+0000\n"
+"PO-Revision-Date: 2026-02-20 13:19+0100\n"
+"Last-Translator: Andrii Kompaniiets <andrii.kompaniiets@tecnativa.com>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.8\n"
 
 #. module: tms_reporting
 #: model:ir.model.fields,field_description:tms_reporting.field_tms_driver_report__nbr_order_line
@@ -72,8 +72,8 @@ msgid ""
 "top /100%;color:#777777\">\n"
 "<p>Dear <t t-out=\"object.driver_id.name or ''\">Brandon Freeman</t>,</p>\n"
 "    <p>\n"
-"        Attach transport order from <t t-out=\"object.company_id."
-"name\">Principal Company</t>.\n"
+"        Attach transport order from <t t-"
+"out=\"object.company_id.name\">Principal Company</t>.\n"
 "    </p>\n"
 "    <p>Best regards,</p>\n"
 "</div>\n"
@@ -382,6 +382,11 @@ msgstr "Mostrar puerto"
 #: model:ir.model.fields,field_description:tms_reporting.field_tms_print_template__display_price
 msgid "Display Price"
 msgstr "Mostrar precio"
+
+#. module: tms_reporting
+#: model:ir.model.fields,field_description:tms_reporting.field_tms_print_template__display_price_unit_0
+msgid "Display Price Unit 0"
+msgstr "Mostrar precio unitario a 0"
 
 #. module: tms_reporting
 #: model:ir.model.fields,field_description:tms_reporting.field_tms_print_template__display_quantity
@@ -793,11 +798,6 @@ msgstr "Orden de transporte"
 #| msgid "Transport Order"
 msgid "Transport Order {{ object.name }}>"
 msgstr "Orden de transporte"
-
-#. module: tms_reporting
-#: model:mail.template,report_name:tms_reporting.transport_order_email
-msgid "Transport_Order_{{(object.name or '').replace('/','_')}}"
-msgstr ""
 
 #. module: tms_reporting
 #: model:ir.model.fields,field_description:tms_reporting.field_tms_print_template__print_template_type

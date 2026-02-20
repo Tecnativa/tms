@@ -102,30 +102,32 @@
                     />
                 </t>
                 <tr t-foreach="invoice_lines" t-as="l">
+                    <t t-if="l.price_unit == 0 and not pt.display_price_unit_0" />
+                    <t t-else="">
                     <t
-                        t-set="order_line"
-                        t-value="o.reversed_entry_id and l.origin_line_id.sale_line_ids[:1] or l.sale_line_ids[:1]"
-                    />
+                            t-set="order_line"
+                            t-value="o.reversed_entry_id and l.origin_line_id.sale_line_ids[:1] or l.sale_line_ids[:1]"
+                        />
                     <t t-set="package" t-value="order_line.tms_package_ids" />
                     <t
-                        t-set="shipping_place"
-                        t-value="order_line.unload_service and order_line.shipping_destination_id or order_line.shipping_origin_id"
-                    />
+                            t-set="shipping_place"
+                            t-value="order_line.unload_service and order_line.shipping_destination_id or order_line.shipping_origin_id"
+                        />
                     <td t-if="pt.display_order">
                         <span t-field="l.sale_line_ids[:1].order_id.name" />
                     </td>
                     <td t-if="pt.display_date">
                         <t t-if="order_line.pickup_date">
                             <span
-                                t-field="order_line.pickup_date"
-                                t-options="{'widget': 'date'}"
-                            />
+                                    t-field="order_line.pickup_date"
+                                    t-options="{'widget': 'date'}"
+                                />
                         </t>
                         <t t-else="1">
                             <span
-                                t-field="order_line.order_id.date_order"
-                                t-options="{'widget': 'date'}"
-                            />
+                                    t-field="order_line.order_id.date_order"
+                                    t-options="{'widget': 'date'}"
+                                />
                         </t>
                     </td>
                     <td t-if="pt.display_client_ref">
@@ -170,74 +172,74 @@
                     </td>
                     <td t-if="pt.display_tracking_ref">
                         <span
-                            t-esc="' / '.join(package.filtered('carrier_tracking_ref').mapped('carrier_tracking_ref'))"
-                        />
+                                t-esc="' / '.join(package.filtered('carrier_tracking_ref').mapped('carrier_tracking_ref'))"
+                            />
                     </td>
                     <td t-if="pt.display_goods">
                         <span
-                            t-esc="' / '.join(package.filtered('goods_id').mapped('goods_id.name'))"
-                        />
+                                t-esc="' / '.join(package.filtered('goods_id').mapped('goods_id.name'))"
+                            />
                     </td>
                     <td t-if="pt.display_weight" class="text-right">
                         <span
-                            t-esc="sum(order_line.tms_package_ids.mapped('shipping_weight'))"
-                        />
+                                t-esc="sum(order_line.tms_package_ids.mapped('shipping_weight'))"
+                            />
                     </td>
                     <td t-if="pt.display_release">
                         <span t-field="order_line.order_id.release_id.display_name" />
                     </td>
                     <td
-                        t-if="pt.display_origin or pt.display_origin_zip or pt.display_origin_city"
-                    >
+                            t-if="pt.display_origin or pt.display_origin_zip or pt.display_origin_city"
+                        >
                         <span
-                            t-if="pt.display_origin_zip"
-                            t-field="order_line.shipping_origin_id.zip"
-                        />
+                                t-if="pt.display_origin_zip"
+                                t-field="order_line.shipping_origin_id.zip"
+                            />
                         <span
-                            t-if="pt.display_origin_city"
-                            t-field="order_line.shipping_origin_id.city"
-                        />
+                                t-if="pt.display_origin_city"
+                                t-field="order_line.shipping_origin_id.city"
+                            />
                         <span
-                            t-if="pt.display_origin"
-                            t-field="order_line.shipping_origin_id.display_name"
-                        />
+                                t-if="pt.display_origin"
+                                t-field="order_line.shipping_origin_id.display_name"
+                            />
                     </td>
                     <td
-                        t-if="pt.display_destination or pt.display_destination_zip or pt.display_destination_city"
-                    >
+                            t-if="pt.display_destination or pt.display_destination_zip or pt.display_destination_city"
+                        >
                         <span
-                            t-if="pt.display_destination_zip"
-                            t-field="order_line.shipping_destination_id.zip"
-                        />
+                                t-if="pt.display_destination_zip"
+                                t-field="order_line.shipping_destination_id.zip"
+                            />
                         <span
-                            t-if="pt.display_destination_city"
-                            t-field="order_line.shipping_destination_id.city"
-                        />
+                                t-if="pt.display_destination_city"
+                                t-field="order_line.shipping_destination_id.city"
+                            />
                         <span
-                            t-if="pt.display_destination"
-                            t-field="order_line.shipping_destination_id.display_name"
-                        />
+                                t-if="pt.display_destination"
+                                t-field="order_line.shipping_destination_id.display_name"
+                            />
                     </td>
                     <td
-                        t-if="pt.display_shipping_place or pt.display_shipping_place_zip or pt.display_shipping_place_city"
-                    >
+                            t-if="pt.display_shipping_place or pt.display_shipping_place_zip or pt.display_shipping_place_city"
+                        >
                         <span
-                            t-if="pt.display_shipping_place_zip"
-                            t-field="shipping_place.zip"
-                        />
+                                t-if="pt.display_shipping_place_zip"
+                                t-field="shipping_place.zip"
+                            />
                         <span
-                            t-if="pt.display_shipping_place_city"
-                            t-field="shipping_place.city"
-                        />
+                                t-if="pt.display_shipping_place_city"
+                                t-field="shipping_place.city"
+                            />
                         <span
-                            t-if="pt.display_shipping_place"
-                            t-field="shipping_place.display_name"
-                        />
+                                t-if="pt.display_shipping_place"
+                                t-field="shipping_place.display_name"
+                            />
                     </td>
                     <td t-if="pt.display_acceptance">
                         <span
-                            t-field="order_line.order_id.acceptance_id.display_name"
-                        />
+                                t-field="order_line.order_id.acceptance_id.display_name"
+                            />
                     </td>
                     <td t-if="pt.display_quantity" class="text-right">
                         <span t-field="l.quantity" />
@@ -247,22 +249,23 @@
                         <span t-field="l.price_unit" />
                     </td>
                     <td
-                        t-if="pt.display_discount and display_discount"
-                        class="text-right"
-                    >
+                            t-if="pt.display_discount and display_discount"
+                            class="text-right"
+                        >
                         <span t-field="l.discount" />
                     </td>
                     <td t-if="pt.display_taxes" class="text-right">
                         <span
-                            t-esc="', '.join(map(lambda x: (x.description or x.name), l.tax_ids))"
-                        />
+                                t-esc="', '.join(map(lambda x: (x.description or x.name), l.tax_ids))"
+                            />
                     </td>
                     <td t-if="pt.display_total" class="text-right">
                         <span
-                            t-field="l.price_subtotal"
-                            t-options='{"widget": "monetary", "display_currency": o.currency_id}'
-                        />
+                                t-field="l.price_subtotal"
+                                t-options='{"widget": "monetary", "display_currency": o.currency_id}'
+                            />
                     </td>
+                    </t>
                 </tr>
             </tbody>
         </table>
