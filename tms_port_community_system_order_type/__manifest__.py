@@ -7,11 +7,11 @@
     "summary": "Port Community System (PCS) Sale order type",
     "version": "15.0.1.0.0",
     "category": "Logistic",
-    "website": "https://github.com/OCA/tms",
+    "website": "https://github.com/Tecnativa/tms",
     "author": "Tecnativa, " "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "application": False,
-    "installable": True,
+    "installable": False,
     "depends": [
         "tms_port_community_system",
         "sale_order_type",

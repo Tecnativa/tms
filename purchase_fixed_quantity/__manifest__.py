@@ -5,10 +5,10 @@
     "name": "Purchase Fixed Quantity",
     "version": "15.0.1.0.0",
     "category": "Purchase",
-    "website": "https://github.com/OCA/tms",
+    "website": "https://github.com/Tecnativa/tms",
     "author": "Tecnativa, Odoo Community Association (OCA)",
     "license": "AGPL-3",
-    "installable": True,
+    "installable": False,
     "depends": ["purchase_stock", "sale_purchase"],
     "data": [
         "views/product_view.xml",

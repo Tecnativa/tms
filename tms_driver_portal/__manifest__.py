@@ -6,10 +6,10 @@
     "summary": "Access portal to TMS Self employee drivers",
     "version": "15.0.1.0.0",
     "category": "Transport Management system",
-    "website": "https://github.com/OCA/tms",
+    "website": "https://github.com/Tecnativa/tms",
     "author": "Tecnativa, Odoo Community Association (OCA)",
     "license": "AGPL-3",
-    "installable": True,
+    "installable": False,
     "depends": [
         "portal",
         "tms",

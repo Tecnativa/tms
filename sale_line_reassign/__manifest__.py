@@ -6,10 +6,10 @@
     "name": "Sale Line Reassign",
     "version": "15.0.1.0.0",
     "category": "Sales",
-    "website": "https://github.com/OCA/tms",
+    "website": "https://github.com/Tecnativa/tms",
     "author": "Tecnativa, Odoo Community Association (OCA)",
     "license": "AGPL-3",
-    "installable": True,
+    "installable": False,
     "depends": [
         "sale_timesheet",
     ],

@@ -7,11 +7,11 @@
     "summary": "Transport Management System Reporting(TMS)",
     "version": "15.0.1.0.0",
     "category": "Logistic",
-    "website": "https://github.com/OCA/tms",
+    "website": "https://github.com/Tecnativa/tms",
     "author": "Tecnativa, " "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "application": False,
-    "installable": True,
+    "installable": False,
     "depends": [
         "account",
         "report_xlsx",

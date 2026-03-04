@@ -7,7 +7,7 @@
     "summary": "Adds analytic fields in analytic distribution",
     "version": "15.0.1.0.0",
     "category": "Accounting & Finance",
-    "website": "https://github.com/OCA/tms",
+    "website": "https://github.com/Tecnativa/tms",
     "author": "Tecnativa, " "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "depends": [
@@ -17,6 +17,6 @@
     "data": [
         "views/account_analytic_distribution_view.xml",
     ],
-    "installable": True,
+    "installable": False,
     "maintainers": ["sergio-teruel", "carlosdauden"],
 }
