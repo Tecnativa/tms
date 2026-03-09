@@ -29,21 +29,23 @@ class TestTmsHrLeaveLetter(TransactionCase):
     def _create_leave_type(self):
         leave_type_form = Form(self.env["hr.leave.type"])
         leave_type_form.name = "Test Leave Type"
+        leave_type_form.request_unit = "half_day"
         leave_type_form.leave_letter_type = "holidays_leave"
-        leave_type_form.responsible_id = self.user
+        leave_type_form.responsible_ids.add(self.user)
         leave_type_form.requires_allocation = "no"
         return leave_type_form.save()
 
     def _create_leave(self):
-        leave_form = Form(
-            self.env["hr.leave"].with_context(default_employee_id=self.employee.id)
-        )
-        leave_form.holiday_status_id = self.leave_type
-        leave_form.request_date_from = date(2019, 9, 2)
-        leave_form.request_date_to = date(2019, 9, 2)
-        leave_form.request_unit_half = True
-        leave_form.request_date_from_period = "am"
-        return leave_form.save()
+        leave = self.env["hr.leave"].with_context(default_employee_id=self.employee.id)
+
+        with Form(leave) as leave_form:
+            leave_form.holiday_status_id = self.leave_type
+            leave_form.request_date_from = date(2019, 9, 2)
+            leave_form.request_date_to = date(2019, 9, 2)
+            leave_form.request_unit_half = True
+            leave_form.request_date_from_period = "am"
+        leave = leave_form.save()
+        return leave
 
     @users("test-user")
     def test_create_leave_letter(self):
@@ -55,5 +57,11 @@ class TestTmsHrLeaveLetter(TransactionCase):
         report = self.env["ir.actions.report"]._get_report_from_name(
             "tms_hr_leave_letter.report_tms_hr_leave_letter"
         )
-        res = report._render_qweb_html(leave.ids)[0].decode("utf-8").split("\n")
+        res = (
+            report._render_qweb_html(
+                "tms_hr_leave_letter.report_tms_hr_leave_letter", leave.ids
+            )[0]
+            .decode("utf-8")
+            .split("\n")
+        )
         self.assertRegex(str(res), self.employee.name)
