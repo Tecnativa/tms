@@ -14,7 +14,7 @@ class ProductProduct(models.Model):
             return super()._prepare_sellers(params)
         return self.env["product.supplierinfo"].new(
             {
-                "name": so_line.vendor_id.id,
+                "partner_id": so_line.vendor_id.id,
                 "price": so_line.purchase_price,
                 "product_tmpl_id": so_line.product_id.product_tmpl_id.id,
                 "product_id": so_line.product_id.id,

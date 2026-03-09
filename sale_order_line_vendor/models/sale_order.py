@@ -91,7 +91,9 @@ class SaleOrderLine(models.Model):
         po_to_check = self.env["purchase.order"]
         if new_qty == 0.0:
             for line in self:
-                po_lines = line.purchase_line_ids.filtered(lambda l: l.state == "draft")
+                po_lines = line.purchase_line_ids.filtered(
+                    lambda line: line.state == "draft"
+                )
                 if po_lines:
                     po_to_check |= po_lines.mapped("order_id")
                     po_lines.unlink()

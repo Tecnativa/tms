@@ -5,13 +5,13 @@
 {
     "name": "Sale Order Line Vendor",
     "summary": "Get vendor and cost directly from sale order line",
-    "version": "15.0.1.0.0",
+    "version": "18.0.1.0.0",
     "category": "Purchases",
     "website": "https://github.com/Tecnativa/tms",
     "author": "Tecnativa, " "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "application": False,
-    "installable": False,
+    "installable": True,
     "depends": [
         "sale_purchase",
     ],
