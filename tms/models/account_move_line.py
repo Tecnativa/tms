@@ -9,10 +9,11 @@ class AccountMoveLine(models.Model):
     _inherit = ["account.move.line", "tms.analytic"]
     _name = "account.move.line"
 
-    def _prepare_analytic_line(self):
+    def _prepare_analytic_lines(self):
         TmsAnalytic = self.env["tms.analytic"]
-        vals_list = super()._prepare_analytic_line()
-        for index, move_line in enumerate(self):
-            vals = vals_list[index]
-            vals.update(TmsAnalytic.analytic_fields_vals(move_line))
+        vals_list = super()._prepare_analytic_lines()
+        if vals_list:
+            for index, move_line in enumerate(self):
+                vals = vals_list[index]
+                vals.update(TmsAnalytic.analytic_fields_vals(move_line))
         return vals_list

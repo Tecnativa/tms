@@ -30,7 +30,7 @@ class ResPartner(models.Model):
         return super()._get_name()
 
 
-# TODO: Use OCA modules
+# TODO: Use OCA modules delivery-carrier /partner_delivery_zone/
 class ResPartnerZone(models.Model):
     _name = "res.partner.zone"
     _description = "Partner Zone"
@@ -56,4 +56,4 @@ class ResPartnerSchedule(models.Model):
         for schedule in self:
             hour_from = format_duration(schedule.hour_from)
             hour_to = format_duration(schedule.hour_to)
-            schedule.name = "%s -> %s" % (hour_from, hour_to)
+            schedule.name = f"{hour_from} -> {hour_to}"

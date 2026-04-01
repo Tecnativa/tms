@@ -122,15 +122,15 @@ class SaleOrder(models.Model):
         return super().write(vals)
 
     @api.onchange("final_destination_id")
-    def onchange_final_destination_id(self):
+    def _onchange_final_destination_id(self):
         """
         Trigger the change of fiscal position when the final destination is modified.
         """
         if not self.final_destination_id.country_id:
-            return self.onchange_partner_shipping_id()
+            return self._onchange_partner_shipping_id()
         self.fiscal_position_id = (
             self.env["account.fiscal.position"]
             .with_company(self.company_id)
-            .get_fiscal_position(self.final_destination_id.id)
+            ._get_fiscal_position(self.final_destination_id.id)
         )
         return {}

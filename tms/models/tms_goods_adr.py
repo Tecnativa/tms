@@ -33,7 +33,7 @@ class TmsGoodsAdrClass(models.Model):
     def name_get(self):
         result = []
         for adr_class in self:
-            name = "({}) {}".format(adr_class.code, adr_class.name)
+            name = f"({adr_class.code}) {adr_class.name}"
             result.append((adr_class.id, name))
         return result
 
@@ -74,6 +74,6 @@ class TmsGoodsAdr(models.Model):
     def name_get(self):
         result = []
         for adr in self:
-            name = "[{}] {} ({})".format(adr.un_number, adr.name, adr.adr_class.code)
+            name = f"[{adr.un_number}] {adr.name} ({adr.adr_class.code})"
             result.append((adr.id, name))
         return result

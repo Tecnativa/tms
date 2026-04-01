@@ -2,7 +2,7 @@
 <!-- Copyright 2017 Sergio Teruel <sergio.teruel@tecnativa.com>
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
-        <!-- Top menu item -->
+    <!-- Top menu item -->
     <menuitem
         name="TMS"
         id="menu_main_tms"
@@ -110,6 +110,4 @@
         sequence="60"
         groups="sales_team.group_sale_manager"
     />
-
-
 </odoo>

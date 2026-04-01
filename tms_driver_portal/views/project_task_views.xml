@@ -92,7 +92,7 @@
                         <group>
                             <field name="project_id" invisible="1" />
                             <field
-                                name="display_project_id"
+                                name="project_id"
                                 string="Project"
                                 invisible="1"
                             />
@@ -239,10 +239,6 @@
                 <field name="unload_service" />
                 <field name="progress_status" />
                 <field name="date_deadline" allow_group_range_value="true" />
-<!--                <progressbar-->
-<!--                    field="progress_status"-->
-<!--                    colors='{"closed": "success", "in_progress": "warning", "not_started": "muted"}'-->
-<!--                />-->
                 <templates>
                 <t t-name="kanban-box">
                     <div

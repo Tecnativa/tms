@@ -12,6 +12,8 @@ from odoo import SUPERUSER_ID, _, api, exceptions, fields, models
 from odoo.exceptions import ValidationError
 from odoo.osv import expression
 
+from odoo.addons.project.models.project_task import CLOSED_STATES
+
 _logger = logging.getLogger(__name__)
 
 
@@ -213,6 +215,10 @@ class ProjectTask(models.Model):
     pending_duration_estimated = fields.Float(
         compute="_compute_pending_duration_estimated", store=True
     )
+    partner_is_company = fields.Boolean(  # Use in view
+        related="partner_id.is_company",
+        store=True,
+    )
 
     @api.depends("tms_package_ids", "child_ids")
     def _compute_tms_package_all_ids(self):
@@ -272,7 +278,7 @@ class ProjectTask(models.Model):
     @api.depends("stage_id")
     def _compute_progress_status(self):
         for task in self:
-            if task.stage_id.is_closed:
+            if task.state in CLOSED_STATES:
                 task.progress_status = "closed"
             elif task.stage_id.sequence == 1:
                 task.progress_status = "not_started"
@@ -433,7 +439,7 @@ class ProjectTask(models.Model):
         return {"sale_type_id": "sale_type_ids"}
 
     @api.model
-    def _read_group_tractor_ids(self, tractors, domain, order):
+    def _read_group_tractor_ids(self, tractors, domain, order=None):
         if not self.env.context.get("tms_show_all_kanban_vehicles", False):
             return tractors
         search_domain = [
@@ -443,12 +449,10 @@ class ProjectTask(models.Model):
             ("vehicle_type", "=", "tractor"),
         ]
         if self.env.context.get("pass_task2vehicle_filter", False):
-            # TODO: Use expression when fix https://github.com/odoo/odoo/issues/103214
-            TRUE_DOMAIN = ("id", "!=", False)  # expression.TRUE_DOMAIN
             vehicle_domain = []
             task2vehicle_map = self.map_task2vehicle_fields()
             for t in domain:
-                if not isinstance(t, (list, tuple)):
+                if not isinstance(t, (list | tuple)):
                     vehicle_domain.append(t)
                 elif t[0] in task2vehicle_map.keys():
                     vehicle_field = task2vehicle_map[t[0]]
@@ -457,7 +461,7 @@ class ProjectTask(models.Model):
                         ["|", (vehicle_field, t[1], t[2]), (vehicle_field, "=", False)]
                     )
                 else:
-                    vehicle_domain.append(TRUE_DOMAIN)
+                    vehicle_domain.append(expression.TRUE_DOMAIN)
             search_domain = expression.AND([search_domain, vehicle_domain])
 
         tractor_ids = tractors._search(
@@ -485,8 +489,8 @@ class ProjectTask(models.Model):
         self.ensure_one()
         date = package.pickup_date or fields.datetime.max
         # Evaluate force_xx to set place from task instead of package
-        place = (self if self["force_{}".format(orig_dest)] else package)[
-            "shipping_{}_id".format(orig_dest)
+        place = (self if self[f"force_{orig_dest}"] else package)[
+            f"shipping_{orig_dest}_id"
         ]
         if orig_dest == "destination" and package.forecast_unload_date:
             date = package.forecast_unload_date
@@ -501,7 +505,7 @@ class ProjectTask(models.Model):
             "place_id": place.id,
             "sequence": sequence,
             "automatic": True,
-            "package_{}_ids".format(orig_dest): [(6, 0, packages)],
+            f"package_{orig_dest}_ids": [(6, 0, packages)],
         }
 
     def fill_checkpoints(self):
@@ -554,10 +558,10 @@ class ProjectTask(models.Model):
             latitude = line.place_id.partner_latitude
             longitude = line.place_id.partner_longitude
             if latitude and longitude:
-                points_list.append("%s,%s" % (latitude, longitude))
-        url = "/tms/static/src/googlemaps/get_route.html?coords=%s&key=%s" % (
-            ",".join(points_list),
-            google_key,
+                points_list.append(f"{latitude},{longitude}")
+        url = (
+            f"/tms/static/src/googlemaps/get_route.html"
+            f"?coords={','.join(points_list)}&key={google_key}"
         )
         return {
             "type": "ir.actions.act_url",
@@ -589,7 +593,7 @@ class ProjectTask(models.Model):
                 latitude = line.place_id.partner_latitude
                 longitude = line.place_id.partner_longitude
                 if latitude and longitude:
-                    points_list.append("%s,%s" % (latitude, longitude))
+                    points_list.append(f"{latitude},{longitude}")
             params = {
                 "origins": "|".join(points_list[:-1]),
                 "destinations": "|".join(points_list[1:]),
@@ -601,7 +605,9 @@ class ProjectTask(models.Model):
                 params.update({"key": google_key})
             try:
                 # TODO: test after change simplejson to json
-                result = json.loads(requests.get(url, params=params).content)
+                result = json.loads(
+                    requests.get(url, params=params, timeout=20).content
+                )
                 total_distance = total_duration = 0.0
                 if result["status"] != "OK":
                     task.update({"distance_estimated": 0.0, "planned_hours": 0.0})
@@ -630,12 +636,7 @@ class ProjectTask(models.Model):
                 ) from err
 
     def _get_route_openrouteservice(self):
-        # TODO: Change to company field
-        token = (
-            self.env["ir.config_parameter"]
-            .sudo()
-            .get_param("base_geolocalize.openrouteservice_api_key")
-        )
+        token = self.env.company.openrouteservice_api_key
         headers = {
             "Accept": "application/json, application/geo+json, "
             "application/gpx+xml, img/png; charset=utf-8",
@@ -657,11 +658,11 @@ class ProjectTask(models.Model):
                 "metrics": ["distance", "duration"],
                 "units": "km",
             }
-            response = requests.post(url, json=body, headers=headers)
+            response = requests.post(url, json=body, headers=headers, timeout=20)
             if response.status_code != 200:
                 _logger.error(
-                    "Request to openrouteservice failed.\nCode: %s\nContent: %s"
-                    % (response.status_code, response.content)
+                    f"Request to openrouteservice failed.\n"
+                    f"Code: {response.status_code}\nContent: {response.content}"
                 )
                 task.update({"distance_estimated": 0.0, "planned_hours": 0.0})
                 return

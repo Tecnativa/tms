@@ -7,6 +7,8 @@ from collections import defaultdict
 from odoo import api, fields, models
 from odoo.osv import expression
 
+from odoo.addons.project.models.project_task import CLOSED_STATES
+
 
 class FleetVehicle(models.Model):
     _inherit = "fleet.vehicle"
@@ -48,31 +50,27 @@ class FleetVehicle(models.Model):
     def _compute_task_count(self):
         Task = self.env["project.task"]
         max_tasks = max(self.env.context.get("max_vehicle_tasks", [0]))
-        # Keep only date fields to search vehicle tasks
-        # TODO: Use expression when fix https://github.com/odoo/odoo/issues/103214
-        TRUE_DOMAIN = ("id", "!=", False)  # expression.TRUE_DOMAIN
         task_domain = [
-            TRUE_DOMAIN if (isinstance(t, (list, tuple)) and "date" not in t[0]) else t
+            expression.TRUE_DOMAIN
+            if (isinstance(t, (list | tuple)) and "date" not in t[0])
+            else t
             for t in self.env.context.get("task_domain", [])
         ]
-        tasks_data = Task.read_group(
-            domain=expression.AND([[("stage_id.is_closed", "=", False)], task_domain]),
-            fields=["tractor_id", "trailer_id", "pending_duration_estimated"],
+        tasks_data = Task._read_group(
+            domain=expression.AND(
+                [[("state", "not in", list(CLOSED_STATES.keys()))], task_domain]
+            ),
             groupby=["tractor_id", "trailer_id"],
-            lazy=False,
+            aggregates=["__count", "pending_duration_estimated:sum"],
         )
         vehicle_task_dic = defaultdict(lambda: {"count": 0, "duration": 0.0})
-        for group in tasks_data:
-            if group["tractor_id"]:
-                vehicle_task_dic[group["tractor_id"][0]]["count"] += group["__count"]
-                vehicle_task_dic[group["tractor_id"][0]]["duration"] += group[
-                    "pending_duration_estimated"
-                ]
-            if group["trailer_id"]:
-                vehicle_task_dic[group["trailer_id"][0]]["count"] += group["__count"]
-                vehicle_task_dic[group["trailer_id"][0]]["duration"] += group[
-                    "pending_duration_estimated"
-                ]
+        for tractor_id, trailer_id, count, pending_duration_sum in tasks_data:
+            if tractor_id:
+                vehicle_task_dic[tractor_id.id]["count"] += count
+                vehicle_task_dic[tractor_id.id]["duration"] += pending_duration_sum
+            if trailer_id:
+                vehicle_task_dic[trailer_id.id]["count"] += count
+                vehicle_task_dic[trailer_id.id]["duration"] += pending_duration_sum
         for vehicle in self:
             vehicle.task_count = vehicle_task_dic[vehicle.id]["count"]
             vehicle.is_available = vehicle.task_count <= max_tasks
@@ -83,13 +81,13 @@ class FleetVehicle(models.Model):
     def _compute_next_checkpoint_ids(self):
         """
         Search checkpoints in task in progress
-        :return: dict with vehicle_id as key and checpoints as value
+        :return: dict with vehicle_id as key and checkpoints as value
         """
         ProjectTaskCheckpoint = self.env["project.task.checkpoint"]
         tasks = self.env["project.task"].search(
             [
                 ("stage_id.sequence", ">", 1),
-                ("stage_id.is_closed", "=", False),
+                ("state", "not in", list(CLOSED_STATES.keys())),
                 ("tractor_id", "in", self.ids),
             ]
         )

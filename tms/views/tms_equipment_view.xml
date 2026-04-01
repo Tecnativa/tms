@@ -2,15 +2,14 @@
 <!-- Copyright 2017 Sergio Teruel <sergio.teruel@tecnativa.com>
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
-
     <record id="tms_equipment_size_type_tree_view" model="ir.ui.view">
         <field name="name">tms.equipment.size.type.tree</field>
         <field name="model">iso6346.size.type</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="code" />
                 <field name="name" />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -52,12 +51,12 @@
         <field name="name">tms.equipment.tree.view</field>
         <field name="model">tms.equipment</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name" />
                 <field name="equipment_type" />
                 <field name="size_type_id" />
                 <field name="iso6346_ok" />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -65,7 +64,6 @@
         <field name="name">Equipments</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">tms.equipment</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
-
 </odoo>
