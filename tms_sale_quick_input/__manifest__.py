@@ -5,12 +5,12 @@
 {
     "name": "TMS Sale Order Quick Input",
     "summary": "",
-    "version": "15.0.1.0.0",
+    "version": "18.0.1.0.0",
     "category": "Sales",
     "website": "https://github.com/Tecnativa/tms",
     "author": "Tecnativa, " "Odoo Community Association (OCA)",
     "license": "AGPL-3",
-    "installable": False,
+    "installable": True,
     "depends": [
         "tms",
         "sale_order_line_input",

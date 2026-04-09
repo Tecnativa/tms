@@ -2,7 +2,7 @@
 # Copyright 2017 Carlos Dauden <carlos.dauden@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 
 
@@ -49,6 +49,12 @@ class SaleOrderLine(models.Model):
         readonly=False,
     )
     # Related with tms_package_ids
+    tms_package_ids = fields.Many2many(
+        comodel_name="tms.package",
+        compute="_compute_update_package",
+        store=True,
+        readonly=False,
+    )
     shipping_volume = fields.Float(
         digits="TMS Volume",
         string="Volume for Shipping",
@@ -218,7 +224,9 @@ class SaleOrderLine(models.Model):
             if len(line.tms_package_ids) == 1:
                 line.tms_package_ids[field_name] = line[field_name]
             else:
-                raise UserError(_("Go to packages to change data %s") % field_name)
+                raise UserError(
+                    self.env._("Go to packages to change data %s") % field_name
+                )
 
     @api.onchange("unload_service")
     def _onchange_unload_service(self):
@@ -240,7 +248,8 @@ class SaleOrderLine(models.Model):
         if not self.unload_service:
             self.shipping_destination_id = self.acceptance_id
 
-    def _update_package(self):
+    @api.depends("goods_id", "customer_ref", "carrier_tracking_ref")
+    def _compute_update_package(self):
         if not self.carrier_tracking_ref and not self.goods_id:
             return
         packages = self.tms_package_ids
@@ -274,23 +283,11 @@ class SaleOrderLine(models.Model):
             self.shipping_origin_id = self.shipping_place_id
         self._update_package()
 
-    @api.onchange("customer_ref")
-    def onchange_customer_ref(self):
-        self._update_package()
-
-    @api.onchange("carrier_tracking_ref")
-    def onchange_carrier_tracking_ref(self):
-        self._update_package()
-
     @api.onchange("sale_type_id")
     def onchange_sale_type_id(self):
         # Force reasign because related field don't work with onchange
         self.order_id.type_id = self.sale_type_id
-        self.order_id.onchange_type_id()
-
-    @api.onchange("goods_id")
-    def onchange_goods_id(self):
-        self._update_package()
+        self.order_id._compute_sale_type_id()
 
     def write(self, vals):
         res = super().write(vals)
@@ -299,5 +296,5 @@ class SaleOrderLine(models.Model):
             for order in orders:
                 order.onchange_final_destination_id()
             # Recompute taxes when the fiscal position is changed on the SO
-            orders._compute_tax_id()
+            orders.order_line._compute_tax_id()
         return res

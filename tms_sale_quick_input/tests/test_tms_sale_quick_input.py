@@ -94,9 +94,8 @@ class TestTmsSaleQuickInput(common.TransactionCase):
         sale_order_line_form.tms_package_ids.add(self.package_1)
         sale_order_line_form.tms_package_ids.add(package_2)
         sale_order_line_form.shipping_origin_id = self.shipping_origin
-        sale_order_line = sale_order_line_form.save()
         with self.assertRaises(UserError):
-            sale_order_line.shipping_volume = 9
+            sale_order_line_form.save()
 
     def test_04_update_package(self):
         sale_order_line_form = Form(
@@ -108,7 +107,7 @@ class TestTmsSaleQuickInput(common.TransactionCase):
         sale_order_line_form.shipping_origin_id = self.shipping_origin
         sale_order_line_form.carrier_tracking_ref = "Ref"
         sale_order_line = sale_order_line_form.save()
-        sale_order_line._update_package()
+        sale_order_line._compute_update_package()
         self.assertEqual(len(sale_order_line.tms_package_ids), 1)
         self.assertEqual(
             sale_order_line.tms_package_ids.shipping_origin_id,
