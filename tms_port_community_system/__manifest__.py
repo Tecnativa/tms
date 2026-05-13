@@ -5,13 +5,13 @@
 {
     "name": "Port Community System (PCS)",
     "summary": "Port Community System (PCS)",
-    "version": "15.0.1.0.0",
+    "version": "18.0.1.0.0",
     "category": "Logistic",
     "website": "https://github.com/Tecnativa/tms",
     "author": "Tecnativa, " "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "application": False,
-    "installable": False,
+    "installable": True,
     "depends": [
         "tms",
         "tms_sale_quick_input",

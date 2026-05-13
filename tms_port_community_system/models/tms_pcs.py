@@ -23,16 +23,6 @@ SERVICE_CODES = [
 ]
 
 
-# class TmsValenciaportsMessageType(models.Model):
-#     _name = "tms.pcs.message.type"
-#     _description = "TMS Valencia ports message type"
-#
-#     code = fields.Char()
-#     name = fields.Char()
-#     service_code = fields.Selection(
-#         selection=SERVICE_CODES, string='Service Code', required=True, default='TRANS')
-
-
 class TmsValenciaportsBackend(models.Model):
     _name = "tms.pcs.backend"
     _description = "TMS Valencia ports backend"
@@ -88,7 +78,8 @@ class TmsValenciaportsBackend(models.Model):
                 "CONTRL",
                 "Confirmación de recepción del mensaje por parte del sistema receptor",
             ),
-            # Mensajes del Servicio de Transporte Terrestre (formato valenciaportpcs.net)
+            # Mensajes del Servicio de Transporte Terrestre
+            # (formato valenciaportpcs.net)
             ("DUTv2", "Documento Único de Transporte"),
             ("ReleaseOrderv2", "Orden de Entrega"),
             ("AcceptanceOrderv2", "Orden de Admisión"),
@@ -139,8 +130,8 @@ class TmsValenciaportsBackend(models.Model):
         url = "{}.valenciaportpcs.net/services/{}.asmx?wsdl".format(
             self.environment_test and "http://test" or "https://www", service
         )
-        _logger.info("PCS service {}: {}".format(service, url))
-        return Client(url)
+        _logger.info(f"PCS service {service}: {url}")
+        return Client(url, timeout=30)
 
     def get_transport_service(self, force_reconnect=False):
         return self.pcs_service_wsdl("TransportService")
@@ -228,7 +219,7 @@ class TmsValenciaportsBackend(models.Model):
         Partner = self.env["res.partner"]
         partner = Partner.browse()
         if vat and len(vat) < 10:
-            vat = "ES%s" % vat
+            vat = f"ES{vat}"
             partner = Partner.search([("vat", "=", vat)], limit=1, order="id")
             vals["vat"] = vat
         else:
@@ -570,7 +561,7 @@ class TmsValenciaportsBackend(models.Model):
                         if v["type"] == "many2one":
                             record = self.env[v["relation"]].browse(new_vals[k])
                             new_vals_tracking[k] = record
-                sale_order.message_track(
+                sale_order._message_track(
                     fields_tracking, {sale_order.id: new_vals_tracking}
                 )
                 sale_order.write(new_vals)
@@ -638,7 +629,7 @@ class TmsValenciaportsBackend(models.Model):
                 self._create_sale_order(
                     file_bin, message_guid, doc_xml, msg.MessageType
                 )
-            self.messages_text += "\n{}".format(message_guid)
+            self.messages_text += f"\n{message_guid}"
 
     @api.model
     def call_pcs_method_planned(self):
@@ -663,12 +654,12 @@ class TmsValenciaportsBackend(models.Model):
             country_code, vat = ResPartner._split_vat(vat)
         if not country_code:
             country_code = "ES"
-        full_vat = "{}{}".format(country_code.upper(), vat)
+        full_vat = f"{country_code.upper()}{vat}"
         if ResPartner.simple_vat_check(country_code.lower(), vat):
             vals["vat"] = full_vat
         else:
             if vals.get("comment", False):
-                vals["comment"] += "\nVAT: {}".format(original_vat)
+                vals["comment"] += f"\nVAT: {original_vat}"
             else:
-                vals["comment"] = "VAT: {}".format(original_vat)
+                vals["comment"] = f"VAT: {original_vat}"
         return vals
