@@ -121,16 +121,14 @@ class SaleOrder(models.Model):
         self.write_task_fields(vals)
         return super().write(vals)
 
-    @api.onchange("final_destination_id")
-    def onchange_final_destination_id(self):
-        """
-        Trigger the change of fiscal position when the final destination is modified.
-        """
-        if not self.final_destination_id.country_id:
-            return self.onchange_partner_shipping_id()
-        self.fiscal_position_id = (
-            self.env["account.fiscal.position"]
-            .with_company(self.company_id)
-            .get_fiscal_position(self.final_destination_id.id)
-        )
-        return {}
+    @api.depends("final_destination_id")
+    def _compute_fiscal_position_id(self):
+        """The fiscal position is driven by the final destination when it has
+        a country, both in UI and in writes coming from the task sync."""
+        res = super()._compute_fiscal_position_id()
+        FiscalPosition = self.env["account.fiscal.position"]
+        for order in self.filtered("final_destination_id.country_id"):
+            order.fiscal_position_id = FiscalPosition.with_company(
+                order.company_id
+            )._get_fiscal_position(order.final_destination_id)
+        return res

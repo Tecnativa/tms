@@ -10,8 +10,8 @@
                 position="attributes"
             >
                 <attribute
-                    name="attrs"
-                >{'invisible': [('vehicle_type', 'not in', ('car', 'tractor'))]}</attribute>
+                    name="invisible"
+                >vehicle_type not in ('car', 'tractor')</attribute>
             </xpath>
         </field>
     </record>

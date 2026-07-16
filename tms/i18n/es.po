@@ -145,7 +145,7 @@ msgstr "Admítase"
 
 #. module: tms
 #: model:ir.model.fields,help:tms.field_tms_equipment__goods_ids
-msgid "Adapted for goodss"
+msgid "Adapted for goods"
 msgstr "Adaptado para mercancía"
 
 #. module: tms

@@ -4,6 +4,8 @@
 
 from odoo import api, fields, models
 
+from odoo.addons.project.models.project_task import CLOSED_STATES
+
 
 class TmsPackage(models.Model):
     _name = "tms.package"
@@ -133,7 +135,7 @@ class TmsPackage(models.Model):
         "checkpoint_origin_ids.departure_time",
         "checkpoint_origin_ids.arrival_time",
         "task_ids.timesheet_ids",
-        "task_ids.stage_id.is_closed",
+        "task_ids.state",
     )
     def _compute_state(self):
         for package in self:
@@ -152,7 +154,9 @@ class TmsPackage(models.Model):
             elif package.checkpoint_origin_ids and package.checkpoint_destination_ids:
                 package.state = "ready"
             # TODO: Find better cancel state check
-            elif all(package.task_ids.mapped("stage_id.is_closed")):
+            elif all(
+                task.state in list(CLOSED_STATES.keys()) for task in package.task_ids
+            ):
                 package.state = "cancel"
             else:
                 package.state = "pending"
@@ -167,7 +171,7 @@ class TmsPackage(models.Model):
         return super().create(vals_list)
 
     def write(self, vals):
-        res = super(TmsPackage, self).write(vals)
+        res = super().write(vals)
         if "shipping_weight" in vals:
             weight_uom_category = self.env.ref("uom.product_uom_categ_kgm")
             so_lines = self.sudo().sale_line_ids.filtered(

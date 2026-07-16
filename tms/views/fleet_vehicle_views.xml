@@ -3,7 +3,6 @@
      Copyright 2022 Carlos Dauden
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
-
     <record id="fleet_vehicle_view_form" model="ir.ui.view">
         <field name="model">fleet.vehicle</field>
         <field name="inherit_id" ref="fleet.fleet_vehicle_view_form" />
@@ -15,7 +14,7 @@
                 <field name="vehicle_type" />
                 <field
                     name="trailer_id"
-                    attrs="{'invisible': [('vehicle_type', '!=', 'tractor')]}"
+                    invisible="vehicle_type != 'tractor'"
                     context="{'default_vehicle_type': 'trailer'}"
                 />
             </field>
@@ -23,7 +22,7 @@
                 <separator />
                 <field
                     name="always_show_in_kanban"
-                    attrs="{'invisible': [('vehicle_type', '!=', 'tractor')]}"
+                    invisible="vehicle_type != 'tractor'"
                 />
                 <field name="company_owner_id" options="{'no_create': True}" />
             </field>
@@ -34,41 +33,42 @@
                     class="oe_stat_button"
                     icon="fa-tasks"
                     help="show the tasks for this vehicle"
+                    invisible="vehicle_type not in ('tractor', 'trailer')"
                 >
                     <field name="task_count" widget="statinfo" string="Tasks" />
                 </button>
             </xpath>
-        <!-- Extend options vehicle_type car to tractor and trailer -->
+            <!-- Extend options vehicle_type car to tractor and trailer -->
             <!--  Odometer smartbutton-->
             <xpath expr="//field[@name='odometer_count']/.." position="attributes">
                 <attribute
-                    name="attrs"
-                >{'invisible': [('vehicle_type', 'not in', ('car', 'tractor', 'trailer'))]}</attribute>
+                    name="invisible"
+                >vehicle_type not in ('car', 'tractor', 'trailer')</attribute>
             </xpath>
             <xpath expr="//field[@name='horsepower']/.." position="attributes">
                 <attribute
-                    name="attrs"
-                >{'invisible': [('vehicle_type', 'not in', ('car', 'bike', 'tractor'))]}</attribute>
+                    name="invisible"
+                >vehicle_type not in ('car', 'bike', 'tractor')</attribute>
             </xpath>
             <field name="acquisition_date" position="attributes">
                 <attribute
-                    name="attrs"
-                >{'invisible': [('vehicle_type', 'not in', ('car', 'tractor', 'trailer'))]}</attribute>
+                    name="invisible"
+                >vehicle_type not in ('car', 'tractor', 'trailer')</attribute>
             </field>
             <xpath expr="//label[@for='odometer']" position="attributes">
                 <attribute
-                    name="attrs"
-                >{'invisible': [('vehicle_type', 'not in', ('car', 'tractor', 'trailer'))]}</attribute>
+                    name="invisible"
+                >vehicle_type not in ('car', 'tractor', 'trailer')</attribute>
             </xpath>
             <xpath expr="//field[@name='odometer']/.." position="attributes">
                 <attribute
-                    name="attrs"
-                >{'invisible': [('vehicle_type', 'not in', ('car', 'tractor', 'trailer'))]}</attribute>
+                    name="invisible"
+                >vehicle_type not in ('car', 'tractor', 'trailer')</attribute>
             </xpath>
             <field name="transmission" position="attributes">
                 <attribute
-                    name="attrs"
-                >{'invisible': [('vehicle_type', 'not in', ('car', 'bike', 'tractor'))]}</attribute>
+                    name="invisible"
+                >vehicle_type not in ('car', 'bike', 'tractor')</attribute>
             </field>
             <field name="next_assignation_date" position="after">
                 <field
@@ -79,5 +79,4 @@
             </field>
         </field>
     </record>
-
 </odoo>

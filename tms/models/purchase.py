@@ -10,6 +10,6 @@ class PurchaseOrderLine(models.Model):
     _name = "purchase.order.line"
 
     def _prepare_account_move_line(self, move=None):
-        vals = super(PurchaseOrderLine, self)._prepare_account_move_line(move=move)
+        vals = super()._prepare_account_move_line(move=move)
         vals.update(self.env["tms.analytic"].analytic_fields_vals(self))
         return vals

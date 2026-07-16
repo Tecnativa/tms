@@ -3,7 +3,6 @@
      Copyright 2022 César A. Sánchez
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
-
     <record id="edit_project" model="ir.ui.view">
         <field name="model">project.project</field>
         <field name="inherit_id" ref="project.edit_project" />
@@ -18,23 +17,21 @@
             </xpath>
             <xpath expr="//notebook" position="inside">
                 <page name="tms_info" string="Transport Info">
-                    <group>
-                        <group name="maritime" string="">
-                            <group>
-                                <field name="vessel" />
-                                <field name="vessel_flag" />
-                            </group>
-                            <group>
-                                <field name="shipper_id" />
-                                <field name="consigner_id" />
-                                <field name="freight_forwarder_id" />
-                            </group>
-                            <group>
-                                <field name="load_harbor_id" />
-                                <field name="load_terminal" />
-                                <field name="discharge_harbor_id" />
-                                <field name="discharge_terminal" />
-                            </group>
+                    <group name="maritime" string="">
+                        <group>
+                            <field name="vessel" />
+                            <field name="vessel_flag" />
+                        </group>
+                        <group>
+                            <field name="shipper_id" />
+                            <field name="consigner_id" />
+                            <field name="freight_forwarder_id" />
+                        </group>
+                        <group>
+                            <field name="load_harbor_id" />
+                            <field name="load_terminal" />
+                            <field name="discharge_harbor_id" />
+                            <field name="discharge_terminal" />
                         </group>
                     </group>
                     <group>
@@ -44,5 +41,4 @@
             </xpath>
         </field>
     </record>
-
 </odoo>

@@ -5,13 +5,13 @@
 {
     "name": "Transportation Management System (TMS)",
     "summary": "Transportation Management System (TMS)",
-    "version": "15.0.1.0.0",
+    "version": "18.0.1.0.0",
     "category": "Logistic",
     "website": "https://github.com/Tecnativa/tms",
     "author": "Tecnativa, " "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "application": True,
-    "installable": False,
+    "installable": True,
     "external_dependencies": {
         "python": [
             "stdnum",
@@ -58,7 +58,7 @@
     "assets": {
         "web.assets_backend": [
             "tms/static/src/scss/kanban_view.scss",
-            "tms/static/src/js/kanban_view.js",
+            "tms/static/src/js/kanban_view.esm.js",
         ],
     },
     "maintainers": ["sergio-teruel", "carlosdauden"],

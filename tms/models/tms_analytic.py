@@ -8,7 +8,7 @@ from odoo.tools import OrderedSet
 
 class TmsAnalytic(models.AbstractModel):
     _name = "tms.analytic"
-    _description = "TMS Analityc"
+    _description = "TMS Analytic"
 
     tractor_id = fields.Many2one(
         comodel_name="fleet.vehicle",
@@ -37,14 +37,9 @@ class TmsAnalytic(models.AbstractModel):
         help="Driver of the vehicle",
     )
 
-    # @api.model
-    # def _proper_fields(self):
-    #     return OrderedSet({"tractor_id", "trailer_id", "driver_id"})
-
     @api.model
     def analytic_fields(self):
         return OrderedSet({"tractor_id", "trailer_id", "driver_id"})
-        # return proper_fields - {"display_name", "__last_update", "id"}
 
     @api.model
     def analytic_fields_vals(self, record):

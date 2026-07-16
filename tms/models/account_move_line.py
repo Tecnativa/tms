@@ -9,10 +9,11 @@ class AccountMoveLine(models.Model):
     _inherit = ["account.move.line", "tms.analytic"]
     _name = "account.move.line"
 
-    def _prepare_analytic_line(self):
-        TmsAnalytic = self.env["tms.analytic"]
-        vals_list = super()._prepare_analytic_line()
-        for index, move_line in enumerate(self):
-            vals = vals_list[index]
-            vals.update(TmsAnalytic.analytic_fields_vals(move_line))
+    def _prepare_analytic_lines(self):
+        # Super is ensure_one and returns one vals dict per analytic
+        # distribution entry: apply the TMS dimensions to all of them
+        vals_list = super()._prepare_analytic_lines()
+        tms_vals = self.env["tms.analytic"].analytic_fields_vals(self)
+        for vals in vals_list:
+            vals.update(tms_vals)
         return vals_list

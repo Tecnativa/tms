@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo noupdate="1">
-
     <record id="geoprovider_open_route_service" model="base.geo_provider">
         <field name="tech_name">openrouteservice</field>
         <field name="name">Open Route Service</field>
@@ -31,5 +30,4 @@
         <field name="name">TMS Lineal Length</field>
         <field name="digits">2</field>
     </record>
-
 </odoo>

@@ -2,20 +2,6 @@
 <!-- Copyright 2017 Sergio Teruel <sergio.teruel@tecnativa.com>
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
-
-    <record id="view_task_form2" model="ir.ui.view">
-        <field name="model">project.task</field>
-        <field name="inherit_id" ref="project_timeline.view_task_form2" />
-        <field name="arch" type="xml">
-            <label for="planned_date_start" position="attributes">
-                <attribute name="invisible">1</attribute>
-            </label>
-            <xpath expr="//field[@name='planned_date_start']/.." position="attributes">
-                <attribute name="invisible">1</attribute>
-            </xpath>
-        </field>
-    </record>
-
     <record id="tms_view_task_form2" model="ir.ui.view">
         <field name="model">project.task</field>
         <field name="inherit_id" ref="project.view_task_form2" />
@@ -84,10 +70,9 @@
                             name="tms_package_ids"
                             nolabel="1"
                             colspan="2"
-                            mode="tree,kanban"
+                            mode="list,kanban"
                         >
-                            <tree editable="bottom" order="sequence, id DESC">
-                                <!--<field name="product_id" readonly="1"/>-->
+                            <list editable="bottom" order="sequence, id DESC">
                                 <field name="sequence" widget="handle" />
                                 <field name="name" readonly="1" optional="show" />
                                 <field
@@ -124,15 +109,12 @@
                                     sum="Total Packages"
                                     optional="show"
                                 />
-                            </tree>
+                            </list>
                         </field>
                     </group>
-                    <group
-                        string="All Packages"
-                        attrs="{'invisible':[('child_ids', '=', [])]}"
-                    >
+                    <group string="All Packages" invisible="[('child_ids', '=', [])]">
                         <field name="tms_package_all_ids" nolabel="1" colspan="2">
-                            <tree editable="bottom">
+                            <list editable="bottom">
                                 <field name="name" readonly="1" optional="show" />
                                 <field
                                     name="shipping_origin_id"
@@ -167,22 +149,28 @@
                                     sum="Total Packages"
                                     optional="show"
                                 />
-                            </tree>
+                            </list>
                         </field>
                     </group>
                 </page>
                 <page name="tms_checkpoint" string="Checkpoints">
-                    <button
-                        name="fill_checkpoints"
-                        type="object"
-                        string="Fill Checkpoints"
-                    />
-                    <button
-                        name="get_route_info"
-                        type="object"
-                        string="Estimate route"
-                    />
-                    <button name="open_in_webmap" type="object" string="Show Route" />
+                    <div class="d-flex gap-2 mb-3">
+                        <button
+                            name="fill_checkpoints"
+                            type="object"
+                            string="Fill Checkpoints"
+                        />
+                        <button
+                            name="get_route_info"
+                            type="object"
+                            string="Estimate route"
+                        />
+                        <button
+                            name="open_in_webmap"
+                            type="object"
+                            string="Show Route"
+                        />
+                    </div>
                     <group col="4">
                         <field name="odometer_start" />
                         <field name="odometer_stop" />
@@ -192,8 +180,8 @@
                         <field name="free_stoped_time" widget="float_time" />
                     </group>
                     <group>
-                        <field name="checkpoint_ids" nolabel="1" mode="tree,kanban">
-                            <tree editable="bottom">
+                        <field name="checkpoint_ids" nolabel="1" mode="list,kanban">
+                            <list editable="bottom">
                                 <field name="sequence" widget="handle" />
                                 <field name="place_id" optional="show" />
                                 <field
@@ -225,7 +213,7 @@
                                     widget="many2many_tags"
                                     optional="show"
                                 />
-                            </tree>
+                            </list>
                         </field>
                     </group>
                 </page>
@@ -285,18 +273,18 @@
                 <filter
                     string="Pending"
                     name="pending"
-                    domain="[('stage_id.is_closed', '=', False)]"
+                    domain="[('state', 'not in', ('1_done', '1_cancelled'))]"
                 />
                 <filter
                     string="In Progress"
                     name="in_progress"
-                    domain="[('stage_id.sequence', '&gt;', 1), ('stage_id.is_closed', '=', False)]"
+                    domain="[('state', '=', '01_in_progress')]"
                 />
                 <separator />
                 <filter
                     string="Subtask hidden"
                     name="subtask_hidden"
-                    domain="[('display_project_id', '!=', False)]"
+                    domain="[('project_id', '!=', False)]"
                 />
                 <separator />
                 <filter
@@ -305,29 +293,6 @@
                     date="planned_date_start"
                 />
                 <separator />
-<!--                <filter-->
-<!--                    string="Origin"-->
-<!--                    name="has_origin"-->
-<!--                    domain="[('shipping_origin_id', '!=', False)]"-->
-<!--                />-->
-<!--                <separator />-->
-<!--                <filter-->
-<!--                    string="Destination"-->
-<!--                    name="has_destination"-->
-<!--                    domain="[('shipping_destination_id', '!=', False)]"-->
-<!--                />-->
-<!--                <separator />-->
-<!--                <filter-->
-<!--                    string="Transport Order"-->
-<!--                    name="is_transport_order"-->
-<!--                    domain="[('is_transport_order', '=', True)]"-->
-<!--                />-->
-<!--                <filter-->
-<!--                    string="Not Transport Order"-->
-<!--                    name="not_is_transport_order"-->
-<!--                    domain="[('is_transport_order', '=', False)]"-->
-<!--                />-->
-<!--                <separator />-->
             </filter>
             <filter name="my_tasks" position="before">
                 <filter
@@ -418,7 +383,6 @@
                         </div>
                     </t>
                 </div>
-                <!--<span t-esc="record.child_ids.raw_value"/>-->
                 <t t-if="record.child_ids.raw_value != ''">
                     <div>
                         <span>
@@ -468,16 +432,10 @@
                 <field name="partner_is_company" />
                 <field name="displayed_image_id" />
                 <field name="active" />
-                <field name="legend_blocked" />
-                <field name="legend_normal" />
-                <field name="legend_done" />
                 <field name="activity_ids" />
                 <field name="activity_state" />
                 <field name="rating_last_value" />
                 <field name="rating_ids" />
-                <field name="allow_subtasks" />
-                <field name="child_text" />
-                <field name="is_private" />
                 <field name="unload_service" />
                 <field name="progress_status" />
                 <field name="pending_duration_estimated" />
@@ -488,117 +446,119 @@
                     sum_field="pending_duration_estimated"
                 />
                 <templates>
-                <t t-name="kanban-box">
-                    <div
+                    <t t-name="card">
+                        <div
                             t-attf-class="{{!selection_mode ? 'oe_kanban_color_' + kanban_getcolor(record.color.raw_value) : ''}} oe_kanban_card oe_kanban_global_click"
                         >
-                        <div class="oe_kanban_content">
-                            <div class="o_kanban_record_top">
-                                <div class="o_kanban_record_headings">
-                                    <t t-if="record.equipment_size_type_id.value">
-                                        <field
+                            <div class="oe_kanban_content">
+                                <div class="o_kanban_record_top">
+                                    <div class="o_kanban_record_headings">
+                                        <t t-if="record.equipment_size_type_id.value">
+                                            <field
                                                 name="equipment_size_type_id"
                                                 widget="name_with_subtask_count"
                                             />
-                                    </t>
-                                    <t t-if="record.shipping_company_id.value">
-                                        <field name="shipping_company_id" />
-                                    </t>
-                                </div>
-                                <div
+                                        </t>
+                                        <t t-if="record.shipping_company_id.value">
+                                            <field name="shipping_company_id" />
+                                        </t>
+                                    </div>
+                                    <div
                                         class="o_dropdown_kanban dropdown"
                                         t-if="!selection_mode"
                                         groups="base.group_user"
                                     >
-                                    <a
+                                        <a
                                             role="button"
                                             class="dropdown-toggle o-no-caret btn"
-                                            data-toggle="dropdown"
+                                            data-bs-toggle="dropdown"
                                             data-display="static"
                                             href="#"
                                             aria-label="Dropdown menu"
                                             title="Dropdown menu"
                                         >
-                                        <span class="fa fa-ellipsis-v" />
-                                    </a>
-                                    <div class="dropdown-menu" role="menu">
-                                        <a
+                                            <span class="fa fa-ellipsis-v" />
+                                        </a>
+                                        <div
+                                            class="o_dropdown_kanban dropdown"
+                                            role="menu"
+                                        >
+                                            <a
                                                 t-if="widget.editable"
                                                 role="menuitem"
                                                 type="set_cover"
                                                 class="dropdown-item"
                                                 data-field="displayed_image_id"
                                             >Set Cover Image</a>
-                                        <a
+                                            <a
                                                 name="%(portal.portal_share_action)d"
                                                 role="menuitem"
                                                 type="action"
                                                 class="dropdown-item"
                                             >Share</a>
-                                        <a
+                                            <a
                                                 t-if="widget.editable"
                                                 role="menuitem"
                                                 type="edit"
                                                 class="dropdown-item"
                                             >Edit</a>
-                                        <div
+                                            <div
                                                 role="separator"
                                                 class="dropdown-divider"
                                             />
-                                        <ul
+                                            <ul
                                                 class="oe_kanban_colorpicker"
                                                 data-field="color"
                                             />
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="o_kanban_record_body">
-                                <strong>
-                                    <t
+                                <div class="o_kanban_record_body">
+                                    <strong>
+                                        <t
                                             t-if="record.shipping_origin_id.value and !record.unload_service.raw_value"
                                         >
-                                        <field name="shipping_origin_id" />
-                                    </t>
-                                    <t
+                                            <field name="shipping_origin_id" />
+                                        </t>
+                                        <t
                                             t-else="record.shipping_destination_id.value and record.unload_service.raw_value"
                                         >
-                                        <field name="shipping_destination_id" />
-                                    </t>
-                                    <br />
-                                </strong>
-                                <t
+                                            <field name="shipping_destination_id" />
+                                        </t>
+                                        <br />
+                                    </strong>
+                                    <t
                                         t-if="record.planned_date_start.raw_value"
                                         t-set="blue"
                                     >oe_kanban_text_blue</t>
-                                <span
+                                    <span
                                         style="text-color:blue;"
                                         t-attf-class="#{blue || ''}"
                                     >
-                                    <i>
-                                        <field name="planned_date_start" />
-                                    </i>
-                                </span>
-                                <br />
-                                <field
+                                        <i>
+                                            <field name="planned_date_start" />
+                                        </i>
+                                    </span>
+                                    <br />
+                                    <field
                                         name="trailer_requirement_ids"
                                         widget="many2many_tags"
                                         options="{'color_field': 'color'}"
                                     />
-                                <div t-if="record.displayed_image_id.value">
-                                    <field
+                                    <div t-if="record.displayed_image_id.value">
+                                        <field
                                             name="displayed_image_id"
                                             widget="attachment_image"
                                         />
+                                    </div>
                                 </div>
                             </div>
                         </div>
-<!--                        <div class="oe_clear"></div>-->
-                    </div>
-                </t>
+                    </t>
                 </templates>
             </kanban>
         </field>
-     </record>
+    </record>
 
     <record id="project_task_timeline" model="ir.ui.view">
         <field name="model">project.task</field>
@@ -609,44 +569,34 @@
             </xpath>
         </field>
     </record>
-
-    <!--<record id="view_task_form2_sale_service_project" model="ir.ui.view">-->
-    <!--<field name="model">project.task</field>-->
-    <!--<field name="inherit_id" ref="sale_service_project.view_task_form2"/>-->
-    <!--<field name="arch" type="xml">-->
-    <!--<field name="vendor_id" position="after">-->
-    <!--<button name="action_propagate_vendor"-->
-    <!--type="object"-->
-    <!--string="Propagate to child task"-->
-    <!--colspan="2"-->
-    <!--/>-->
-    <!--</field>-->
-    <!--</field>-->
-    <!--</record>-->
-
     <record id="project_task_checkpoint_kanban_view" model="ir.ui.view">
         <field name="name">project.task.checkpoint.kanban</field>
         <field name="model">project.task.checkpoint</field>
         <field name="arch" type="xml">
             <kanban>
                 <templates>
-                    <t t-name="kanban-box">
+                    <t t-name="card">
                         <div class="oe_kanban_card oe_kanban_global_click">
                             <div class="o_kanban_card_content d-flex">
                                 <div class="card-body p-0">
-                                    <h2 class="card-title"><field name="name" /></h2>
+                                    <h2 class="card-title">
+                                        <field name="name" />
+                                    </h2>
                                     <div class="row">
                                         <div class="col-6">
-                                            <strong>Arrival:</strong><br />
+                                            <strong>Arrival:</strong>
+                                            <br />
                                             <field name="arrival_time" />
                                         </div>
                                         <div class="col-6">
-                                            <strong>Departure:</strong><br />
+                                            <strong>Departure:</strong>
+                                            <br />
                                             <field name="departure_time" />
                                         </div>
                                     </div>
                                     <p class="card-text mt-3">
-                                        <strong>Stopped time:</strong> <field
+                                        <strong>Stopped time:</strong>
+                                        <field
                                             name="stopped_time"
                                             widget="float_time"
                                         />
@@ -655,7 +605,7 @@
                                         <div
                                             class="col-8"
                                             style="height: 50px"
-                                            attrs="{'invisible': [('arrival_time', '!=', False)]}"
+                                            invisible="arrival_time"
                                         >
                                             <field
                                                 name="progress_status"
@@ -665,7 +615,7 @@
                                                 class="btn btn-primary w-100 h-100"
                                                 type="object"
                                                 name="register_arrival_time"
-                                                attrs="{'invisible': [('progress_status','!=', 'in_progress')]}"
+                                                invisible="progress_status != 'in_progress'"
                                             >
                                                 <i class="fa fa-sign-in" />
                                                 Register Arrival
@@ -674,7 +624,7 @@
                                         <div
                                             class="col-8"
                                             style="height: 50px"
-                                            attrs="{'invisible': ['|', ('arrival_time', '=', False), ('departure_time', '!=', False)]}"
+                                            invisible="not arrival_time or departure_time"
                                         >
                                             <button
                                                 class="btn btn-warning w-100 h-100"
@@ -699,7 +649,7 @@
     <record id="action_view_task" model="ir.actions.act_window">
         <field name="name">Tasks</field>
         <field name="res_model">project.task</field>
-        <field name="view_mode">kanban,tree,form,calendar,pivot,graph,activity</field>
+        <field name="view_mode">kanban,list,form,calendar,pivot,graph,activity</field>
         <field
             name="context"
         >{'search_default_subtask_hidden': True, 'tms_show_all_kanban_vehicles': True}</field>
@@ -710,6 +660,4 @@
             <span />
         </field>
     </record>
-
-
 </odoo>

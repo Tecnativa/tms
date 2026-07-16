@@ -4,12 +4,12 @@
 
 import logging
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 try:
     from stdnum import iso6346
-except (ImportError, IOError) as err:
+except (OSError, ImportError) as err:
     logging.info(err)
 
 
@@ -22,7 +22,7 @@ class ISO6346Length(models.Model):
     name = fields.Char()
     length = fields.Float()  # pylint: disable=W8105
 
-    _sql_constraints = [("uniq_code", "unique(code)", _("The code must be unique !"))]
+    _sql_constraints = [("uniq_code", "unique(code)", "The code must be unique !")]
 
 
 class ISO6346SecondSize(models.Model):
@@ -35,7 +35,7 @@ class ISO6346SecondSize(models.Model):
     height = fields.Float()
     width = fields.Float()
 
-    _sql_constraints = [("uniq_code", "unique(code)", _("The code must be unique !"))]
+    _sql_constraints = [("uniq_code", "unique(code)", "The code must be unique !")]
 
 
 class ISO6346Type(models.Model):
@@ -46,7 +46,7 @@ class ISO6346Type(models.Model):
     code = fields.Char()
     name = fields.Char()
 
-    _sql_constraints = [("uniq_code", "unique(code)", _("The code must be unique !"))]
+    _sql_constraints = [("uniq_code", "unique(code)", "The code must be unique !")]
 
 
 class ISO6346SizeType(models.Model):
@@ -74,7 +74,7 @@ class ISO6346SizeType(models.Model):
         ondelete="restrict",
     )
 
-    _sql_constraints = [("uniq_code", "unique(code)", _("The code must be unique !"))]
+    _sql_constraints = [("uniq_code", "unique(code)", "The code must be unique !")]
 
     @api.onchange("code")
     def _onchange_code(self):
@@ -112,8 +112,8 @@ class TmsEquipment(models.Model):
     )
     goods_ids = fields.Many2many(
         comodel_name="tms.goods",
-        string="Goodss",
-        help="Adapted for goodss",
+        string="Goods",
+        help="Adapted for goods",
         ondelete="restrict",
     )
     iso6346_ok = fields.Boolean(
@@ -121,7 +121,7 @@ class TmsEquipment(models.Model):
         default=True,
     )
 
-    _sql_constraints = [("uniq_name", "unique(name)", _("The name must be unique !"))]
+    _sql_constraints = [("uniq_name", "unique(name)", "The name must be unique !")]
 
     def _verify_iso6346(self, vals):
         name = vals.get("name", self.name).replace(" ", "").replace("-", "")
@@ -129,7 +129,7 @@ class TmsEquipment(models.Model):
             vals["name"] = iso6346.validate(name)
         except Exception as error:
             raise ValidationError(
-                _("The name is invalid: %(error)s") % {"error": str(error)}
+                self.env._("The name is invalid: %(error)s") % {"error": str(error)}
             ) from error
         return vals
 

@@ -9,7 +9,12 @@ class SaleOrderLine(models.Model):
     _inherit = ["sale.order.line", "tms.analytic"]
     _name = "sale.order.line"
 
-    level = fields.Integer()
+    level = fields.Integer(
+        compute="_compute_level",
+        store=True,
+        readonly=False,
+        precompute=True,
+    )
     parent_line_id = fields.Many2one(
         comodel_name="sale.order.line",
         compute="_compute_parent_line_id",
@@ -64,16 +69,16 @@ class SaleOrderLine(models.Model):
     def _compute_parent_line_id(self):
         for line in self.filtered("level"):
             parent_line = line.order_id.order_line.filtered(
-                lambda x: x.level < line.level and x.sequence <= line.sequence
+                lambda x, current_line=line: x.level < current_line.level
+                and x.sequence <= current_line.sequence
             )
             line.parent_line_id = parent_line[-1:]
 
-    @api.onchange("product_id")
-    def product_id_change(self):
-        res = super().product_id_change()
-        if not self.level:
-            self.level = self.product_id.level
-        return res
+    @api.depends("product_id")
+    def _compute_level(self):
+        for line in self:
+            if not line.level:
+                line.level = line.product_id.level
 
     def _prepare_invoice_line(self, **optional_values):
         vals = super()._prepare_invoice_line(**optional_values)
@@ -134,7 +139,7 @@ class SaleOrderLine(models.Model):
         if self.parent_line_id:
             parent_task = self.parent_line_id.task_id
             vals["parent_id"] = parent_task.id
-            vals["display_project_id"] = parent_task.project_id.id
+            vals["project_id"] = parent_task.project_id.id
             vals["sequence"] = 50
         else:
             vals.update(
