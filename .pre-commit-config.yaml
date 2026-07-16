@@ -2,7 +2,6 @@ exclude: |
   (?x)
   # NOT INSTALLABLE ADDONS
   ^sale_line_reassign/|
-  ^sale_order_line_vendor/|
   ^tms/|
   ^tms_analytic/|
   ^tms_analytic_distribution/|

@@ -32,7 +32,7 @@ class TestSaleOrderLineVendor(common.TransactionCase):
                         0,
                         False,
                         {
-                            "name": cls.supplier.id,
+                            "partner_id": cls.supplier.id,
                             "price": 80.0,
                         },
                     )

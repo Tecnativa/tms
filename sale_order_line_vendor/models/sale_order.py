@@ -49,32 +49,50 @@ class SaleOrderLine(models.Model):
             else:
                 line.purchase_price = 0.0
 
-    def _purchase_service_create(self, quantity=False):
-        unprocessed_lines = self.browse()
-        sale_line_purchase_map = {}
-        for line in self:
-            if line.vendor_id:
-                sale_line_purchase_map.update(
-                    super(
-                        SaleOrderLine, line.with_context(force_vendor_sale_line=line)
-                    )._purchase_service_create(quantity=quantity)
-                )
-            else:
-                unprocessed_lines |= line
-        process_map = super(SaleOrderLine, unprocessed_lines)._purchase_service_create(
-            quantity=quantity
+    def _get_vendor_virtual_supplierinfo(self):
+        """Virtual seller built from the line vendor and cost, so any vendor
+        works without product.supplierinfo master data."""
+        self.ensure_one()
+        return self.env["product.supplierinfo"].new(
+            {
+                "partner_id": self.vendor_id.id,
+                "price": self.purchase_price,
+                "product_tmpl_id": self.product_id.product_tmpl_id.id,
+                "product_id": self.product_id.id,
+            }
         )
+
+    def _purchase_service_match_supplier(self, warning=True):
+        if self.vendor_id:
+            return self._get_vendor_virtual_supplierinfo()
+        return super()._purchase_service_match_supplier(warning=warning)
+
+    def _purchase_service_prepare_line_values(self, purchase_order, quantity=False):
+        vals = super()._purchase_service_prepare_line_values(
+            purchase_order, quantity=quantity
+        )
+        if self.vendor_id:
+            # The super method re-selects the seller from real supplierinfo
+            # records, so recompute the price from the virtual seller
+            vals["price_unit"], _taxes = (
+                self._purchase_service_get_price_unit_and_taxes(
+                    self._get_vendor_virtual_supplierinfo(), purchase_order
+                )
+            )
+        return vals
+
+    def _purchase_service_create(self, quantity=False):
+        sale_line_purchase_map = super()._purchase_service_create(quantity=quantity)
         # Update vendor and price in lines with service_to_purchase products
-        for so_line, purchase_line in process_map.items():
+        for so_line, purchase_line in sale_line_purchase_map.items():
             vendor = purchase_line.order_id.partner_id
-            if vendor:
+            if vendor and not so_line.vendor_id:
                 so_line.update(
                     {
                         "vendor_id": vendor.id,
                         "purchase_price": purchase_line.price_unit,
                     }
                 )
-        sale_line_purchase_map.update(process_map)
         return sale_line_purchase_map
 
     def _get_vendor_qty(self):
@@ -91,7 +109,9 @@ class SaleOrderLine(models.Model):
         po_to_check = self.env["purchase.order"]
         if new_qty == 0.0:
             for line in self:
-                po_lines = line.purchase_line_ids.filtered(lambda l: l.state == "draft")
+                po_lines = line.purchase_line_ids.filtered(
+                    lambda line: line.state == "draft"
+                )
                 if po_lines:
                     po_to_check |= po_lines.mapped("order_id")
                     po_lines.unlink()
