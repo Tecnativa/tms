@@ -5,12 +5,12 @@
 {
     "name": "TMS Hr Leave Letter",
     "summary": "Transport Management System (TMS) HR Leave Letter",
-    "version": "15.0.1.0.0",
+    "version": "18.0.1.0.0",
     "category": "Logistic",
     "website": "https://github.com/Tecnativa/tms",
     "author": "Tecnativa, Odoo Community Association (OCA)",
     "license": "AGPL-3",
-    "installable": False,
+    "installable": True,
     "depends": [
         "hr_holidays",
     ],

@@ -29,8 +29,9 @@ class TestTmsHrLeaveLetter(TransactionCase):
     def _create_leave_type(self):
         leave_type_form = Form(self.env["hr.leave.type"])
         leave_type_form.name = "Test Leave Type"
+        leave_type_form.request_unit = "half_day"
         leave_type_form.leave_letter_type = "holidays_leave"
-        leave_type_form.responsible_id = self.user
+        leave_type_form.responsible_ids.add(self.user)
         leave_type_form.requires_allocation = "no"
         return leave_type_form.save()
 
@@ -55,5 +56,11 @@ class TestTmsHrLeaveLetter(TransactionCase):
         report = self.env["ir.actions.report"]._get_report_from_name(
             "tms_hr_leave_letter.report_tms_hr_leave_letter"
         )
-        res = report._render_qweb_html(leave.ids)[0].decode("utf-8").split("\n")
+        res = (
+            report._render_qweb_html(
+                "tms_hr_leave_letter.report_tms_hr_leave_letter", leave.ids
+            )[0]
+            .decode("utf-8")
+            .split("\n")
+        )
         self.assertRegex(str(res), self.employee.name)

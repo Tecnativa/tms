@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
-
     <record id="tms_hr_leave_letter" model="ir.actions.report">
         <field name="name">Leave Letter</field>
         <field name="model">hr.leave</field>
@@ -14,5 +12,4 @@
         <field name="binding_type">report</field>
         <field name="binding_model_id" ref="hr_holidays.model_hr_leave" />
     </record>
-
 </odoo>
