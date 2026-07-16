@@ -9,15 +9,21 @@ class TestPurchaseFixedQuantity(TransactionCase):
         super().setUpClass()
         cls.vendor = cls.env["res.partner"].create({"name": "Test vendor"})
         cls.client = cls.env["res.partner"].create({"name": "Test client"})
-        service_form = Form(cls.env["product.product"])
-        service_form.name = "Test Service"
-        service_form.detailed_type = "service"
-        service_form.fixed_purchase_qty = 90
-        service_form.service_to_purchase = True
-        with service_form.seller_ids.new() as seller:
-            seller.name = cls.vendor
-            seller.price = 20
-        cls.service = service_form.save()
+        cls.service = cls.env["product.product"].create(
+            {
+                "name": "Test service",
+                "type": "service",
+                "fixed_purchase_qty": 90,
+            }
+        )
+        cls.env["product.supplierinfo"].create(
+            {
+                "partner_id": cls.vendor.id,
+                "product_tmpl_id": cls.service.product_tmpl_id.id,
+                "min_qty": 1,
+            }
+        )
+        cls.service.service_to_purchase = True
 
     def test_01_purchase_service_from_sale(self):
         sale_order_form = Form(self.env["sale.order"])
