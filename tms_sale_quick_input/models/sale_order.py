@@ -2,7 +2,7 @@
 # Copyright 2017 Carlos Dauden <carlos.dauden@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 
 
@@ -211,14 +211,29 @@ class SaleOrderLine(models.Model):
         for line in self:
             line[field_name] = sum(line.tms_package_ids.mapped(field_name))
 
+    def _aggregate_from_packages(self, field_name):
+        self.ensure_one()
+        if isinstance(self._fields[field_name], fields.Char | fields.Text):
+            return ", ".join(
+                package[field_name]
+                for package in self.tms_package_ids
+                if package[field_name]
+            )
+        return sum(self.tms_package_ids.mapped(field_name))
+
     def set_field_to_packages(self, field_name):
         for line in self:
             if not line[field_name]:
                 continue
             if len(line.tms_package_ids) == 1:
                 line.tms_package_ids[field_name] = line[field_name]
-            else:
-                raise UserError(_("Go to packages to change data %s") % field_name)
+            # Since 18.0 web_save also sends the recomputed aggregates, so the
+            # inverse fires on save without user changes: only block a real
+            # modification of a multi-package aggregate
+            elif line[field_name] != line._aggregate_from_packages(field_name):
+                raise UserError(
+                    self.env._("Go to packages to change data %s") % field_name
+                )
 
     @api.onchange("unload_service")
     def _onchange_unload_service(self):
@@ -282,22 +297,23 @@ class SaleOrderLine(models.Model):
     def onchange_carrier_tracking_ref(self):
         self._update_package()
 
-    @api.onchange("sale_type_id")
-    def onchange_sale_type_id(self):
-        # Force reasign because related field don't work with onchange
-        self.order_id.type_id = self.sale_type_id
-        self.order_id.onchange_type_id()
-
     @api.onchange("goods_id")
     def onchange_goods_id(self):
         self._update_package()
 
+    @api.onchange("sale_type_id")
+    def onchange_sale_type_id(self):
+        # Force reasign because related field don't work with onchange.
+        # The type side effects hang on computes depending on type_id, so
+        # assigning it is enough (calling _compute_sale_type_id would reset
+        # the type from the partner defaults).
+        self.order_id.type_id = self.sale_type_id
+
     def write(self, vals):
         res = super().write(vals)
         if "final_destination_id" in vals:
-            orders = self.mapped("order_id")
-            for order in orders:
-                order.onchange_final_destination_id()
-            # Recompute taxes when the fiscal position is changed on the SO
-            orders._compute_tax_id()
+            # The fiscal position is recomputed from the final destination
+            # (tms extends _compute_fiscal_position_id); refresh the line
+            # taxes as their compute does not depend on the fiscal position
+            self.order_id.order_line._compute_tax_id()
         return res
