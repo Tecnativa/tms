@@ -62,12 +62,9 @@ class TmsDriverReport(models.Model):
         return group_by_str
 
     def _view_sql(self):
-        return "%s FROM (%s %s %s %s) AS sub" % (
-            self._select(),
-            self._sub_select(),
-            self._from(),
-            self._where(),
-            self._group_by(),
+        return (
+            f"{self._select()} FROM ({self._sub_select()} {self._from()} "
+            f"{self._where()} {self._group_by()}) AS sub"
         )
 
     def init(self):

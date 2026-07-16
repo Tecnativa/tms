@@ -1,71 +1,72 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <!-- Email template for transport orders -->
-<record id="transport_order_email" model="mail.template">
-    <field name="name">Send Transport Order</field>
-    <field name="model_id" ref="project.model_project_task" />
-    <field name="auto_delete" eval="True" />
-    <!-- <field name="report_template" ref="report_tms_transportation_order" />
+    <record id="transport_order_email" model="mail.template">
+        <field name="name">Send Transport Order</field>
+        <field name="model_id" ref="project.model_project_task" />
+        <field name="auto_delete" eval="True" />
+        <!-- <field name="report_template" ref="report_tms_transportation_order" />
     <field
             name="report_name"
         >Transport_Order_${(object.name or '').replace('/','_')}</field> -->
-    <field name="lang">{{ object.driver_id.lang }}</field>
-    <field
+        <field name="lang">{{ object.driver_id.lang }}</field>
+        <field
             name="email_from"
         >"{{ object.company_id.name }}" &lt;{{ (object.company_id.email or user.email) }}&gt;</field>
-    <field name="partner_to">{{ object.driver_id.id }}</field>
-    <field name="subject">Transport Order {{ object.name }}></field>
-    <field name="body_html" type="html">
-<div
+        <field name="partner_to">{{ object.driver_id.id }}</field>
+        <field name="subject">Transport Order {{ object.name }}></field>
+        <field name="body_html" type="html">
+            <div
                 style="padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777"
             >
-    <table
+                <table
                     cellspacing="0"
                     cellpadding="0"
                     style="width:600px;border-collapse:collapse;background:inherit;color:inherit"
                 >
-        <tbody><tr>
-            <td
+                    <tbody>
+                        <tr>
+                            <td
                                 valign="center"
                                 width="200"
                                 style="padding:10px 10px 10px 5px;font-size: 12px"
                             >
-                <img
+                                <img
                                     src="/logo.png"
                                     style="padding: 0px; margin: 0px; height: auto; width: 80px;"
                                     alt="{{ user.company_id.name }}"
                                 />
-            </td>
-        </tr></tbody>
-    </table>
-</div>
-<div
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div
                 style="padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777"
             >
-<p>Dear <t t-out="object.driver_id.name or ''">Brandon Freeman</t>,</p>
-    <p>
+                <p>Dear <t t-out="object.driver_id.name or ''">Brandon Freeman</t>,</p>
+                <p>
         Attach transport order from <t
-                        t-out="object.company_id.name"
-                    >Principal Company</t>.
+                    t-out="object.company_id.name"
+                >Principal Company</t>.
     </p>
-    <p>Best regards,</p>
-</div>
-<div
+                <p>Best regards,</p>
+            </div>
+            <div
                 style="padding:0px;width:600px;margin:auto; margin-top: 10px; background: #fff repeat top /100%;color:#777777"
             >
-    <t t-out="user.signature or ''">Michael Admin</t>
-</div>
-    </field>
-</record>
+                <t t-out="user.signature or ''">Michael Admin</t>
+            </div>
+        </field>
+    </record>
 
-<record id="action_transport_order_email" model="ir.actions.act_window">
-    <field name="name">Send Transport Order</field>
-    <field name="res_model">mail.compose.message</field>
-    <field name="binding_model_id" ref="model_project_task" />
-    <field name="view_mode">form</field>
-    <field name="target">new</field>
-    <field
+    <record id="action_transport_order_email" model="ir.actions.act_window">
+        <field name="name">Send Transport Order</field>
+        <field name="res_model">mail.compose.message</field>
+        <field name="binding_model_id" ref="model_project_task" />
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field
             name="context"
             eval="{
             'default_composition_mode': 'mass_mail',
@@ -74,6 +75,5 @@
             'default_template_id': ref('transport_order_email'),
         }"
         />
-</record>
-
+    </record>
 </odoo>
