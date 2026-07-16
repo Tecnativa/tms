@@ -2,45 +2,26 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
-from odoo.osv import expression
 
 
 class TmsGoodsAdrClass(models.Model):
     _name = "tms.goods.adr.class"
     _description = "TMS Goods ADR Class"
+    _rec_names_search = ["code", "name"]
 
     code = fields.Char(required=True)
     name = fields.Char(translate=True)
 
-    @api.model
-    def _name_search(
-        self, name, args=None, operator="ilike", limit=100, name_get_uid=None
-    ):
-        args = args or []
-        domain = []
-        if name:
-            domain = [
-                "|",
-                ("code", "=ilike", name.split(" ")[0] + "%"),
-                ("name", operator, name),
-            ]
-            if operator in expression.NEGATIVE_TERM_OPERATORS:
-                domain = ["&", "!"] + domain[1:]
-        return self._search(
-            expression.AND([domain, args]), limit=limit, access_rights_uid=name_get_uid
-        )
-
-    def name_get(self):
-        result = []
+    @api.depends("code", "name")
+    def _compute_display_name(self):
         for adr_class in self:
-            name = f"({adr_class.code}) {adr_class.name}"
-            result.append((adr_class.id, name))
-        return result
+            adr_class.display_name = f"({adr_class.code}) {adr_class.name or ''}"
 
 
 class TmsGoodsAdr(models.Model):
     _name = "tms.goods.adr"
     _description = "TMS Goods ADR"
+    _rec_names_search = ["un_number", "name"]
 
     name = fields.Char(
         translate=True, required=True, help="Name of the substance or article"
@@ -53,27 +34,7 @@ class TmsGoodsAdr(models.Model):
     )
     adr_tag = fields.Char(string="Tag")
 
-    @api.model
-    def _name_search(
-        self, name, args=None, operator="ilike", limit=100, name_get_uid=None
-    ):
-        args = args or []
-        domain = []
-        if name:
-            domain = [
-                "|",
-                ("un_number", "=ilike", name.split(" ")[0] + "%"),
-                ("name", operator, name),
-            ]
-            if operator in expression.NEGATIVE_TERM_OPERATORS:
-                domain = ["&", "!"] + domain[1:]
-        return self._search(
-            expression.AND([domain, args]), limit=limit, access_rights_uid=name_get_uid
-        )
-
-    def name_get(self):
-        result = []
+    @api.depends("un_number", "name", "adr_class.code")
+    def _compute_display_name(self):
         for adr in self:
-            name = f"[{adr.un_number}] {adr.name} ({adr.adr_class.code})"
-            result.append((adr.id, name))
-        return result
+            adr.display_name = f"[{adr.un_number}] {adr.name} ({adr.adr_class.code})"

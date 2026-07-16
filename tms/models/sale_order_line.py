@@ -9,7 +9,12 @@ class SaleOrderLine(models.Model):
     _inherit = ["sale.order.line", "tms.analytic"]
     _name = "sale.order.line"
 
-    level = fields.Integer()
+    level = fields.Integer(
+        compute="_compute_level",
+        store=True,
+        readonly=False,
+        precompute=True,
+    )
     parent_line_id = fields.Many2one(
         comodel_name="sale.order.line",
         compute="_compute_parent_line_id",
@@ -69,11 +74,11 @@ class SaleOrderLine(models.Model):
             )
             line.parent_line_id = parent_line[-1:]
 
-    def _compute_name(self):
-        res = super()._compute_name()
-        if not self.level:
-            self.level = self.product_id.level
-        return res
+    @api.depends("product_id")
+    def _compute_level(self):
+        for line in self:
+            if not line.level:
+                line.level = line.product_id.level
 
     def _prepare_invoice_line(self, **optional_values):
         vals = super()._prepare_invoice_line(**optional_values)

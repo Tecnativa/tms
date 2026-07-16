@@ -275,7 +275,7 @@ class ProjectTask(models.Model):
         for task in self:
             task.stopped_time = sum(task.mapped("checkpoint_ids.stopped_time"))
 
-    @api.depends("stage_id")
+    @api.depends("stage_id", "state")
     def _compute_progress_status(self):
         for task in self:
             if task.state in CLOSED_STATES:
@@ -610,7 +610,7 @@ class ProjectTask(models.Model):
                 )
                 total_distance = total_duration = 0.0
                 if result["status"] != "OK":
-                    task.update({"distance_estimated": 0.0, "planned_hours": 0.0})
+                    task.update({"distance_estimated": 0.0, "allocated_hours": 0.0})
                     return
                 for i, checkpoint in enumerate(task.checkpoint_ids[1:]):
                     distance = (
@@ -627,7 +627,7 @@ class ProjectTask(models.Model):
                 task.update(
                     {
                         "distance_estimated": total_distance,
-                        "planned_hours": total_duration,
+                        "allocated_hours": total_duration,
                     }
                 )
             except Exception as err:
@@ -664,7 +664,7 @@ class ProjectTask(models.Model):
                     f"Request to openrouteservice failed.\n"
                     f"Code: {response.status_code}\nContent: {response.content}"
                 )
-                task.update({"distance_estimated": 0.0, "planned_hours": 0.0})
+                task.update({"distance_estimated": 0.0, "allocated_hours": 0.0})
                 return
             result = response.json()
             total_distance = total_duration = 0.0
@@ -679,6 +679,6 @@ class ProjectTask(models.Model):
             task.update(
                 {
                     "distance_estimated": total_distance,
-                    "planned_hours": total_duration,
+                    "allocated_hours": total_duration,
                 }
             )

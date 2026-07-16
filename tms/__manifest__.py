@@ -58,7 +58,7 @@
     "assets": {
         "web.assets_backend": [
             "tms/static/src/scss/kanban_view.scss",
-            "tms/static/src/js/kanban_view.js",
+            "tms/static/src/js/kanban_view.esm.js",
         ],
     },
     "maintainers": ["sergio-teruel", "carlosdauden"],

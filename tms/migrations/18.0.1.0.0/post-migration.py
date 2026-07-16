@@ -8,7 +8,7 @@ def migrate(env, version):
         .get_param("base_geolocalize.openrouteservice_api_key")
     )
     if old_key:
-        companies = env["res.company"].search([])
+        companies = env["res.company"].with_context(active_test=False).search([])
         companies.write({"openrouteservice_api_key": old_key})
         param = env["ir.config_parameter"].search(
             [("key", "=", "base_geolocalize.openrouteservice_api_key")]
