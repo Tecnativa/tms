@@ -8,21 +8,14 @@
                 expr="//field[@name='order_line']/list/field[@name='product_uom']"
                 position="after"
             >
-                <field
-                    name="sale_line_id"
-                    optional="show"
-                    groups="[(4, ref('base.group_no_one'))]"
-                />
+                <field name="sale_line_id" optional="show" groups="base.group_no_one" />
             </xpath>
             <xpath
                 expr="//field[@name='order_line']/form//field[@name='invoice_lines']"
                 position="before"
             >
                 <group>
-                    <field
-                        name="sale_line_id"
-                        groups="[(4, ref('base.group_no_one'))]"
-                    />
+                    <field name="sale_line_id" groups="base.group_no_one" />
                 </group>
             </xpath>
         </field>
@@ -34,10 +27,7 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='price_unit']/.." position="after">
                 <group>
-                    <field
-                        name="sale_line_id"
-                        groups="[(4, ref('base.group_no_one'))]"
-                    />
+                    <field name="sale_line_id" groups="base.group_no_one" />
                 </group>
             </xpath>
         </field>

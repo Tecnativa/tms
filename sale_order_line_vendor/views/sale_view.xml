@@ -11,17 +11,14 @@
                 expr="//field[@name='order_line']/list/field[@name='price_subtotal']"
                 position="before"
             >
+                <!-- No readonly needed: the whole order_line o2m is already
+                     readonly when the order is locked or cancelled -->
                 <field
                     name="vendor_id"
-                    attrs="{'readonly': [('state', '=', 'done')]}"
                     optional="show"
                     context="{'res_partner_search_mode': 'supplier'}"
                 />
-                <field
-                    name="purchase_price"
-                    attrs="{'readonly': [('state', '=', 'done')]}"
-                    optional="show"
-                />
+                <field name="purchase_price" optional="show" />
                 <field
                     name="purchase_line_ids"
                     widget="many2many_tags"
