@@ -5,7 +5,6 @@ exclude: |
   ^tms/|
   ^tms_analytic/|
   ^tms_analytic_distribution/|
-  ^tms_division/|
   ^tms_driver_portal/|
   ^tms_port_community_system/|
   ^tms_port_community_system_order_type/|
