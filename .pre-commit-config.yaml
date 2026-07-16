@@ -1,12 +1,9 @@
 exclude: |
   (?x)
   # NOT INSTALLABLE ADDONS
-  ^sale_line_reassign/|
-  ^tms/|
   ^tms_analytic/|
   ^tms_analytic_distribution/|
   ^tms_driver_portal/|
-  ^tms_port_community_system/|
   ^tms_port_community_system_order_type/|
   ^tms_sale_price_from_history/|
   # END NOT INSTALLABLE ADDONS
