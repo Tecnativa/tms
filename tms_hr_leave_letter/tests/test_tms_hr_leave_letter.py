@@ -36,16 +36,15 @@ class TestTmsHrLeaveLetter(TransactionCase):
         return leave_type_form.save()
 
     def _create_leave(self):
-        leave = self.env["hr.leave"].with_context(default_employee_id=self.employee.id)
-
-        with Form(leave) as leave_form:
-            leave_form.holiday_status_id = self.leave_type
-            leave_form.request_date_from = date(2019, 9, 2)
-            leave_form.request_date_to = date(2019, 9, 2)
-            leave_form.request_unit_half = True
-            leave_form.request_date_from_period = "am"
-        leave = leave_form.save()
-        return leave
+        leave_form = Form(
+            self.env["hr.leave"].with_context(default_employee_id=self.employee.id)
+        )
+        leave_form.holiday_status_id = self.leave_type
+        leave_form.request_date_from = date(2019, 9, 2)
+        leave_form.request_date_to = date(2019, 9, 2)
+        leave_form.request_unit_half = True
+        leave_form.request_date_from_period = "am"
+        return leave_form.save()
 
     @users("test-user")
     def test_create_leave_letter(self):

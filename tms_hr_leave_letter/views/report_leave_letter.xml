@@ -100,7 +100,7 @@
                 <tr>
                     <td>(10)</td>
                     <td>Driving licence or identity card or passport number: <span
-                        t-esc="o.employee_id.identification_id or o.employee_id.passport_id"
+                        t-out="o.employee_id.identification_id or o.employee_id.passport_id"
                     /></td>
                 </tr>
                 <tr>
@@ -189,7 +189,7 @@
                     <td>
                         <span>Place: <span t-field="user.company_id.state_id" /></span>
                         <span> Date: <t
-                            t-esc="date_doc"
+                            t-out="date_doc"
                             t-options="{'widget': 'date'}"
                         /></span>
                     </td>
@@ -214,7 +214,7 @@
                     <td>
                         <span>Place: <span t-field="user.company_id.state_id" /></span>
                         <span> Date: <t
-                            t-esc="date_doc"
+                            t-out="date_doc"
                             t-options="{'widget': 'date'}"
                         /></span>
                     </td>
