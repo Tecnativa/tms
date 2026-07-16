@@ -9,7 +9,7 @@
                     <field name="partner_id" invisible="1" />
                     <field
                         name="sale_order_id"
-                        domain="[('partner_id', '=', partner_id), ('state', 'not in', ['done', 'cancel']), ('invoice_status', '!=', 'invoiced')]"
+                        domain="[('partner_id', '=', partner_id), ('state', '!=', 'cancel'), ('locked', '=', False), ('invoice_status', '!=', 'invoiced')]"
                         context="{'default_partner_id': partner_id}"
                     />
                 </group>
