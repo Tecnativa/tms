@@ -12,7 +12,9 @@ class SaleOrderLineReassignWiz(models.TransientModel):
         active_ids = self.env.context.get("active_ids")
         lines = self.env["sale.order.line"].browse(active_ids)
         partner = lines[:1].order_id.partner_id
-        if lines.filtered(lambda l: (l.invoice_lines or l.order_partner_id != partner)):
+        if lines.filtered(
+            lambda line: (line.invoice_lines or line.order_partner_id != partner)
+        ):
             raise exceptions.ValidationError(
                 _("Selected line/s are invoiced or they have distinct " "customers")
             )
@@ -45,7 +47,8 @@ class SaleOrderLineReassignWiz(models.TransientModel):
             project_so_lines.mapped("task_id").update({"project_id": project.id})
         # If sale_order_line_vendor is installed
         if "purchase_line_ids" in lines:
-            lines.mapped("purchase_line_ids").update(
-                {"account_analytic_id": self.sale_order_id.analytic_account_id.id}
-            )
+            for line in lines:
+                line.purchase_line_ids.update(
+                    {"analytic_distribution": line.analytic_distribution}
+                )
         return lines
