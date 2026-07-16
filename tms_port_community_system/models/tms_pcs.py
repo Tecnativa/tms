@@ -554,13 +554,12 @@ class TmsValenciaportsBackend(models.Model):
             if new_vals:
                 fields_tracking = {}
                 new_vals_tracking = {}
-                for k, v in sale_order.fields_get().items():
-                    if k in new_vals:
-                        fields_tracking[k] = v
-                        new_vals_tracking[k] = new_vals[k]
-                        if v["type"] == "many2one":
-                            record = self.env[v["relation"]].browse(new_vals[k])
-                            new_vals_tracking[k] = record
+                for k, v in sale_order.fields_get(list(new_vals)).items():
+                    fields_tracking[k] = v
+                    new_vals_tracking[k] = new_vals[k]
+                    if v["type"] == "many2one":
+                        record = self.env[v["relation"]].browse(new_vals[k])
+                        new_vals_tracking[k] = record
                 sale_order._message_track(
                     fields_tracking, {sale_order.id: new_vals_tracking}
                 )
