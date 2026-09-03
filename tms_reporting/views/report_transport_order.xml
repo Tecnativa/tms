@@ -12,6 +12,10 @@
 
     <template id="tms_transportation_order_document">
         <t t-call="tms_reporting.external_layout_tms_order">
+            <t
+                t-set="qr_url"
+                t-value="o.env.context.get('tms_transport_order_qr_urls', {}).get(o.id)"
+            />
             <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})" />
             <div class="page">
                 <style type="text/css">
@@ -57,8 +61,15 @@
 }
                 </style>
                 <div class="row title">
-                    <div class="col-12">
+                    <div t-attf-class="col-#{qr_url and '10' or '12'}">
                         <t t-call="tms_reporting.tms_transport_header_title" />
+                    </div>
+                    <div class="col-2 text-center" t-if="qr_url">
+                        <img
+                            t-att-src="'/report/barcode/?type=QR&amp;value=%s&amp;width=120&amp;height=120' % quote_plus(qr_url)"
+                            style="width:70px;height:70px;"
+                        />
+                        <div style="font-size:8px;">Scan to download</div>
                     </div>
                 </div>
                 <!-- Customer data -->
@@ -294,10 +305,10 @@
         <div class="row title-2">
                     <div class="col-5">
                         <div class="row">
-                            <div class="col-2">
-                                <div class="pull-left">Customer</div>
+                            <div class="col-4">
+                                <div class="pull-left">Contractual shipper</div>
                             </div>
-                            <div class="col-10">
+                            <div class="col-8">
                                 <t
                             t-set="partner"
                             t-value="o.vendor_id and o.company_id.partner_id or o.partner_id"
@@ -360,10 +371,10 @@
         <div class="row title-2">
                     <div class="col-5">
                         <div class="row">
-                            <div class="col-2">
-                                <div class="pull-left">Transport</div>
+                            <div class="col-4">
+                                <div class="pull-left">Effective carrier</div>
                             </div>
-                            <div class="col-10">
+                            <div class="col-8">
                                 <div class="highlight-text"><span
                                 t-field="o.vendor_id.ref"
                             /></div>

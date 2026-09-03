@@ -28,12 +28,12 @@
         "reports/tms_driver_report_xls_views.xml",
         "reports/package_detail_report.xml",
         "views/report_package_detail.xml",
+        "data/tms_mail_template_data.xml",
         "views/project_task_view.xml",
         "views/report_account_invoice.xml",
         "views/res_partner_view.xml",
         "views/product_view.xml",
         "views/tms_print_template.xml",
-        "data/tms_mail_template_data.xml",
     ],
     "maintainers": ["sergio-teruel", "carlosdauden"],
 }
