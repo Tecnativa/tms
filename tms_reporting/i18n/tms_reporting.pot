@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-20 12:16+0000\n"
-"PO-Revision-Date: 2026-02-20 12:16+0000\n"
+"POT-Creation-Date: 2026-09-03 16:07+0000\n"
+"PO-Revision-Date: 2026-09-03 16:07+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -189,6 +189,11 @@ msgid "Arrival:"
 msgstr ""
 
 #. module: tms_reporting
+#: model:ir.model,name:tms_reporting.model_ir_attachment
+msgid "Attachment"
+msgstr ""
+
+#. module: tms_reporting
 #: model_terms:ir.ui.view,arch_db:tms_reporting.tms_base_invoice_document
 msgid "Booking"
 msgstr ""
@@ -209,6 +214,11 @@ msgid "Contact"
 msgstr ""
 
 #. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.customer_data_header
+msgid "Contractual shipper"
+msgstr ""
+
+#. module: tms_reporting
 #: model:ir.model.fields,field_description:tms_reporting.field_tms_print_template__create_uid
 msgid "Created by"
 msgstr ""
@@ -216,11 +226,6 @@ msgstr ""
 #. module: tms_reporting
 #: model:ir.model.fields,field_description:tms_reporting.field_tms_print_template__create_date
 msgid "Created on"
-msgstr ""
-
-#. module: tms_reporting
-#: model_terms:ir.ui.view,arch_db:tms_reporting.customer_data_header
-msgid "Customer"
 msgstr ""
 
 #. module: tms_reporting
@@ -484,6 +489,16 @@ msgid "EXPORT"
 msgstr ""
 
 #. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.transport_data_header
+msgid "Effective carrier"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.model,name:tms_reporting.model_mail_compose_message
+msgid "Email composition wizard"
+msgstr ""
+
+#. module: tms_reporting
 #: model_terms:ir.ui.view,arch_db:tms_reporting.release_acceptance_header
 msgid "Empty"
 msgstr ""
@@ -691,8 +706,18 @@ msgid "Remarks:"
 msgstr ""
 
 #. module: tms_reporting
+#: model:ir.model,name:tms_reporting.model_ir_actions_report
+msgid "Report Action"
+msgstr ""
+
+#. module: tms_reporting
 #: model:ir.model.fields.selection,name:tms_reporting.selection__tms_print_template__field_order__order_id
 msgid "Sale Order"
+msgstr ""
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_transportation_order_document
+msgid "Scan to download"
 msgstr ""
 
 #. module: tms_reporting
@@ -708,6 +733,7 @@ msgstr ""
 #. module: tms_reporting
 #: model:ir.actions.act_window,name:tms_reporting.action_transport_order_email
 #: model:mail.template,name:tms_reporting.transport_order_email
+#: model_terms:ir.ui.view,arch_db:tms_reporting.view_task_form2
 msgid "Send Transport Order"
 msgstr ""
 
@@ -772,11 +798,6 @@ msgid "Trailer"
 msgstr ""
 
 #. module: tms_reporting
-#: model_terms:ir.ui.view,arch_db:tms_reporting.transport_data_header
-msgid "Transport"
-msgstr ""
-
-#. module: tms_reporting
 #: model:ir.actions.report,name:tms_reporting.report_tms_transportation_order
 msgid "Transport Order"
 msgstr ""
@@ -784,6 +805,18 @@ msgstr ""
 #. module: tms_reporting
 #: model:mail.template,subject:tms_reporting.transport_order_email
 msgid "Transport Order {{ object.name }}>"
+msgstr ""
+
+#. module: tms_reporting
+#: code:addons/tms_reporting/models/project_task.py:0
+#, python-format
+msgid "Transport order"
+msgstr ""
+
+#. module: tms_reporting
+#: code:addons/tms_reporting/models/project_task.py:0
+#, python-format
+msgid "Transport order generated."
 msgstr ""
 
 #. module: tms_reporting

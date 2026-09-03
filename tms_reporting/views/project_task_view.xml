@@ -10,6 +10,13 @@
                     context="{'res_partner_search_mode': 'supplier'}"
                 />
             </field>
+            <xpath expr="//header/field[@name='stage_id']" position="before">
+                <button
+                    name="%(tms_reporting.action_transport_order_email)d"
+                    type="action"
+                    string="Send Transport Order"
+                />
+            </xpath>
         </field>
     </record>
 </odoo>
