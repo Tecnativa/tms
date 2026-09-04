@@ -20,6 +20,17 @@ class ProjectTask(models.Model):
         readonly=False,
         store=True,
     )
+    tms_transport_order_attachment_id = fields.Many2one(
+        comodel_name="ir.attachment",
+        string="Last Transport Order Attachment",
+        copy=False,
+        readonly=True,
+    )
+    tms_transport_order_fingerprint = fields.Char(
+        string="Last Transport Order Fingerprint",
+        copy=False,
+        readonly=True,
+    )
 
     def _tms_transport_order_attachment_name(self):
         self.ensure_one()
@@ -52,8 +63,13 @@ class ProjectTask(models.Model):
             attachments[task.id] = attachment
         return attachments
 
-    def _tms_transport_order_finalize_attachments(self, attachments, pdf_by_task):
-        """Fill each pre-created attachment with the actual rendered PDF.
+    def _tms_transport_order_finalize_attachments(
+        self, attachments, pdf_by_task, fingerprints
+    ):
+        """Fill each pre-created attachment with the actual rendered PDF and
+        remember it (id + content fingerprint) on the task, so the next
+        print/send can reuse it instead of generating a duplicate when
+        nothing changed (see ``ir_actions_report._render_qweb_pdf``).
 
         Only posts it to the task's chatter thread when the report was
         generated to be printed. When it is generated to be emailed
@@ -70,6 +86,12 @@ class ProjectTask(models.Model):
             if not attachment or not pdf_content:
                 continue
             attachment.sudo().write({"raw": pdf_content})
+            task.write(
+                {
+                    "tms_transport_order_attachment_id": attachment.id,
+                    "tms_transport_order_fingerprint": fingerprints.get(task.id),
+                }
+            )
             if not skip_chatter_post:
                 task.message_post(
                     body=_("Transport order generated."),
