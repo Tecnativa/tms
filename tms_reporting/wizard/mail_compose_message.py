@@ -37,17 +37,9 @@ class MailComposeMessage(models.TransientModel):
             report.with_context(
                 tms_transport_order_skip_chatter_post=True
             )._render_qweb_pdf(res_ids=res_ids)
-            attachment = wizard.env["ir.attachment"].search(
-                [
-                    ("res_model", "=", "project.task"),
-                    ("res_id", "=", res_ids[0]),
-                    ("name", "like", "Transport order%"),
-                ],
-                order="create_date desc, id desc",
-                limit=1,
-            )
-            if attachment:
-                wizard.attachment_ids = [(4, attachment.id)]
+            task = wizard.env["project.task"].browse(res_ids[0])
+            if task.tms_transport_order_attachment_id:
+                wizard.attachment_ids = [(4, task.tms_transport_order_attachment_id.id)]
 
     def action_send_mail(self):
         self._tms_attach_transport_order_pdf()

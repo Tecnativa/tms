@@ -75,8 +75,7 @@
     <field
             name="context"
             eval="{
-            'default_composition_mode': 'mass_mail',
-            'default_partner_to': '${object.driver_id.id or \'\'}',
+            'default_composition_mode': 'comment',
             'default_use_template': True,
             'default_template_id': ref('transport_order_email'),
         }"
