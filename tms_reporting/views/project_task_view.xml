@@ -11,6 +11,13 @@
                     context="{'res_partner_search_mode': 'supplier'}"
                 />
             </field>
+            <button name="action_assign_to_me" position="after">
+                <button
+                    name="%(tms_reporting.action_transport_order_email)d"
+                    type="action"
+                    string="Send Transport Order"
+                />
+            </button>
         </field>
     </record>
 

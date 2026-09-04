@@ -6,10 +6,17 @@
     <field name="name">Send Transport Order</field>
     <field name="model_id" ref="project.model_project_task" />
     <field name="auto_delete" eval="True" />
-    <!-- <field name="report_template" ref="report_tms_transportation_order" />
-    <field
-            name="report_name"
-        >Transport_Order_${(object.name or '').replace('/','_')}</field> -->
+    <!-- The PDF is NOT attached through report_template/report_name: that
+    mechanism renders the report eagerly, as soon as the composer wizard
+    loads the template (before the user confirms sending), which would
+    create a spurious ir.attachment + chatter post on every preview. It is
+    attached explicitly, only on actual send, by
+    MailComposeMessage._tms_attach_transport_order_pdf(). Keep both fields
+    explicitly empty (not just absent) so a `-u` does not leave a stale
+    value from before this change (fields omitted from a record are left
+    untouched by module updates, not reset). -->
+    <field name="report_template" eval="False" />
+    <field name="report_name" />
     <field name="lang">{{ object.driver_id.lang }}</field>
     <field
             name="email_from"
