@@ -6,7 +6,9 @@ import hashlib
 import io
 import re
 
-from odoo import models
+from PyPDF2 import PdfFileReader, PdfFileWriter
+
+from odoo import fields, models
 
 TRANSPORT_ORDER_REPORT_NAME = "tms_reporting.tms_transportation_order"
 
@@ -31,6 +33,46 @@ class IrActionsReport(models.Model):
             html = html.encode()
         html = _TIMESTAMP_RE.sub(b"", html)
         return hashlib.sha256(html).hexdigest()
+
+    def _tms_pdf_datetime(self, value):
+        """Format a naive UTC datetime as a PDF date string in the acting
+        user's timezone (same ``context_timestamp`` used for the attachment
+        name in ``project_task._tms_transport_order_attachment_name``), so
+        the metadata reads the local time the document was signed, not UTC.
+        """
+        localized = fields.Datetime.context_timestamp(self, value)
+        offset_minutes = int(localized.utcoffset().total_seconds() // 60)
+        sign = "+" if offset_minutes >= 0 else "-"
+        hours, minutes = divmod(abs(offset_minutes), 60)
+        return "D:%s%s%02d'%02d'" % (
+            localized.strftime("%Y%m%d%H%M%S"),
+            sign,
+            hours,
+            minutes,
+        )
+
+    def _tms_stamp_pdf_dates(self, pdf_content, creation_date, mod_date):
+        """Overwrite /CreationDate and /ModDate on the rendered PDF.
+
+        wkhtmltopdf only stamps /CreationDate, and stamps it with the render
+        time of this particular snapshot rather than the task's original
+        document date. The BOE electronic transport-document rules require
+        both dates: /CreationDate must stay the time of the very first PDF
+        generated for the task, /ModDate must be the time of the snapshot
+        being generated now. Only this report needs this.
+        """
+        reader = PdfFileReader(io.BytesIO(pdf_content))
+        info = reader.getDocumentInfo() or {}
+        metadata = {str(key): str(value) for key, value in info.items()}
+        metadata["/CreationDate"] = self._tms_pdf_datetime(creation_date)
+        metadata["/ModDate"] = self._tms_pdf_datetime(mod_date)
+        writer = PdfFileWriter()
+        for page_number in range(reader.getNumPages()):
+            writer.addPage(reader.getPage(page_number))
+        writer.addMetadata(metadata)
+        buffer = io.BytesIO()
+        writer.write(buffer)
+        return buffer.getvalue()
 
     def _render_qweb_pdf(self, res_ids=None, data=None):
         if self.report_name != TRANSPORT_ORDER_REPORT_NAME or not res_ids:
@@ -59,14 +101,20 @@ class IrActionsReport(models.Model):
                 task_id: attachment._tms_qr_download_url()
                 for task_id, attachment in attachments.items()
             }
+            now = fields.Datetime.now()
+            creation_dates = {}
             for task in tasks_to_generate:
                 pdf_content, _report_type = super(
                     IrActionsReport,
                     self.with_context(tms_transport_order_qr_urls=qr_urls),
                 )._render_qweb_pdf(res_ids=[task.id], data=data)
-                pdf_by_task[task.id] = pdf_content
+                creation_date = task.tms_transport_order_creation_date or now
+                creation_dates[task.id] = creation_date
+                pdf_by_task[task.id] = self._tms_stamp_pdf_dates(
+                    pdf_content, creation_date, now
+                )
             tasks_to_generate._tms_transport_order_finalize_attachments(
-                attachments, pdf_by_task, fingerprints
+                attachments, pdf_by_task, fingerprints, creation_dates
             )
 
         if len(pdf_by_task) == 1:

@@ -31,6 +31,11 @@ class ProjectTask(models.Model):
         copy=False,
         readonly=True,
     )
+    tms_transport_order_creation_date = fields.Datetime(
+        string="Transport Order Creation Date",
+        copy=False,
+        readonly=True,
+    )
 
     def _tms_transport_order_attachment_name(self):
         self.ensure_one()
@@ -64,7 +69,7 @@ class ProjectTask(models.Model):
         return attachments
 
     def _tms_transport_order_finalize_attachments(
-        self, attachments, pdf_by_task, fingerprints
+        self, attachments, pdf_by_task, fingerprints, creation_dates
     ):
         """Fill each pre-created attachment with the actual rendered PDF and
         remember it (id + content fingerprint) on the task, so the next
@@ -90,6 +95,7 @@ class ProjectTask(models.Model):
                 {
                     "tms_transport_order_attachment_id": attachment.id,
                     "tms_transport_order_fingerprint": fingerprints.get(task.id),
+                    "tms_transport_order_creation_date": creation_dates.get(task.id),
                 }
             )
             if not skip_chatter_post:
