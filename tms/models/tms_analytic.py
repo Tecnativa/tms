@@ -75,8 +75,11 @@ class TmsAnalytic(models.AbstractModel):
             return
         # Evaluate if driver is from my company or other to assign as vendor
         commercial_partner = self.driver_id.commercial_partner_id
+        high_commercial_partner = commercial_partner
+        while high_commercial_partner.parent_id:
+            high_commercial_partner = high_commercial_partner.parent_id
         self.vendor_id = (
             commercial_partner
-            if self.env.company not in commercial_partner.ref_company_ids
+            if self.env.company not in high_commercial_partner.ref_company_ids
             else False
         )
