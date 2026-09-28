@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-20 12:16+0000\n"
+"POT-Creation-Date: 2026-09-03 16:07+0000\n"
 "PO-Revision-Date: 2026-02-20 13:19+0100\n"
 "Last-Translator: Andrii Kompaniiets <andrii.kompaniiets@tecnativa.com>\n"
 "Language-Team: \n"
@@ -55,30 +55,23 @@ msgstr "<b>Totales: </b>"
 #. module: tms_reporting
 #: model:mail.template,body_html:tms_reporting.transport_order_email
 msgid ""
-"<div style=\"padding:0px;width:600px;margin:auto;background: #FFFFFF repeat "
-"top /100%;color:#777777\">\n"
-"    <table cellspacing=\"0\" cellpadding=\"0\" style=\"width:600px;border-"
-"collapse:collapse;background:inherit;color:inherit\">\n"
+"<div style=\"padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777\">\n"
+"    <table cellspacing=\"0\" cellpadding=\"0\" style=\"width:600px;border-collapse:collapse;background:inherit;color:inherit\">\n"
 "        <tbody><tr>\n"
-"            <td valign=\"center\" width=\"200\" style=\"padding:10px 10px "
-"10px 5px;font-size: 12px\">\n"
-"                <img src=\"/logo.png\" style=\"padding: 0px; margin: 0px; "
-"height: auto; width: 80px;\" alt=\"{{ user.company_id.name }}\"/>\n"
+"            <td valign=\"center\" width=\"200\" style=\"padding:10px 10px 10px 5px;font-size: 12px\">\n"
+"                <img src=\"/logo.png\" style=\"padding: 0px; margin: 0px; height: auto; width: 80px;\" alt=\"{{ user.company_id.name }}\"/>\n"
 "            </td>\n"
 "        </tr></tbody>\n"
 "    </table>\n"
 "</div>\n"
-"<div style=\"padding:0px;width:600px;margin:auto;background: #FFFFFF repeat "
-"top /100%;color:#777777\">\n"
+"<div style=\"padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777\">\n"
 "<p>Dear <t t-out=\"object.driver_id.name or ''\">Brandon Freeman</t>,</p>\n"
 "    <p>\n"
-"        Attach transport order from <t t-"
-"out=\"object.company_id.name\">Principal Company</t>.\n"
+"        Attach transport order from <t t-out=\"object.company_id.name\">Principal Company</t>.\n"
 "    </p>\n"
 "    <p>Best regards,</p>\n"
 "</div>\n"
-"<div style=\"padding:0px;width:600px;margin:auto; margin-top: 10px; "
-"background: #fff repeat top /100%;color:#777777\">\n"
+"<div style=\"padding:0px;width:600px;margin:auto; margin-top: 10px; background: #fff repeat top /100%;color:#777777\">\n"
 "    <t t-out=\"user.signature or ''\">Michael Admin</t>\n"
 "</div>\n"
 "    "
@@ -200,6 +193,11 @@ msgid "Arrival:"
 msgstr "Llegada:"
 
 #. module: tms_reporting
+#: model:ir.model,name:tms_reporting.model_ir_attachment
+msgid "Attachment"
+msgstr "Adjunto"
+
+#. module: tms_reporting
 #: model_terms:ir.ui.view,arch_db:tms_reporting.tms_base_invoice_document
 msgid "Booking"
 msgstr "Num. Reserva"
@@ -220,6 +218,11 @@ msgid "Contact"
 msgstr "Contacto"
 
 #. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.customer_data_header
+msgid "Contractual shipper"
+msgstr "Cargador contractual"
+
+#. module: tms_reporting
 #: model:ir.model.fields,field_description:tms_reporting.field_tms_print_template__create_uid
 msgid "Created by"
 msgstr "Creado por"
@@ -228,11 +231,6 @@ msgstr "Creado por"
 #: model:ir.model.fields,field_description:tms_reporting.field_tms_print_template__create_date
 msgid "Created on"
 msgstr "Creado en"
-
-#. module: tms_reporting
-#: model_terms:ir.ui.view,arch_db:tms_reporting.customer_data_header
-msgid "Customer"
-msgstr "Cliente"
 
 #. module: tms_reporting
 #: model_terms:ir.ui.view,arch_db:tms_reporting.customer_data_header
@@ -495,6 +493,16 @@ msgid "EXPORT"
 msgstr "EXPORT"
 
 #. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.transport_data_header
+msgid "Effective carrier"
+msgstr "Transportista efectivo"
+
+#. module: tms_reporting
+#: model:ir.model,name:tms_reporting.model_mail_compose_message
+msgid "Email composition wizard"
+msgstr "Asistente de redacción de correo electrónico"
+
+#. module: tms_reporting
 #: model_terms:ir.ui.view,arch_db:tms_reporting.release_acceptance_header
 msgid "Empty"
 msgstr "Vacío"
@@ -702,9 +710,19 @@ msgid "Remarks:"
 msgstr "Observaciones:"
 
 #. module: tms_reporting
+#: model:ir.model,name:tms_reporting.model_ir_actions_report
+msgid "Report Action"
+msgstr "Acción de informe"
+
+#. module: tms_reporting
 #: model:ir.model.fields.selection,name:tms_reporting.selection__tms_print_template__field_order__order_id
 msgid "Sale Order"
 msgstr "Pedido de venta"
+
+#. module: tms_reporting
+#: model_terms:ir.ui.view,arch_db:tms_reporting.tms_transportation_order_document
+msgid "Scan to download"
+msgstr "Escanear para descargar"
 
 #. module: tms_reporting
 #: model_terms:ir.ui.view,arch_db:tms_reporting.tms_transportation_order_document
@@ -719,6 +737,7 @@ msgstr "Precinto"
 #. module: tms_reporting
 #: model:ir.actions.act_window,name:tms_reporting.action_transport_order_email
 #: model:mail.template,name:tms_reporting.transport_order_email
+#: model_terms:ir.ui.view,arch_db:tms_reporting.view_task_form2
 msgid "Send Transport Order"
 msgstr "Enviar orden de transporte"
 
@@ -783,11 +802,6 @@ msgid "Trailer"
 msgstr "Remolque"
 
 #. module: tms_reporting
-#: model_terms:ir.ui.view,arch_db:tms_reporting.transport_data_header
-msgid "Transport"
-msgstr "Transp."
-
-#. module: tms_reporting
 #: model:ir.actions.report,name:tms_reporting.report_tms_transportation_order
 msgid "Transport Order"
 msgstr "Orden de transporte"
@@ -795,9 +809,20 @@ msgstr "Orden de transporte"
 #. module: tms_reporting
 #: model:mail.template,subject:tms_reporting.transport_order_email
 #, fuzzy
-#| msgid "Transport Order"
 msgid "Transport Order {{ object.name }}>"
 msgstr "Orden de transporte"
+
+#. module: tms_reporting
+#: code:addons/tms_reporting/models/project_task.py:0
+#, python-format
+msgid "Transport order"
+msgstr "Orden de transporte"
+
+#. module: tms_reporting
+#: code:addons/tms_reporting/models/project_task.py:0
+#, python-format
+msgid "Transport order generated."
+msgstr "Orden de transporte generada."
 
 #. module: tms_reporting
 #: model:ir.model.fields,field_description:tms_reporting.field_tms_print_template__print_template_type
@@ -852,3 +877,9 @@ msgstr "Vagón:"
 #: model_terms:ir.ui.view,arch_db:tms_reporting.tms_package_detail_document
 msgid "Weight"
 msgstr "Peso"
+
+#~ msgid "Customer"
+#~ msgstr "Cliente"
+
+#~ msgid "Transport"
+#~ msgstr "Transp."
