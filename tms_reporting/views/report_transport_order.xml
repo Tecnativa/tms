@@ -874,7 +874,9 @@
                     <span t-field="user.name" />
                 </div>
                 <div class="row">
-                    <t t-esc="datetime.datetime.now().strftime('%d-%m-%Y %H:%M:%S')" />
+                    <t
+                        t-esc="context_timestamp(datetime.datetime.now()).strftime('%d-%m-%Y %H:%M:%S')"
+                    />
                 </div>
             </div>
             <div class="col-4">
