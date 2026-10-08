@@ -1,7 +1,10 @@
 # Copyright 2019 Alexandre Díaz
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+from psycopg2 import IntegrityError
+
 from odoo import fields
 from odoo.tests import Form
+from odoo.tools import mute_logger
 
 from .common import TestTMS
 
@@ -97,3 +100,38 @@ class TestTMSFlow(TestTMS):
         self.assertEqual(vehicle.license_plate, "1234-ABC")
         self.assertEqual(vehicle.model_id, self.vehicle_model)
         self.assertEqual(display_name, vehicle.display_name)
+
+    def test_vehicle_quick_create_default_model_by_type(self):
+        trailer_model = self.env["fleet.vehicle.model"].create(
+            {
+                "name": "Test Trailer Model",
+                "brand_id": self.vehicle_model_brand.id,
+                "vehicle_type": "trailer",
+            }
+        )
+        IrDefault = self.env["ir.default"]
+        IrDefault.set("fleet.vehicle", "model_id", self.vehicle_model.id)
+        Vehicle = self.env["fleet.vehicle"]
+        # The generic default model is a tractor, so it is not used for a trailer
+        with (
+            self.assertRaises(IntegrityError),
+            mute_logger("odoo.sql_db"),
+            self.cr.savepoint(),
+        ):
+            Vehicle.with_context(default_vehicle_type="trailer").name_create("T-1")
+        IrDefault.set(
+            "fleet.vehicle",
+            "model_id",
+            trailer_model.id,
+            condition="vehicle_type=trailer",
+        )
+        trailer_id = Vehicle.with_context(default_vehicle_type="trailer").name_create(
+            "T-1"
+        )[0]
+        trailer = Vehicle.browse(trailer_id)
+        self.assertEqual(trailer.model_id, trailer_model)
+        self.assertEqual(trailer.vehicle_type, "trailer")
+        tractor_id = Vehicle.with_context(default_vehicle_type="tractor").name_create(
+            "T-2"
+        )[0]
+        self.assertEqual(Vehicle.browse(tractor_id).model_id, self.vehicle_model)
