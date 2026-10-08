@@ -57,7 +57,28 @@ class FleetVehicle(models.Model):
             and not defaults.get("license_plate")
         ):
             defaults["license_plate"] = name
+        vehicle_type = self.env.context.get("default_vehicle_type")
+        if (
+            vehicle_type
+            and "model_id" in fields_list
+            and "default_model_id" not in self.env.context
+        ):
+            self._set_vehicle_type_default_model(defaults, vehicle_type)
         return defaults
+
+    @api.model
+    def _set_vehicle_type_default_model(self, defaults, vehicle_type):
+        """The vehicle type is related to the model, so a default model must
+        match the requested type. A default value with the condition
+        ``vehicle_type=<type>`` takes precedence over the generic one."""
+        type_defaults = self.env["ir.default"].get_model_defaults(
+            self._name, condition=f"vehicle_type={vehicle_type}"
+        )
+        if type_defaults.get("model_id"):
+            defaults["model_id"] = type_defaults["model_id"]
+        model = self.env["fleet.vehicle.model"].browse(defaults.get("model_id"))
+        if model and model.exists().vehicle_type != vehicle_type:
+            defaults.pop("model_id")
 
     @api.model
     def name_create(self, name):
