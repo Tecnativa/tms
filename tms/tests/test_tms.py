@@ -1,6 +1,7 @@
 # Copyright 2019 Alexandre Díaz
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from odoo import fields
+from odoo.tests import Form
 
 from .common import TestTMS
 
@@ -70,3 +71,29 @@ class TestTMSFlow(TestTMS):
         sale_order.write({"wagon": "TextWagonB", "vessel": "TestVesselB"})
         self.assertNotEqual(task.wagon, "TextWagon")
         self.assertNotEqual(task.vessel, "TestVessel")
+
+    def test_vehicle_create_and_edit_from_many2one(self):
+        # "Create and edit..." from a vehicle many2one sends the typed text
+        # as default_name, which is a computed field on fleet.vehicle
+        vehicle_form = Form(
+            self.env["fleet.vehicle"].with_context(
+                default_vehicle_type="tractor", default_name="1234-ABC"
+            )
+        )
+        self.assertEqual(vehicle_form.license_plate, "1234-ABC")
+        vehicle_form.model_id = self.vehicle_model
+        vehicle = vehicle_form.save()
+        self.assertEqual(vehicle.license_plate, "1234-ABC")
+
+    def test_vehicle_quick_create_from_many2one(self):
+        # "Create" from a vehicle many2one calls name_create with the typed text
+        self.env["ir.default"].set("fleet.vehicle", "model_id", self.vehicle_model.id)
+        vehicle_id, display_name = (
+            self.env["fleet.vehicle"]
+            .with_context(default_vehicle_type="tractor")
+            .name_create("1234-ABC")
+        )
+        vehicle = self.env["fleet.vehicle"].browse(vehicle_id)
+        self.assertEqual(vehicle.license_plate, "1234-ABC")
+        self.assertEqual(vehicle.model_id, self.vehicle_model)
+        self.assertEqual(display_name, vehicle.display_name)

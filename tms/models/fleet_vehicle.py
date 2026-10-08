@@ -45,6 +45,27 @@ class FleetVehicle(models.Model):
     )
     task_pending_duration_estimated = fields.Float(compute="_compute_task_count")
 
+    @api.model
+    def default_get(self, fields_list):
+        """The vehicle name is computed, so the text typed in a many2one
+        ("Create and edit...") would be lost. Use it as license plate."""
+        defaults = super().default_get(fields_list)
+        name = self.env.context.get("default_name")
+        if (
+            name
+            and "license_plate" in fields_list
+            and not defaults.get("license_plate")
+        ):
+            defaults["license_plate"] = name
+        return defaults
+
+    @api.model
+    def name_create(self, name):
+        """Quick create from a many2one: the computed name would drop the typed
+        text, so store it as license plate."""
+        vehicle = self.create({"license_plate": name})
+        return vehicle.name_get()[0]
+
     def _compute_task_count(self):
         Task = self.env["project.task"]
         max_tasks = max(self.env.context.get("max_vehicle_tasks", [0]))
