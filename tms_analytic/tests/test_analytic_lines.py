@@ -1,7 +1,7 @@
 # Copyright 2026 Tecnativa - Sergio Teruel
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo import Command, fields
-from odoo.tests import tagged
+from odoo.tests import new_test_user, tagged
 
 from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 
@@ -74,3 +74,14 @@ class TestTmsAnalyticLines(AccountTestInvoicingCommon):
         self.assertEqual(
             analytic_lines.filtered(lambda x: x.tractor_id == tractor).amount, -150.0
         )
+
+    def test_post_without_analytic_access(self):
+        user = new_test_user(
+            self.env,
+            login="tms_analytic_billing",
+            groups="account.group_account_invoice",
+            company_id=self.env.company.id,
+        )
+        invoice = self.init_invoice("out_invoice", amounts=[100.0], post=False)
+        invoice.with_user(user).action_post()
+        self.assertEqual(invoice.state, "posted")

@@ -12,11 +12,14 @@ class AccountMoveLine(models.Model):
         a vehicle gets that vehicle as tractor or trailer, as a cost shared
         between several vehicles (fuel, leasing...) is not on a single one."""
         vals_list = super()._prepare_analytic_lines()
+        if not vals_list:
+            return vals_list
+        # Posting is allowed to users without access to analytic plans
         plan_columns = {
             plan._column_name()
-            for plan in self.env["account.analytic.plan"].search(
-                [("parent_id", "=", False)]
-            )
+            for plan in self.env["account.analytic.plan"]
+            .sudo()
+            .search([("parent_id", "=", False)])
         }
         account_ids = {
             vals[column]
