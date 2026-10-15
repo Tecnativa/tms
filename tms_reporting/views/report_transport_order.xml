@@ -397,6 +397,10 @@
                         <div class="highlight-text">
                             <span t-field="vendor.name" />
                             <br />
+                            <span t-field="vendor.street" />
+                            <br />
+                            <span t-field="vendor.city" />
+                            <br />
                             <t t-if="vendor.vat">
                                 <span>VAT - </span>
                                 <span t-field="vendor.vat" />
