@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-03 16:07+0000\n"
-"PO-Revision-Date: 2026-09-03 16:07+0000\n"
+"POT-Creation-Date: 2026-10-15 21:08+0000\n"
+"PO-Revision-Date: 2026-10-15 21:08+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -54,25 +54,27 @@ msgstr ""
 #: model:mail.template,body_html:tms_reporting.transport_order_email
 msgid ""
 "<div style=\"padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777\">\n"
-"    <table cellspacing=\"0\" cellpadding=\"0\" style=\"width:600px;border-collapse:collapse;background:inherit;color:inherit\">\n"
-"        <tbody><tr>\n"
-"            <td valign=\"center\" width=\"200\" style=\"padding:10px 10px 10px 5px;font-size: 12px\">\n"
-"                <img src=\"/logo.png\" style=\"padding: 0px; margin: 0px; height: auto; width: 80px;\" alt=\"{{ user.company_id.name }}\"/>\n"
-"            </td>\n"
-"        </tr></tbody>\n"
-"    </table>\n"
-"</div>\n"
-"<div style=\"padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777\">\n"
-"<p>Dear <t t-out=\"object.driver_id.name or ''\">Brandon Freeman</t>,</p>\n"
-"    <p>\n"
+"                <table cellspacing=\"0\" cellpadding=\"0\" style=\"width:600px;border-collapse:collapse;background:inherit;color:inherit\">\n"
+"                    <tbody>\n"
+"                        <tr>\n"
+"                            <td valign=\"center\" width=\"200\" style=\"padding:10px 10px 10px 5px;font-size: 12px\">\n"
+"                                <img src=\"/logo.png\" style=\"padding: 0px; margin: 0px; height: auto; width: 80px;\" alt=\"{{ user.company_id.name }}\"/>\n"
+"                            </td>\n"
+"                        </tr>\n"
+"                    </tbody>\n"
+"                </table>\n"
+"            </div>\n"
+"            <div style=\"padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777\">\n"
+"                <p>Dear <t t-out=\"object.driver_id.name or ''\">Brandon Freeman</t>,</p>\n"
+"                <p>\n"
 "        Attach transport order from <t t-out=\"object.company_id.name\">Principal Company</t>.\n"
 "    </p>\n"
-"    <p>Best regards,</p>\n"
-"</div>\n"
-"<div style=\"padding:0px;width:600px;margin:auto; margin-top: 10px; background: #fff repeat top /100%;color:#777777\">\n"
-"    <t t-out=\"user.signature or ''\">Michael Admin</t>\n"
-"</div>\n"
-"    "
+"                <p>Best regards,</p>\n"
+"            </div>\n"
+"            <div style=\"padding:0px;width:600px;margin:auto; margin-top: 10px; background: #fff repeat top /100%;color:#777777\">\n"
+"                <t t-out=\"user.signature or ''\">Michael Admin</t>\n"
+"            </div>\n"
+"        "
 msgstr ""
 
 #. module: tms_reporting
@@ -557,9 +559,13 @@ msgid "Journal Entry"
 msgstr ""
 
 #. module: tms_reporting
-#: model:ir.model.fields,field_description:tms_reporting.field_tms_driver_report____last_update
-#: model:ir.model.fields,field_description:tms_reporting.field_tms_print_template____last_update
-msgid "Last Modified on"
+#: model:ir.model.fields,field_description:tms_reporting.field_project_task__tms_transport_order_attachment_id
+msgid "Last Transport Order Attachment"
+msgstr ""
+
+#. module: tms_reporting
+#: model:ir.model.fields,field_description:tms_reporting.field_project_task__tms_transport_order_fingerprint
+msgid "Last Transport Order Fingerprint"
 msgstr ""
 
 #. module: tms_reporting
@@ -652,7 +658,6 @@ msgstr ""
 #. module: tms_reporting
 #: model:ir.model.fields,field_description:tms_reporting.field_account_bank_statement_line__tms_print_template_id
 #: model:ir.model.fields,field_description:tms_reporting.field_account_move__tms_print_template_id
-#: model:ir.model.fields,field_description:tms_reporting.field_account_payment__tms_print_template_id
 #: model:ir.model.fields,field_description:tms_reporting.field_product_product__tms_print_template_id
 #: model:ir.model.fields,field_description:tms_reporting.field_product_template__tms_print_template_id
 #: model:ir.model.fields,field_description:tms_reporting.field_res_partner__tms_print_template_id
@@ -679,7 +684,7 @@ msgstr ""
 
 #. module: tms_reporting
 #: model:ir.model,name:tms_reporting.model_product_template
-msgid "Product Template"
+msgid "Product"
 msgstr ""
 
 #. module: tms_reporting
@@ -803,19 +808,24 @@ msgid "Transport Order"
 msgstr ""
 
 #. module: tms_reporting
+#: model:ir.model.fields,field_description:tms_reporting.field_project_task__tms_transport_order_creation_date
+msgid "Transport Order Creation Date"
+msgstr ""
+
+#. module: tms_reporting
 #: model:mail.template,subject:tms_reporting.transport_order_email
 msgid "Transport Order {{ object.name }}>"
 msgstr ""
 
 #. module: tms_reporting
+#. odoo-python
 #: code:addons/tms_reporting/models/project_task.py:0
-#, python-format
 msgid "Transport order"
 msgstr ""
 
 #. module: tms_reporting
+#. odoo-python
 #: code:addons/tms_reporting/models/project_task.py:0
-#, python-format
 msgid "Transport order generated."
 msgstr ""
 
