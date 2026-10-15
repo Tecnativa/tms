@@ -2,15 +2,19 @@
 <!-- Copyright 2017 Sergio Teruel <sergio.teruel@tecnativa.com>
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
-
-<record id="tms_view_task_form2" model="ir.ui.view">
-    <field name="model">project.task</field>
-    <field name="inherit_id" ref="tms.tms_view_task_form2" />
-    <field name="arch" type="xml">
-        <field name="driver_id" position="after">
-            <field name="analytic_tag_ids" widget="many2many_tags" />
+    <record id="tms_view_task_form2" model="ir.ui.view">
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="tms.tms_view_task_form2" />
+        <field name="arch" type="xml">
+            <field name="driver_id" position="after">
+                <field
+                    name="analytic_distribution"
+                    widget="analytic_distribution"
+                    groups="analytic.group_analytic_accounting"
+                    invisible="not sale_line_id"
+                    options="{'business_domain': 'sale_order'}"
+                />
+            </field>
         </field>
-    </field>
-</record>
-
+    </record>
 </odoo>

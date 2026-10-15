@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import fields, models
+from odoo.tools import SQL
 
 
 class AccountInvoiceReport(models.Model):
@@ -11,21 +12,30 @@ class AccountInvoiceReport(models.Model):
     tractor_id = fields.Many2one(
         comodel_name="fleet.vehicle",
         string="Tractor",
+        readonly=True,
     )
     trailer_id = fields.Many2one(
         comodel_name="fleet.vehicle",
         string="Trailer",
+        readonly=True,
     )
     driver_id = fields.Many2one(
         comodel_name="res.partner",
         string="Driver",
+        readonly=True,
     )
     division_id = fields.Many2one(
         comodel_name="tms.division",
         string="Division",
+        readonly=True,
     )
 
-    def _get_dimension_fields(self):
-        res = super()._get_dimension_fields()
-        res.extend(list(self.env["tms.analytic"].analytic_fields()))
-        return res
+    def _select(self):
+        return SQL(
+            "%s, %s",
+            super()._select(),
+            SQL(", ").join(
+                SQL("line.%s", SQL.identifier(field))
+                for field in self.env["tms.analytic"].analytic_fields()
+            ),
+        )
