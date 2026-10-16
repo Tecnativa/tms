@@ -140,6 +140,7 @@ class SaleOrderLine(models.Model):
             parent_task = self.parent_line_id.task_id
             vals["parent_id"] = parent_task.id
             vals["project_id"] = parent_task.project_id.id
+            vals["display_in_project"] = True
             vals["sequence"] = 50
         else:
             vals.update(
