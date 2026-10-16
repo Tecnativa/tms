@@ -273,12 +273,12 @@
                 <filter
                     string="Pending"
                     name="pending"
-                    domain="[('state', 'not in', ('1_done', '1_cancelled'))]"
+                    domain="[('is_closed', '=', False)]"
                 />
                 <filter
                     string="In Progress"
                     name="in_progress"
-                    domain="[('state', '=', '01_in_progress')]"
+                    domain="[('stage_id.sequence', '&gt;', 1), ('is_closed', '=', False)]"
                 />
                 <separator />
                 <filter

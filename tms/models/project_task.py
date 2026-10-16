@@ -275,6 +275,21 @@ class ProjectTask(models.Model):
         for task in self:
             task.stopped_time = sum(task.mapped("checkpoint_ids.stopped_time"))
 
+    def _compute_state(self):
+        """The task is closed by its stage: moving it to a folded stage sets it as
+        done, and moving it out of a folded stage opens it again, as the core keeps
+        the closed state when the stage changes."""
+        self.filtered(
+            lambda task: task.state in CLOSED_STATES
+            and task.stage_id
+            and not task.stage_id.fold
+        ).state = "01_in_progress"
+        res = super()._compute_state()
+        self.filtered(
+            lambda task: task.stage_id.fold and task.state not in CLOSED_STATES
+        ).state = "1_done"
+        return res
+
     @api.depends("stage_id", "state")
     def _compute_progress_status(self):
         for task in self:

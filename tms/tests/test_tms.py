@@ -135,3 +135,32 @@ class TestTMSFlow(TestTMS):
             "T-2"
         )[0]
         self.assertEqual(Vehicle.browse(tractor_id).model_id, self.vehicle_model)
+
+    def test_task_state_from_folded_stage(self):
+        Stage = self.env["project.task.type"]
+        open_stage = Stage.create(
+            {"name": "Open", "sequence": 1, "project_ids": [(4, self.project.id)]}
+        )
+        closed_stage = Stage.create(
+            {
+                "name": "Closed",
+                "sequence": 2,
+                "fold": True,
+                "project_ids": [(4, self.project.id)],
+            }
+        )
+        task = self.env["project.task"].create(
+            {"name": "Test task", "project_id": self.project.id}
+        )
+        task.stage_id = open_stage
+        self.assertEqual(task.state, "01_in_progress")
+        task.stage_id = closed_stage
+        self.assertEqual(task.state, "1_done")
+        self.assertEqual(task.progress_status, "closed")
+        task.stage_id = open_stage
+        self.assertEqual(task.state, "01_in_progress")
+        self.assertNotEqual(task.progress_status, "closed")
+        # A cancelled task keeps its state in a folded stage
+        task.state = "1_canceled"
+        task.stage_id = closed_stage
+        self.assertEqual(task.state, "1_canceled")
