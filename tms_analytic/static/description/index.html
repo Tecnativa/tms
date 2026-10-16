@@ -372,12 +372,12 @@ ul.auto-toc {
 <p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/tms/tree/18.0/tms_analytic"><img alt="OCA/tms" src="https://img.shields.io/badge/github-OCA%2Ftms-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/tms-18-0/tms-18-0-tms_analytic"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/tms&amp;target_branch=18.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
 <p>Analytic for the Transport Management System (TMS):</p>
 <ul class="simple">
-<li>Vehicles have an analytic distribution, added to the analytic
-distribution of the sale order lines (and therefore of their tasks and
-invoice lines) where the vehicle is set as tractor or trailer.
-Changing the tractor or the trailer replaces the distribution of the
-previous vehicle by the new one, keeping the rest of the line
-distribution.</li>
+<li>Vehicles have an analytic distribution. Setting the tractor or the
+trailer in the task form adds it to the analytic distribution of the
+task sale order line (and therefore of its invoice lines), replacing
+the one of the previous vehicles and keeping the rest of the
+distribution. Vehicles assigned from the planning kanban or elsewhere
+don’t change the distribution.</li>
 <li>Vehicles can be linked to the analytic account that represents them.</li>
 <li>The tractor, trailer, driver and division are available in the
 invoices analysis.</li>

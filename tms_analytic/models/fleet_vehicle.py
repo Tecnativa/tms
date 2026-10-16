@@ -16,3 +16,12 @@ class FleetVehicle(models.Model):
         help="Analytic account that represents this vehicle in the analytic "
         "reports.",
     )
+
+    def _get_vehicles_analytic_distribution(self):
+        """Analytic distribution of the vehicles, the percentages of a key shared
+        by several of them added up."""
+        distribution = {}
+        for vehicle in self:
+            for key, percentage in (vehicle.analytic_distribution or {}).items():
+                distribution[key] = distribution.get(key, 0.0) + percentage
+        return distribution

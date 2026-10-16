@@ -11,11 +11,7 @@ class SaleOrderLine(models.Model):
     def _get_vehicles_analytic_distribution(self):
         """Analytic distribution of the tractor and the trailer of the line."""
         self.ensure_one()
-        distribution = {}
-        for vehicle in self.tractor_id | self.trailer_id:
-            for key, percentage in (vehicle.analytic_distribution or {}).items():
-                distribution[key] = distribution.get(key, 0.0) + percentage
-        return distribution
+        return (self.tractor_id | self.trailer_id)._get_vehicles_analytic_distribution()
 
     @api.model
     def _merge_vehicles_analytic_distribution(self, distribution, to_add, to_remove):
@@ -37,50 +33,27 @@ class SaleOrderLine(models.Model):
         } or False
 
     def _compute_analytic_distribution(self):
-        """The vehicles part is taken out while the rest of the distribution is
-        computed (distribution models, order type, project...) and added back
-        afterwards, so it is neither lost nor altered."""
-        vehicles = {line: line._get_vehicles_analytic_distribution() for line in self}
+        """The vehicles part of the distribution, set from the task form, is taken
+        out while the rest of the distribution is computed (distribution models,
+        order type, project...) and added back afterwards, so it is neither lost
+        nor altered. It is not added when it isn't in the distribution, as in 15.0
+        the vehicles analytic tags were only set by the task form."""
+        vehicles = {}
         for line in self:
-            if vehicles[line] and line.analytic_distribution:
+            distribution = line.analytic_distribution or {}
+            vehicles_distribution = line._get_vehicles_analytic_distribution()
+            vehicles[line] = {
+                key: min(percentage, distribution[key])
+                for key, percentage in vehicles_distribution.items()
+                if key in distribution
+            }
+            if vehicles[line]:
                 line.analytic_distribution = self._merge_vehicles_analytic_distribution(
-                    line.analytic_distribution, {}, vehicles[line]
+                    distribution, {}, vehicles[line]
                 )
         res = super()._compute_analytic_distribution()
         for line in self.filtered(lambda x: not x.display_type and vehicles[x]):
             line.analytic_distribution = self._merge_vehicles_analytic_distribution(
                 line.analytic_distribution, vehicles[line], {}
             )
-        return res
-
-    @api.model_create_multi
-    def create(self, vals_list):
-        lines = super().create(vals_list)
-        # A distribution given on creation is not computed: add the vehicles one
-        for line, vals in zip(lines, vals_list, strict=True):
-            if (
-                vals.get("analytic_distribution")
-                and not line.display_type
-                and {"tractor_id", "trailer_id"} & vals.keys()
-            ):
-                line.analytic_distribution = self._merge_vehicles_analytic_distribution(
-                    line.analytic_distribution,
-                    line._get_vehicles_analytic_distribution(),
-                    {},
-                )
-        return lines
-
-    def write(self, vals):
-        if not {"tractor_id", "trailer_id"} & vals.keys():
-            return super().write(vals)
-        previous = {line: line._get_vehicles_analytic_distribution() for line in self}
-        res = super().write(vals)
-        for line in self.filtered(lambda x: not x.display_type):
-            vehicles_distribution = line._get_vehicles_analytic_distribution()
-            if vehicles_distribution != previous[line]:
-                line.analytic_distribution = self._merge_vehicles_analytic_distribution(
-                    line.analytic_distribution,
-                    vehicles_distribution,
-                    previous[line],
-                )
         return res

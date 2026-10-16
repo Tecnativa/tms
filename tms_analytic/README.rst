@@ -30,12 +30,12 @@ TMS Analytic
 
 Analytic for the Transport Management System (TMS):
 
-- Vehicles have an analytic distribution, added to the analytic
-  distribution of the sale order lines (and therefore of their tasks and
-  invoice lines) where the vehicle is set as tractor or trailer.
-  Changing the tractor or the trailer replaces the distribution of the
-  previous vehicle by the new one, keeping the rest of the line
-  distribution.
+- Vehicles have an analytic distribution. Setting the tractor or the
+  trailer in the task form adds it to the analytic distribution of the
+  task sale order line (and therefore of its invoice lines), replacing
+  the one of the previous vehicles and keeping the rest of the
+  distribution. Vehicles assigned from the planning kanban or elsewhere
+  don't change the distribution.
 - Vehicles can be linked to the analytic account that represents them.
 - The tractor, trailer, driver and division are available in the
   invoices analysis.
