@@ -1,3 +1,7 @@
+from openupgradelib import openupgrade
+
+
+@openupgrade.migrate()
 def migrate(env, version):
     """
     Migrate Open Route Service API Key from ir.config_parameter to res.company
