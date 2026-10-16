@@ -18,13 +18,14 @@
                     context="{'default_vehicle_type': 'trailer'}"
                 />
             </field>
-            <field name="company_id" position="before">
+            <field name="location" position="after">
                 <separator />
                 <field
                     name="always_show_in_kanban"
                     invisible="vehicle_type != 'tractor'"
                 />
                 <field name="company_owner_id" options="{'no_create': True}" />
+                <xpath expr="//group/field[@name='company_id']" position="move" />
             </field>
             <xpath expr="//div[@name='button_box']" position="inside">
                 <button
