@@ -149,7 +149,7 @@ class TmsValenciaportsBackend(models.Model):
 
     def pcs_list_messages_by_service(self):
         self.ensure_one()
-        messages = self.get_transport_service().service.ListMessagesByMessageType(
+        messages = self.get_transport_service().service.ListMessagesByService(
             self.service_code, "Pending", self.message_direction, self.session_ticket
         )
         return messages.diffgram and messages.diffgram.MessageData.Messages or []
@@ -355,7 +355,7 @@ class TmsValenciaportsBackend(models.Model):
         so_vals["date_order"] = self.xml_value_time(doc, "MessageHeader/DateAndTime")
         # DocumentDetails
         valid_date = self.xml_value_time(doc, "DocumentDetails/ClosingTimeValidDate")
-        so_vals["validity_date"] = valid_date and valid_date[:10] or False
+        so_vals["validity_date"] = valid_date and valid_date.date() or False
         # References
         so_vals["origin"] = self.xml_value(
             doc, "DocumentDetails/References/PCSDocumentNumber"
@@ -552,18 +552,18 @@ class TmsValenciaportsBackend(models.Model):
                 for key in key_vals_to_remove:
                     new_vals.pop(key)
             if new_vals:
-                fields_tracking = {}
-                new_vals_tracking = {}
-                for k, v in sale_order.fields_get(list(new_vals)).items():
-                    fields_tracking[k] = v
-                    new_vals_tracking[k] = new_vals[k]
-                    if v["type"] == "many2one":
-                        record = self.env[v["relation"]].browse(new_vals[k])
-                        new_vals_tracking[k] = record
-                sale_order._message_track(
-                    fields_tracking, {sale_order.id: new_vals_tracking}
-                )
+                # Log the changes of the fields without their own tracking, from
+                # their current values, html fields can't be tracked
+                initial_values = {
+                    fname: sale_order[fname]
+                    for fname in set(new_vals) - sale_order._track_get_fields()
+                    if fname in sale_order._fields
+                    and sale_order._fields[fname].type != "html"
+                }
                 sale_order.write(new_vals)
+                sale_order._message_track(
+                    list(initial_values), {sale_order.id: initial_values}
+                )
             if len(sol_list) == 1 and len(sale_order.order_line or []) <= 1:
                 line = sale_order.order_line
                 sol_vals = self._clean_false_vals(sol_list[0][2])

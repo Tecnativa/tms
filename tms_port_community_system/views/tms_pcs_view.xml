@@ -37,7 +37,7 @@
                         />
                         <field
                             name="message_state"
-                            invisible="service_method not in ('pcs_list_messages_by_date')"
+                            invisible="service_method != 'pcs_list_messages_by_date'"
                         />
                         <field
                             name="message_direction"
@@ -45,11 +45,11 @@
                         />
                         <field
                             name="from_date"
-                            invisible="service_method not in ('pcs_list_messages_by_date')"
+                            invisible="service_method != 'pcs_list_messages_by_date'"
                         />
                         <field
                             name="to_date"
-                            invisible="service_method not in ('pcs_list_messages_by_date')"
+                            invisible="service_method != 'pcs_list_messages_by_date'"
                         />
                     </group>
                     <group>
