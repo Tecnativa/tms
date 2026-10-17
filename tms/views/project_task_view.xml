@@ -11,58 +11,64 @@
             </label>
             <page name="description_page" position="before">
                 <page name="tms_info" string="Transport Info">
-                    <group>
-                        <group col="4">
+                    <!-- Since 17.0 an inner group always has two columns (label and
+                         value), so col="4" no longer puts two fields per row. Use one
+                         outer group of four inner groups to keep the 15.0 layout, and
+                         don't spread an incomplete last row -->
+                    <group col="4" name="tms_transport" class="justify-content-start">
+                        <group name="tms_release">
                             <field name="release_id" />
-                            <field name="acceptance_id" />
                             <field name="shipping_origin_id" />
-                            <field name="shipping_destination_id" />
                             <field name="force_origin" />
+                        </group>
+                        <group name="tms_acceptance">
+                            <field name="acceptance_id" />
+                            <field name="shipping_destination_id" />
                             <field name="force_destination" />
                         </group>
-                        <group col="4">
+                        <group name="tms_tractor">
                             <field
                                 name="tractor_id"
                                 context="{'default_vehicle_type': 'tractor'}"
                             />
+                            <field name="driver_id" />
+                        </group>
+                        <group name="tms_trailer">
                             <field
                                 name="trailer_id"
                                 context="{'default_vehicle_type': 'trailer'}"
                             />
-                            <field name="driver_id" />
                         </group>
-                        <group>
-                            <group>
-                                <field name="wagon" />
-                            </group>
-                            <group>
-                                <field name="vessel" />
-                                <field name="voyage_number" />
-                            </group>
+                        <group name="tms_wagon">
+                            <field name="wagon" />
                         </group>
-                        <group col="4">
+                        <group name="tms_vessel">
+                            <field name="vessel" />
+                            <field name="voyage_number" />
+                        </group>
+                        <group name="tms_equipment">
                             <field name="equipment_size_type_id" />
-                            <field
-                                name="trailer_requirement_ids"
-                                widget="many2many_tags"
-                            />
                             <field
                                 name="equipment_id"
                                 context="{'default_size_type_id': equipment_size_type_id}"
                             />
-                            <field name="seal" />
                             <field name="shipping_company_id" />
+                        </group>
+                        <group name="tms_equipment_requirements">
+                            <field
+                                name="trailer_requirement_ids"
+                                widget="many2many_tags"
+                            />
+                            <field name="seal" />
                             <field name="final_destination_id" />
                         </group>
-                        <group>
-                            <group>
-                                <field name="port_id" />
-                                <field name="shipment_port_id" />
-                            </group>
-                            <group>
-                                <field name="loading_port_id" />
-                                <field name="unloading_port_id" />
-                            </group>
+                        <group name="tms_port">
+                            <field name="port_id" />
+                            <field name="shipment_port_id" />
+                        </group>
+                        <group name="tms_port_loading">
+                            <field name="loading_port_id" />
+                            <field name="unloading_port_id" />
                         </group>
                     </group>
                     <group string="Packages">

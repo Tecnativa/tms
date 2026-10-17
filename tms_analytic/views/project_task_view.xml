@@ -6,7 +6,10 @@
         <field name="model">project.task</field>
         <field name="inherit_id" ref="tms.tms_view_task_form2" />
         <field name="arch" type="xml">
-            <field name="driver_id" position="after">
+            <xpath
+                expr="//group[@name='tms_trailer']/field[@name='trailer_id']"
+                position="after"
+            >
                 <field
                     name="analytic_distribution"
                     widget="analytic_distribution"
@@ -14,7 +17,7 @@
                     invisible="not sale_line_id"
                     options="{'business_domain': 'sale_order'}"
                 />
-            </field>
+            </xpath>
         </field>
     </record>
 </odoo>
