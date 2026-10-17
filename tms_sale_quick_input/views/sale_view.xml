@@ -131,7 +131,7 @@
                 <field
                     name="euro_pallet_qty"
                     optional="hide"
-                    readonly="editable_package_rel"
+                    readonly="not editable_package_rel"
                 />
                 <field name="goods_id" optional="show" />
                 <field name="shipping_company_id" optional="show" />

@@ -52,7 +52,9 @@ class TestTmsSaleQuickInput(common.TransactionCase):
         self.assertEqual(sale_order_line.euro_pallet_qty, 1)
         self.assertEqual(sale_order_line.carrier_tracking_ref, "Reference")
 
-    def _test_02_inverse_work(self):
+    def test_02_inverse_work(self):
+        # The lineal length is left out: its group tms.group_tms_lineal_length
+        # doesn't exist, so the field is not in the view
         package_2 = self.env["tms.package"].create({"name": "Package 2"})
         sale_order_line_form = Form(
             self.env["sale.order.line"],
@@ -63,7 +65,6 @@ class TestTmsSaleQuickInput(common.TransactionCase):
         sale_order_line_form.tms_package_ids.add(package_2)
         sale_order_line_form.shipping_place_id = self.shipping_origin
         sale_order_line_form.shipping_volume = 90
-        sale_order_line_form.shipping_lineal_length = 100
         sale_order_line_form.shipping_weight = 150
         sale_order_line_form.number_of_packages = 30
         sale_order_line_form.pallet_qty = 2
@@ -76,7 +77,6 @@ class TestTmsSaleQuickInput(common.TransactionCase):
             sale_order_line.shipping_destination_id, self.shipping_destination
         )
         self.assertEqual(package_2.shipping_volume, 90)
-        self.assertEqual(package_2.shipping_lineal_length, 100)
         self.assertEqual(package_2.shipping_weight, 150)
         self.assertEqual(package_2.number_of_packages, 30)
         self.assertEqual(package_2.pallet_qty, 2)
