@@ -12,6 +12,13 @@ class ProjectTask(models.Model):
         related="sale_line_id.analytic_distribution",
         readonly=False,
     )
+    # Read by the analytic_distribution widget of the form, as in analytic.mixin
+    analytic_precision = fields.Integer(
+        store=False,
+        default=lambda self: self.env["decimal.precision"].precision_get(
+            "Percentage Analytic"
+        ),
+    )
 
     @api.onchange("tractor_id", "trailer_id")
     def _onchange_vehicles_analytic_distribution(self):

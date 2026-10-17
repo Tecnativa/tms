@@ -127,6 +127,20 @@ class TestTmsAnalytic(TestTMS):
             task_form.trailer_id = self.env["fleet.vehicle"]
         self.assertEqual(line.analytic_distribution, self.business_distribution)
 
+    def test_task_form_read(self):
+        order = self._create_sale_order()
+        order.action_confirm()
+        task = order.order_line.task_id
+        # The analytic_distribution widget of the task form reads its precision
+        values = task.web_read({"analytic_distribution": {}, "analytic_precision": {}})[
+            0
+        ]
+        self.assertEqual(values["analytic_distribution"], self.business_distribution)
+        self.assertEqual(
+            values["analytic_precision"],
+            self.env["decimal.precision"].precision_get("Percentage Analytic"),
+        )
+
     def test_task_vehicles_without_form(self):
         order = self._create_sale_order()
         order.action_confirm()
