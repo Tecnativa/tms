@@ -8,7 +8,7 @@ from collections import defaultdict
 
 import requests
 
-from odoo import SUPERUSER_ID, _, api, exceptions, fields, models
+from odoo import _, api, exceptions, fields, models
 from odoo.exceptions import ValidationError
 from odoo.osv import expression
 
@@ -476,13 +476,10 @@ class ProjectTask(models.Model):
                         ["|", (vehicle_field, t[1], t[2]), (vehicle_field, "=", False)]
                     )
                 else:
-                    vehicle_domain.append(expression.TRUE_DOMAIN)
+                    vehicle_domain.append(expression.TRUE_LEAF)
             search_domain = expression.AND([search_domain, vehicle_domain])
 
-        tractor_ids = tractors._search(
-            search_domain, order=order, access_rights_uid=SUPERUSER_ID
-        )
-        tractors = tractors.browse(tractor_ids)
+        tractors = tractors.browse(tractors.sudo()._search(search_domain, order=order))
         if "max_vehicle_tasks" in self.env.context:
             tractors = tractors.with_context(task_domain=domain).filtered(
                 "is_available"

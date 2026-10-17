@@ -164,3 +164,38 @@ class TestTMSFlow(TestTMS):
         task.state = "1_canceled"
         task.stage_id = closed_stage
         self.assertEqual(task.state, "1_canceled")
+
+    def test_planning_kanban_tractor_groups(self):
+        SaleType = self.env["sale.order.type"]
+        sale_type = SaleType.create({"name": "Road"})
+        other_sale_type = SaleType.create({"name": "Containers"})
+        self.vehicle.write(
+            {"always_show_in_kanban": True, "sale_type_ids": [(6, 0, sale_type.ids)]}
+        )
+        other_tractor = self.vehicle.copy(
+            {
+                "license_plate": "Test-Vehicle-2",
+                "always_show_in_kanban": True,
+                "sale_type_ids": [(6, 0, other_sale_type.ids)],
+            }
+        )
+        Task = self.env["project.task"].with_context(tms_show_all_kanban_vehicles=True)
+        domain = [("display_in_project", "=", True)]
+
+        def tractor_groups(task_model, domain):
+            groups = task_model.web_read_group(domain, ["tractor_id"], ["tractor_id"])
+            return {
+                group["tractor_id"] and group["tractor_id"][0]
+                for group in groups["groups"]
+            }
+
+        tractors = tractor_groups(Task, domain)
+        self.assertIn(self.vehicle.id, tractors)
+        self.assertIn(other_tractor.id, tractors)
+        # The sale type filter of the tasks also applies to the vehicles
+        tractors = tractor_groups(
+            Task.with_context(pass_task2vehicle_filter=True),
+            ["&", *domain, ("sale_type_id", "=", sale_type.id)],
+        )
+        self.assertIn(self.vehicle.id, tractors)
+        self.assertNotIn(other_tractor.id, tractors)
