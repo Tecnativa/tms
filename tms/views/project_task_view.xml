@@ -177,13 +177,19 @@
                             string="Show Route"
                         />
                     </div>
-                    <group col="4">
-                        <field name="odometer_start" />
-                        <field name="odometer_stop" />
-                        <field name="distance_traveled" />
-                        <field name="distance_estimated" />
-                        <field name="stopped_time" widget="float_time" />
-                        <field name="free_stoped_time" widget="float_time" />
+                    <!-- Two inner groups, so the fields keep the two per row
+                         layout of 15.0 -->
+                    <group name="tms_checkpoint_info">
+                        <group name="tms_checkpoint_start">
+                            <field name="odometer_start" />
+                            <field name="distance_traveled" />
+                            <field name="stopped_time" widget="float_time" />
+                        </group>
+                        <group name="tms_checkpoint_stop">
+                            <field name="odometer_stop" />
+                            <field name="distance_estimated" />
+                            <field name="free_stoped_time" widget="float_time" />
+                        </group>
                     </group>
                     <group>
                         <field name="checkpoint_ids" nolabel="1" mode="list,kanban">
