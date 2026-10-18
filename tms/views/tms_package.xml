@@ -105,46 +105,67 @@
                 <header>
                     <field name="state" widget="statusbar" clickable="True" />
                 </header>
-                <group>
-                    <field name="name" />
-                </group>
-                <group col="4">
-                    <field name="shipping_origin_id" />
-                    <field name="shipping_destination_id" />
-                    <field name="pickup_date" />
-                    <field name="forecast_unload_date" />
-                </group>
-                <group col="4">
-                    <field name="shipping_weight" />
-                    <field name="shipping_volume" />
-                    <field name="shipping_lineal_length" />
-                </group>
-                <group col="4">
-                    <field name="number_of_packages" />
-                    <field name="goods_id" />
-                    <field name="euro_pallet_qty" />
-                </group>
-                <group col="4">
-                    <field name="carrier_tracking_ref" />
-                    <field name="customer_ref" />
-                </group>
-                <group col="4">
-                    <field name="partner_id" />
-                    <field name="requested_date" />
-                </group>
-                <group groups="base.group_no_one">
-                    <field name="checkpoint_origin_ids" widget="many2many_tags" />
-                    <field name="checkpoint_destination_ids" widget="many2many_tags" />
-                </group>
-                <group>
-                    <field name="note" />
-                    <field name="unload_note" />
-                    <field
-                        name="company_id"
-                        options="{'no_create': True}"
-                        groups="base.group_multi_company"
-                    />
-                </group>
+                <sheet>
+                    <group>
+                        <field name="name" />
+                    </group>
+                    <group name="customer">
+                        <group>
+                            <field name="partner_id" />
+                        </group>
+                        <group>
+                            <field name="customer_ref" />
+                            <field name="carrier_tracking_ref" />
+                        </group>
+                    </group>
+                    <group name="dates">
+                        <group>
+                            <field name="requested_date" />
+                        </group>
+                        <group>
+                            <field name="pickup_date" />
+                            <field name="forecast_unload_date" />
+                        </group>
+                    </group>
+                    <group name="shipping">
+                        <group>
+                            <field name="shipping_origin_id" />
+                        </group>
+                        <group>
+                            <field name="shipping_destination_id" />
+                        </group>
+                    </group>
+                    <group name="goods">
+                        <group>
+                            <field name="goods_id" />
+                        </group>
+                    </group>
+                    <group name="dimensions">
+                        <group>
+                            <field name="number_of_packages" />
+                            <field name="euro_pallet_qty" />
+                        </group>
+                        <group>
+                            <field name="shipping_weight" />
+                            <field name="shipping_volume" />
+                            <field name="shipping_lineal_length" />
+                        </group>
+                    </group>
+                    <group name="checkpoints" groups="base.group_no_one">
+                        <field name="checkpoint_origin_ids" widget="many2many_tags" />
+                        <field
+                            name="checkpoint_destination_ids"
+                            widget="many2many_tags"
+                        />
+                    </group>
+                    <group name="notes">
+                        <field name="note" />
+                        <field name="unload_note" />
+                    </group>
+                    <group name="company" groups="base.group_multi_company">
+                        <field name="company_id" options="{'no_create': True}" />
+                    </group>
+                </sheet>
             </form>
         </field>
     </record>
