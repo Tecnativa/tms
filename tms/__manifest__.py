@@ -14,7 +14,7 @@
     "installable": True,
     "external_dependencies": {
         "python": [
-            "stdnum",
+            "python-stdnum",
         ],
     },
     "depends": [
