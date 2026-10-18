@@ -344,8 +344,6 @@
             <templates position="before">
                 <field name="child_ids" />
                 <field name="tractor_id" />
-                <field name="shipping_origin_id" />
-                <field name="shipping_destination_id" />
                 <field name="equipment_size_type_id" />
                 <field name="trailer_requirement_ids" />
             </templates>
@@ -370,11 +368,18 @@
                 <div>
                     <field name="tractor_id" />
                 </div>
+                <!-- As in 15.0, with the parent company of the places -->
                 <div>
-                    <field name="shipping_origin_id" />
+                    <field
+                        name="shipping_origin_id"
+                        context="{'partner_show_only_name': False}"
+                    />
                 </div>
                 <div>
-                    <field name="shipping_destination_id" />
+                    <field
+                        name="shipping_destination_id"
+                        context="{'partner_show_only_name': False}"
+                    />
                 </div>
                 <div>
                     <t t-if="record.trailer_requirement_ids.raw_value">
@@ -400,6 +405,11 @@
                     </div>
                 </t>
                 <div class="clearfix" />
+                <div name="tms_partner" />
+            </xpath>
+            <!-- As in 15.0: the customer after the shipping places -->
+            <xpath expr="//div[@name='tms_partner']" position="inside">
+                <xpath expr="//field[@name='partner_id']" position="move" />
             </xpath>
         </field>
     </record>
