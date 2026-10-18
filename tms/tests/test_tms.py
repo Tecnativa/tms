@@ -3,6 +3,7 @@
 from psycopg2 import IntegrityError
 
 from odoo import fields
+from odoo.exceptions import UserError
 from odoo.tests import Form
 from odoo.tools import mute_logger
 
@@ -199,3 +200,14 @@ class TestTMSFlow(TestTMS):
         )
         self.assertIn(self.vehicle.id, tractors)
         self.assertNotIn(other_tractor.id, tractors)
+
+    def test_estimate_route_without_key(self):
+        self.env["ir.config_parameter"].sudo().set_param(
+            "base_geolocalize.google_map_api_key", False
+        )
+        self.env.company.openrouteservice_api_key = False
+        task = self.env["project.task"].create(
+            {"name": "Route task", "project_id": self.project.id}
+        )
+        with self.assertRaises(UserError):
+            task.get_route_info()

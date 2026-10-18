@@ -649,6 +649,13 @@ class ProjectTask(models.Model):
 
     def _get_route_openrouteservice(self):
         token = self.env.company.openrouteservice_api_key
+        if not token:
+            raise exceptions.UserError(
+                _(
+                    "Set an Open Route Service key in the geolocation settings "
+                    "of the company to estimate the route."
+                )
+            )
         headers = {
             "Accept": "application/json, application/geo+json, "
             "application/gpx+xml, img/png; charset=utf-8",
