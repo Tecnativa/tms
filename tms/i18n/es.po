@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-07 11:46+0000\n"
+"POT-Creation-Date: 2026-10-18 06:06+0000\n"
 "PO-Revision-Date: 2022-12-07 12:49+0100\n"
 "Last-Translator: Carlos Dauden <carlos.dauden@tecnativa.com>\n"
 "Language-Team: \n"
@@ -34,6 +34,15 @@ msgid ""
 msgstr ""
 "<br/>\n"
 "                                            <strong>Bultos:</strong>"
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.tms_package_kanban_view
+msgid ""
+"<br/>\n"
+"                                            <strong>Volume:</strong>"
+msgstr ""
+"<br/>\n"
+"                                            <strong>Volumen:</strong>"
 
 #. module: tms
 #: model_terms:ir.ui.view,arch_db:tms.tms_package_kanban_view
@@ -87,13 +96,21 @@ msgstr ""
 
 #. module: tms
 #: model_terms:ir.ui.view,arch_db:tms.project_task_checkpoint_kanban_view
-msgid "<strong>Arrival:</strong><br/>"
-msgstr "<strong>Llegada:</strong><br/>"
+msgid ""
+"<strong>Arrival:</strong>\n"
+"                                            <br/>"
+msgstr ""
+"<strong>Llegada:</strong>\n"
+"                                            <br/>"
 
 #. module: tms
 #: model_terms:ir.ui.view,arch_db:tms.project_task_checkpoint_kanban_view
-msgid "<strong>Departure:</strong><br/>"
-msgstr "<strong>Salida:</strong><br/>"
+msgid ""
+"<strong>Departure:</strong>\n"
+"                                            <br/>"
+msgstr ""
+"<strong>Salida:</strong>\n"
+"                                            <br/>"
 
 #. module: tms
 #: model_terms:ir.ui.view,arch_db:tms.tms_package_kanban_view
@@ -118,14 +135,9 @@ msgid "ADR"
 msgstr "ADR"
 
 #. module: tms
-#: model:ir.model.fields,field_description:tms.field_res_config_settings__georoute_provider_id
-msgid "API Route"
-msgstr "API Route"
-
-#. module: tms
-#: model_terms:ir.ui.view,arch_db:tms.res_config_settings_view_form
-msgid "API Route:"
-msgstr "API Route:"
+#: model:ir.model.fields,help:tms.field_res_company__openrouteservice_api_key
+msgid "API key for OpenRouteService geocoding"
+msgstr "Clave API de Open Route Service para la geolocalización"
 
 #. module: tms
 #: model:ir.model.fields,field_description:tms.field_sale_order__acceptance_id
@@ -203,6 +215,11 @@ msgid "Cargo vehicle"
 msgstr "Vehículo de carga"
 
 #. module: tms
+#: model:ir.model.fields,help:tms.field_project_task__partner_is_company
+msgid "Check if the contact is a company, otherwise it is a person"
+msgstr "Marque si el contacto es una empresa, en caso contrario es una persona"
+
+#. module: tms
 #: model:ir.model,name:tms.model_project_task_checkpoint
 #: model:ir.model.fields,field_description:tms.field_project_task__checkpoint_ids
 msgid "Checkpoint"
@@ -253,6 +270,11 @@ msgid "Comments"
 msgstr "Comentarios"
 
 #. module: tms
+#: model:ir.model,name:tms.model_res_company
+msgid "Companies"
+msgstr "Empresas"
+
+#. module: tms
 #: model:ir.model.fields,field_description:tms.field_tms_package__company_id
 msgid "Company"
 msgstr "Compañía"
@@ -279,7 +301,6 @@ msgstr "Confirmar pedido"
 
 #. module: tms
 #: model:base.automation,name:tms.automation_confirm_sale_order
-#: model:ir.actions.server,name:tms.action_confirm_sale_order
 msgid "Confirm Sale Order"
 msgstr "Confirmar pedido de venta"
 
@@ -344,6 +365,11 @@ msgstr "Ref. Cliente"
 #: model:ir.model.fields,field_description:tms.field_sale_order__dua_ref
 msgid "DUA"
 msgstr "DUA"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_sale_order_line__shipping_destination_zip
+msgid "DZIP"
+msgstr "CP destino"
 
 #. module: tms
 #: model_terms:ir.ui.view,arch_db:tms.view_task_search_form
@@ -433,11 +459,6 @@ msgid "Driver of the vehicle"
 msgstr "Conductor del vehículo"
 
 #. module: tms
-#: model_terms:ir.ui.view,arch_db:tms.view_task_kanban_to_assign
-msgid "Dropdown menu"
-msgstr "Menú desplegable"
-
-#. module: tms
 #: model:ir.actions.server,name:tms.action_duplicate_sale_order_from_line
 msgid "Duplicate Order"
 msgstr "Duplicar pedido"
@@ -487,6 +508,11 @@ msgid "Euro Pallets"
 msgstr "Euro palets"
 
 #. module: tms
+#: model:ir.actions.server,name:tms.action_confirm_sale_order
+msgid "Execute Code"
+msgstr "Ejecutar código"
+
+#. module: tms
 #: model:ir.model.fields,field_description:tms.field_project_task__expedition
 msgid "Expedition"
 msgstr "Expedición"
@@ -503,9 +529,13 @@ msgstr "Rellenar checkpoints"
 
 #. module: tms
 #: model:base.automation,name:tms.automation_fill_checkpoints
-#: model:ir.actions.server,name:tms.action_fill_checkpoints
 msgid "Fill Checkpoints to confirm order"
 msgstr "Rellenar checkpoints al confirmar orden"
+
+#. module: tms
+#: model:ir.actions.server,name:tms.action_fill_checkpoints
+msgid "Fill checkpoints"
+msgstr "Rellenar checkpoints"
 
 #. module: tms
 #: model:ir.model.fields,field_description:tms.field_project_task__final_destination_id
@@ -520,7 +550,7 @@ msgid "Finished"
 msgstr "Terminado"
 
 #. module: tms
-#: model:tms.goods.adr.class,name:tms.tms_goods_adr_class_2_2
+#: model:tms.goods.adr.class,name:tms.tms_goods_adr_class_2_1
 msgid "Flammable gases"
 msgstr "Gases inflamables"
 
@@ -562,6 +592,7 @@ msgid "Force Origin"
 msgstr "Forzar origen"
 
 #. module: tms
+#: model:ir.model.fields,field_description:tms.field_sale_order_line__forecast_unload_date
 #: model:ir.model.fields,field_description:tms.field_tms_package__forecast_unload_date
 msgid "Forecast Unload Date"
 msgstr "Fecha descarga estim."
@@ -587,28 +618,24 @@ msgid "Gases"
 msgstr "Gases"
 
 #. module: tms
-#: model:ir.model.fields,field_description:tms.field_res_config_settings__georoute_provider_techname
-msgid "Georoute provider techname"
-msgstr "Nombre técnico proveedor georoute"
+#: model:ir.actions.server,name:tms.action_partner_geo_localize
+msgid "Geo Lozalize"
+msgstr "Geolocalizar"
 
 #. module: tms
 #: model:ir.actions.act_window,name:tms.action_tms_goods
 #: model:ir.model.fields,field_description:tms.field_product_product__goods_id
 #: model:ir.model.fields,field_description:tms.field_product_template__goods_id
 #: model:ir.model.fields,field_description:tms.field_project_task__goods_id
+#: model:ir.model.fields,field_description:tms.field_tms_equipment__goods_ids
 #: model:ir.model.fields,field_description:tms.field_tms_package__goods_id
 #: model:ir.ui.menu,name:tms.menu_tms_goods
 msgid "Goods"
 msgstr "Mercancía"
 
 #. module: tms
-#: model:ir.model.fields,field_description:tms.field_tms_equipment__goods_ids
-msgid "Goodss"
-msgstr "Mercancía"
-
-#. module: tms
+#. odoo-python
 #: code:addons/tms/models/project_task.py:0
-#, python-format
 msgid "Google Maps is not available: %s"
 msgstr "Google Maps no está disponible: %s"
 
@@ -627,6 +654,11 @@ msgstr "Altura"
 #: model:ir.module.category,description:tms.module_category_transport_management_system
 msgid "Helps you manage TMS."
 msgstr "Le ayuda a gestionar TMS."
+
+#. module: tms
+#: model:ir.model.fields.selection,name:tms.selection__tms_goods_adr__packing_group__i
+msgid "I"
+msgstr ""
 
 #. module: tms
 #: model:ir.model.fields,field_description:tms.field_iso6346_length__id
@@ -676,8 +708,8 @@ msgid "In progress"
 msgstr "En proceso"
 
 #. module: tms
+#. odoo-python
 #: code:addons/tms/models/project_task.py:0
-#, python-format
 msgid "Incompatible equipment"
 msgstr "Equipamiento incompatible"
 
@@ -685,6 +717,11 @@ msgstr "Equipamiento incompatible"
 #: model:tms.goods.adr.class,name:tms.tms_goods_adr_class_6_2
 msgid "Infectious substances"
 msgstr "Materias infecciosas"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_project_task__partner_is_company
+msgid "Is a Company"
+msgstr "Es una empresa"
 
 #. module: tms
 #: model:ir.model.fields.selection,name:tms.selection__tms_equipment__equipment_type__jail
@@ -698,24 +735,8 @@ msgstr "Apunte contable"
 
 #. module: tms
 #: model_terms:ir.ui.view,arch_db:tms.res_config_settings_view_form
-msgid "Key Route:"
-msgstr "Key Route:"
-
-#. module: tms
-#: model:ir.model.fields,field_description:tms.field_iso6346_length____last_update
-#: model:ir.model.fields,field_description:tms.field_iso6346_second_size____last_update
-#: model:ir.model.fields,field_description:tms.field_iso6346_size_type____last_update
-#: model:ir.model.fields,field_description:tms.field_iso6346_type____last_update
-#: model:ir.model.fields,field_description:tms.field_project_task_checkpoint____last_update
-#: model:ir.model.fields,field_description:tms.field_res_partner_schedule____last_update
-#: model:ir.model.fields,field_description:tms.field_res_partner_zone____last_update
-#: model:ir.model.fields,field_description:tms.field_tms_equipment____last_update
-#: model:ir.model.fields,field_description:tms.field_tms_goods____last_update
-#: model:ir.model.fields,field_description:tms.field_tms_goods_adr____last_update
-#: model:ir.model.fields,field_description:tms.field_tms_goods_adr_class____last_update
-#: model:ir.model.fields,field_description:tms.field_tms_package____last_update
-msgid "Last Modified on"
-msgstr "Última actualización el"
+msgid "Key:"
+msgstr "Clave:"
 
 #. module: tms
 #: model:ir.model.fields,field_description:tms.field_iso6346_length__write_uid
@@ -764,6 +785,18 @@ msgid "Level"
 msgstr "Nivel"
 
 #. module: tms
+#: model:ir.model.fields,field_description:tms.field_project_task__lineal_length
+msgid "Lineal Lenght"
+msgstr "Longitud lineal"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_tms_package__shipping_lineal_length
+#: model_terms:ir.ui.view,arch_db:tms.tms_package_tree_view
+#: model_terms:ir.ui.view,arch_db:tms.view_task_tree2
+msgid "Lineal Length"
+msgstr "Longitud lineal"
+
+#. module: tms
 #: model:ir.model.fields,field_description:tms.field_project_project__load_harbor_id
 msgid "Load Harbor"
 msgstr "Puerto carga"
@@ -793,6 +826,11 @@ msgstr "Puerto de carga"
 #: model:ir.model.fields,field_description:tms.field_tms_package__number_of_packages
 msgid "Lumps"
 msgstr "Bultos"
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.view_order_form
+msgid "Manage Packages"
+msgstr "Gestionar paquetes"
 
 #. module: tms
 #: model_terms:ir.ui.view,arch_db:tms.view_task_search_form
@@ -846,6 +884,11 @@ msgid "Next Checkpoints"
 msgstr "Siguientes Checkpoints"
 
 #. module: tms
+#: model:tms.goods.adr.class,name:tms.tms_goods_adr_class_2_2
+msgid "Non-flammable, non-toxic gases"
+msgstr "Gases no inflamables, no tóxicos"
+
+#. module: tms
 #: model:ir.model.fields.selection,name:tms.selection__project_task__progress_status__not_started
 msgid "Not started"
 msgstr "No comenzada"
@@ -854,6 +897,11 @@ msgstr "No comenzada"
 #: model:ir.model.fields,field_description:tms.field_project_task__number_of_packages
 msgid "Number Of Packages"
 msgstr "Número de bultos"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_sale_order_line__shipping_origin_zip
+msgid "OZIP"
+msgstr "CP origen"
 
 #. module: tms
 #: model:ir.model.fields,field_description:tms.field_project_task__odometer_start
@@ -869,6 +917,11 @@ msgstr "Odómetro fin"
 #: model:ir.model.fields,field_description:tms.field_res_config_settings__georoute_provider_openrouteservice_key
 msgid "Open Route Service API Key"
 msgstr "API Key del servicio Open Route"
+
+#. module: tms
+#: model:ir.model.fields,field_description:tms.field_res_company__openrouteservice_api_key
+msgid "OpenRouteService API Key"
+msgstr "Clave API de Open Route Service"
 
 #. module: tms
 #: model:tms.goods.adr.class,name:tms.tms_goods_adr_class_5_2
@@ -949,7 +1002,6 @@ msgstr "Empresa"
 
 #. module: tms
 #: model:base.automation,name:tms.automation_partner_geo_localize
-#: model:ir.actions.server,name:tms.action_partner_geo_localize
 msgid "Partner Geo Localize"
 msgstr "Geolocalizar empresa"
 
@@ -1008,8 +1060,8 @@ msgstr "Puertos"
 
 #. module: tms
 #: model:ir.model,name:tms.model_product_template
-msgid "Product Template"
-msgstr "Plantilla producto"
+msgid "Product"
+msgstr "Producto"
 
 #. module: tms
 #: model:ir.ui.menu,name:tms.menu_products
@@ -1120,11 +1172,22 @@ msgstr "Elemento del pedido de venta"
 #. module: tms
 #: model:ir.model.fields,help:tms.field_project_task__sale_line_id
 msgid ""
-"Sales Order Item to which the time spent on this task will be added, in "
-"order to be invoiced to your customer."
+"Sales Order Item to which the time spent on this task will be added in order "
+"to be invoiced to your customer.\n"
+"By default the sales order item set on the project will be selected. In the "
+"absence of one, the last prepaid sales order item that has time remaining "
+"will be used.\n"
+"Remove the sales order item in order to make this task non billable. You can "
+"also change or remove the sales order item of each timesheet entry "
+"individually."
 msgstr ""
-"Partida del pedido de venta a la que se añadirá el tiempo empleado en esta "
-"tarea, para ser facturado a su cliente."
+"Línea del pedido de venta en el que añadirá el tiempo dedicado para ser "
+"facturado al cliente.\n"
+"Por defecto, se seleccionará la línea del pedido de venta establecida en el "
+"proyecto. Si no hay una establecida, se utilizará la última línea del pedido "
+"de venta prepagada que tenga tiempo restante.\n"
+"Elimine el dato para hacer que esta tarea sea no facturable. También puede "
+"cambiar o eliminar individualmente el dato de cada parte de horas."
 
 #. module: tms
 #: model:ir.model,name:tms.model_sale_order_line
@@ -1158,6 +1221,16 @@ msgstr "Secuencia"
 #: model_terms:ir.ui.view,arch_db:tms.view_task_kanban_to_assign
 msgid "Set Cover Image"
 msgstr "Establecer imagen de portada"
+
+#. module: tms
+#. odoo-python
+#: code:addons/tms/models/project_task.py:0
+msgid ""
+"Set an Open Route Service key in the geolocation settings of the company to "
+"estimate the route."
+msgstr ""
+"Configure una clave de Open Route Service en los ajustes de geolocalización "
+"de la compañía para estimar la ruta."
 
 #. module: tms
 #: model_terms:ir.ui.view,arch_db:tms.view_task_kanban_to_assign
@@ -1237,11 +1310,6 @@ msgid "State"
 msgstr "Estado"
 
 #. module: tms
-#: model:ir.model,name:tms.model_stock_rule
-msgid "Stock Rule"
-msgstr "Regla de Inventario"
-
-#. module: tms
 #: model_terms:ir.ui.view,arch_db:tms.tms_view_task_form2
 msgid "Stopped"
 msgstr "Paralización"
@@ -1274,7 +1342,7 @@ msgstr "TMS"
 
 #. module: tms
 #: model:ir.model,name:tms.model_tms_analytic
-msgid "TMS Analityc"
+msgid "TMS Analytic"
 msgstr "TMS Analítica"
 
 #. module: tms
@@ -1335,25 +1403,21 @@ msgid "Tasks"
 msgstr "Tareas"
 
 #. module: tms
-#: code:addons/tms/models/tms_equipment.py:0
 #: model:ir.model.constraint,message:tms.constraint_iso6346_length_uniq_code
 #: model:ir.model.constraint,message:tms.constraint_iso6346_second_size_uniq_code
 #: model:ir.model.constraint,message:tms.constraint_iso6346_size_type_uniq_code
 #: model:ir.model.constraint,message:tms.constraint_iso6346_type_uniq_code
-#, python-format
 msgid "The code must be unique !"
 msgstr "¡El código debe ser único!"
 
 #. module: tms
+#. odoo-python
 #: code:addons/tms/models/tms_equipment.py:0
-#, python-format
 msgid "The name is invalid: %(error)s"
 msgstr "El nombre no es válido: %(error)s"
 
 #. module: tms
-#: code:addons/tms/models/tms_equipment.py:0
 #: model:ir.model.constraint,message:tms.constraint_tms_equipment_uniq_name
-#, python-format
 msgid "The name must be unique !"
 msgstr "¡El nombre debe ser único!"
 
@@ -1376,6 +1440,11 @@ msgstr "Hoy"
 #: model_terms:ir.ui.view,arch_db:tms.view_task_search_form
 msgid "Tomorrow"
 msgstr "Mañana"
+
+#. module: tms
+#: model_terms:ir.ui.view,arch_db:tms.tms_view_task_form2
+msgid "Total Lineal Length"
+msgstr "Longitud lineal total"
 
 #. module: tms
 #: model_terms:ir.ui.view,arch_db:tms.tms_view_task_form2
