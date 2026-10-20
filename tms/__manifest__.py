@@ -59,6 +59,7 @@
         "web.assets_backend": [
             "tms/static/src/scss/kanban_view.scss",
             "tms/static/src/js/kanban_view.esm.js",
+            "tms/static/src/js/package_autocomplete.esm.js",
         ],
     },
     "maintainers": ["sergio-teruel", "carlosdauden"],
