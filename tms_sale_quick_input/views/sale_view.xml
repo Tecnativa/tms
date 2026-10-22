@@ -11,7 +11,7 @@
                 expr="//field[@name='order_line']/list/field[@name='seal']"
                 position="after"
             >
-                <field name="editable_package_rel" invisible="1" />
+                <field name="editable_package_rel" column_invisible="1" />
                 <field
                     name="carrier_tracking_ref"
                     optional="show"
@@ -70,7 +70,7 @@
                 />
             </field>
             <field name="company_price_amount" position="after">
-                <field name="editable_package_rel" invisible="1" />
+                <field name="editable_package_rel" column_invisible="1" />
                 <field name="pickup_date" optional="show" />
                 <field name="forecast_unload_date" optional="show" />
                 <field name="release_id" optional="show" />
@@ -147,7 +147,7 @@
                 <field name="seal" optional="show" />
                 <field name="client_order_ref" optional="show" />
                 <field name="note" optional="show" />
-                <field name="level" invisible="1" />
+                <field name="level" column_invisible="1" />
             </field>
         </field>
     </record>

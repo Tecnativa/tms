@@ -30,7 +30,7 @@
         />
         <field name="arch" type="xml">
             <field name="product_uom" position="after">
-                <field name="pcs_message_function" invisible="1" />
+                <field name="pcs_message_function" column_invisible="1" />
             </field>
             <xpath expr="//list" position="attributes">
                 <attribute
@@ -45,7 +45,7 @@
         <field name="inherit_id" ref="sale.view_order_tree" />
         <field name="arch" type="xml">
             <field name="name" position="after">
-                <field name="pcs_message_function" invisible="1" />
+                <field name="pcs_message_function" column_invisible="1" />
             </field>
             <xpath expr="//list" position="attributes">
                 <attribute
@@ -60,7 +60,7 @@
         <field name="inherit_id" ref="sale.view_quotation_tree" />
         <field name="arch" type="xml">
             <field name="name" position="after">
-                <field name="pcs_message_function" invisible="1" />
+                <field name="pcs_message_function" column_invisible="1" />
             </field>
             <xpath expr="//list" position="attributes">
                 <attribute
