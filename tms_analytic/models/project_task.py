@@ -22,9 +22,8 @@ class ProjectTask(models.Model):
 
     @api.onchange("tractor_id", "trailer_id")
     def _onchange_vehicles_analytic_distribution(self):
-        """Replace the distribution of the previous vehicles by the one of the new
-        ones, as the vehicles analytic tags were set in 15.0. Only from the form, so
-        the tractor assigned from the planning kanban doesn't change it."""
+        """Show in the form the distribution of the new vehicles replacing the one of
+        the previous ones, as the sale order line write does when it is saved."""
         for task in self.filtered("sale_line_id"):
             origin = task._origin
             task.analytic_distribution = self.env[

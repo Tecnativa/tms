@@ -148,14 +148,32 @@ class TestTmsAnalytic(TestTMS):
         # As the planning kanban, that doesn't run the form onchange
         line.task_id.tractor_id = self.vehicle
         self.assertEqual(line.tractor_id, self.vehicle)
-        self.assertEqual(line.analytic_distribution, self.business_distribution)
+        self.assertEqual(
+            line.analytic_distribution,
+            {str(self.account_business.id): 100.0, self.key_tractor: 100.0},
+        )
+        line.task_id.tractor_id = self.vehicle_2
+        self.assertEqual(
+            line.analytic_distribution,
+            {str(self.account_business.id): 100.0, self.key_tractor_2: 100.0},
+        )
 
     def test_sale_line_with_tractor(self):
-        # The vehicles distribution is only set from the task form
         order = self._create_sale_order(tractor_id=self.vehicle.id)
+        line = order.order_line
         self.assertEqual(
-            order.order_line.analytic_distribution, self.business_distribution
+            line.analytic_distribution,
+            {str(self.account_business.id): 100.0, self.key_tractor: 100.0},
         )
+        # The task is created with the tractor of the line, without adding it again
+        order.action_confirm()
+        self.assertEqual(line.task_id.tractor_id, self.vehicle)
+        self.assertEqual(
+            line.analytic_distribution,
+            {str(self.account_business.id): 100.0, self.key_tractor: 100.0},
+        )
+        line.tractor_id = False
+        self.assertEqual(line.analytic_distribution, self.business_distribution)
 
     def test_order_type_distribution_with_tractor(self):
         order_type = self.env["sale.order.type"].create(
@@ -182,12 +200,10 @@ class TestTmsAnalytic(TestTMS):
             }
         )
         line = order.order_line
-        self.assertEqual(line.analytic_distribution, self.business_distribution)
-        # The vehicle part set from the task form
-        line.analytic_distribution = {
-            str(self.account_business.id): 100.0,
-            self.key_tractor: 100.0,
-        }
+        self.assertEqual(
+            line.analytic_distribution,
+            {str(self.account_business.id): 100.0, self.key_tractor: 100.0},
+        )
         # A change of the type resets the line distribution, keeping the tractor
         other_account = self.account_business.copy({"name": "Containers"})
         other_type = order_type.copy(
