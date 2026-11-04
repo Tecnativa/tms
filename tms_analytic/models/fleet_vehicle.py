@@ -11,14 +11,13 @@ class FleetVehicle(models.Model):
     _name = "fleet.vehicle"
     _inherit = ["fleet.vehicle", "analytic.mixin"]
 
-    def _get_vehicles_analytic_distribution(self):
-        """Analytic distribution of the vehicles, the percentages of a key shared
-        by several of them added up."""
-        distribution = {}
-        for vehicle in self:
-            for key, percentage in (vehicle.analytic_distribution or {}).items():
-                distribution[key] = distribution.get(key, 0.0) + percentage
-        return distribution
+    def _get_vehicles_analytic_distributions(self):
+        """Analytic distribution of each vehicle, in the order of the records."""
+        return [
+            vehicle.analytic_distribution
+            for vehicle in self
+            if vehicle.analytic_distribution
+        ]
 
     @api.model
     def _get_vehicle_by_analytic_account(self, account_ids):

@@ -32,8 +32,8 @@ class ProjectTask(models.Model):
                 origin.analytic_distribution,
                 (
                     task.tractor_id | task.trailer_id
-                )._get_vehicles_analytic_distribution(),
+                )._get_vehicles_analytic_distributions(),
                 (
                     origin.tractor_id | origin.trailer_id
-                )._get_vehicles_analytic_distribution(),
+                )._get_vehicles_analytic_distributions(),
             )

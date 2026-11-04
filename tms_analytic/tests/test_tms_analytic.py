@@ -37,8 +37,9 @@ class TestTmsAnalytic(TestTMS):
         cls.account_trailer = Account.create(
             {"name": "R-3333-CCC", "plan_id": vehicles_plan.id}
         )
-        cls.key_tractor = f"{cls.account_tractors.id},{cls.account_tractor.id}"
-        cls.key_tractor_2 = f"{cls.account_tractors.id},{cls.account_tractor_2.id}"
+        cls.key_tractor = str(cls.account_tractor.id)
+        cls.key_tractor_2 = str(cls.account_tractor_2.id)
+        # With an account of the business plan, so it can't share their rows
         cls.key_trailer = f"{cls.account_tractors.id},{cls.account_trailer.id}"
         cls.vehicle.write(
             {
@@ -64,6 +65,10 @@ class TestTmsAnalytic(TestTMS):
         (cls.vehicle | cls.vehicle_2).trailer_id = cls.trailer
         cls.product = cls.ordered_product_tmpl.product_variant_id
         cls.business_distribution = {str(cls.account_business.id): 100.0}
+
+    @staticmethod
+    def _key(*accounts):
+        return ",".join(map(str, sorted(account.id for account in accounts)))
 
     def _create_sale_order(self, **line_vals):
         return self.env["sale.order"].create(
@@ -105,8 +110,9 @@ class TestTmsAnalytic(TestTMS):
         self.assertEqual(
             line.analytic_distribution,
             {
-                str(self.account_business.id): 100.0,
-                self.key_tractor: 100.0,
+                # The tractor in the row of the business line, the trailer on its
+                # own, as the row already has an account of the vehicles plan
+                self._key(self.account_business, self.account_tractor): 100.0,
                 self.key_trailer: 50.0,
             },
         )
@@ -117,8 +123,7 @@ class TestTmsAnalytic(TestTMS):
         self.assertEqual(
             line.analytic_distribution,
             {
-                str(self.account_business.id): 100.0,
-                self.key_tractor_2: 100.0,
+                self._key(self.account_business, self.account_tractor_2): 100.0,
                 self.key_trailer: 50.0,
             },
         )
@@ -150,12 +155,12 @@ class TestTmsAnalytic(TestTMS):
         self.assertEqual(line.tractor_id, self.vehicle)
         self.assertEqual(
             line.analytic_distribution,
-            {str(self.account_business.id): 100.0, self.key_tractor: 100.0},
+            {self._key(self.account_business, self.account_tractor): 100.0},
         )
         line.task_id.tractor_id = self.vehicle_2
         self.assertEqual(
             line.analytic_distribution,
-            {str(self.account_business.id): 100.0, self.key_tractor_2: 100.0},
+            {self._key(self.account_business, self.account_tractor_2): 100.0},
         )
 
     def test_sale_line_with_tractor(self):
@@ -163,17 +168,60 @@ class TestTmsAnalytic(TestTMS):
         line = order.order_line
         self.assertEqual(
             line.analytic_distribution,
-            {str(self.account_business.id): 100.0, self.key_tractor: 100.0},
+            {self._key(self.account_business, self.account_tractor): 100.0},
         )
         # The task is created with the tractor of the line, without adding it again
         order.action_confirm()
         self.assertEqual(line.task_id.tractor_id, self.vehicle)
         self.assertEqual(
             line.analytic_distribution,
-            {str(self.account_business.id): 100.0, self.key_tractor: 100.0},
+            {self._key(self.account_business, self.account_tractor): 100.0},
         )
         line.tractor_id = False
         self.assertEqual(line.analytic_distribution, self.business_distribution)
+
+    def test_sale_line_split_distribution(self):
+        account_containers = self.account_business.copy({"name": "Containers"})
+        order = self._create_sale_order(
+            analytic_distribution={
+                str(self.account_business.id): 60.0,
+                str(account_containers.id): 40.0,
+            }
+        )
+        line = order.order_line
+        line.tractor_id = self.vehicle
+        self.assertEqual(
+            line.analytic_distribution,
+            {
+                self._key(self.account_business, self.account_tractor): 60.0,
+                self._key(account_containers, self.account_tractor): 40.0,
+            },
+        )
+        # A vehicle shared with others takes its part of every row
+        self.vehicle_2.analytic_distribution = {self.key_tractor_2: 50.0}
+        line.tractor_id = self.vehicle_2
+        self.assertEqual(
+            line.analytic_distribution,
+            {
+                self._key(self.account_business, self.account_tractor_2): 30.0,
+                str(self.account_business.id): 30.0,
+                self._key(account_containers, self.account_tractor_2): 20.0,
+                str(account_containers.id): 20.0,
+            },
+        )
+        line.tractor_id = False
+        self.assertEqual(
+            line.analytic_distribution,
+            {str(self.account_business.id): 60.0, str(account_containers.id): 40.0},
+        )
+
+    def test_trailer_with_plans_of_the_line(self):
+        order = self._create_sale_order(trailer_id=self.trailer.id)
+        # Its account of the business plan doesn't fit in the business line row
+        self.assertEqual(
+            order.order_line.analytic_distribution,
+            {str(self.account_business.id): 100.0, self.key_trailer: 50.0},
+        )
 
     def test_order_type_distribution_with_tractor(self):
         order_type = self.env["sale.order.type"].create(
@@ -202,7 +250,7 @@ class TestTmsAnalytic(TestTMS):
         line = order.order_line
         self.assertEqual(
             line.analytic_distribution,
-            {str(self.account_business.id): 100.0, self.key_tractor: 100.0},
+            {self._key(self.account_business, self.account_tractor): 100.0},
         )
         # A change of the type resets the line distribution, keeping the tractor
         other_account = self.account_business.copy({"name": "Containers"})
@@ -212,7 +260,7 @@ class TestTmsAnalytic(TestTMS):
         order.type_id = other_type
         self.assertEqual(
             order.order_line.analytic_distribution,
-            {str(other_account.id): 100.0, self.key_tractor: 100.0},
+            {self._key(other_account, self.account_tractor): 100.0},
         )
 
     def test_invoice_report_vehicles(self):
