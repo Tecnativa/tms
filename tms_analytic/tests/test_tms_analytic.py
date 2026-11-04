@@ -19,6 +19,9 @@ class TestTmsAnalytic(TestTMS):
         # so the project analytic account is not added to the distributions
         business_plan, _other_plans = Plan._get_all_plans()
         vehicles_plan = Plan.create({"name": "Vehicles"})
+        cls.env["ir.config_parameter"].sudo().set_param(
+            "tms_analytic.vehicles_plan", vehicles_plan.id
+        )
         cls.account_business = Account.create(
             {"name": "Road transport", "plan_id": business_plan.id}
         )
@@ -39,14 +42,12 @@ class TestTmsAnalytic(TestTMS):
         cls.key_trailer = f"{cls.account_tractors.id},{cls.account_trailer.id}"
         cls.vehicle.write(
             {
-                "analytic_account_id": cls.account_tractor.id,
                 "analytic_distribution": {cls.key_tractor: 100.0},
             }
         )
         cls.vehicle_2 = cls.vehicle.copy(
             {
                 "license_plate": "Test-Vehicle-2",
-                "analytic_account_id": cls.account_tractor_2.id,
                 "analytic_distribution": {cls.key_tractor_2: 100.0},
             }
         )
@@ -55,7 +56,6 @@ class TestTmsAnalytic(TestTMS):
             {
                 "model_id": trailer_model.id,
                 "license_plate": "Test-Trailer",
-                "analytic_account_id": cls.account_trailer.id,
                 # Shared between several vehicles
                 "analytic_distribution": {cls.key_trailer: 50.0},
             }

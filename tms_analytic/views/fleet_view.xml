@@ -12,7 +12,6 @@
                     name="group_analytic"
                     groups="analytic.group_analytic_accounting"
                 >
-                    <field name="analytic_account_id" />
                     <field
                         name="analytic_distribution"
                         widget="analytic_distribution"

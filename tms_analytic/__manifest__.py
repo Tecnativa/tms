@@ -5,7 +5,7 @@
 {
     "name": "TMS Analytic",
     "summary": "Analytic for Transport Management System (TMS)",
-    "version": "18.0.1.1.0",
+    "version": "18.0.1.2.0",
     "category": "Logistic",
     "website": "https://github.com/Tecnativa/tms",
     "author": "Tecnativa, Odoo Community Association (OCA)",
@@ -18,6 +18,7 @@
     "data": [
         "views/fleet_view.xml",
         "views/project_task_view.xml",
+        "views/res_config_settings_views.xml",
     ],
     "maintainers": ["sergio-teruel", "carlosdauden"],
 }

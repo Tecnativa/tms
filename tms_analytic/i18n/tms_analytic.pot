@@ -4,8 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 13.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-04 21:37+0000\n"
+"PO-Revision-Date: 2026-11-04 21:37+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -14,19 +16,30 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: tms_analytic
-#: model:ir.model,name:tms_analytic.model_account_analytic_dimension
-msgid "Account Analytic Dimension"
-msgstr ""
-
-#. module: tms_analytic
 #: model_terms:ir.ui.view,arch_db:tms_analytic.fleet_vehicle_view_form
 msgid "Analytic"
 msgstr ""
 
 #. module: tms_analytic
-#: model:ir.model.fields,field_description:tms_analytic.field_fleet_vehicle__analytic_tag_ids
-#: model:ir.model.fields,field_description:tms_analytic.field_project_task__analytic_tag_ids
-msgid "Analytic Tags"
+#: model:ir.model.fields,field_description:tms_analytic.field_fleet_vehicle__analytic_distribution
+#: model:ir.model.fields,field_description:tms_analytic.field_project_task__analytic_distribution
+msgid "Analytic Distribution"
+msgstr ""
+
+#. module: tms_analytic
+#: model:ir.model,name:tms_analytic.model_account_analytic_plan
+msgid "Analytic Plans"
+msgstr ""
+
+#. module: tms_analytic
+#: model:ir.model.fields,field_description:tms_analytic.field_fleet_vehicle__analytic_precision
+#: model:ir.model.fields,field_description:tms_analytic.field_project_task__analytic_precision
+msgid "Analytic Precision"
+msgstr ""
+
+#. module: tms_analytic
+#: model:ir.model.fields,field_description:tms_analytic.field_fleet_vehicle__distribution_analytic_account_ids
+msgid "Distribution Analytic Account"
 msgstr ""
 
 #. module: tms_analytic
@@ -42,6 +55,35 @@ msgstr ""
 #. module: tms_analytic
 #: model:ir.model,name:tms_analytic.model_account_invoice_report
 msgid "Invoices Statistics"
+msgstr ""
+
+#. module: tms_analytic
+#: model:ir.model,name:tms_analytic.model_account_move_line
+msgid "Journal Item"
+msgstr ""
+
+#. module: tms_analytic
+#: model_terms:ir.ui.view,arch_db:tms_analytic.res_config_settings_view_form
+msgid ""
+"Plan whose accounts represent the vehicles in their analytic distribution"
+msgstr ""
+
+#. module: tms_analytic
+#: model:ir.model.fields,help:tms_analytic.field_res_config_settings__tms_vehicles_analytic_plan_id
+msgid ""
+"Plan whose accounts represent the vehicles. The analytic lines of an account"
+" of this plan get the vehicle with that account in its analytic distribution"
+" as tractor or trailer."
+msgstr ""
+
+#. module: tms_analytic
+#: model:ir.model,name:tms_analytic.model_res_config_settings
+msgid "Procurement purchase grouping settings"
+msgstr ""
+
+#. module: tms_analytic
+#: model:ir.model,name:tms_analytic.model_sale_order_line
+msgid "Sales Order Line"
 msgstr ""
 
 #. module: tms_analytic
@@ -62,4 +104,9 @@ msgstr ""
 #. module: tms_analytic
 #: model:ir.model,name:tms_analytic.model_fleet_vehicle
 msgid "Vehicle"
+msgstr ""
+
+#. module: tms_analytic
+#: model:ir.model.fields,field_description:tms_analytic.field_res_config_settings__tms_vehicles_analytic_plan_id
+msgid "Vehicles Analytic Plan"
 msgstr ""

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-24 16:44+0000\n"
+"POT-Creation-Date: 2026-11-04 21:37+0000\n"
 "PO-Revision-Date: 2021-12-24 17:45+0100\n"
 "Last-Translator: Sergio Teruel <sergio.teruel@tecnativa.com>\n"
 "Language-Team: \n"
@@ -18,20 +18,31 @@ msgstr ""
 "X-Generator: Poedit 2.3\n"
 
 #. module: tms_analytic
-#: model:ir.model,name:tms_analytic.model_account_analytic_dimension
-msgid "Account Analytic Dimension"
-msgstr "Dimensión de contabilidad analítica"
-
-#. module: tms_analytic
 #: model_terms:ir.ui.view,arch_db:tms_analytic.fleet_vehicle_view_form
 msgid "Analytic"
 msgstr "Analítica"
 
 #. module: tms_analytic
-#: model:ir.model.fields,field_description:tms_analytic.field_fleet_vehicle__analytic_tag_ids
-#: model:ir.model.fields,field_description:tms_analytic.field_project_task__analytic_tag_ids
-msgid "Analytic Tags"
-msgstr "Etiquetas analíticas"
+#: model:ir.model.fields,field_description:tms_analytic.field_fleet_vehicle__analytic_distribution
+#: model:ir.model.fields,field_description:tms_analytic.field_project_task__analytic_distribution
+msgid "Analytic Distribution"
+msgstr "Distribución analítica"
+
+#. module: tms_analytic
+#: model:ir.model,name:tms_analytic.model_account_analytic_plan
+msgid "Analytic Plans"
+msgstr "Planes analíticos"
+
+#. module: tms_analytic
+#: model:ir.model.fields,field_description:tms_analytic.field_fleet_vehicle__analytic_precision
+#: model:ir.model.fields,field_description:tms_analytic.field_project_task__analytic_precision
+msgid "Analytic Precision"
+msgstr "Precisión analítica"
+
+#. module: tms_analytic
+#: model:ir.model.fields,field_description:tms_analytic.field_fleet_vehicle__distribution_analytic_account_ids
+msgid "Distribution Analytic Account"
+msgstr "Cuenta analítica de distribución"
 
 #. module: tms_analytic
 #: model:ir.model.fields,field_description:tms_analytic.field_account_invoice_report__division_id
@@ -47,6 +58,39 @@ msgstr "Conductor"
 #: model:ir.model,name:tms_analytic.model_account_invoice_report
 msgid "Invoices Statistics"
 msgstr "Estadísticas de facturas"
+
+#. module: tms_analytic
+#: model:ir.model,name:tms_analytic.model_account_move_line
+msgid "Journal Item"
+msgstr "Apunte contable"
+
+#. module: tms_analytic
+#: model_terms:ir.ui.view,arch_db:tms_analytic.res_config_settings_view_form
+msgid ""
+"Plan whose accounts represent the vehicles in their analytic distribution"
+msgstr ""
+"Plan cuyas cuentas representan a los vehículos en su distribución analítica"
+
+#. module: tms_analytic
+#: model:ir.model.fields,help:tms_analytic.field_res_config_settings__tms_vehicles_analytic_plan_id
+msgid ""
+"Plan whose accounts represent the vehicles. The analytic lines of an account"
+" of this plan get the vehicle with that account in its analytic distribution"
+" as tractor or trailer."
+msgstr ""
+"Plan cuyas cuentas representan a los vehículos. Las líneas analíticas de una"
+" cuenta de este plan toman como tractora o remolque el vehículo que tiene "
+"esa cuenta en su distribución analítica."
+
+#. module: tms_analytic
+#: model:ir.model,name:tms_analytic.model_res_config_settings
+msgid "Procurement purchase grouping settings"
+msgstr "Ajustes de agrupación de compras de abastecimiento"
+
+#. module: tms_analytic
+#: model:ir.model,name:tms_analytic.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea de pedido de venta"
 
 #. module: tms_analytic
 #: model:ir.model,name:tms_analytic.model_project_task
@@ -67,3 +111,8 @@ msgstr "Remolque"
 #: model:ir.model,name:tms_analytic.model_fleet_vehicle
 msgid "Vehicle"
 msgstr "Vehículo"
+
+#. module: tms_analytic
+#: model:ir.model.fields,field_description:tms_analytic.field_res_config_settings__tms_vehicles_analytic_plan_id
+msgid "Vehicles Analytic Plan"
+msgstr "Plan analítico de vehículos"

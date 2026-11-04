@@ -14,7 +14,10 @@ class TestTmsAnalyticLines(AccountTestInvoicingCommon):
         Plan = cls.env["account.analytic.plan"]
         Account = cls.env["account.analytic.account"]
         business_plan, _other_plans = Plan._get_all_plans()
-        vehicles_plan = Plan.create({"name": "Vehicles"})
+        cls.vehicles_plan = Plan.create({"name": "Vehicles"})
+        cls.env["ir.config_parameter"].sudo().set_param(
+            "tms_analytic.vehicles_plan", cls.vehicles_plan.id
+        )
         cls.account_tractors = Account.create(
             {"name": "Tractors", "plan_id": business_plan.id}
         )
@@ -24,30 +27,24 @@ class TestTmsAnalyticLines(AccountTestInvoicingCommon):
         )
         trailer_model = tractor_model.copy({"vehicle_type": "trailer"})
         cls.vehicles = cls.env["fleet.vehicle"]
+        cls.vehicle_accounts = Account
         for plate, model in (
             ("1111-AAA", tractor_model),
             ("2222-BBB", tractor_model),
             ("R-3333-CCC", trailer_model),
         ):
+            account = Account.create({"name": plate, "plan_id": cls.vehicles_plan.id})
+            cls.vehicle_accounts |= account
             cls.vehicles |= cls.env["fleet.vehicle"].create(
                 {
                     "model_id": model.id,
                     "license_plate": plate,
-                    "analytic_account_id": Account.create(
-                        {"name": plate, "plan_id": vehicles_plan.id}
-                    ).id,
+                    "analytic_distribution": {str(account.id): 100.0},
                 }
             )
 
-    def test_cost_shared_between_vehicles(self):
-        tractor, tractor_2, trailer = self.vehicles
-        distribution = {
-            f"{self.account_tractors.id},{vehicle.analytic_account_id.id}": percentage
-            for vehicle, percentage in zip(
-                self.vehicles, (50.0, 30.0, 20.0), strict=True
-            )
-        }
-        bill = self.env["account.move"].create(
+    def _create_bill(self, distribution):
+        return self.env["account.move"].create(
             {
                 "move_type": "in_invoice",
                 "partner_id": self.partner_a.id,
@@ -64,6 +61,17 @@ class TestTmsAnalyticLines(AccountTestInvoicingCommon):
                 ],
             }
         )
+
+    def test_cost_shared_between_vehicles(self):
+        tractor, tractor_2, trailer = self.vehicles
+        bill = self._create_bill(
+            {
+                f"{self.account_tractors.id},{account.id}": percentage
+                for account, percentage in zip(
+                    self.vehicle_accounts, (50.0, 30.0, 20.0), strict=True
+                )
+            }
+        )
         bill.action_post()
         analytic_lines = bill.invoice_line_ids.analytic_line_ids
         self.assertEqual(len(analytic_lines), 3)
@@ -75,6 +83,56 @@ class TestTmsAnalyticLines(AccountTestInvoicingCommon):
             analytic_lines.filtered(lambda x: x.tractor_id == tractor).amount, -150.0
         )
 
+    def test_vehicles_plan_not_set(self):
+        self.env["ir.config_parameter"].sudo().set_param(
+            "tms_analytic.vehicles_plan", False
+        )
+        bill = self._create_bill({str(self.vehicle_accounts[0].id): 100.0})
+        bill.action_post()
+        self.assertFalse(bill.invoice_line_ids.analytic_line_ids.tractor_id)
+
+    def test_account_of_several_vehicles(self):
+        """It is not known which vehicle the account represents"""
+        tractor, tractor_2, _trailer = self.vehicles
+        account, account_2, _account_3 = self.vehicle_accounts
+        tractor_2.analytic_distribution = {f"{account.id}": 100.0}
+        bill = self._create_bill({str(account.id): 50.0, str(account_2.id): 50.0})
+        bill.action_post()
+        self.assertFalse(bill.invoice_line_ids.analytic_line_ids.tractor_id)
+        tractor_2.analytic_distribution = {f"{account_2.id}": 100.0}
+        bill = self._create_bill({str(account.id): 50.0, str(account_2.id): 50.0})
+        bill.action_post()
+        self.assertEqual(
+            bill.invoice_line_ids.analytic_line_ids.tractor_id, tractor | tractor_2
+        )
+
+    def test_add_analytic_account(self):
+        tractor, tractor_2, trailer = self.vehicles
+        account, account_2, _account_3 = self.vehicle_accounts
+        tractor.analytic_distribution = False
+        tractor._add_analytic_account(account)
+        self.assertEqual(tractor.analytic_distribution, {str(account.id): 100.0})
+        # Added to every key of the other plans
+        account_containers = self.account_tractors.copy({"name": "Containers"})
+        tractor_2.analytic_distribution = {
+            str(self.account_tractors.id): 60.0,
+            str(account_containers.id): 40.0,
+        }
+        tractor_2._add_analytic_account(account_2)
+        self.assertEqual(
+            tractor_2.analytic_distribution,
+            {
+                f"{self.account_tractors.id},{account_2.id}": 60.0,
+                f"{account_containers.id},{account_2.id}": 40.0,
+            },
+        )
+        # The vehicle already has an account of the plan
+        trailer._add_analytic_account(account)
+        self.assertEqual(
+            trailer.analytic_distribution,
+            {str(self.vehicle_accounts[2].id): 100.0},
+        )
+
     def test_post_without_analytic_access(self):
         user = new_test_user(
             self.env,
@@ -82,6 +140,9 @@ class TestTmsAnalyticLines(AccountTestInvoicingCommon):
             groups="account.group_account_invoice",
             company_id=self.env.company.id,
         )
-        invoice = self.init_invoice("out_invoice", amounts=[100.0], post=False)
-        invoice.with_user(user).action_post()
-        self.assertEqual(invoice.state, "posted")
+        bill = self._create_bill({str(self.vehicle_accounts[0].id): 100.0})
+        bill.with_user(user).action_post()
+        self.assertEqual(bill.state, "posted")
+        self.assertEqual(
+            bill.invoice_line_ids.analytic_line_ids.tractor_id, self.vehicles[0]
+        )
