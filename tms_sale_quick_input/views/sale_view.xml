@@ -162,12 +162,12 @@
                 <field
                     string="Pickup Date From"
                     name="pickup_date"
-                    filter_domain="[('pickup_date', '&gt;=', self)]"
+                    filter_domain="[('pickup_date', '&gt;=', raw_value)]"
                 />
                 <field
                     string="Pickup Date Before"
                     name="pickup_date"
-                    filter_domain="[('pickup_date', '&lt;', self)]"
+                    filter_domain="[('pickup_date', '&lt;', raw_value)]"
                 />
                 <field name="sale_type_id" />
                 <separator />
