@@ -241,3 +241,58 @@ class TestTmsAnalyticLines(AccountTestInvoicingCommon):
         self.assertEqual(
             bill.invoice_line_ids.analytic_line_ids.tractor_id, self.vehicles[0]
         )
+
+    def test_vehicle_of_another_company(self):
+        """A vehicle with the accounts of a company used on a line of another one
+        only brings its accounts without company."""
+        self._set_vehicle_distributions()
+        (self.account_tractors | self.vehicle_accounts).company_id = self.env.company
+        self.account_city.company_id = False
+        company_2 = self.setup_other_company()["company"]
+        tractor = self.vehicles[0]
+        bill = (
+            self.env["account.move"]
+            .with_company(company_2)
+            .create(
+                {
+                    "move_type": "in_invoice",
+                    "partner_id": self.partner_a.id,
+                    "invoice_date": fields.Date.today(),
+                    "invoice_line_ids": [
+                        Command.create(
+                            {
+                                "name": "Fuel",
+                                "price_unit": 300.0,
+                                "tax_ids": [Command.clear()],
+                                "tractor_id": tractor.id,
+                            }
+                        )
+                    ],
+                }
+            )
+        )
+        line = bill.invoice_line_ids
+        self.assertEqual(line.analytic_distribution, {str(self.account_city.id): 100.0})
+        # The same vehicle on a line of its company brings all its accounts
+        bill_2 = self._create_bill(False)
+        bill_2.invoice_line_ids.tractor_id = tractor
+        self.assertEqual(
+            bill_2.invoice_line_ids.analytic_distribution,
+            {
+                self._key(
+                    self.account_tractors, self.vehicle_accounts[0], self.account_city
+                ): 100.0
+            },
+        )
+        # A user of the other company only can read the accounts of the line
+        user = new_test_user(
+            self.env,
+            login="tms_analytic_company_2",
+            groups="account.group_account_invoice,analytic.group_analytic_accounting",
+            company_id=company_2.id,
+            company_ids=[Command.set(company_2.ids)],
+        )
+        accounts = line.with_user(user).with_company(company_2).analytic_distribution
+        self.env["account.analytic.account"].with_user(user).browse(
+            [int(x) for key in accounts for x in key.split(",")]
+        ).read(["name"])

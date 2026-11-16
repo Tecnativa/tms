@@ -26,11 +26,45 @@ class TmsAnalyticDistribution(models.AbstractModel):
         return self.filtered(lambda x: not x.display_type)
 
     def _get_vehicles_analytic_distributions(self):
-        """Analytic distribution of the tractor and of the trailer of the line."""
+        """Analytic distribution of the tractor and of the trailer of the line,
+        without the accounts of other companies: vehicles have no company, so a
+        vehicle of one company can be used on the lines of another one, and its
+        accounts would be unreadable for the users of the company of the line."""
         self.ensure_one()
-        return (
+        distributions = (
             self.tractor_id | self.trailer_id
         )._get_vehicles_analytic_distributions()
+        if not self.company_id:
+            return distributions
+        accounts = (
+            self.env["account.analytic.account"]
+            .sudo()
+            .browse(
+                {
+                    int(account)
+                    for distribution in distributions
+                    for key in distribution
+                    for account in key.split(",")
+                }
+            )
+            .exists()
+        )
+        allowed = set(
+            accounts.filtered(
+                lambda x: not x.company_id or x.company_id in self.company_id.parent_ids
+            ).ids
+        )
+        result = []
+        for distribution in distributions:
+            filtered = {}
+            for key, percentage in distribution.items():
+                key_accounts = [x for x in key.split(",") if int(x) in allowed]
+                if key_accounts:
+                    new_key = ",".join(key_accounts)
+                    filtered[new_key] = filtered.get(new_key, 0.0) + percentage
+            if filtered:
+                result.append(filtered)
+        return result
 
     @api.model
     def _get_analytic_key_plans(self, accounts):
