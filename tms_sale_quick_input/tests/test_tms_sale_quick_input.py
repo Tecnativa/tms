@@ -1,5 +1,6 @@
 # Copyright 2021 Tecnativa - Carlos Roca
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+from odoo import Command
 from odoo.exceptions import UserError
 from odoo.tests import Form, common
 
@@ -114,3 +115,21 @@ class TestTmsSaleQuickInput(common.TransactionCase):
             sale_order_line.tms_package_ids.shipping_origin_id,
             sale_order_line.shipping_origin_id,
         )
+
+    def test_05_duplicate_from_quick_input_copies_order(self):
+        order = self.env["sale.order"].create(
+            {
+                "partner_id": self.partner.id,
+                "order_line": [
+                    Command.create({"product_id": self.product.id}),
+                    Command.create({"product_id": self.product.id}),
+                ],
+            }
+        )
+        # The quick input list Duplicate calls copy with the action context
+        new_lines = order.order_line[0].with_context(tms_quick_input=True).copy()
+        new_order = new_lines.order_id
+        self.assertEqual(len(new_order), 1)
+        self.assertNotEqual(new_order, order)
+        self.assertEqual(new_order.partner_id, self.partner)
+        self.assertEqual(len(new_lines), 2)

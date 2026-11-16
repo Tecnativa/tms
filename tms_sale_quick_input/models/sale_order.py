@@ -309,6 +309,17 @@ class SaleOrderLine(models.Model):
         # the type from the partner defaults).
         self.order_id.type_id = self.sale_type_id
 
+    def copy(self, default=None):
+        # The quick input list Duplicate action copies the lines, which fails
+        # as order_id is copy=False: duplicate their whole orders instead,
+        # as the "Duplicate Order" server action of tms does
+        if default or not self.env.context.get("tms_quick_input"):
+            return super().copy(default=default)
+        new_orders = self.env["sale.order"]
+        for order in self.order_id:
+            new_orders |= order.copy()
+        return new_orders.order_line
+
     def write(self, vals):
         res = super().write(vals)
         if "final_destination_id" in vals:
