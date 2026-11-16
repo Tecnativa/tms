@@ -276,3 +276,32 @@ class TestTmsAnalytic(TestTMS):
             [("move_id", "=", invoice.id), ("tractor_id", "=", self.vehicle.id)]
         )
         self.assertTrue(report_lines)
+
+    def test_purchase_line_with_tractor(self):
+        # The user sets the tractor on the purchase order line of a carrier
+        with Form(self.env["purchase.order"]) as order_form:
+            order_form.partner_id = self.customer
+            with order_form.order_line.new() as line_form:
+                line_form.product_id = self.product
+                line_form.analytic_distribution = self.business_distribution
+                line_form.tractor_id = self.vehicle
+        line = order_form.record.order_line
+        self.assertEqual(
+            line.analytic_distribution,
+            {self._key(self.account_business, self.account_tractor): 100.0},
+        )
+        with Form(order_form.record) as order_form:
+            with order_form.order_line.edit(0) as line_form:
+                line_form.tractor_id = self.vehicle_2
+        self.assertEqual(
+            line.analytic_distribution,
+            {self._key(self.account_business, self.account_tractor_2): 100.0},
+        )
+        # Out of the screens too (RPC, imports)
+        line.write({"tractor_id": False, "trailer_id": self.trailer.id})
+        self.assertEqual(
+            line.analytic_distribution,
+            {str(self.account_business.id): 100.0, self.key_trailer: 50.0},
+        )
+        line.trailer_id = False
+        self.assertEqual(line.analytic_distribution, self.business_distribution)

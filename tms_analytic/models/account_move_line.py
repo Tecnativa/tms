@@ -1,11 +1,29 @@
 # Copyright 2026 Tecnativa - Sergio Teruel
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import models
+from odoo import api, models
 
 
 class AccountMoveLine(models.Model):
-    _inherit = "account.move.line"
+    _name = "account.move.line"
+    _inherit = ["account.move.line", "tms.analytic.distribution"]
+
+    def _get_vehicles_analytic_lines(self):
+        """Not the tax, payment term... lines of the invoices. In the journal
+        entries every line is a product one."""
+        return self.filtered(lambda x: x.display_type == "product")
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        lines = super().create(vals_list)
+        lines._tms_analytic_create()
+        return lines
+
+    def write(self, vals):
+        return self._tms_analytic_write(vals, super().write)
+
+    def _compute_analytic_distribution(self):
+        return self._tms_analytic_compute(super()._compute_analytic_distribution)
 
     def _prepare_analytic_lines(self):
         """The analytic line of a distribution key with the account of a vehicle

@@ -27,7 +27,7 @@ class ProjectTask(models.Model):
         for task in self.filtered("sale_line_id"):
             origin = task._origin
             task.analytic_distribution = self.env[
-                "sale.order.line"
+                "tms.analytic.distribution"
             ]._merge_vehicles_analytic_distribution(
                 origin.analytic_distribution,
                 (

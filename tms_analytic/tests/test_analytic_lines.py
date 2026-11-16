@@ -1,7 +1,7 @@
 # Copyright 2026 Tecnativa - Sergio Teruel
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo import Command, fields
-from odoo.tests import new_test_user, tagged
+from odoo.tests import Form, new_test_user, tagged
 
 from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 
@@ -20,6 +20,9 @@ class TestTmsAnalyticLines(AccountTestInvoicingCommon):
         )
         cls.account_tractors = Account.create(
             {"name": "Tractors", "plan_id": business_plan.id}
+        )
+        cls.account_city = Account.create(
+            {"name": "City", "plan_id": Plan.create({"name": "City"}).id}
         )
         brand = cls.env["fleet.vehicle.model.brand"].create({"name": "Test brand"})
         tractor_model = cls.env["fleet.vehicle.model"].create(
@@ -61,6 +64,98 @@ class TestTmsAnalyticLines(AccountTestInvoicingCommon):
                 ],
             }
         )
+
+    def _key(self, *accounts):
+        return ",".join(map(str, sorted(account.id for account in accounts)))
+
+    def _set_vehicle_distributions(self):
+        """As the vehicle cards of the instance: business line, vehicle and city"""
+        for vehicle, account in zip(self.vehicles, self.vehicle_accounts, strict=True):
+            vehicle.analytic_distribution = {
+                self._key(self.account_tractors, account, self.account_city): 100.0
+            }
+
+    def test_bill_line_with_tractor(self):
+        self._set_vehicle_distributions()
+        tractor, tractor_2, _trailer = self.vehicles
+        account_tractor, account_tractor_2, _account_trailer = self.vehicle_accounts
+        with Form(
+            self.env["account.move"].with_context(default_move_type="in_invoice")
+        ) as bill_form:
+            bill_form.partner_id = self.partner_a
+            bill_form.invoice_date = fields.Date.today()
+            with bill_form.invoice_line_ids.new() as line_form:
+                line_form.name = "Fuel"
+                line_form.price_unit = 300.0
+                line_form.tractor_id = tractor
+        bill = bill_form.record
+        line = bill.invoice_line_ids
+        self.assertEqual(
+            line.analytic_distribution,
+            {self._key(self.account_tractors, account_tractor, self.account_city): 100},
+        )
+        # Only the invoice lines, not the tax or payable ones
+        self.assertFalse((bill.line_ids - line).filtered("analytic_distribution"))
+        with Form(bill) as bill_form:
+            with bill_form.invoice_line_ids.edit(0) as line_form:
+                line_form.tractor_id = tractor_2
+        self.assertEqual(
+            line.analytic_distribution,
+            {
+                self._key(
+                    self.account_tractors, account_tractor_2, self.account_city
+                ): 100.0
+            },
+        )
+        bill.action_post()
+        self.assertEqual(line.analytic_line_ids.tractor_id, tractor_2)
+        self.assertEqual(line.analytic_line_ids.account_id, self.account_tractors)
+        # Removing the tractor from a posted bill removes its distribution
+        line.tractor_id = False
+        self.assertFalse(line.analytic_distribution)
+        self.assertFalse(line.analytic_line_ids)
+
+    def test_journal_entry_line_with_tractor(self):
+        self._set_vehicle_distributions()
+        tractor = self.vehicles[0]
+        # Created by RPC or imported, without the form
+        entry = self.env["account.move"].create(
+            {
+                "move_type": "entry",
+                "line_ids": [
+                    Command.create(
+                        {
+                            "name": "Toll",
+                            "account_id": self.company_data[
+                                "default_account_expense"
+                            ].id,
+                            "debit": 50.0,
+                            "tractor_id": tractor.id,
+                        }
+                    ),
+                    Command.create(
+                        {
+                            "name": "Toll",
+                            "account_id": self.company_data[
+                                "default_account_payable"
+                            ].id,
+                            "partner_id": self.partner_a.id,
+                            "credit": 50.0,
+                        }
+                    ),
+                ],
+            }
+        )
+        expense_line = entry.line_ids.filtered("tractor_id")
+        self.assertEqual(
+            expense_line.analytic_distribution,
+            {
+                self._key(
+                    self.account_tractors, self.vehicle_accounts[0], self.account_city
+                ): 100.0
+            },
+        )
+        self.assertFalse((entry.line_ids - expense_line).analytic_distribution)
 
     def test_cost_shared_between_vehicles(self):
         tractor, tractor_2, trailer = self.vehicles
