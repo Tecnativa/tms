@@ -11,6 +11,7 @@ from . import fleet_vehicle_model
 from . import product_template
 from . import project_project
 from . import project_task
+from . import project_task_type
 from . import res_company
 from . import res_config_settings
 from . import purchase

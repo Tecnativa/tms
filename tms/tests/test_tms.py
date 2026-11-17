@@ -211,3 +211,15 @@ class TestTMSFlow(TestTMS):
         )
         with self.assertRaises(UserError):
             task.get_route_info()
+
+    def test_personal_stage_linked_to_project(self):
+        personal_stage = self.env["project.task.type"].create(
+            {"name": "Personal stage", "user_id": self.env.user.id}
+        )
+        shared_stage = self.env["project.task.type"].create({"name": "Shared stage"})
+        self.project.type_ids = [(4, personal_stage.id), (4, shared_stage.id)]
+        self.assertFalse(personal_stage.user_id)
+        other_personal_stage = self.env["project.task.type"].create(
+            {"name": "Other personal stage", "user_id": self.env.user.id}
+        )
+        self.assertEqual(other_personal_stage.user_id, self.env.user)
