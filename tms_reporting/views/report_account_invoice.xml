@@ -256,7 +256,7 @@
                         </td>
                         <td t-if="pt.display_taxes" class="text-end">
                             <span
-                                t-esc="', '.join(map(lambda x: (x.description or x.name), l.tax_ids))"
+                                t-esc="', '.join(map(lambda x: (x.invoice_label or x.name), l.tax_ids))"
                             />
                         </td>
                         <td t-if="pt.display_total" class="text-end">
